@@ -6,13 +6,13 @@ using UnityEngine;
 public class ObjectPoolSystem
 {
 
-    RecycleObject recycleObjectPrefab;
-    RecycleObject tempObject;
-    List<RecycleObject> objectPool = new List<RecycleObject>();
-    int LAST_INDEX => objectPool.Count - 1;
-    Transform parent;
-    Quaternion originalRotate;
-    int defaultPoolSize;
+    RecycleObject _recycleObjectPrefab;
+    RecycleObject _tempObject;
+    List<RecycleObject> _objectPool = new List<RecycleObject>();
+    int LAST_INDEX => _objectPool.Count - 1;
+    Transform _parent;
+    Quaternion _originalRotate;
+    int _defaultPoolSize;
 
     public ObjectPoolSystem(RecycleObject recycleObjectPrefab, int defaultPoolSize, Transform parent)
     {
@@ -21,44 +21,44 @@ public class ObjectPoolSystem
             defaultPoolSize = 1;
         }
 
-        this.recycleObjectPrefab = recycleObjectPrefab;
-        this.defaultPoolSize = defaultPoolSize;
-        this.parent = parent;
-        originalRotate = recycleObjectPrefab.transform.localRotation;
+        _recycleObjectPrefab = recycleObjectPrefab;
+        _defaultPoolSize = defaultPoolSize;
+        _parent = parent;
+        _originalRotate = recycleObjectPrefab.transform.localRotation;
     }
 
     void CreateObject()
     {
-        for (int i = 0; i < defaultPoolSize; i++)
+        for (int i = 0; i < _defaultPoolSize; i++)
         {
-            tempObject = MonoBehaviour.Instantiate(recycleObjectPrefab, parent);
-            tempObject.InitializedByObjectPoolSystem(Restore);
-            tempObject.gameObject.SetActive(false);
-            objectPool.Add(tempObject);
+            _tempObject = MonoBehaviour.Instantiate(_recycleObjectPrefab, _parent);
+            _tempObject.InitializedByObjectPoolSystem(Restore);
+            _tempObject.gameObject.SetActive(false);
+            _objectPool.Add(_tempObject);
         }
     } 
 
     public RecycleObject Get()
     {
-        if (objectPool.Count <= 0)
+        if (_objectPool.Count <= 0)
         {
             CreateObject();
         }
 
-        tempObject = objectPool[LAST_INDEX];
-        objectPool.RemoveAt(LAST_INDEX);
-        tempObject.gameObject.SetActive(true);
-        return tempObject;
+        _tempObject = _objectPool[LAST_INDEX];
+        _objectPool.RemoveAt(LAST_INDEX);
+        _tempObject.gameObject.SetActive(true);
+        return _tempObject;
     }
 
     public void Restore(RecycleObject recycleObject)
     {
-        if (objectPool.Contains(recycleObject)) return;
+        if (_objectPool.Contains(recycleObject)) return;
 
         recycleObject.gameObject.SetActive(false);
         recycleObject.transform.localScale = Vector3.one;
-        recycleObject.transform.localRotation = originalRotate;
-        recycleObject.transform.SetParent(parent);
-        objectPool.Add(recycleObject);
+        recycleObject.transform.localRotation = _originalRotate;
+        recycleObject.transform.SetParent(_parent);
+        _objectPool.Add(recycleObject);
     }
 }

@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Player : Singleton<Player>
 {
-    PlayerMoveSystem playerMoveSystem = new PlayerMoveSystem();
-    PlayerAnimationSystem playerAnimationSystem = new PlayerAnimationSystem();
-    public Vector2 Direction => playerMoveSystem.PlayerDirection;
+    PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
+    PlayerAnimationSystem _playerAnimationSystem = new PlayerAnimationSystem();
+    public Vector2 Direction => _playerMoveSystem.PlayerDirection;
 
     void Awake()
     {
-        playerMoveSystem.Initialize(this);
-        playerAnimationSystem.Initialize(this);
+        _playerMoveSystem.Initialize(this);
+        _playerAnimationSystem.Initialize(this);
     }
 
 
     void FixedUpdate()
     {
-        playerMoveSystem.PlayerMove();
-        playerAnimationSystem.PlayerRunStance();
+        _playerMoveSystem.PlayerMove();
+        _playerAnimationSystem.PlayerRunStance();
     }
 
     private void LateUpdate()
@@ -27,6 +27,6 @@ public class Player : Singleton<Player>
         {
             return;
         }
-        playerAnimationSystem.PlayerTurn();
+        _playerAnimationSystem.PlayerTurn();
     }
 }

@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class RecycleObject : MonoBehaviour
 {
-    Action<RecycleObject> restore;
+    Action<RecycleObject> _restore;
 
     public void InitializedByObjectPoolSystem(Action<RecycleObject> restore)
     {
-        this.restore = restore;
+        _restore = restore;
     }
 
     protected void Restore()
     {
-        restore(this);
+        _restore(this);
     }
 }
