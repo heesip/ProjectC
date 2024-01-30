@@ -18,7 +18,11 @@ public class Enemy : RecycleObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (!collision.CompareTag("Bullet"))
+        {
+            return;
+        }
+        Restore();
     }
 
     

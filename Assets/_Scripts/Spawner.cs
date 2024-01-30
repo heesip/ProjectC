@@ -7,10 +7,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform[] _spawnPoints;
     WaitForSeconds _spawnTime;
 
-    void Start()
-    {
-    }
-
     void OnEnable()
     {
         _spawnPoints = GetComponentsInChildren<Transform>();

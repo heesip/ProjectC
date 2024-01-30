@@ -10,5 +10,12 @@ public class GameManager : Singleton<GameManager>
         FactoryManager.Instance.Initialize();
     }
 
+    private void Update()
+    {
+        if (!Input.GetKeyDown(KeyCode.L))
+        {
+            return;
+        }
+    }
 
 }
