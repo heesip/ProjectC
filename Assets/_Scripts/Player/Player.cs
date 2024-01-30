@@ -8,10 +8,14 @@ public class Player : Singleton<Player>
     PlayerAnimationSystem _playerAnimationSystem = new PlayerAnimationSystem();
     public Vector2 Direction => _playerMoveSystem.PlayerDirection;
 
+    [SerializeField] bool _isLive = true;
+    public bool IsLive => _isLive;
+
     void Awake()
     {
         _playerMoveSystem.Initialize(this);
         _playerAnimationSystem.Initialize(this);
+        _isLive = true;
     }
 
 
