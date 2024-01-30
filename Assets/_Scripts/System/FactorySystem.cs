@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FactorySystem : MonoBehaviour
+public class FactorySystem
 {
     ObjectPoolSystem _enemyPrefab;
     Enemy _tempEnemy;
