@@ -18,7 +18,7 @@ public class PlayerMoveSystem
 
     public void PlayerMove()
     {
-        if (!_joystick.IsDrag)
+        if (!_joystick.IsDrag)  
         {
             return;
         }

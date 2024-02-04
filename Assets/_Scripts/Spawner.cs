@@ -9,6 +9,14 @@ public class Spawner : MonoBehaviour
 
     void OnEnable()
     {
+        Initialize();
+    }
+
+    void Initialize()
+    {
+        transform.parent = Player.Instance.transform;
+        transform.localPosition = Vector3.zero;
+        transform.localScale = Vector3.one;
         _spawnPoints = GetComponentsInChildren<Transform>();
         _SpawnCoHandle = StartCoroutine(EnemySpawn(2));
     }
