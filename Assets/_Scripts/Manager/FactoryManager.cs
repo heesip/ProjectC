@@ -15,4 +15,9 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetEnemy();
     }
+
+    public ExpGem GetExpGem()
+    {
+        return _factorySystem.GetExpGem();
+    }
 }

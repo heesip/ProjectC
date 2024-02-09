@@ -7,11 +7,16 @@ using UnityEngine;
 public class PrefabResourcesSO : ScriptableObject
 {
     [SerializeField] Enemy _enemyPrefab;
-
+    [SerializeField] ExpGem _expGemPrefab;
 
     public Enemy GetEnemyPrefab()
     {
         return _enemyPrefab;
+    }
+
+    public ExpGem GetExpGemPrefab()
+    {
+        return _expGemPrefab;
     }
 
 }

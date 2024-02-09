@@ -15,4 +15,10 @@ public class GameResourcesSystem
     {
         return _prefabResourcesSO.GetEnemyPrefab();
     }
+
+    public ExpGem GetExpGemPrefab()
+    {
+        return _prefabResourcesSO.GetExpGemPrefab();
+    }
+
 }

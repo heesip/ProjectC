@@ -15,4 +15,9 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetEnemyPrefab();
     }
+
+    public ExpGem GetExpGemPrefab()
+    {
+        return _gameResourcesSystem.GetExpGemPrefab();
+    }
 }

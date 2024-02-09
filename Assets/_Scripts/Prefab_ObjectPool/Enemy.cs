@@ -70,7 +70,6 @@ public class Enemy : RecycleObject
         _coll.enabled = false;
         _rigid.simulated = false;
         _anim.SetBool("Dead", true);
-
     }
 
 
@@ -97,4 +96,10 @@ public class Enemy : RecycleObject
 
     }
 
+    void Dead()
+    {
+        Restore();
+        ExpGem expGem = FactoryManager.Instance.GetExpGem();
+        expGem.transform.position = transform.position;
+    }
 }
