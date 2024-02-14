@@ -8,8 +8,8 @@ public class Enemy : RecycleObject
     Rigidbody2D _rigid;
     SpriteRenderer _sprite;
     Animator _anim;
-    [SerializeField] RuntimeAnimatorController[] _animCon;
     Collider2D _coll;
+    [SerializeField] RuntimeAnimatorController[] _animCon;
     #endregion
 
     bool _isDead;
@@ -24,8 +24,8 @@ public class Enemy : RecycleObject
     {
         _anim = GetComponent<Animator>();
         _rigid = GetComponent<Rigidbody2D>();
-        _coll = GetComponent<Collider2D>();
         _sprite = GetComponent<SpriteRenderer>();
+        _coll = GetComponent<Collider2D>();
     }
 
     void OnEnable()

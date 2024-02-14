@@ -13,7 +13,7 @@ public class FactorySystem
     public void Initialize(Transform factoryManager)
     {
         _enemyPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetEnemyPrefab(), 1, factoryManager);
-        _expGemPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetExpGemPrefab(), 1, factoryManager);
+        _expGemPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetExpGemPrefab(), 100, factoryManager);
         
     }
 
