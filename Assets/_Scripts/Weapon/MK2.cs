@@ -7,14 +7,19 @@ public class MK2 : Weapon
 {
     [SerializeField] GameObject _mk2;
     SpriteRenderer _mk2Sprite;
-
+    //Temp Code
+    [SerializeField] Vector3 _mk2RightPos = new Vector3(-5, 0, 0);
+    [SerializeField] Vector3 _mk2LeftPos = new Vector3(5, 0, 0);
+    [SerializeField] Vector3 _mk2Size = new Vector3(2.5f, 2.5f, 2.5f);
+    [SerializeField] Quaternion _mk2Rot = Quaternion.Euler(0, 0, -90);
     protected override void Initialize()
     {
-        _rightPos = new Vector3(-5, 0, 0);
-        _leftPos = new Vector3(5, 0, 0);
-        transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         _mk2Sprite = _mk2.GetComponent<SpriteRenderer>();
-        _mk2.transform.rotation = Quaternion.Euler(0, 0, -90);
+        transform.localScale = _mk2Size;
+        _mk2.transform.rotation = _mk2Rot;
+
+        _rightPos = _mk2RightPos;
+        _leftPos = _mk2LeftPos;
         _mk2.transform.Translate(transform.up, Space.World);
     }
 
@@ -32,7 +37,6 @@ public class MK2 : Weapon
     {
         bool isReverse = Player.Instance.IsLeft;
         _mk2Sprite.flipY = isReverse;
-        transform.localRotation = isReverse ? _leftRot : _rightRot;
         transform.localPosition = isReverse ? _leftPos : _rightPos;
     }
     private void LateUpdate()

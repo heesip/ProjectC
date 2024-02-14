@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Dron : Weapon
 {
+    //Temp Code
+    [SerializeField] Vector3 _dronRightPos = new Vector3(-1, 3, 0);
+    [SerializeField] Vector3 _dronLeftPos = new Vector3(1, 3, 0);
+    [SerializeField] Quaternion _dronRightRot = Quaternion.Euler(0, 0, 75);
+    [SerializeField] Quaternion _dronLeftRot = Quaternion.Euler(0, 0, -75);
+
     private void Awake()
     {
         Initialize();
     }
     protected override void Initialize()
     {
-        _rightPos = new Vector3(-1, 3, 0);
-        _leftPos = new Vector3(1, 3, 0);
-        _rightRot = Quaternion.Euler(0, 0, 75);
-        _leftRot = Quaternion.Euler(0, 0, -75);
+        _rightPos = _dronRightPos;
+        _leftPos = _dronLeftPos;
+        _rightRot = _dronRightRot;
+        _leftRot = _dronLeftRot;
     }
 
     private void LateUpdate()

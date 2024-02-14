@@ -462,6 +462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0
   _fjorgin: {fileID: 505064509}
+  _fjorginRightPos: {x: 3, y: 4.5, z: 0}
+  _fjorginLeftPos: {x: -3, y: 4.5, z: 0}
 --- !u!1 &594056580
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints: []
+  _spawnTime: 2.5
 --- !u!1 &905462468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,6 +1802,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0
+  _dronRightPos: {x: -1, y: 3, z: 0}
+  _dronLeftPos: {x: 1, y: 3, z: 0}
+  _dronRightRot: {x: 0, y: 0, z: 0.6087614, w: 0.7933533}
+  _dronLeftRot: {x: 0, y: 0, z: -0.6087614, w: 0.7933533}
 --- !u!1 &1967462697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,8 +1851,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faac649e8973d6a41b7a73f22ec91aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 0
   _mk2: {fileID: 235993155}
+  _mk2RightPos: {x: -5, y: 0, z: 0}
+  _mk2LeftPos: {x: 5, y: 0, z: 0}
 --- !u!1 &1996202535
 GameObject:
   m_ObjectHideFlags: 0

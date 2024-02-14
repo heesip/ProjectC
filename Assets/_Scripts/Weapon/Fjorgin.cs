@@ -6,6 +6,11 @@ public class Fjorgin : Weapon
 {
     [SerializeField] GameObject _fjorgin;
     SpriteRenderer _fjorginSprite;
+
+    //Temp Code
+    [SerializeField] Vector3 _fjorginRightPos = new Vector3(3, 4.5f, 0);
+    [SerializeField] Vector3 _fjorginLeftPos = new Vector3(-3, 4.5f, 0);
+
     private void Awake()
     {
         Initialize();
@@ -13,14 +18,13 @@ public class Fjorgin : Weapon
     protected override void Initialize()
     {
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
-        _rightPos = new Vector3(3, 4.5f, 0);
-        _leftPos = new Vector3(-3, 4.5f, 0);
+        _rightPos = _fjorginRightPos;
+        _leftPos = _fjorginLeftPos;
     }
     private void LateUpdate()
     {
         bool isReverse = Player.Instance.IsLeft;
         _fjorginSprite.flipX = !isReverse;
-        transform.localRotation = isReverse ? _leftRot : _rightRot;
         transform.localPosition = isReverse ? _leftPos : _rightPos;
     }
 }

@@ -5,7 +5,10 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] Transform[] _spawnPoints;
-    WaitForSeconds _spawnTime;
+    WaitForSeconds _spawnTimeCo;
+
+    //TempCode
+    [SerializeField] float _spawnTime = 2.5f;
 
     void OnEnable()
     {
@@ -18,19 +21,19 @@ public class Spawner : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
         _spawnPoints = GetComponentsInChildren<Transform>();
-        _SpawnCoHandle = StartCoroutine(EnemySpawn(2));
+        _SpawnCoHandle = StartCoroutine(EnemySpawn());
     }
 
     Coroutine _SpawnCoHandle;
 
-    IEnumerator EnemySpawn(float spawnTime)
+    IEnumerator EnemySpawn()
     {
         while (true)
         {
-            _spawnTime = new WaitForSeconds(spawnTime);
+            _spawnTimeCo = new WaitForSeconds(_spawnTime);
             Enemy enemy = FactoryManager.Instance.GetEnemy();
             enemy.transform.position = _spawnPoints[Random.Range(1, _spawnPoints.Length)].position;
-            yield return _spawnTime;
+            yield return _spawnTimeCo;
         }
     }
 
