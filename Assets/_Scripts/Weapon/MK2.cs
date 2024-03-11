@@ -12,6 +12,8 @@ public class MK2 : Weapon
     [SerializeField] Vector3 _mk2LeftPos = new Vector3(5, 0, 0);
     [SerializeField] Vector3 _mk2Size = new Vector3(2.5f, 2.5f, 2.5f);
     [SerializeField] Quaternion _mk2Rot = Quaternion.Euler(0, 0, -90);
+
+    WaitForSeconds _coolTime = new WaitForSeconds(3);
     protected override void Initialize()
     {
         _mk2Sprite = _mk2.GetComponent<SpriteRenderer>();
@@ -21,26 +23,64 @@ public class MK2 : Weapon
         _rightPos = _mk2RightPos;
         _leftPos = _mk2LeftPos;
         _mk2.transform.Translate(transform.up, Space.World);
+        _speed = 2.2f;
+
     }
 
     private void Awake()
     {
         Initialize();
     }
-    void Attack()
+
+    private void OnEnable()
     {
-        Vector3 rotVec = Vector3.back;
-        transform.Rotate(rotVec * _speed);
+        _attackCoHandle = StartCoroutine(AttackCo());
+    }
+    private void OnDisable()
+    {
+        StopAttackCo();
     }
 
-    void Mk2AttackPosition()
+    Coroutine _attackCoHandle;
+    IEnumerator AttackCo()
+    {
+        float attackTime = 0;
+        float maxAttackTime = 2f;
+        while (true)
+        {
+            attackTime = 0;
+            AttackPosition();
+            while (attackTime < maxAttackTime)
+            {
+                yield return null;
+                Vector3 rotVec = Vector3.back;
+                transform.Rotate(rotVec * _speed);
+                attackTime += Time.deltaTime;
+            }
+            WeaponReturn();
+            yield return _coolTime;
+        }
+    }
+
+    void StopAttackCo()
+    {
+        if (_attackCoHandle != null)
+        {
+            StopCoroutine(_attackCoHandle);
+        }
+    }
+
+    void AttackPosition()
     {
         bool isReverse = Player.Instance.IsLeft;
-        _mk2Sprite.flipY = isReverse;
+        _mk2Sprite.enabled = true;
         transform.localPosition = isReverse ? _leftPos : _rightPos;
+        transform.SetParent(null);
     }
-    private void LateUpdate()
+
+    void WeaponReturn()
     {
-        Mk2AttackPosition();
+        _mk2Sprite.enabled = false;
+        transform.SetParent(Player.Instance.transform);
     }
 }
