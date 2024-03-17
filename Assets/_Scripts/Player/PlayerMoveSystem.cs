@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMoveSystem
 {
-    Player _player;
+    Rigidbody2D _rigid;
     Joystick _joystick;
     float _speed = 3f;
     Vector2 _direction;
@@ -12,19 +12,20 @@ public class PlayerMoveSystem
 
     public void Initialize(Player player)
     {
-        _player = player;
         _joystick = UIManager.Instance.Joystick;
+        _rigid = player.GetComponent<Rigidbody2D>();
     }
 
     public void PlayerMove()
     {
-        if (!_joystick.IsDrag)  
+        _rigid.velocity = Vector2.zero;
+        if (!_joystick.IsDrag)
         {
             return;
         }
         _direction = new Vector2(_joystick.Horizontal, _joystick.Vertical);
-        _player.transform.position += (Vector3)_direction.normalized * _speed * Time.fixedDeltaTime;
-
+        Vector2 nextVec = _direction.normalized * _speed * Time.fixedDeltaTime;
+        _rigid.MovePosition(_rigid.position + nextVec);
     }
 
 }
