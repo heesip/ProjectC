@@ -5,8 +5,8 @@ using UnityEngine;
 public class Dron : Weapon
 {
     //Temp Code
-    [SerializeField] Vector3 _dronRightPos = new Vector3(-1, 3, 0);
-    [SerializeField] Vector3 _dronLeftPos = new Vector3(1, 3, 0);
+    [SerializeField] Vector3 _dronRightPos = new Vector3(-1, 1, 0);
+    [SerializeField] Vector3 _dronLeftPos = new Vector3(1, 1, 0);
     [SerializeField] Quaternion _dronRightRot = Quaternion.Euler(0, 0, 75);
     [SerializeField] Quaternion _dronLeftRot = Quaternion.Euler(0, 0, -75);
 

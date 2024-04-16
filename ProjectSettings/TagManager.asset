@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - ExpGem
+  - Map
+  - Area
   layers:
   - Default
   - TransparentFX

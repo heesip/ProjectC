@@ -9,9 +9,8 @@ public class MK2 : Weapon
     [SerializeField] SpriteRenderer _mk2Sprite;
     [SerializeField] Collider2D _collider;
     //Temp Code
-    [SerializeField] Vector3 _mk2RightPos = new Vector3(-5, 0, 0);
-    [SerializeField] Vector3 _mk2LeftPos = new Vector3(5, 0, 0);
-    [SerializeField] Vector3 _mk2Size = new Vector3(2.5f, 2.5f, 2.5f);
+    [SerializeField] Vector3 _mk2RightPos = new Vector3(-2.5f, 0, 0);
+    [SerializeField] Vector3 _mk2LeftPos = new Vector3(2.5f, 0, 0);
     [SerializeField] Quaternion _mk2Rot = Quaternion.Euler(0, 0, -90);
 
     WaitForSeconds _coolTime = new WaitForSeconds(3);
@@ -19,7 +18,6 @@ public class MK2 : Weapon
     {
         _mk2Sprite = _mk2.GetComponent<SpriteRenderer>();
         _collider = _mk2.GetComponent<Collider2D>();
-        transform.localScale = _mk2Size;
         _mk2.transform.rotation = _mk2Rot;
 
         _rightPos = _mk2RightPos;

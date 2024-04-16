@@ -8,8 +8,8 @@ public class Fjorgin : Weapon
     SpriteRenderer _fjorginSprite;
 
     //Temp Code
-    [SerializeField] Vector3 _fjorginRightPos = new Vector3(0, 4.5f, 0);
-    [SerializeField] Vector3 _fjorginLeftPos = new Vector3(0, 4.5f, 0);
+    [SerializeField] Vector3 _fjorginRightPos = new Vector3(0, 2.5f, 0);
+    [SerializeField] Vector3 _fjorginLeftPos = new Vector3(0, 2.5f, 0);
 
     private void Awake()
     {
