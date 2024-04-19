@@ -7,6 +7,7 @@ public class Fjorgin : Weapon
     [SerializeField] GameObject _fjorgin;
     SpriteRenderer _fjorginSprite;
     Animator _anim;
+    Collider2D _collider;
     [SerializeField] bool _isReverse;
     //Temp Code
     [SerializeField] Vector3 _fjorginRightPos = new Vector3(0, 2.5f, 0);
@@ -19,7 +20,7 @@ public class Fjorgin : Weapon
     protected override void Initialize()
     {
         _anim = GetComponent<Animator>();
-
+        _collider = _fjorgin.GetComponent<Collider2D>();
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
         _fjorgin.transform.Translate(transform.up/*, Space.World*/);
         _rightPos = _fjorginRightPos;
@@ -41,13 +42,10 @@ public class Fjorgin : Weapon
         StopAttackCo();
     }
 
-
-
     Coroutine _attackCoHandle;
 
     IEnumerator AttackCo()
     {
-
         while (true)
         {
             yield return null;
@@ -62,9 +60,8 @@ public class Fjorgin : Weapon
                     break;
             }
             yield return _coolTime;
-
+            WeaponReturn();
         }
-
 
     }
 
@@ -76,12 +73,22 @@ public class Fjorgin : Weapon
         }
     }
 
-
-
     void AttackPosition()
     {
         _isReverse = Player.Instance.IsLeft;
         _fjorginSprite.flipX = !_isReverse;
         transform.localPosition = _isReverse ? _leftPos : _rightPos;
+        _collider.enabled = true;
+        _fjorginSprite.enabled = true;
+        transform.SetParent(null);
     }
+    
+    void WeaponReturn()
+    {
+        _collider.enabled = false;
+        _fjorginSprite.enabled = false;
+        transform.SetParent(Player.Instance.transform);
+    }
+
+
 }
