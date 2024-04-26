@@ -22515,8 +22515,8 @@ MonoBehaviour:
   _dronAttackPoint2: {fileID: 2024327649}
   _dronRightPos: {x: -1, y: 1.5, z: 0}
   _dronLeftPos: {x: 1, y: 1.5, z: 0}
-  _dronRightRot: {x: 0, y: 0, z: 0.6087614, w: 0.7933533}
-  _dronLeftRot: {x: 0, y: 0, z: -0.6087614, w: 0.7933533}
+  _dronRightRot: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
+  _dronLeftRot: {x: 0, y: 0, z: -0.70710677, w: 0.70710677}
 --- !u!1 &1967462697
 GameObject:
   m_ObjectHideFlags: 0
@@ -22564,10 +22564,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0
   _mk2: {fileID: 235993155}
-  _mk2Sprite: {fileID: 0}
-  _collider: {fileID: 0}
-  _mk2RightPos: {x: -2.5, y: 0, z: 0}
-  _mk2LeftPos: {x: 2.5, y: 0, z: 0}
+  _mk2Sprite: {fileID: 235993157}
+  _collider: {fileID: 235993158}
+  _mk2RightPos: {x: -2, y: 0, z: 0}
+  _mk2LeftPos: {x: 2, y: 0, z: 0}
   _mk2Rot: {x: 0, y: 0, z: -0.70710677, w: 0.70710677}
 --- !u!1 &1996202535
 GameObject:
@@ -22729,9 +22729,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2, y: 0}
-  m_Size: {x: 1.23, y: 1.19}
-  m_Direction: 1
+  m_Offset: {x: 0.15, y: 0}
+  m_Size: {x: 0.71, y: 0.77}
+  m_Direction: 0
 --- !u!1 &2011461802
 GameObject:
   m_ObjectHideFlags: 0
