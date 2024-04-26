@@ -22513,8 +22513,8 @@ MonoBehaviour:
   _speed: 0
   _dronAttackPoint1: {fileID: 1452882775}
   _dronAttackPoint2: {fileID: 2024327649}
-  _dronRightPos: {x: -1, y: 1, z: 0}
-  _dronLeftPos: {x: 1, y: 1, z: 0}
+  _dronRightPos: {x: -1, y: 1.5, z: 0}
+  _dronLeftPos: {x: 1, y: 1.5, z: 0}
   _dronRightRot: {x: 0, y: 0, z: 0.6087614, w: 0.7933533}
   _dronLeftRot: {x: 0, y: 0, z: -0.6087614, w: 0.7933533}
 --- !u!1 &1967462697

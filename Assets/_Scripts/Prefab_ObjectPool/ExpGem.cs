@@ -35,11 +35,10 @@ public class ExpGem : RecycleObject
         isFly = true;
 
         var originalPosition = transform.position;
-        var playerPosition = Player.Instance.transform.position;
         var sequence = DOTween.Sequence().OnComplete(Restore);
         sequence.Append(transform.DOMoveY(originalPosition.y + _gemMoveUp, _gemMoveDuration));
-        originalPosition = transform.position;
-        sequence.Append(transform.DOMove(originalPosition, _gemMoveDuration));
+        // var playerPosition = Player.Instance.transform.position;
+        // sequence.Append(transform.DOMove(playerPosition, _gemMoveDuration));
     }
 
 
