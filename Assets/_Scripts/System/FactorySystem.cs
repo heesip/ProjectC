@@ -6,14 +6,18 @@ public class FactorySystem
 {
     ObjectPoolSystem _enemyPrefab;
     ObjectPoolSystem _expGemPrefab;
+    ObjectPoolSystem _missilePrefab;
 
     Enemy _tempEnemy;
     ExpGem _tempExpGem;
+    Missile _tempMissile; 
 
     public void Initialize(Transform factoryManager)
     {
         _enemyPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetEnemyPrefab(), 100, factoryManager);
         _expGemPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetExpGemPrefab(), 100, factoryManager);
+        _missilePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMissilePrefab(), 100, factoryManager);
+      
 
     }
 
@@ -27,5 +31,11 @@ public class FactorySystem
     {
         _tempExpGem = _expGemPrefab.Get() as ExpGem;
         return _tempExpGem;
+    }
+
+    public Missile GetMissile()
+    {
+        _tempMissile = _missilePrefab.Get() as Missile;
+        return _tempMissile;
     }
 }

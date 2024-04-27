@@ -20,4 +20,9 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetExpGemPrefab();
     }
+
+    public Missile GetMissilePrefab()
+    {
+        return _gameResourcesSystem.GetMissilePrefab();
+    }
 }

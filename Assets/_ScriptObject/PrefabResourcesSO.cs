@@ -8,6 +8,7 @@ public class PrefabResourcesSO : ScriptableObject
 {
     [SerializeField] Enemy _enemyPrefab;
     [SerializeField] ExpGem _expGemPrefab;
+    [SerializeField] Missile _missilePrefab;
 
     public Enemy GetEnemyPrefab()
     {
@@ -17,6 +18,11 @@ public class PrefabResourcesSO : ScriptableObject
     public ExpGem GetExpGemPrefab()
     {
         return _expGemPrefab;
+    }
+
+    public Missile GetMissilePrefab()
+    {
+        return _missilePrefab;
     }
 
 }

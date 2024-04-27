@@ -21,12 +21,12 @@ public class Spawner : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
         _spawnPoints = GetComponentsInChildren<Transform>();
-        _SpawnCoHandle = StartCoroutine(EnemySpawn());
+        _spawnCoHandle = StartCoroutine(EnemySpawnCo());
     }
 
-    Coroutine _SpawnCoHandle;
+    Coroutine _spawnCoHandle;
 
-    IEnumerator EnemySpawn()
+    IEnumerator EnemySpawnCo()
     {
         while (true)
         {
@@ -39,9 +39,9 @@ public class Spawner : MonoBehaviour
 
     void StopSpawnCo()
     {
-        if (_SpawnCoHandle != null)
+        if (_spawnCoHandle != null)
         {
-            StopCoroutine(_SpawnCoHandle);
+            StopCoroutine(_spawnCoHandle);
         }
     }
 
