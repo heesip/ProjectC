@@ -13,7 +13,7 @@ public class Dron : Weapon
     [SerializeField] Vector3 _dronLeftPos = new Vector3(1, 1.5f, 0);
     [SerializeField] Quaternion _dronRightRot = Quaternion.Euler(0, 0, 90);
     [SerializeField] Quaternion _dronLeftRot = Quaternion.Euler(0, 0, -90);
-
+    [SerializeField] int _count = 2;
     private void Awake()
     {
         Initialize();
@@ -46,10 +46,34 @@ public class Dron : Weapon
         while (true)
         {
             yield return _coolTime;
-            Missile missile1 = FactoryManager.Instance.GetMissile();
-            Missile missile2 = FactoryManager.Instance.GetMissile();
-            missile1.transform.position = _dronAttackPoint1.position;
-            missile2.transform.position = _dronAttackPoint2.position;
+            Projectile[] missile = new Projectile[_count];
+
+            for (int i = 0; i < missile.Length; i++)
+            {
+                missile[i] = FactoryManager.Instance.GetMissile();
+                missile[i].GetComponent<SpriteRenderer>().flipX = Player.Instance.IsLeft ? true : false;
+
+                switch (i)
+                {
+                    case 0:
+                        missile[i].transform.position = _dronAttackPoint1.position;
+                        
+                        break;
+                    case 1:
+                        missile[i].transform.position = _dronAttackPoint2.position;
+                        break;
+                    case 2:
+                        yield return new WaitForSeconds(0.1f);
+                        missile[i].transform.position = _dronAttackPoint1.position;
+                        break;
+                    case 3:
+                        missile[i].transform.position = _dronAttackPoint2.position;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
         }
     }
 
@@ -61,9 +85,10 @@ public class Dron : Weapon
         }
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         StopAttackCo();
     }
+
 
 }

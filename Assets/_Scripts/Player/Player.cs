@@ -6,8 +6,9 @@ public class Player : Singleton<Player>
 {
     PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
     PlayerAnimationSystem _playerAnimationSystem = new PlayerAnimationSystem();
+    [SerializeField] PlayerSocketSystem _playerSocketSystem = new PlayerSocketSystem();
     public Vector2 Direction => _playerMoveSystem.PlayerDirection;
-
+    Vector2 _moveDirection;
     [SerializeField] bool _isLive;
     public bool IsLive => _isLive;
 
@@ -26,6 +27,7 @@ public class Player : Singleton<Player>
     void FixedUpdate()
     {
         _playerMoveSystem.PlayerMove();
+        _playerSocketSystem.IndicatorMove(Direction);
     }
 
     private void LateUpdate()

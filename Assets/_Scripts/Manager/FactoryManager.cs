@@ -21,7 +21,7 @@ public class FactoryManager : Singleton<FactoryManager>
         return _factorySystem.GetExpGem();
     }
 
-    public Missile GetMissile()
+    public Projectile GetMissile()
     {
         return _factorySystem.GetMissile();
     }

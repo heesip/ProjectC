@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile : RecycleObject
+public class Projectile : RecycleObject
 {
-    Rigidbody2D rigid;
+    Rigidbody2D _rigid;
+    //SpriteRenderer _sprite;
     [SerializeField] float speed = 5;
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        _rigid = GetComponent<Rigidbody2D>();
     }
     void OnEnable()
     {
@@ -18,15 +19,13 @@ public class Missile : RecycleObject
     void Shot()
     {
         bool isReverse = Player.Instance.IsLeft;
-
         switch (isReverse)
         {
             case true:
-                transform.Rotate(0, 0, 180);
-                rigid.velocity = Vector2.left * speed;
+                _rigid.velocity = Vector2.left * speed;
                 break;
             case false:
-                rigid.velocity = Vector2.right * speed;
+                _rigid.velocity = Vector2.right * speed;
                 break;
         }
     }
@@ -50,7 +49,7 @@ public class Missile : RecycleObject
     }
     private void Remove()
     {
-        rigid.velocity = Vector2.zero;
+        _rigid.velocity = Vector2.zero;
         Restore();
     }
 }

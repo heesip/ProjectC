@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2249862004343915436}
   - component: {fileID: 2249862004343915438}
   - component: {fileID: 2249862004343915441}
-  - component: {fileID: 8562031742696983709}
+  - component: {fileID: -6861221022608894069}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Bullet
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8562031742696983709
+--- !u!114 &-6861221022608894069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2249862004343915437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd414f560110e0843b0b69a47a483ba2, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f9a7f085a409634cb2514878b5c7660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 7.7
