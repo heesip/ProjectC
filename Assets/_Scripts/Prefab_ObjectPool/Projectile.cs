@@ -1,33 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using System;
 
 public class Projectile : RecycleObject
 {
-    Rigidbody2D _rigid;
-    //SpriteRenderer _sprite;
-    [SerializeField] float speed = 5;
+    SpriteRenderer _sprite;
+
     private void Awake()
     {
-        _rigid = GetComponent<Rigidbody2D>();
-    }
-    void OnEnable()
-    {
-        Shot();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
-    void Shot()
+    private void OnEnable()
     {
-        bool isReverse = Player.Instance.IsLeft;
-        switch (isReverse)
-        {
-            case true:
-                _rigid.velocity = Vector2.left * speed;
-                break;
-            case false:
-                _rigid.velocity = Vector2.right * speed;
-                break;
-        }
+        _sprite.flipX = Player.Instance.IsLeft;
+    }
+
+    public void AttackPoint(Vector2 attackPoint)
+    {
+         transform.position = attackPoint;
+    }
+    public void Shot(float nextVector_X, float duration)
+    {
+        transform.DOMoveX(nextVector_X, duration).SetEase(Ease.InCubic);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,7 +46,8 @@ public class Projectile : RecycleObject
     }
     private void Remove()
     {
-        _rigid.velocity = Vector2.zero;
+        transform.DOKill();
         Restore();
     }
+
 }
