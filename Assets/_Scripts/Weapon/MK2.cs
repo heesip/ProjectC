@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using DG.Tweening;
 
 public class MK2 : Weapon
 {
@@ -23,7 +24,7 @@ public class MK2 : Weapon
         _rightPos = _mk2RightPos;
         _leftPos = _mk2LeftPos;
         _mk2.transform.Translate(transform.up, Space.World);
-        _speed = 2.2f;
+        _speed = 1.5f;
 
     }
 
@@ -42,21 +43,15 @@ public class MK2 : Weapon
     }
 
     Coroutine _attackCoHandle;
+
     IEnumerator AttackCo()
     {
-        float attackTime = 0;
-        float maxAttackTime = 2f;
+        Tween tween;
         while (true)
         {
-            attackTime = 0;
             AttackPosition();
-            while (attackTime < maxAttackTime)
-            {
-                yield return null;
-                Vector3 rotVec = Vector3.back;
-                transform.Rotate(rotVec * _speed);
-                attackTime += Time.deltaTime;
-            }
+            tween = transform.DORotate(new Vector3(0, 0, -360 * 3), 1.5f, RotateMode.FastBeyond360).SetEase(Ease.InSine);
+            yield return tween.WaitForCompletion();
             WeaponReturn();
             yield return _coolTime;
         }
@@ -81,8 +76,10 @@ public class MK2 : Weapon
 
     void WeaponReturn()
     {
+        transform.DOKill();
         _collider.enabled = false;
         _mk2Sprite.enabled = false;
+        //transform.DORotate(Vector3.zero, 0);
         transform.SetParent(Player.Instance.transform);
     }
 }

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Fjorgin : Weapon
 {
     [SerializeField] GameObject _fjorgin;
     SpriteRenderer _fjorginSprite;
-    Animator _anim;
     Collider2D _collider;
     [SerializeField] bool _isReverse;
     //Temp Code
@@ -19,10 +19,9 @@ public class Fjorgin : Weapon
 
     protected override void Initialize()
     {
-        _anim = GetComponent<Animator>();
         _collider = _fjorgin.GetComponent<Collider2D>();
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
-        _fjorgin.transform.Translate(transform.up/*, Space.World*/);
+        _fjorgin.transform.Translate(transform.up);
         _rightPos = _fjorginRightPos;
         _leftPos = _fjorginLeftPos;
     }
@@ -50,15 +49,8 @@ public class Fjorgin : Weapon
         {
             yield return null;
             AttackPosition();
-            switch (_isReverse)
-            {
-                case false:
-                    _anim.SetTrigger("isRight");
-                    break;
-                case true:
-                    _anim.SetTrigger("isLeft");
-                    break;
-            }
+            Vector3 rotVec = Player.Instance.IsLeft ? Vector3.forward : Vector3.back;
+            transform.DORotate(rotVec * 90, 1).SetEase(Ease.InQuint);
             yield return _coolTime;
             WeaponReturn();
         }
@@ -82,11 +74,12 @@ public class Fjorgin : Weapon
         _fjorginSprite.enabled = true;
         transform.SetParent(null);
     }
-    
+
     void WeaponReturn()
     {
         _collider.enabled = false;
         _fjorginSprite.enabled = false;
+        transform.DORotate(Vector3.zero, 0);
         transform.SetParent(Player.Instance.transform);
     }
 
