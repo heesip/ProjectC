@@ -15,3 +15,4 @@ MonoBehaviour:
   _enemyPrefab: {fileID: -8718352676232415360, guid: aaa62fee5359ed0418d589457a66ebe4, type: 3}
   _expGemPrefab: {fileID: 6848265854471547987, guid: c29916cc6fa394fe486535a566565000, type: 3}
   _missilePrefab: {fileID: -6861221022608894069, guid: ba25d70053c917c4e90299d63f4d1210, type: 3}
+  _lightningPrefab: {fileID: -8810997858184582243, guid: a0a5bfd56f049433eaef4ed0a0b436b2, type: 3}

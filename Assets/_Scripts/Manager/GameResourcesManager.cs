@@ -25,4 +25,9 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetMissilePrefab();
     }
+
+    public Lightning GetLightningPrefab()
+    {
+        return _gameResourcesSystem.GetLightningPrefab();
+    }
 }

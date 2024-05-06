@@ -26,4 +26,9 @@ public class GameResourcesSystem
         return _prefabResourcesSO.GetMissilePrefab();
     }
 
+    public Lightning GetLightningPrefab()
+    {
+        return _prefabResourcesSO.GetLightningPrefab();
+    }
+
 }
