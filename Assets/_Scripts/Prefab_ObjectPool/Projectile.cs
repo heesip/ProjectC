@@ -7,6 +7,7 @@ using System;
 public class Projectile : RecycleObject
 {
     SpriteRenderer _sprite;
+    [SerializeField] int _id;
 
     private void Awake()
     {
@@ -15,12 +16,25 @@ public class Projectile : RecycleObject
 
     private void OnEnable()
     {
-        _sprite.flipX = Player.Instance.IsLeft;
+        switch (_id)
+        {
+            case 0:
+                _sprite.flipX = Player.Instance.IsLeft;
+                break;
+            default:
+                _rotateCo = StartCoroutine(RotateCo());
+                break;
+        }
+    }
+
+    private void OnDisable()
+    {
+        StopRotateCo();
     }
 
     public void AttackPoint(Vector2 attackPoint)
     {
-         transform.position = attackPoint;
+        transform.position = attackPoint;
     }
     public void Shot(float nextVector_X, float duration)
     {
@@ -49,5 +63,27 @@ public class Projectile : RecycleObject
         transform.DOKill();
         Restore();
     }
+
+    Coroutine _rotateCo;
+
+    IEnumerator RotateCo()
+    {
+        Tween tween;
+        while (true)
+        {
+            tween = transform.DORotate(new Vector3(0, 0, -360 * 3), 3, RotateMode.FastBeyond360).SetEase(Ease.Linear);
+            yield return tween.WaitForCompletion();
+            tween.Kill();
+        }
+    }
+
+    void StopRotateCo()
+    {
+        if (_rotateCo != null)
+        {
+            StopCoroutine(_rotateCo);
+        }
+    }
+
 
 }
