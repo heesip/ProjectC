@@ -45,22 +45,22 @@ public class Dron : Weapon
         while (true)
         {
             yield return _coolTime;
-            Projectile[] missile = new Projectile[_count];
+            Missile[] missiles = new Missile[_count];
 
-            for (int i = 0; i < missile.Length; i++)
+            for (int i = 0; i < missiles.Length; i++)
             {
-                missile[i] = FactoryManager.Instance.GetMissile();
+                missiles[i] = FactoryManager.Instance.GetMissile();
                // missile[i].GetComponent<SpriteRenderer>().flipX = Player.Instance.IsLeft ? true : false;
 
                 switch (i % 2)
                 {
                     case 0:
-                        missile[i].AttackPoint(_dronAttackPoint1.position);
-                        missile[i].Shot(NextVector().x, _speed);
+                        missiles[i].AttackPoint(_dronAttackPoint1.position);
+                        missiles[i].Shot(NextVector().x, _speed);
                         break;
                     case 1:
-                        missile[i].AttackPoint(_dronAttackPoint2.position);
-                        missile[i].Shot(NextVector().x, _speed);
+                        missiles[i].AttackPoint(_dronAttackPoint2.position);
+                        missiles[i].Shot(NextVector().x, _speed);
                         break;
                     default:
                         break;

@@ -6,7 +6,7 @@ using System;
 
 public class Projectile : RecycleObject
 {
-    SpriteRenderer _sprite;
+   protected SpriteRenderer _sprite;
     [SerializeField] int _id;
 
     private void Awake()
@@ -22,23 +22,15 @@ public class Projectile : RecycleObject
                 _sprite.flipX = Player.Instance.IsLeft;
                 break;
             default:
-                _rotateCo = StartCoroutine(RotateCo());
                 break;
         }
     }
 
-    private void OnDisable()
-    {
-        StopRotateCo();
-    }
+    
 
     public void AttackPoint(Vector2 attackPoint)
     {
         transform.position = attackPoint;
-    }
-    public void Shot(float nextVector_X, float duration)
-    {
-        transform.DOMoveX(nextVector_X, duration).SetEase(Ease.InCubic);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,26 +56,7 @@ public class Projectile : RecycleObject
         Restore();
     }
 
-    Coroutine _rotateCo;
-
-    IEnumerator RotateCo()
-    {
-        Tween tween;
-        while (true)
-        {
-            tween = transform.DORotate(new Vector3(0, 0, -360 * 3), 3, RotateMode.FastBeyond360).SetEase(Ease.Linear);
-            yield return tween.WaitForCompletion();
-            tween.Kill();
-        }
-    }
-
-    void StopRotateCo()
-    {
-        if (_rotateCo != null)
-        {
-            StopCoroutine(_rotateCo);
-        }
-    }
+    
 
 
 }

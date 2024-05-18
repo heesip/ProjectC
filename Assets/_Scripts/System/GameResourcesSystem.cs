@@ -21,9 +21,14 @@ public class GameResourcesSystem
         return _prefabResourcesSO.GetExpGemPrefab();
     }
 
-    public Projectile GetMissilePrefab()
+    public Missile GetMissilePrefab()
     {
         return _prefabResourcesSO.GetMissilePrefab();
+    }
+
+    public NinjaStar GetNinjaStarPrefab()
+    {
+        return _prefabResourcesSO.GetNinjaStarPrefab();
     }
 
     public Lightning GetLightningPrefab()

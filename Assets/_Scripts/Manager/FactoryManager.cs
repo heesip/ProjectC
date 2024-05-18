@@ -21,8 +21,16 @@ public class FactoryManager : Singleton<FactoryManager>
         return _factorySystem.GetExpGem();
     }
 
-    public Projectile GetMissile()
+    public Missile GetMissile()
     {
         return _factorySystem.GetMissile();
+    }
+    public NinjaStar GetNinjaStar()
+    {
+        return _factorySystem.GetNinjaStar();
+    }
+    public Lightning GetLightning()
+    {
+        return _factorySystem.GetLightning();
     }
 }
