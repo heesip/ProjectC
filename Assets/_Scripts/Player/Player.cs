@@ -7,6 +7,7 @@ public class Player : Singleton<Player>
     PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
     PlayerAnimationSystem _playerAnimationSystem = new PlayerAnimationSystem();
     [SerializeField] PlayerSocketSystem _playerSocketSystem = new PlayerSocketSystem();
+    PlayerAttackSystem _playerAttackSystem = new PlayerAttackSystem();
     public Vector2 Direction => _playerMoveSystem.PlayerDirection;
     Vector2 _moveDirection;
     [SerializeField] bool _isLive;
@@ -19,10 +20,11 @@ public class Player : Singleton<Player>
     {
         _playerMoveSystem.Initialize(this);
         _playerAnimationSystem.Initialize(this);
+       _playerAttackSystem.Initialize(this);
         _isLive = true;
         _isLeft = false;
-    }
 
+    }
 
     void FixedUpdate()
     {

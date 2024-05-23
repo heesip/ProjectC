@@ -16,6 +16,5 @@ public abstract class Weapon : MonoBehaviour
 
     protected abstract void Initialize();
 
-
 }
 

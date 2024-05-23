@@ -9,9 +9,9 @@ public class NinjaStar : Projectile
 
     [SerializeField] bool _isRare;
 
-
-    private void OnEnable()
+    new void OnEnable()
     {
+        // base.OnEnable();
         switch (_isRare)
         {
             case false:
@@ -26,7 +26,7 @@ public class NinjaStar : Projectile
 
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         StopRotateCo();
     }
@@ -38,7 +38,7 @@ public class NinjaStar : Projectile
         Tween tween;
         while (true)
         {
-            tween = transform.DORotate(new Vector3(0, 0, -360 * 3), 3, RotateMode.FastBeyond360).SetEase(Ease.Linear);
+            tween = transform.DORotate(new Vector3(0, 0, -360), 1, RotateMode.FastBeyond360).SetEase(Ease.Linear);
             yield return tween.WaitForCompletion();
             tween.Kill();
         }
@@ -51,7 +51,10 @@ public class NinjaStar : Projectile
             StopCoroutine(_rotateCo);
         }
     }
-
+    public void Throw(Vector2 nextVector, float duration)
+    {
+        // transform.DOMove(nextVector, duration);
+    }
 
 
 }

@@ -50,8 +50,6 @@ public class Dron : Weapon
             for (int i = 0; i < missiles.Length; i++)
             {
                 missiles[i] = FactoryManager.Instance.GetMissile();
-               // missile[i].GetComponent<SpriteRenderer>().flipX = Player.Instance.IsLeft ? true : false;
-
                 switch (i % 2)
                 {
                     case 0:
@@ -91,6 +89,4 @@ public class Dron : Weapon
     {
         StopAttackCo();
     }
-
-
 }

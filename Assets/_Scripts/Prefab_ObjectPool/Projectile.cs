@@ -6,27 +6,17 @@ using System;
 
 public class Projectile : RecycleObject
 {
-   protected SpriteRenderer _sprite;
-    [SerializeField] int _id;
+    protected SpriteRenderer _sprite;
 
     private void Awake()
     {
         _sprite = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
-        switch (_id)
-        {
-            case 0:
-                _sprite.flipX = Player.Instance.IsLeft;
-                break;
-            default:
-                break;
-        }
+        _sprite.flipX = Player.Instance.IsLeft;
     }
-
-    
 
     public void AttackPoint(Vector2 attackPoint)
     {
@@ -55,8 +45,6 @@ public class Projectile : RecycleObject
         transform.DOKill();
         Restore();
     }
-
-    
 
 
 }
