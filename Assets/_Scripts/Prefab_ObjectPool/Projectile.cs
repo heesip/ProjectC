@@ -8,14 +8,15 @@ public class Projectile : RecycleObject
 {
     protected SpriteRenderer _sprite;
 
+    protected void OnEnable()
+    {
+        StopCoHandle(_restoreCoHandle);
+        _restoreCoHandle = StartCoroutine(RestoreCo());
+    }
+
     private void Awake()
     {
         _sprite = GetComponent<SpriteRenderer>();
-    }
-
-    protected void OnEnable()
-    {
-        _sprite.flipX = Player.Instance.IsLeft;
     }
 
     public void AttackPoint(Vector2 attackPoint)
@@ -29,22 +30,25 @@ public class Projectile : RecycleObject
         {
             return;
         }
-        Remove();
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!collision.CompareTag("Area"))
-        {
-            return;
-        }
-        Remove();
-    }
-    private void Remove()
-    {
-        transform.DOKill();
         Restore();
     }
+
+    protected void StopCoHandle(Coroutine coHandle)
+    {
+        if (coHandle != null)
+        {
+            StopCoroutine(coHandle);
+        }
+    }
+    
+    Coroutine _restoreCoHandle;
+
+    IEnumerator RestoreCo()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Restore();
+    }
+
 
 
 }

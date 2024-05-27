@@ -6,10 +6,8 @@ public class Player : Singleton<Player>
 {
     PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
     PlayerAnimationSystem _playerAnimationSystem = new PlayerAnimationSystem();
-    [SerializeField] PlayerSocketSystem _playerSocketSystem = new PlayerSocketSystem();
-    PlayerAttackSystem _playerAttackSystem = new PlayerAttackSystem();
-    public Vector2 Direction => _playerMoveSystem.PlayerDirection;
-    Vector2 _moveDirection;
+    [SerializeField] PlayerAttackSystem _playerAttackSystem = new PlayerAttackSystem();
+    public Vector2 MoveDirection => _playerMoveSystem.MoveDirection;
     [SerializeField] bool _isLive;
     public bool IsLive => _isLive;
 
@@ -29,7 +27,7 @@ public class Player : Singleton<Player>
     void FixedUpdate()
     {
         _playerMoveSystem.PlayerMove();
-        _playerSocketSystem.IndicatorMove(Direction);
+        _playerAttackSystem.IndicatorMove(MoveDirection);
     }
 
     private void LateUpdate()
@@ -39,6 +37,6 @@ public class Player : Singleton<Player>
         {
             return;
         }
-        _playerAnimationSystem.PlayerTurn(out _isLeft);
+        _isLeft = _playerAnimationSystem.PlayerTurn();
     }
 }

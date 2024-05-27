@@ -8,21 +8,21 @@ public class FactorySystem
     ObjectPoolSystem _expGemPrefab;
     ObjectPoolSystem _missilePrefab;
     ObjectPoolSystem _ninjaStarPrefab;
-    ObjectPoolSystem _lightningPrefab;
+    ObjectPoolSystem _thunderPrefab;
 
     Enemy _tempEnemy;
     ExpGem _tempExpGem;
     Missile _tempMissile;
     NinjaStar _tempNinjaStar;
-    Lightning _tempLightning;
+    Thunder _tempThunder;
 
     public void Initialize(Transform factoryManager)
     {
         _enemyPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetEnemyPrefab(), 100, factoryManager);
         _expGemPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetExpGemPrefab(), 100, factoryManager);
-        _missilePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMissilePrefab(), 2, factoryManager);
-        _ninjaStarPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPrefab(), 2, factoryManager);
-        _lightningPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetLightningPrefab(), 10, factoryManager);
+        _missilePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMissilePrefab(), 10, factoryManager);
+        _ninjaStarPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPrefab(), 10, factoryManager);
+        _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 10, factoryManager);
     }
 
     public Enemy GetEnemy()
@@ -49,9 +49,9 @@ public class FactorySystem
         return _tempNinjaStar;
     }
 
-    public Lightning GetLightning()
+    public Thunder GetThunder()
     {
-        _tempLightning = _lightningPrefab.Get() as Lightning;
-        return _tempLightning;
+        _tempThunder = _thunderPrefab.Get() as Thunder;
+        return _tempThunder;
     }
 }

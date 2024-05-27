@@ -31,9 +31,9 @@ public class GameResourcesSystem
         return _prefabResourcesSO.GetNinjaStarPrefab();
     }
 
-    public Lightning GetLightningPrefab()
+    public Thunder GetThunderPrefab()
     {
-        return _prefabResourcesSO.GetLightningPrefab();
+        return _prefabResourcesSO.GetThunderPrefab();
     }
 
 }

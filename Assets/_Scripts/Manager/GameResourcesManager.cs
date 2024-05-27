@@ -31,8 +31,8 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
         return _gameResourcesSystem.GetNinjaStarPrefab();
     }
 
-    public Lightning GetLightningPrefab()
+    public Thunder GetThunderPrefab()
     {
-        return _gameResourcesSystem.GetLightningPrefab();
+        return _gameResourcesSystem.GetThunderPrefab();
     }
 }

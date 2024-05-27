@@ -7,8 +7,8 @@ public class PlayerMoveSystem
     Rigidbody2D _rigid;
     Joystick _joystick;
     float _speed = 3f;
-    Vector2 _direction;
-    public Vector2 PlayerDirection => _direction;
+    Vector2 _moveDirection;
+    public Vector2 MoveDirection => _moveDirection;
 
     public void Initialize(Player player)
     {
@@ -23,8 +23,8 @@ public class PlayerMoveSystem
         {
             return;
         }
-        _direction = new Vector2(_joystick.Horizontal, _joystick.Vertical);
-        Vector2 nextVec = _direction.normalized * _speed * Time.fixedDeltaTime;
+        _moveDirection = new Vector2(_joystick.Horizontal, _joystick.Vertical);
+        Vector2 nextVec = _moveDirection.normalized * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
     }
 

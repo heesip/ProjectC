@@ -29,8 +29,8 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetNinjaStar();
     }
-    public Lightning GetLightning()
+    public Thunder GetThunder()
     {
-        return _factorySystem.GetLightning();
+        return _factorySystem.GetThunder();
     }
 }

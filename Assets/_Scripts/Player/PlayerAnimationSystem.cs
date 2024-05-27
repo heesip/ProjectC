@@ -15,10 +15,10 @@ public class PlayerAnimationSystem
         _animator = player.GetComponent<Animator>();
     }
 
-    public void PlayerTurn(out bool isLeft)
+    public bool PlayerTurn()
     {
-        _spriteRenderer.flipX = _player.Direction.x < 0;
-        isLeft = _spriteRenderer.flipX;
+        _spriteRenderer.flipX = _player.MoveDirection.x < 0;
+        return _spriteRenderer.flipX;
     }
 
     public void PlayerRunStance()
