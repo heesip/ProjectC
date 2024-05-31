@@ -36,4 +36,13 @@ public class GameResourcesSystem
         return _prefabResourcesSO.GetThunderPrefab();
     }
 
+    public MolotovCocktail GetMolotovCocktailPrefab()
+    {
+        return _prefabResourcesSO.GetMolotovCocktailPrefab();
+    }
+
+    public Flame GetFlamePrefab()
+    {
+        return _prefabResourcesSO.GetFlamePrefab();
+    }
 }

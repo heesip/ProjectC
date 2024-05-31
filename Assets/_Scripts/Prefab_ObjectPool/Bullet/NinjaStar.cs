@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class NinjaStar : Projectile
+public class NinjaStar : Bullet
 {
     [SerializeField] Sprite[] _sprites;
-    [SerializeField] bool _isRare;
     bool _isAttack;
 
-    new void OnEnable()
+    //TempCode
+    [SerializeField] bool _isRare;
+
+    protected override void OnStart()
     {
-        base.OnEnable();
         transform.DOKill();
         switch (_isRare)
         {
             case false:
-                _sprite.sprite = _sprites[0];
+                _spriteRenderer.sprite = _sprites[0];
                 break;
             case true:
-                _sprite.sprite = _sprites[1];
+                _spriteRenderer.sprite = _sprites[1];
                 break;
         }
         NinjaStarRotate();
@@ -48,7 +49,7 @@ public class NinjaStar : Projectile
         _isAttack = true;
         while (_isAttack)
         {
-            transform.position += nextVector * speed * Time.deltaTime;
+            transform.position += speed * Time.deltaTime * nextVector;
             yield return null;
         }
 

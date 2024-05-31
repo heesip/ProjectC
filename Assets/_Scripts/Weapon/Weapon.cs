@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    protected Vector3 _rightPos;
-    protected Vector3 _leftPos;
-    protected Quaternion _rightRot;
-    protected Quaternion _leftRot;
+    protected Vector3 _rightPosition;
+    protected Vector3 _leftPosition;
+    protected Quaternion _rightRotation;
+    protected Quaternion _leftRotation;
 
     int _coolTime;
     float _damage;

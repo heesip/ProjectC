@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thunder : RecycleObject
+public class Thunder : Bullet
 {
     Animator _animator;
-    string _isPlay = "isAttack";
-    Collider2D _coll;
+    Collider2D _collider;
+
+    //TempCode
+    readonly string _isPlay = "isAttack";
 
     void Awake()
     {
         _animator = GetComponent<Animator>();
-        _coll = GetComponent<Collider2D>();
-        _coll.enabled = false;
+        _collider = GetComponent<Collider2D>();
+        _collider.enabled = false;
+        _isProjectile = false;
     }
 
-    void OnEnable()
+    protected override void OnStart()
     {
         _attackCoHandle = StartCoroutine(AttackCo());
     }
@@ -26,15 +29,12 @@ public class Thunder : RecycleObject
         StopAttackCo();
     }
 
-
     Coroutine _attackCoHandle;
 
     IEnumerator AttackCo()
     {
         _animator.SetBool(_isPlay, true);
-        _coll.enabled = true;
-        yield return new WaitForSeconds(0.01f);
-        _coll.enabled = false;
+        yield return null;
     }
 
     void StopAttackCo()
@@ -44,7 +44,6 @@ public class Thunder : RecycleObject
             StopCoroutine(_attackCoHandle);
         }
     }
-
 
 
 

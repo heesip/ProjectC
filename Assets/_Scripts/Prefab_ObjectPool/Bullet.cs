@@ -4,20 +4,28 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 
-public class Projectile : RecycleObject
+public class Bullet : RecycleObject
 {
-    protected SpriteRenderer _sprite;
+    protected SpriteRenderer _spriteRenderer;
+    [SerializeField] protected bool _isProjectile;
+
+    //TempCode
+    protected float _duration = 1.5f;
 
     protected void OnEnable()
     {
         StopCoHandle(_restoreCoHandle);
         _restoreCoHandle = StartCoroutine(RestoreCo());
+        OnStart();
     }
 
     private void Awake()
     {
-        _sprite = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _isProjectile = true;
     }
+
+    protected virtual void OnStart() { }
 
     public void AttackPoint(Vector2 attackPoint)
     {
@@ -27,6 +35,10 @@ public class Projectile : RecycleObject
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy"))
+        {
+            return;
+        }
+        if (!_isProjectile)
         {
             return;
         }
@@ -40,15 +52,14 @@ public class Projectile : RecycleObject
             StopCoroutine(coHandle);
         }
     }
-    
+
     Coroutine _restoreCoHandle;
 
     IEnumerator RestoreCo()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(_duration);
         Restore();
     }
-
 
 
 }

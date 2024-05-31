@@ -5,7 +5,6 @@ using UnityEngine;
 public class Electrode : MonoBehaviour
 {
 
-    SpriteRenderer _sprite;
     Collider2D _collider;
     WaitForSeconds _attackInterval = new WaitForSeconds(.5f);
     WaitForSeconds _coolTime = new WaitForSeconds(5);
@@ -14,7 +13,6 @@ public class Electrode : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<Collider2D>();
-        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -36,10 +34,8 @@ public class Electrode : MonoBehaviour
 
             for (int i = 0; i < _count; i++)
             {
-                _sprite.enabled = true;
                 _collider.enabled = true;
                 yield return _attackInterval;
-                _sprite.enabled = false;
                 _collider.enabled = false;
                 yield return _attackInterval;
             }

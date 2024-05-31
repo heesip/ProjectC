@@ -35,4 +35,14 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetThunderPrefab();
     }
+
+    public MolotovCocktail GetMolotovCocktailPrefab()
+    {
+        return _gameResourcesSystem.GetMolotovCocktailPrefab();
+    }
+
+    public Flame GetFlamePrefab()
+    {
+        return _gameResourcesSystem.GetFlamePrefab();
+    }
 }

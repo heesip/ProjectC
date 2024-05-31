@@ -9,20 +9,27 @@ public class FactorySystem
     ObjectPoolSystem _missilePrefab;
     ObjectPoolSystem _ninjaStarPrefab;
     ObjectPoolSystem _thunderPrefab;
+    ObjectPoolSystem _molotovCocktailPrefab;
+    ObjectPoolSystem _flamePrefab;
+
 
     Enemy _tempEnemy;
     ExpGem _tempExpGem;
     Missile _tempMissile;
     NinjaStar _tempNinjaStar;
     Thunder _tempThunder;
+    MolotovCocktail _tempMolotovCocktail;
+    Flame _tempFlame;
 
     public void Initialize(Transform factoryManager)
     {
         _enemyPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetEnemyPrefab(), 100, factoryManager);
         _expGemPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetExpGemPrefab(), 100, factoryManager);
-        _missilePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMissilePrefab(), 10, factoryManager);
-        _ninjaStarPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPrefab(), 10, factoryManager);
-        _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 10, factoryManager);
+        _missilePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMissilePrefab(), 5, factoryManager);
+        _ninjaStarPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPrefab(), 5, factoryManager);
+        _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 5, factoryManager);
+        _molotovCocktailPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMolotovCocktailPrefab(), 2, factoryManager);
+        _flamePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFlamePrefab(), 2, factoryManager);
     }
 
     public Enemy GetEnemy()
@@ -53,5 +60,17 @@ public class FactorySystem
     {
         _tempThunder = _thunderPrefab.Get() as Thunder;
         return _tempThunder;
+    }
+
+    public MolotovCocktail GetMolotovCocktail()
+    {
+        _tempMolotovCocktail = _molotovCocktailPrefab.Get() as MolotovCocktail;
+        return _tempMolotovCocktail;
+    }
+
+    public Flame GetFlame()
+    {
+        _tempFlame = _flamePrefab.Get() as Flame;
+        return _tempFlame;
     }
 }

@@ -6,10 +6,12 @@ public class Player : Singleton<Player>
 {
     PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
     PlayerAnimationSystem _playerAnimationSystem = new PlayerAnimationSystem();
-    [SerializeField] PlayerAttackSystem _playerAttackSystem = new PlayerAttackSystem();
+    [SerializeField] PlayerIndicatorSystem _playerIndicatorSystem = new PlayerIndicatorSystem();
     public Vector2 MoveDirection => _playerMoveSystem.MoveDirection;
-    [SerializeField] bool _isLive;
-    public bool IsLive => _isLive;
+    public Vector3 AttackDirection => _playerIndicatorSystem.AttackDirection;
+
+    [SerializeField] bool _isDead;
+    public bool IsDead => _isDead;
 
     [SerializeField] bool _isLeft;
     public bool IsLeft => _isLeft;
@@ -18,21 +20,29 @@ public class Player : Singleton<Player>
     {
         _playerMoveSystem.Initialize(this);
         _playerAnimationSystem.Initialize(this);
-       _playerAttackSystem.Initialize(this);
-        _isLive = true;
+        _isDead = false;
         _isLeft = false;
 
     }
 
     void FixedUpdate()
     {
+        if (IsDead)
+        {
+            return;
+        }
         _playerMoveSystem.PlayerMove();
-        _playerAttackSystem.IndicatorMove(MoveDirection);
+        _playerIndicatorSystem.IndicatorMove(MoveDirection);
     }
 
     private void LateUpdate()
     {
+        if (IsDead)
+        {
+            return;
+        }
         _playerAnimationSystem.PlayerRunStance();
+
         if (!UIManager.Instance.Joystick.IsDrag)
         {
             return;

@@ -45,7 +45,6 @@ public class Spawner : MonoBehaviour
         }
     }
 
-
     private void OnDisable()
     {
         StopSpawnCo();

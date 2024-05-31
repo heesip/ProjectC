@@ -25,12 +25,24 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetMissile();
     }
+
     public NinjaStar GetNinjaStar()
     {
         return _factorySystem.GetNinjaStar();
     }
+
     public Thunder GetThunder()
     {
         return _factorySystem.GetThunder();
+    }
+
+    public MolotovCocktail GetMolotovCocktail()
+    {
+        return _factorySystem.GetMolotovCocktail();
+    }
+
+    public Flame GetFlame()
+    {
+        return _factorySystem.GetFlame();
     }
 }

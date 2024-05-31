@@ -7,22 +7,22 @@ using DG.Tweening;
 public class MK2 : Weapon
 {
     [SerializeField] GameObject _mk2;
-    [SerializeField] SpriteRenderer _mk2Sprite;
+    [SerializeField] SpriteRenderer _mk2SpriteRenderer;
     [SerializeField] Collider2D _collider;
     //Temp Code
-    [SerializeField] Vector3 _mk2RightPos = new Vector3(-2f, 0, 0);
-    [SerializeField] Vector3 _mk2LeftPos = new Vector3(2f, 0, 0);
-    [SerializeField] Quaternion _mk2Rot = Quaternion.Euler(0, 0, -90);
+    [SerializeField] Vector3 _mk2RightPosition = new Vector3(-2f, 0, 0);
+    [SerializeField] Vector3 _mk2LeftPosition = new Vector3(2f, 0, 0);
+    [SerializeField] Quaternion _mk2Rotation = Quaternion.Euler(0, 0, -90);
 
     WaitForSeconds _coolTime = new WaitForSeconds(3);
     protected override void Initialize()
     {
-        _mk2Sprite = _mk2.GetComponent<SpriteRenderer>();
+        _mk2SpriteRenderer = _mk2.GetComponent<SpriteRenderer>();
         _collider = _mk2.GetComponent<Collider2D>();
-        _mk2.transform.rotation = _mk2Rot;
+        _mk2.transform.rotation = _mk2Rotation;
 
-        _rightPos = _mk2RightPos;
-        _leftPos = _mk2LeftPos;
+        _rightPosition = _mk2RightPosition;
+        _leftPosition = _mk2LeftPosition;
         _mk2.transform.Translate(transform.up, Space.World);
         _speed = 1.5f;
 
@@ -68,9 +68,9 @@ public class MK2 : Weapon
     void AttackPosition()
     {
         bool isReverse = Player.Instance.IsLeft;
-        _mk2Sprite.enabled = true;
+        _mk2SpriteRenderer.enabled = true;
         _collider.enabled = true;
-        transform.localPosition = isReverse ? _leftPos : _rightPos;
+        transform.localPosition = isReverse ? _leftPosition : _rightPosition;
         transform.SetParent(null);
     }
 
@@ -78,8 +78,7 @@ public class MK2 : Weapon
     {
         transform.DOKill();
         _collider.enabled = false;
-        _mk2Sprite.enabled = false;
-        //transform.DORotate(Vector3.zero, 0);
+        _mk2SpriteRenderer.enabled = false;
         transform.SetParent(Player.Instance.transform);
     }
 }

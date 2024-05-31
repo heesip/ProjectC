@@ -11,6 +11,8 @@ public class PrefabResourcesSO : ScriptableObject
     [SerializeField] Missile _missilePrefab;
     [SerializeField] NinjaStar _ninjaStarPrefab;
     [SerializeField] Thunder _thunderPrefab;
+    [SerializeField] MolotovCocktail _molotovCocktailPrefab;
+    [SerializeField] Flame _flamePrefab;
 
     public Enemy GetEnemyPrefab()
     {
@@ -35,6 +37,16 @@ public class PrefabResourcesSO : ScriptableObject
     public Thunder GetThunderPrefab()
     {
         return _thunderPrefab;
+    }
+
+    public MolotovCocktail GetMolotovCocktailPrefab()
+    {
+        return _molotovCocktailPrefab;
+    }
+
+    public Flame GetFlamePrefab()
+    {
+        return _flamePrefab;
     }
 
 }

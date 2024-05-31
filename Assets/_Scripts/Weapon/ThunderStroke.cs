@@ -1,30 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Temp Code _ ALL 
+
 public class ThunderStroke : MonoBehaviour
 {
-    float _randomX;
-    float _randomY;
     Vector3 _randomVector;
 
-    private void Start()
+    void OnEnable()
     {
-        Test();
+        _attackCoHandle = StartCoroutine(AttackCo());
     }
-    void Test()
+
+    private void OnDisable()
     {
-        for (int i = 0; i < 10; i++)
-        {
-
-        _randomX = Random.Range(-5f, 5f);
-        while (_randomX >= -1.5f && _randomX <= 1.5f)
-        {
-            print($"E {_randomX}");
-            _randomX = Random.Range(-5f, 5f);
-        }
-        print(_randomX);
-        }
-
+        StopCoHandle(_attackCoHandle);
     }
+
+    float RandomNumber(float minNumber, float maxNumber)
+    {
+        float randomNumber = Random.Range(minNumber, maxNumber);
+        while (randomNumber >= -0.5f && randomNumber <= 0.5f)
+        {
+            randomNumber = Random.Range(minNumber, maxNumber);
+        }
+        return randomNumber;
+    }
+
+    Vector2 RandomVector(float randomX, float randomY)
+    {
+        Vector2 randomVector = new Vector2(randomX, randomY);
+        return randomVector;
+    }
+
+
+    Coroutine _attackCoHandle;
+
+    IEnumerator AttackCo()
+    {
+        while (true)
+        {
+            _randomVector = RandomVector(RandomNumber(-3, 3), RandomNumber(-6, 6));
+            _randomVector += Player.Instance.transform.position;
+            yield return new WaitForSeconds(1f);
+            Thunder thunder = FactoryManager.Instance.GetThunder();
+            thunder.AttackPoint(_randomVector);
+        }
+    }
+
+    void StopCoHandle(Coroutine coHandle)
+    {
+        if (coHandle != null)
+        {
+            StopCoroutine(coHandle);
+        }
+    }
+
 }

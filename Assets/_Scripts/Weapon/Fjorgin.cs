@@ -22,8 +22,8 @@ public class Fjorgin : Weapon
         _collider = _fjorgin.GetComponent<Collider2D>();
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
         _fjorgin.transform.Translate(transform.up);
-        _rightPos = _fjorginRightPos;
-        _leftPos = _fjorginLeftPos;
+        _rightPosition = _fjorginRightPos;
+        _leftPosition = _fjorginLeftPos;
     }
 
     private void Awake()
@@ -69,7 +69,7 @@ public class Fjorgin : Weapon
     {
         _isReverse = Player.Instance.IsLeft;
         _fjorginSprite.flipX = !_isReverse;
-        transform.localPosition = _isReverse ? _leftPos : _rightPos;
+        transform.localPosition = _isReverse ? _leftPosition : _rightPosition;
         _collider.enabled = true;
         _fjorginSprite.enabled = true;
         transform.SetParent(null);
