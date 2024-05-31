@@ -25,7 +25,7 @@ public class MolotovCocktail : RecycleObject
     {
         var sequence = DOTween.Sequence();
         sequence.Append(transform.DOMove(attackDirection, 3).OnComplete(Bomb)); ;
-        // sequence.Join(transform.DORotate(new Vector3(0, 0, 360 * 7), 1f, RotateMode.FastBeyond360).SetEase(Ease.OutSine));
+        sequence.Join(transform.DORotate(new Vector3(0, 0, 360 * 9), 3f, RotateMode.FastBeyond360));
 
     }
 

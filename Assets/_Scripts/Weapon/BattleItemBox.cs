@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
 
-public class WeaponBox : MonoBehaviour
+public class BattleItemBox : MonoBehaviour
 {
     Vector3 _attackDirection => Player.Instance.AttackDirection;
     //TempCode
