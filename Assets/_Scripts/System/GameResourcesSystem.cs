@@ -21,6 +21,7 @@ public class GameResourcesSystem
         return _prefabResourcesSO.GetExpGemPrefab();
     }
 
+    #region Weapon & Bullet
     public Missile GetMissilePrefab()
     {
         return _prefabResourcesSO.GetMissilePrefab();
@@ -45,4 +46,13 @@ public class GameResourcesSystem
     {
         return _prefabResourcesSO.GetFlamePrefab();
     }
+
+    #endregion
+
+    #region Item
+    public Magnet GetMagnetPrefab()
+    {
+        return _prefabResourcesSO.GetMagnetPrefab();
+    }
+    #endregion
 }

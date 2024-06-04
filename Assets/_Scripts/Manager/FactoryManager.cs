@@ -45,4 +45,9 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetFlame();
     }
+
+    public Magnet GetMagnet()
+    {
+        return _factorySystem.GetMagnet();
+    }
 }

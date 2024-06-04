@@ -49,4 +49,11 @@ public class PrefabResourcesSO : ScriptableObject
         return _flamePrefab;
     }
 
+    [SerializeField] Magnet _magnetPrefab;
+
+    public Magnet GetMagnetPrefab()
+    {
+        return _magnetPrefab;
+    }
+
 }

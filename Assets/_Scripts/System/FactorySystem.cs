@@ -12,6 +12,7 @@ public class FactorySystem
     ObjectPoolSystem _molotovCocktailPrefab;
     ObjectPoolSystem _flamePrefab;
 
+    ObjectPoolSystem _magnetPrefab;
 
     Enemy _tempEnemy;
     ExpGem _tempExpGem;
@@ -20,6 +21,8 @@ public class FactorySystem
     Thunder _tempThunder;
     MolotovCocktail _tempMolotovCocktail;
     Flame _tempFlame;
+
+    Magnet _tempMagent;
 
     public void Initialize(Transform factoryManager)
     {
@@ -30,6 +33,8 @@ public class FactorySystem
         _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 5, factoryManager);
         _molotovCocktailPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMolotovCocktailPrefab(), 2, factoryManager);
         _flamePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFlamePrefab(), 2, factoryManager);
+
+        _magnetPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMagnetPrefab(), 5, factoryManager);
     }
 
     public Enemy GetEnemy()
@@ -72,5 +77,11 @@ public class FactorySystem
     {
         _tempFlame = _flamePrefab.Get() as Flame;
         return _tempFlame;
+    }
+
+    public Magnet GetMagnet()
+    {
+        _tempMagent = _magnetPrefab.Get() as Magnet;
+        return _tempMagent;
     }
 }

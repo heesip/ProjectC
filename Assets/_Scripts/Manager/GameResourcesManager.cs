@@ -45,4 +45,9 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetFlamePrefab();
     }
+
+    public Magnet GetMagnetPrefab()
+    {
+        return _gameResourcesSystem.GetMagnetPrefab();
+    }
 }
