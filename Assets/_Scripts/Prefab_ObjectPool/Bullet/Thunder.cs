@@ -20,6 +20,7 @@ public class Thunder : Bullet
 
     protected override void OnStart()
     {
+        _damage = 6;
         _attackCoHandle = StartCoroutine(AttackCo());
     }
 

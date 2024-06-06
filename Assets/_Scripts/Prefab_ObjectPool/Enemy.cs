@@ -5,11 +5,11 @@ using UnityEngine;
 public class Enemy : RecycleObject
 {
     #region EnemyComponent
-    Rigidbody2D _rigid;
-    SpriteRenderer _sprite;
-    Animator _anim;
-    Collider2D _coll;
-    [SerializeField] RuntimeAnimatorController[] _animCon;
+    Rigidbody2D _rigidbody;
+    SpriteRenderer _spriteRenderer;
+    Animator _animator;
+    Collider2D _collider;
+    [SerializeField] RuntimeAnimatorController[] _animatorControllers;
     #endregion
 
     bool _isDead;
@@ -22,10 +22,10 @@ public class Enemy : RecycleObject
 
     void Awake()
     {
-        _anim = GetComponent<Animator>();
-        _rigid = GetComponent<Rigidbody2D>();
-        _sprite = GetComponent<SpriteRenderer>();
-        _coll = GetComponent<Collider2D>();
+        _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<Collider2D>();
     }
 
     void OnEnable()
@@ -46,30 +46,49 @@ public class Enemy : RecycleObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("AllKill"))
+        {
+            DeadSet();
+        }
+
         if (!collision.CompareTag("Bullet"))
         {
             return;
         }
-        DeadSet();
 
+        if (_health <= 0)
+        {
+            DeadSet();
+        }
+
+    }
+
+    public void OnDamage(GameObject bullet , float damage)
+    {
+        if (!bullet.CompareTag("Bullet"))
+        {
+            return;
+        }
+        _health -= damage;
+        print($"hit{damage}");
     }
 
     void LiveSet()
     {
         _health = _maxHealth;
         _isDead = false;
-        _coll.enabled = true;
-        _rigid.simulated = true;
-        _anim.SetBool("Dead", false);
+        _collider.enabled = true;
+        _rigidbody.simulated = true;
+        _animator.SetBool("Dead", false);
         _target = Player.Instance.GetComponent<Rigidbody2D>();
     }
 
     void DeadSet()
     {
         _isDead = true;
-        _coll.enabled = false;
-        _rigid.simulated = false;
-        _anim.SetBool("Dead", true);
+        _collider.enabled = false;
+        _rigidbody.simulated = false;
+        _animator.SetBool("Dead", true);
     }
 
 
@@ -79,10 +98,10 @@ public class Enemy : RecycleObject
         {
             return;
         }
-        _direction = _target.position - _rigid.position;
+        _direction = _target.position - _rigidbody.position;
         _nextVec = _direction.normalized * _speed * Time.deltaTime;
-        _rigid.MovePosition(_rigid.position + _nextVec);
-        _rigid.velocity = Vector2.zero;
+        _rigidbody.MovePosition(_rigidbody.position + _nextVec);
+        _rigidbody.velocity = Vector2.zero;
 
     }
 
@@ -92,7 +111,7 @@ public class Enemy : RecycleObject
         {
             return;
         }
-        _sprite.flipX = _target.position.x < _rigid.position.x;
+        _spriteRenderer.flipX = _target.position.x < _rigidbody.position.x;
 
     }
 

@@ -9,6 +9,7 @@ public class Flame : Bullet
         //TempCode
         _duration = 5;
         _isProjectile = false;
+        _damage = 5;
     }
 
 }

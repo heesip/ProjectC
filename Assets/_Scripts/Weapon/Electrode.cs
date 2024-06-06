@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Electrode : MonoBehaviour
+public class Electrode : Weapon
 {
 
     Collider2D _collider;
@@ -12,7 +12,13 @@ public class Electrode : MonoBehaviour
 
     private void Awake()
     {
+        Initialize();
+    }
+
+    protected override void Initialize()
+    {
         _collider = GetComponent<Collider2D>();
+        _damage = 2;
     }
 
     private void OnEnable()
@@ -39,7 +45,7 @@ public class Electrode : MonoBehaviour
                 _collider.enabled = false;
                 yield return _attackInterval;
             }
-           yield return _coolTime;
+            yield return _coolTime;
         }
     }
 
@@ -48,6 +54,19 @@ public class Electrode : MonoBehaviour
         if (_attackCoHandle != null)
         {
             StopCoroutine(_attackCoHandle);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Enemy"))
+        {
+            return;
+        }
+        var enemy = collision.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            enemy.OnDamage(gameObject, _damage);
         }
     }
 

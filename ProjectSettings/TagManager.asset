@@ -9,6 +9,7 @@ TagManager:
   - Map
   - Area
   - Enemy
+  - AllKill
   layers:
   - Default
   - TransparentFX

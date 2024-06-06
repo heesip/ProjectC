@@ -10,7 +10,7 @@ public abstract class Weapon : MonoBehaviour
     protected Quaternion _leftRotation;
 
     int _coolTime;
-    float _damage;
+    protected float _damage;
     [SerializeField] protected float _speed;
 
 

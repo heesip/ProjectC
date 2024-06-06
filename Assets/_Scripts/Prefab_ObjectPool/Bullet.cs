@@ -8,6 +8,7 @@ public class Bullet : RecycleObject
 {
     protected SpriteRenderer _spriteRenderer;
     [SerializeField] protected bool _isProjectile;
+    protected float _damage = 0;
 
     //TempCode
     protected float _duration = 1.5f;
@@ -17,6 +18,7 @@ public class Bullet : RecycleObject
         StopCoHandle(_restoreCoHandle);
         _restoreCoHandle = StartCoroutine(RestoreCo());
         OnStart();
+
     }
 
     private void Awake()
@@ -38,6 +40,13 @@ public class Bullet : RecycleObject
         {
             return;
         }
+        var enemy = collision.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            enemy.OnDamage(gameObject, _damage);
+        }
+
         if (!_isProjectile)
         {
             return;

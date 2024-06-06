@@ -18,14 +18,14 @@ public class MK2 : Weapon
     protected override void Initialize()
     {
         _mk2SpriteRenderer = _mk2.GetComponent<SpriteRenderer>();
-        _collider = _mk2.GetComponent<Collider2D>();
+        _collider = GetComponent<Collider2D>();
         _mk2.transform.rotation = _mk2Rotation;
 
         _rightPosition = _mk2RightPosition;
         _leftPosition = _mk2LeftPosition;
         _mk2.transform.Translate(transform.up, Space.World);
         _speed = 1.5f;
-
+        _damage = 2;
     }
 
     private void Awake()
@@ -80,5 +80,19 @@ public class MK2 : Weapon
         _collider.enabled = false;
         _mk2SpriteRenderer.enabled = false;
         transform.SetParent(Player.Instance.transform);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Enemy"))
+        {
+            return;
+        }
+        var enemy = collision.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            enemy.OnDamage(gameObject, _damage);
+        }
     }
 }

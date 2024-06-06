@@ -13,6 +13,7 @@ public class NinjaStar : Bullet
 
     protected override void OnStart()
     {
+        _damage = 3;
         transform.DOKill();
         switch (_isRare)
         {
