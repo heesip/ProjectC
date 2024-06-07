@@ -56,12 +56,3 @@ public class Potion : Item
 
 }
 
-public enum PotionType
-{
-    None,
-    EmergencyPotion,
-    HealPotion,
-    RareHealPortion,
-    SpiritPortion,
-    Atropine
-}

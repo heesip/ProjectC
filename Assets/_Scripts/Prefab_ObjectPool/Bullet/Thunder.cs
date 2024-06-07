@@ -7,9 +7,6 @@ public class Thunder : Bullet
     Animator _animator;
     Collider2D _collider;
 
-    //TempCode
-    readonly string _isPlay = "isAttack";
-
     void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -26,7 +23,7 @@ public class Thunder : Bullet
 
     void OnDisable()
     {
-        _animator.SetBool(_isPlay, false);
+        _animator.SetBool(AllStrings.isAttack, false);
         StopAttackCo();
     }
 
@@ -34,7 +31,7 @@ public class Thunder : Bullet
 
     IEnumerator AttackCo()
     {
-        _animator.SetBool(_isPlay, true);
+        _animator.SetBool(AllStrings.isAttack, true);
         yield return null;
     }
 

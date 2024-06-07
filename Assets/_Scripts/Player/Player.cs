@@ -55,7 +55,7 @@ public class Player : Singleton<Player>
             return;
         }
 
-        if (!collision.collider.CompareTag("Enemy"))
+        if (!collision.collider.CompareTag(AllStrings.Enemy))
         {
             return;
         }

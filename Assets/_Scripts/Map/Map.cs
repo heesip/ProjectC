@@ -12,7 +12,7 @@ public class Map : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Area"))
+        if (!collision.CompareTag(AllStrings.Area))
         {
             return;
         }
@@ -31,18 +31,18 @@ public class Map : MonoBehaviour
 
     void Reposition(float differenceX, float differenceY)
     {
-        float dirX = differenceX < 0 ? -1 : 1;
-        float dirY = differenceY < 0 ? -1 : 1;
+        float directionX = differenceX < 0 ? -1 : 1;
+        float directionY = differenceY < 0 ? -1 : 1;
         differenceX = Mathf.Abs(differenceX);
         differenceY = Mathf.Abs(differenceY);
 
         if (differenceX > differenceY)
         {
-            transform.Translate(Vector3.right * dirX * _moveDistance);
+            transform.Translate(Vector3.right * directionX * _moveDistance);
         }
         else if (differenceY > differenceX)
         {
-            transform.Translate(Vector3.up * dirY * _moveDistance);
+            transform.Translate(Vector3.up * directionY * _moveDistance);
         }
     }
 

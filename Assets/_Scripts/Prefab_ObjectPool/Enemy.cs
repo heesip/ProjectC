@@ -18,7 +18,7 @@ public class Enemy : RecycleObject
     [SerializeField] float _health;
     [SerializeField] float _maxHealth;
     Vector2 _direction;
-    Vector2 _nextVec;
+    Vector2 _nextVector;
 
     void Awake()
     {
@@ -46,12 +46,12 @@ public class Enemy : RecycleObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("AllKill"))
+        if (collision.CompareTag(AllStrings.AllKill))
         {
             DeadSet();
         }
 
-        if (!collision.CompareTag("Bullet"))
+        if (!collision.CompareTag(AllStrings.Bullet))
         {
             return;
         }
@@ -65,7 +65,7 @@ public class Enemy : RecycleObject
 
     public void OnDamage(GameObject bullet , float damage)
     {
-        if (!bullet.CompareTag("Bullet"))
+        if (!bullet.CompareTag(AllStrings.Bullet))
         {
             return;
         }
@@ -79,7 +79,7 @@ public class Enemy : RecycleObject
         _isDead = false;
         _collider.enabled = true;
         _rigidbody.simulated = true;
-        _animator.SetBool("Dead", false);
+        _animator.SetBool(AllStrings.Dead, false);
         _target = Player.Instance.GetComponent<Rigidbody2D>();
     }
 
@@ -88,7 +88,7 @@ public class Enemy : RecycleObject
         _isDead = true;
         _collider.enabled = false;
         _rigidbody.simulated = false;
-        _animator.SetBool("Dead", true);
+        _animator.SetBool(AllStrings.Dead, true);
     }
 
 
@@ -99,8 +99,8 @@ public class Enemy : RecycleObject
             return;
         }
         _direction = _target.position - _rigidbody.position;
-        _nextVec = _direction.normalized * _speed * Time.deltaTime;
-        _rigidbody.MovePosition(_rigidbody.position + _nextVec);
+        _nextVector = _direction.normalized * _speed * Time.deltaTime;
+        _rigidbody.MovePosition(_rigidbody.position + _nextVector);
         _rigidbody.velocity = Vector2.zero;
 
     }

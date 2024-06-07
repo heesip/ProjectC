@@ -10,8 +10,8 @@ public class Fjorgin : Weapon
     Collider2D _collider;
     [SerializeField] bool _isReverse;
     //Temp Code
-    [SerializeField] Vector3 _fjorginRightPos = new Vector3(0, 2.5f, 0);
-    [SerializeField] Vector3 _fjorginLeftPos = new Vector3(0, 2.5f, 0);
+    [SerializeField] Vector3 _fjorginRightPosition = new Vector3(0, 2.5f, 0);
+    [SerializeField] Vector3 _fjorginLeftPosition = new Vector3(0, 2.5f, 0);
 
     WaitForSeconds _coolTime = new WaitForSeconds(3);
 
@@ -22,8 +22,8 @@ public class Fjorgin : Weapon
         _collider = _fjorgin.GetComponent<Collider2D>();
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
         _fjorgin.transform.Translate(transform.up);
-        _rightPosition = _fjorginRightPos;
-        _leftPosition = _fjorginLeftPos;
+        _rightPosition = _fjorginRightPosition;
+        _leftPosition = _fjorginLeftPosition;
     }
 
     private void Awake()

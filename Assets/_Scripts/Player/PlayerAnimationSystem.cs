@@ -27,7 +27,7 @@ public class PlayerAnimationSystem
 
     public void PlayerRunStance()
     {
-        _animator.SetBool("Run", UIManager.Instance.Joystick.IsDrag);
+        _animator.SetBool(AllStrings.Run, UIManager.Instance.Joystick.IsDrag);
     }
 
 }
