@@ -50,10 +50,16 @@ public class PrefabResourcesSO : ScriptableObject
     }
 
     [SerializeField] Magnet _magnetPrefab;
+    [SerializeField] Potion _potionPrefab;
 
     public Magnet GetMagnetPrefab()
     {
         return _magnetPrefab;
+    }
+
+    public Potion GetPotionPrefab()
+    {
+        return _potionPrefab;
     }
 
 }

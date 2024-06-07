@@ -50,4 +50,9 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetMagnet();
     }
+
+    public Potion GetPotion()
+    {
+        return _factorySystem.GetPotion();
+    }
 }

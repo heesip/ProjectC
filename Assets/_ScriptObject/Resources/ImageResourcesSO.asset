@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18508f2772494f0e8115f4ac26a4145, type: 3}
+  m_Name: ImageResourcesSO
+  m_EditorClassIdentifier: 
+  _emergencyPotionImage: {fileID: 1248686342, guid: b1726fc8506974e2a93244ba4de80ee1, type: 3}
+  _healPotionImage: {fileID: 1205480329, guid: 403168319c52f430fb4f414dd1bf8847, type: 3}
+  _rareHealPotionImage: {fileID: 175199419, guid: 3879391662f204417b5c5d35a2f5aaec, type: 3}
+  _spiritPotionImage: {fileID: -2102319377, guid: 144e3c265c009412799a49d9c2976911, type: 3}
+  _atropineImage: {fileID: -1104752170, guid: 14f43383b5d364056bec776a10c318b4, type: 3}

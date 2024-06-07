@@ -50,4 +50,16 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetMagnetPrefab();
     }
+
+    public Potion GetPotionPrefab()
+    {
+        return _gameResourcesSystem.GetPotionPrefab();
+    }
+
+    #region PotionImage
+    public Sprite GetPotionImage(PotionType potionType)
+    {
+        return _gameResourcesSystem.GetPotionImage(potionType);
+    }
+    #endregion
 }

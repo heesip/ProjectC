@@ -20,3 +20,4 @@ MonoBehaviour:
   _molotovCocktailPrefab: {fileID: 7135594496366514284, guid: c76c342e3501c4392be5c84d2dec411a, type: 3}
   _flamePrefab: {fileID: 565143563812172420, guid: b768b7c0ad0814656812ace980de208e, type: 3}
   _magnetPrefab: {fileID: 3265567156160260536, guid: 335b74ce083be4aaa85c481fe48a756f, type: 3}
+  _potionPrefab: {fileID: 8179718103061786643, guid: c50aad901168a4415ac5c59eab68af51, type: 3}

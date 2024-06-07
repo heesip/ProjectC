@@ -42,7 +42,7 @@ public class PlayerInfoSystem
             case PotionType.RareHealPortion:
                 _health += 45;
                 break;
-            case PotionType.Spirit:
+            case PotionType.SpiritPortion:
                 _health += 60;
                 break;
             case PotionType.Atropine:
