@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PlayerAnimationSystem
 {
     Player _player;
     SpriteRenderer _spriteRenderer;
     Animator _animator;
+    [SerializeField] bool _isLeft;
+    public bool IsLeft => _isLeft;
+
 
     public void Initialize(Player player)
     {
@@ -15,10 +19,10 @@ public class PlayerAnimationSystem
         _animator = player.GetComponent<Animator>();
     }
 
-    public bool PlayerTurn()
+    public void PlayerTurn()
     {
         _spriteRenderer.flipX = _player.MoveDirection.x < 0;
-        return _spriteRenderer.flipX;
+        _isLeft = _spriteRenderer.flipX;
     }
 
     public void PlayerRunStance()
