@@ -65,13 +65,15 @@ public class GameResourcesSystem
     }
     #endregion
 
-    #region PotionImage
+    #region Image
     public Sprite GetPotionImage(PotionType potionType)
     {
         return _imageResourcesSO.GetPotionImage(potionType);
     }
     #endregion
 
+
+    #region AnimatorController
     public RuntimeAnimatorController GetEnemyA_Animator()
     {
         return _animatorResourcesSO.GetEnemyA_Animator();
@@ -84,5 +86,6 @@ public class GameResourcesSystem
     {
         return _animatorResourcesSO.GetEnemyC_Animator();
     }
+    #endregion
 
 }

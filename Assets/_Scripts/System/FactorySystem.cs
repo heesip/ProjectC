@@ -4,30 +4,6 @@ using UnityEngine;
 
 public class FactorySystem
 {
-    ObjectPoolSystem _enemyPrefab;
-    ObjectPoolSystem _expGemPrefab;
-    ObjectPoolSystem _missilePrefab;
-    ObjectPoolSystem _ninjaStarPrefab;
-    ObjectPoolSystem _thunderPrefab;
-    ObjectPoolSystem _molotovCocktailPrefab;
-    ObjectPoolSystem _flamePrefab;
-
-    ObjectPoolSystem _magnetPrefab;
-    ObjectPoolSystem _potionPrefab;
-
-
-    Enemy _tempEnemy;
-    ExpGem _tempExpGem;
-    Missile _tempMissile;
-    NinjaStar _tempNinjaStar;
-    Thunder _tempThunder;
-    MolotovCocktail _tempMolotovCocktail;
-    Flame _tempFlame;
-
-    Magnet _tempMagent;
-    Potion _tempPotion;
-
-
     public void Initialize(Transform factoryManager)
     {
         _enemyPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetEnemyPrefab(), 100, factoryManager);
@@ -42,6 +18,12 @@ public class FactorySystem
         _potionPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetPotionPrefab(), 5, factoryManager);
     }
 
+
+    ObjectPoolSystem _enemyPrefab;
+    ObjectPoolSystem _expGemPrefab;
+    Enemy _tempEnemy;
+    ExpGem _tempExpGem;
+
     public Enemy GetEnemy()
     {
         _tempEnemy = _enemyPrefab.Get() as Enemy;
@@ -53,6 +35,18 @@ public class FactorySystem
         _tempExpGem = _expGemPrefab.Get() as ExpGem;
         return _tempExpGem;
     }
+
+    #region Weapon & Bullet
+    ObjectPoolSystem _missilePrefab;
+    ObjectPoolSystem _ninjaStarPrefab;
+    ObjectPoolSystem _thunderPrefab;
+    ObjectPoolSystem _molotovCocktailPrefab;
+    ObjectPoolSystem _flamePrefab;
+    Missile _tempMissile;
+    NinjaStar _tempNinjaStar;
+    Thunder _tempThunder;
+    MolotovCocktail _tempMolotovCocktail;
+    Flame _tempFlame;
 
     public Missile GetMissile()
     {
@@ -83,6 +77,13 @@ public class FactorySystem
         _tempFlame = _flamePrefab.Get() as Flame;
         return _tempFlame;
     }
+    #endregion
+
+    #region Item
+    ObjectPoolSystem _magnetPrefab;
+    ObjectPoolSystem _potionPrefab;
+    Magnet _tempMagent;
+    Potion _tempPotion;
 
     public Magnet GetMagnet()
     {
@@ -95,4 +96,5 @@ public class FactorySystem
         _tempPotion = _potionPrefab.Get() as Potion;
         return _tempPotion;
     }
+    #endregion
 }

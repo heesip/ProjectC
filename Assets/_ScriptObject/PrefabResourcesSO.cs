@@ -8,11 +8,6 @@ public class PrefabResourcesSO : ScriptableObject
 {
     [SerializeField] Enemy _enemyPrefab;
     [SerializeField] ExpGem _expGemPrefab;
-    [SerializeField] Missile _missilePrefab;
-    [SerializeField] NinjaStar _ninjaStarPrefab;
-    [SerializeField] Thunder _thunderPrefab;
-    [SerializeField] MolotovCocktail _molotovCocktailPrefab;
-    [SerializeField] Flame _flamePrefab;
 
     public Enemy GetEnemyPrefab()
     {
@@ -23,6 +18,13 @@ public class PrefabResourcesSO : ScriptableObject
     {
         return _expGemPrefab;
     }
+
+    #region Weapon & Bullet
+    [SerializeField] Missile _missilePrefab;
+    [SerializeField] NinjaStar _ninjaStarPrefab;
+    [SerializeField] Thunder _thunderPrefab;
+    [SerializeField] MolotovCocktail _molotovCocktailPrefab;
+    [SerializeField] Flame _flamePrefab;
 
     public Missile GetMissilePrefab()
     {
@@ -48,7 +50,9 @@ public class PrefabResourcesSO : ScriptableObject
     {
         return _flamePrefab;
     }
+    #endregion
 
+    #region Item
     [SerializeField] Magnet _magnetPrefab;
     [SerializeField] Potion _potionPrefab;
 
@@ -61,5 +65,6 @@ public class PrefabResourcesSO : ScriptableObject
     {
         return _potionPrefab;
     }
+    #endregion
 
 }

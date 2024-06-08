@@ -20,7 +20,7 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetExpGem();
     }
-
+    #region Weapon & Bullet
     public Missile GetMissile()
     {
         return _factorySystem.GetMissile();
@@ -45,7 +45,9 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetFlame();
     }
+    #endregion
 
+    #region Item
     public Magnet GetMagnet()
     {
         return _factorySystem.GetMagnet();
@@ -55,4 +57,5 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetPotion();
     }
+    #endregion
 }

@@ -21,6 +21,7 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
         return _gameResourcesSystem.GetExpGemPrefab();
     }
 
+    #region Weapon & Bullet
     public Missile GetMissilePrefab()
     {
         return _gameResourcesSystem.GetMissilePrefab();
@@ -45,7 +46,9 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetFlamePrefab();
     }
+    #endregion
 
+    #region Item
     public Magnet GetMagnetPrefab()
     {
         return _gameResourcesSystem.GetMagnetPrefab();
@@ -55,15 +58,16 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetPotionPrefab();
     }
+    #endregion
 
-    #region PotionImage
+    #region Image
     public Sprite GetPotionImage(PotionType potionType)
     {
         return _gameResourcesSystem.GetPotionImage(potionType);
     }
     #endregion
 
-
+    #region AnimatorController
     public RuntimeAnimatorController GetEnemyA_Animator()
     {
         return _gameResourcesSystem.GetEnemyA_Animator();
@@ -76,5 +80,5 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetEnemyC_Animator();
     }
-
+    #endregion
 }
