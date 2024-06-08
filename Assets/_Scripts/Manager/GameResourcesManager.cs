@@ -62,4 +62,19 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
         return _gameResourcesSystem.GetPotionImage(potionType);
     }
     #endregion
+
+
+    public RuntimeAnimatorController GetEnemyA_Animator()
+    {
+        return _gameResourcesSystem.GetEnemyA_Animator();
+    }
+    public RuntimeAnimatorController GetEnemyB_Animator()
+    {
+        return _gameResourcesSystem.GetEnemyB_Animator();
+    }
+    public RuntimeAnimatorController GetEnemyC_Animator()
+    {
+        return _gameResourcesSystem.GetEnemyC_Animator();
+    }
+
 }

@@ -9,7 +9,6 @@ public class Enemy : RecycleObject
     SpriteRenderer _spriteRenderer;
     Animator _animator;
     Collider2D _collider;
-    [SerializeField] RuntimeAnimatorController[] _animatorControllers;
     #endregion
 
     bool _isDead;
@@ -19,6 +18,23 @@ public class Enemy : RecycleObject
     [SerializeField] float _maxHealth;
     Vector2 _direction;
     Vector2 _nextVector;
+
+
+    RuntimeAnimatorController RandomAnimation()
+    {
+        int randomNumber = Random.Range(1, 4);
+        switch (randomNumber)
+        {
+            case 1:
+                return GameResourcesManager.Instance.GetEnemyA_Animator();
+            case 2:
+                return GameResourcesManager.Instance.GetEnemyB_Animator();
+            case 3:
+                return GameResourcesManager.Instance.GetEnemyC_Animator();
+            default:
+                return GameResourcesManager.Instance.GetEnemyA_Animator();
+        }
+    }
 
     void Awake()
     {
@@ -31,6 +47,7 @@ public class Enemy : RecycleObject
     void OnEnable()
     {
         LiveSet();
+        _animator.runtimeAnimatorController = RandomAnimation();
     }
 
     void FixedUpdate()
@@ -63,7 +80,7 @@ public class Enemy : RecycleObject
 
     }
 
-    public void OnDamage(GameObject bullet , float damage)
+    public void OnDamage(GameObject bullet, float damage)
     {
         if (!bullet.CompareTag(AllStrings.Bullet))
         {

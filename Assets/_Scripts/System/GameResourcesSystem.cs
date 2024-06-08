@@ -6,11 +6,13 @@ public class GameResourcesSystem
 {
     PrefabResourcesSO _prefabResourcesSO;
     ImageResourcesSO _imageResourcesSO;
+    AnimatorResourcesSO _animatorResourcesSO;
 
     public void Initialize()
     {
         _prefabResourcesSO = Resources.Load<PrefabResourcesSO>(nameof(PrefabResourcesSO));
         _imageResourcesSO = Resources.Load<ImageResourcesSO>(nameof(ImageResourcesSO));
+        _animatorResourcesSO = Resources.Load<AnimatorResourcesSO>(nameof(AnimatorResourcesSO));
     }
 
     public Enemy GetEnemyPrefab()
@@ -63,7 +65,6 @@ public class GameResourcesSystem
     }
     #endregion
 
-
     #region PotionImage
     public Sprite GetPotionImage(PotionType potionType)
     {
@@ -71,5 +72,17 @@ public class GameResourcesSystem
     }
     #endregion
 
+    public RuntimeAnimatorController GetEnemyA_Animator()
+    {
+        return _animatorResourcesSO.GetEnemyA_Animator();
+    }
+    public RuntimeAnimatorController GetEnemyB_Animator()
+    {
+        return _animatorResourcesSO.GetEnemyB_Animator();
+    }
+    public RuntimeAnimatorController GetEnemyC_Animator()
+    {
+        return _animatorResourcesSO.GetEnemyC_Animator();
+    }
 
 }
