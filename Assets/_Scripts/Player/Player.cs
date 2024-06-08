@@ -6,19 +6,19 @@ public class Player : Singleton<Player>
 {
     PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
     [SerializeField] PlayerAnimationSystem _playerAnimationSystem = new PlayerAnimationSystem();
-    [SerializeField] PlayerInfoSystem _playerInfoSystem = new PlayerInfoSystem();
+    [SerializeField] PlayerStatusSystem _playerStatusSystem = new PlayerStatusSystem();
     [SerializeField] PlayerIndicatorSystem _playerIndicatorSystem = new PlayerIndicatorSystem();
     public Vector2 MoveDirection => _playerMoveSystem.MoveDirection;
     public Vector3 AttackDirection => _playerIndicatorSystem.AttackDirection;
 
-    public bool IsDead => _playerInfoSystem.IsDead;
+    public bool IsDead => _playerStatusSystem.IsDead;
     public bool IsLeft => _playerAnimationSystem.IsLeft;
 
     void Awake()
     {
         _playerMoveSystem.Initialize(this);
         _playerAnimationSystem.Initialize(this);
-        _playerInfoSystem.Initialize();
+        _playerStatusSystem.Initialize();
 
     }
 
@@ -59,12 +59,17 @@ public class Player : Singleton<Player>
         {
             return;
         }
-        _playerInfoSystem.OnDamage();
+        _playerStatusSystem.OnDamage();
 
     }
 
     public void GetPotion(PotionType potionType)
     {
-        _playerInfoSystem.GetPotion(potionType);
+        _playerStatusSystem.GetPotion(potionType);
+    }
+
+    public void GetExpGem()
+    {
+        _playerStatusSystem.GetExpGem();
     }
 }

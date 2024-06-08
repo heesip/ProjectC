@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f0339a13c7a45da9ed1fe6a6987394, type: 3}
   m_Name: AnimatorResourcesSO
   m_EditorClassIdentifier: 
-  test1: {fileID: 9100000, guid: e17d6475a240abc46843a2d28acba962, type: 2}
-  test2: {fileID: 22100000, guid: eb72aea5a1114834396684622af2b3e7, type: 2}
-  test3: {fileID: 22100000, guid: 8dbc7ef4a2d310e45b77eddb9b0fd21d, type: 2}
-  test4: {fileID: 9100000, guid: 26018dea68dab724b922f8922c284a8f, type: 2}
-  test5: {fileID: 9100000, guid: 70a34c577df524afa8ec5c6c366597ca, type: 2}
+  EnemyA_Animator: {fileID: 22100000, guid: eb72aea5a1114834396684622af2b3e7, type: 2}
+  EnemyB_Animator: {fileID: 22100000, guid: 8dbc7ef4a2d310e45b77eddb9b0fd21d, type: 2}
+  EnemyC_Animator: {fileID: 22100000, guid: 6e5837646923595418a96c20e7d3637d, type: 2}

@@ -21,6 +21,7 @@ public class ExpGem : RecycleObject
             return;
         }
         FlyExpGem();
+        Player.Instance.GetExpGem();
     }
 
 
