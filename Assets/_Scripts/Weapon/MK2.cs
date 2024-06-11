@@ -21,7 +21,7 @@ public class Mk2 : Weapon
         _mk2.transform.Translate(transform.up, Space.World);
     }
 
-    void FixedValue()
+    protected override void FixedValue()
     {
         _mk2.transform.rotation = _mk2DataSO.Mk2Rotation;
         _rightPosition = _mk2DataSO.Mk2RightPosition;
@@ -35,12 +35,6 @@ public class Mk2 : Weapon
         _damage = _mk2DataSO.Mk2Damages[level];
         _coolTime = _mk2DataSO.Mk2CoolTimes[level];
         _count = _mk2DataSO.Mk2Counts[level];
-    }
-
-    void Awake()
-    {
-        Initialize();
-        FixedValue();
     }
 
     void OnEnable()

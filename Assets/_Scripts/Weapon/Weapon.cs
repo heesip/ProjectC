@@ -6,8 +6,6 @@ public abstract class Weapon : MonoBehaviour
 {
     protected Vector3 _rightPosition;
     protected Vector3 _leftPosition;
-    protected Quaternion _rightRotation;
-    protected Quaternion _leftRotation;
 
     protected float _damage;
     protected float _speed;
@@ -16,6 +14,12 @@ public abstract class Weapon : MonoBehaviour
     protected int _count;
 
     protected abstract void Initialize();
+    protected abstract void FixedValue();
 
+    private void Awake()
+    {
+        Initialize();
+        FixedValue();
+    }
 }
 

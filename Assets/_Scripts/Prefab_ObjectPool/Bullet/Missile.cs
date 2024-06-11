@@ -9,11 +9,11 @@ public class Missile : Bullet
     {
         transform.DOKill();
         _spriteRenderer.flipX = Player.Instance.IsLeft;
-        _damage = 4;
     }
 
-    public void Shoting(float nextVector_X, float duration)
+    public void Shoting(float nextVector_X, float duration, float damage)
     {
+        _damage = damage;
         transform.DOMoveX(nextVector_X, duration).SetEase(Ease.InCubic);
     }
 

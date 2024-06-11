@@ -8,11 +8,6 @@ public class Electrode : Weapon
     Collider2D _collider;
     WaitForSeconds _attackInterval = new WaitForSeconds(.5f);
 
-    private void Awake()
-    {
-        Initialize();
-    }
-
     protected override void Initialize()
     {
         _collider = GetComponent<Collider2D>();
@@ -68,4 +63,7 @@ public class Electrode : Weapon
         }
     }
 
+    protected override void FixedValue()
+    {
+    }
 }

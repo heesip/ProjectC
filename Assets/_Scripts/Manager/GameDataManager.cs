@@ -15,4 +15,9 @@ public class GameDataManager : Singleton<GameDataManager>
     {
         return _gameDataSystem.GetMk2DataSO();
     }
+
+    public DronDataSO GetDronDataSO()
+    {
+        return _gameDataSystem.GetDronDataSO();
+    }
 }

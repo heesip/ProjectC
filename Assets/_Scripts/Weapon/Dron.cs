@@ -9,33 +9,41 @@ public class Dron : Weapon
     [SerializeField] Transform _dronAttackPoint2;
     [SerializeField] SpriteRenderer _spriteRenderer;
 
-    //Temp Code
-    [SerializeField] Vector3 _dronRightPosition = new Vector3(-1, 1.5f, 0);
-    [SerializeField] Vector3 _dronLeftPosition = new Vector3(1, 1.5f, 0);
-    [SerializeField] int _range = 22;
-    private void Awake()
-    {
-        Initialize();
-    }
+    [SerializeField] DronDataSO _dronDataSO;
+    int _range;
+
     protected override void Initialize()
     {
+        _dronDataSO = GameDataManager.Instance.GetDronDataSO();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _rightPosition = _dronRightPosition;
-        _leftPosition = _dronLeftPosition;
-        _coolTime = new WaitForSeconds(3);
-        _count = 2;
-        _speed = 1.2f;
     }
 
-    private void LateUpdate()
+    protected override void FixedValue()
+    {
+        _rightPosition = _dronDataSO.DronRightPosition;
+        _leftPosition = _dronDataSO.DronLeftPosition;
+        _count = _dronDataSO.DronCount;
+        _speed = _dronDataSO.DronSpeed;
+        _range = _dronDataSO.DronRange;
+    }
+
+    void LevelValue(int level)
+    {
+        _coolTime = _dronDataSO.DronCoolTimes[level];
+        _damage = _dronDataSO.DronDamages[level];
+    }
+
+    void LateUpdate()
     {
         bool isReverse = Player.Instance.IsLeft;
         _spriteRenderer.flipX = isReverse;
         transform.localPosition = isReverse ? _leftPosition : _rightPosition;
     }
-    private void OnEnable()
+
+    void OnEnable()
     {
         _attackCoHandle = StartCoroutine(AttackCo());
+        LevelValue(0);
     }
 
     Coroutine _attackCoHandle;
@@ -54,11 +62,11 @@ public class Dron : Weapon
                 {
                     case 0:
                         missiles[i].AttackPoint(_dronAttackPoint1.position);
-                        missiles[i].Shoting(NextVector().x, _speed);
+                        missiles[i].Shoting(NextVector().x, _speed, _damage);
                         break;
                     case 1:
                         missiles[i].AttackPoint(_dronAttackPoint2.position);
-                        missiles[i].Shoting(NextVector().x, _speed);
+                        missiles[i].Shoting(NextVector().x, _speed, _damage);
                         break;
                     default:
                         break;

@@ -85,5 +85,7 @@ public class Fjorgin : Weapon
         transform.SetParent(Player.Instance.transform);
     }
 
-
+    protected override void FixedValue()
+    {
+    }
 }
