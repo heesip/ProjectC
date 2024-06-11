@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     {
         GameResourcesManager.Instance.Initialize();
         FactoryManager.Instance.Initialize();
+        GameDataManager.Instance.Initialize();
     }
 
 }

@@ -7,13 +7,11 @@ public class Dron : Weapon
 {
     [SerializeField] Transform _dronAttackPoint1;
     [SerializeField] Transform _dronAttackPoint2;
-    WaitForSeconds _coolTime = new WaitForSeconds(3);
     [SerializeField] SpriteRenderer _spriteRenderer;
 
     //Temp Code
     [SerializeField] Vector3 _dronRightPosition = new Vector3(-1, 1.5f, 0);
     [SerializeField] Vector3 _dronLeftPosition = new Vector3(1, 1.5f, 0);
-    [SerializeField] int _count = 2;
     [SerializeField] int _range = 22;
     private void Awake()
     {
@@ -24,6 +22,8 @@ public class Dron : Weapon
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rightPosition = _dronRightPosition;
         _leftPosition = _dronLeftPosition;
+        _coolTime = new WaitForSeconds(3);
+        _count = 2;
         _speed = 1.2f;
     }
 

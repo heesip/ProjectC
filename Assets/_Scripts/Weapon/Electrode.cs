@@ -7,8 +7,6 @@ public class Electrode : Weapon
 
     Collider2D _collider;
     WaitForSeconds _attackInterval = new WaitForSeconds(.5f);
-    WaitForSeconds _coolTime = new WaitForSeconds(5);
-    int _count = 5;
 
     private void Awake()
     {
@@ -19,6 +17,8 @@ public class Electrode : Weapon
     {
         _collider = GetComponent<Collider2D>();
         _damage = 2;
+        _coolTime = new WaitForSeconds(5);
+        _count = 10;
     }
 
     private void OnEnable()
@@ -40,9 +40,7 @@ public class Electrode : Weapon
 
             for (int i = 0; i < _count; i++)
             {
-                _collider.enabled = true;
-                yield return _attackInterval;
-                _collider.enabled = false;
+                _collider.enabled = !_collider.enabled;
                 yield return _attackInterval;
             }
             yield return _coolTime;

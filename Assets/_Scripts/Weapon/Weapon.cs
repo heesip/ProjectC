@@ -9,10 +9,11 @@ public abstract class Weapon : MonoBehaviour
     protected Quaternion _rightRotation;
     protected Quaternion _leftRotation;
 
-    int _coolTime;
     protected float _damage;
-    [SerializeField] protected float _speed;
+    protected float _speed;
+    protected WaitForSeconds _coolTime;
 
+    protected int _count;
 
     protected abstract void Initialize();
 
