@@ -8,8 +8,10 @@ public class Dron : Weapon
     [SerializeField] Transform _dronAttackPoint1;
     [SerializeField] Transform _dronAttackPoint2;
     [SerializeField] SpriteRenderer _spriteRenderer;
-
     [SerializeField] DronDataSO _dronDataSO;
+
+    Vector3 _rightPosition;
+    Vector3 _leftPosition;
     int _range;
 
     protected override void Initialize()

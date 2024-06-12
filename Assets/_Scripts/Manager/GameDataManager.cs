@@ -20,4 +20,9 @@ public class GameDataManager : Singleton<GameDataManager>
     {
         return _gameDataSystem.GetDronDataSO();
     }
+
+    public FjorginDataSO GetFjorginDataSO()
+    {
+        return _gameDataSystem.GetFjorginDataSO();
+    }
 }

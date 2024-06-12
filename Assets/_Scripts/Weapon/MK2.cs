@@ -11,6 +11,8 @@ public class Mk2 : Weapon
     [SerializeField] Collider2D _collider;
     [SerializeField] Mk2DataSO _mk2DataSO;
 
+    Vector3 _rightPosition;
+    Vector3 _leftPosition;
     Vector3 _rotateDirection;
 
     protected override void Initialize()
