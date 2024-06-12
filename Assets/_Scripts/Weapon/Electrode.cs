@@ -4,24 +4,39 @@ using UnityEngine;
 
 public class Electrode : Weapon
 {
-
+    [SerializeField] ElectrodeDataSO _electrodeDataSO;
     Collider2D _collider;
-    WaitForSeconds _attackInterval = new WaitForSeconds(.5f);
+    float _electrodeSize;
+    WaitForSeconds _attackInterval;
 
     protected override void Initialize()
     {
+        _electrodeDataSO = GameDataManager.Instance.GetElectrodeDataSO();
         _collider = GetComponent<Collider2D>();
-        _damage = 2;
-        _coolTime = new WaitForSeconds(5);
-        _count = 10;
     }
 
-    private void OnEnable()
+    protected override void FixedValue()
     {
+        _count = _electrodeDataSO.ElectrodeCount;
+        _attackInterval = _electrodeDataSO.AttackInterval;
+    }
+
+    void LevelValue(int level)
+    {
+        _coolTime = _electrodeDataSO.ElectrodeCoolTimes[level];
+        _damage = _electrodeDataSO.ElectrodeDamages[level];
+        _electrodeSize = _electrodeDataSO.ElectrodeSizes[level];
+
+    }
+
+    void OnEnable()
+    {
+        LevelValue(0);
+        transform.localScale = Vector3.one * _electrodeSize;
         _attackCoHandle = StartCoroutine(AttackCo());
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         StopAttackCo();
     }
@@ -49,21 +64,19 @@ public class Electrode : Weapon
             StopCoroutine(_attackCoHandle);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag(AllStrings.Enemy))
         {
             return;
         }
+
         var enemy = collision.GetComponent<Enemy>();
 
         if (enemy != null)
         {
             enemy.OnDamage(gameObject, _damage);
         }
-    }
-
-    protected override void FixedValue()
-    {
     }
 }

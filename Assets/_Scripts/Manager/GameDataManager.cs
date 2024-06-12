@@ -25,4 +25,9 @@ public class GameDataManager : Singleton<GameDataManager>
     {
         return _gameDataSystem.GetFjorginDataSO();
     }
+
+    public ElectrodeDataSO GetElectrodeDataSO()
+    {
+        return _gameDataSystem.GetElectrodeDataSO();
+    }
 }
