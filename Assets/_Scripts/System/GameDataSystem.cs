@@ -8,6 +8,7 @@ public class GameDataSystem
     DronDataSO _dronDataSO;
     FjorginDataSO _fjorginDataSO;
     ElectrodeDataSO _electrodeDataSO;
+    ThunderStrokeDataSO _thunderStrokeDataSO;
 
     public void Initialize()
     {
@@ -15,7 +16,7 @@ public class GameDataSystem
         _dronDataSO = Resources.Load<DronDataSO>(nameof(DronDataSO));
         _fjorginDataSO = Resources.Load<FjorginDataSO>(nameof(FjorginDataSO));
         _electrodeDataSO = Resources.Load<ElectrodeDataSO>(nameof(ElectrodeDataSO));
-
+        _thunderStrokeDataSO = Resources.Load<ThunderStrokeDataSO>(nameof(ThunderStrokeDataSO));
     }
 
     public Mk2DataSO GetMk2DataSO()
@@ -37,4 +38,11 @@ public class GameDataSystem
     {
         return _electrodeDataSO;
     }
+
+    public ThunderStrokeDataSO GetThunderStrokeDataSO()
+    {
+        return _thunderStrokeDataSO;
+    }
+
+   
 }

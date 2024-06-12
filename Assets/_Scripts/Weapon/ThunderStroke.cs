@@ -4,14 +4,46 @@ using UnityEngine;
 
 public class ThunderStroke : MonoBehaviour
 {
+    [SerializeField] ThunderStrokeDataSO _thunderStrokeDataSO;
+
     Vector3 _randomVector;
+    float _xMinValue;
+    float _xMaxValue;
+    float _yMinValue;
+    float _yMaxValue;
+    float _exceptionMinValue;
+    float _exceptionMaxValue;
+    WaitForSeconds _thunderStrokeCoolTime;
+
+
+    private void Awake()
+    {
+        _thunderStrokeDataSO = GameDataManager.Instance.GetThunderStrokeDataSO();
+        FixedValue();
+    }
+
+    void FixedValue()
+    {
+        _xMinValue= _thunderStrokeDataSO.X_MinValue;
+        _xMaxValue = _thunderStrokeDataSO.X_MaxValue;
+        _yMinValue = _thunderStrokeDataSO.Y_MinValue;
+        _yMaxValue= _thunderStrokeDataSO.Y_MaxValue;
+        _exceptionMinValue = _thunderStrokeDataSO.ExceptionMinValue;
+        _exceptionMaxValue = _thunderStrokeDataSO.ExceptionMaxValue;
+    }
+
+    void LevelValue(int level)
+    {
+        _thunderStrokeCoolTime = _thunderStrokeDataSO.ThunderStrokeCoolTimes[level];
+    }
 
     void OnEnable()
     {
+        LevelValue(0);
         _attackCoHandle = StartCoroutine(AttackCo());
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         StopCoHandle(_attackCoHandle);
     }
@@ -19,7 +51,7 @@ public class ThunderStroke : MonoBehaviour
     float RandomNumber(float minNumber, float maxNumber)
     {
         float randomNumber = Random.Range(minNumber, maxNumber);
-        while (randomNumber >= -0.5f && randomNumber <= 0.5f)
+        while (randomNumber >= _exceptionMinValue && randomNumber <= _exceptionMaxValue)
         {
             randomNumber = Random.Range(minNumber, maxNumber);
         }
@@ -39,9 +71,9 @@ public class ThunderStroke : MonoBehaviour
     {
         while (true)
         {
-            _randomVector = RandomVector(RandomNumber(-3, 3), RandomNumber(-6, 6));
+            _randomVector = RandomVector(RandomNumber(_xMinValue, _xMaxValue), RandomNumber(_yMinValue, _yMaxValue));
             _randomVector += Player.Instance.transform.position;
-            yield return new WaitForSeconds(1f);
+            yield return _thunderStrokeCoolTime;
             Thunder thunder = FactoryManager.Instance.GetThunder();
             thunder.AttackPoint(_randomVector);
         }
@@ -54,5 +86,6 @@ public class ThunderStroke : MonoBehaviour
             StopCoroutine(coHandle);
         }
     }
+
 
 }

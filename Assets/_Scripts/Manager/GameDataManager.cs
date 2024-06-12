@@ -30,4 +30,10 @@ public class GameDataManager : Singleton<GameDataManager>
     {
         return _gameDataSystem.GetElectrodeDataSO();
     }
+
+    public ThunderStrokeDataSO GetThunderStrokeDataSO()
+    {
+        return _gameDataSystem.GetThunderStrokeDataSO();
+    }
+
 }
