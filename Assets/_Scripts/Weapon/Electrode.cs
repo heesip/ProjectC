@@ -2,20 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Electrode : Weapon
+public class Electrode : MonoBehaviour
 {
     [SerializeField] ElectrodeDataSO _electrodeDataSO;
     Collider2D _collider;
-    float _electrodeSize;
-    WaitForSeconds _attackInterval;
+    SpriteRenderer _spriteRenderer;
 
-    protected override void Initialize()
+    int _count;
+    float _electrodeSize;
+    float _damage;
+    WaitForSeconds _attackInterval;
+    WaitForSeconds _coolTime;
+
+    void Awake()
+    {
+        Initialize();
+        FixedValue();
+    }
+
+    void Initialize()
     {
         _electrodeDataSO = GameDataManager.Instance.GetElectrodeDataSO();
         _collider = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    protected override void FixedValue()
+    void FixedValue()
     {
         _count = _electrodeDataSO.ElectrodeCount;
         _attackInterval = _electrodeDataSO.AttackInterval;
@@ -47,12 +59,13 @@ public class Electrode : Weapon
     {
         while (true)
         {
-
+            _spriteRenderer.enabled = true;
             for (int i = 0; i < _count; i++)
             {
                 _collider.enabled = !_collider.enabled;
                 yield return _attackInterval;
             }
+            _spriteRenderer.enabled = false;
             yield return _coolTime;
         }
     }
@@ -71,7 +84,6 @@ public class Electrode : Weapon
         {
             return;
         }
-
         var enemy = collision.GetComponent<Enemy>();
 
         if (enemy != null)
