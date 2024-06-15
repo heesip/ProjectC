@@ -6,10 +6,12 @@ public class Flame : Bullet
 {
     protected override void OnStart()
     {
-        //TempCode
-        _duration = 5;
         _isProjectile = false;
-        _damage = 5;
+    }
+    public void Initialize(float damage, float duration)
+    {
+        _damage = damage;
+        _duration = duration;
     }
 
 }

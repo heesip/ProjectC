@@ -36,4 +36,9 @@ public class GameDataManager : Singleton<GameDataManager>
         return _gameDataSystem.GetThunderStrokeDataSO();
     }
 
+    public BattleItemBoxDataSO GetBattleItemBoxDataSO()
+    {
+        return _gameDataSystem.GetBattleItemBoxDataSO();
+    }
+
 }

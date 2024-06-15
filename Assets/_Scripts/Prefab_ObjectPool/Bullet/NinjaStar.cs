@@ -10,10 +10,20 @@ public class NinjaStar : Bullet
 
     //TempCode
     [SerializeField] bool _isRare;
+    float _speed;
+    float _rotateDuration;
+    Vector3 _rotateVector;
+
+    public void Initiazlie(float damage, float speed, float rotateDuration, Vector3 rotateVector)
+    {
+        _damage = damage;
+        _speed = speed;
+        _rotateDuration = rotateDuration;
+        _rotateVector = rotateVector;
+    }
 
     protected override void OnStart()
     {
-        _damage = 3;
         transform.DOKill();
         switch (_isRare)
         {
@@ -25,7 +35,6 @@ public class NinjaStar : Bullet
                 break;
         }
         NinjaStarRotate();
-
     }
 
     void OnDisable()
@@ -36,12 +45,12 @@ public class NinjaStar : Bullet
 
     void NinjaStarRotate()
     {
-        transform.DORotate(new Vector3(0, 0, -360 * 5), 1.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear);
+        transform.DORotate(_rotateVector, _duration, RotateMode.FastBeyond360).SetEase(Ease.Linear);
     }
 
     Coroutine _throwingCoHandle;
 
-    IEnumerator ThrowingCo(Vector3 nextVector, float speed)
+    IEnumerator ThrowingCo(Vector3 nextVector)
     {
         if (_isAttack)
         {
@@ -50,18 +59,18 @@ public class NinjaStar : Bullet
         _isAttack = true;
         while (_isAttack)
         {
-            transform.position += speed * Time.deltaTime * nextVector;
+            transform.position += _speed * Time.deltaTime * nextVector;
             yield return null;
         }
 
     }
 
-    public void Throw(Vector3 nextVector, float speed)
+    public void Throw(Vector3 nextVector)
     {
         if (_isAttack)
         {
             return;
         }
-        _throwingCoHandle = StartCoroutine(ThrowingCo(nextVector, speed));
+        _throwingCoHandle = StartCoroutine(ThrowingCo(nextVector));
     }
 }

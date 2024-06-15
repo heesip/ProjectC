@@ -5,26 +5,57 @@ using UnityEngine;
 
 public class BattleItemBox : MonoBehaviour
 {
+    [SerializeField] BattleItemBoxDataSO _battleItemBoxDataSO;
     Vector3 _attackDirection => Player.Instance.AttackDirection;
-    //TempCode
-    [SerializeField] float _speed = 6;
-    [SerializeField] bool isNinjaStar;
-    [SerializeField] bool isMolotovCocktail;
+    Vector3 _projectileRotate;
 
+    float _ninjaStarDamage;
+    float _ninjaStarSpeed;
+    float _ninjaStarDurtaion;
+    WaitForSeconds _ninjaStarCoolTime;
 
-    private void OnEnable()
+    float _molotovCocktailRange;
+    float _molotovCocktailDuration;
+    WaitForSeconds _molotovCocktailCoolTime;
+    WaitForSeconds _flameCoolTime;
+    float _flameDamage;
+    float _flameDuration;
+
+    void Awake()
     {
-        if (isNinjaStar)
-        {
-            _throwingNinjaStarCoHandle = StartCoroutine(ThrowingNinjaStarCo());
-        }
-        if (isMolotovCocktail)
-        {
-            _throwMolotovCocktailCoHandle = StartCoroutine(ThrowingMolotovCocktail());
-        }
+        _battleItemBoxDataSO = GameDataManager.Instance.GetBattleItemBoxDataSO();
     }
 
-    private void OnDisable()
+    void FixedValue()
+    {
+        _projectileRotate = _battleItemBoxDataSO.ProjectileRotate;
+        _ninjaStarDurtaion = _battleItemBoxDataSO.NinjaStarDuration;
+        _ninjaStarSpeed = _battleItemBoxDataSO.NinjaStarSpeed;
+
+        _molotovCocktailRange = _battleItemBoxDataSO.MolotovCocktailRange;
+        _molotovCocktailDuration = _battleItemBoxDataSO.MolotovCocktailDuration;
+        _flameCoolTime = _battleItemBoxDataSO.FlameCoolTime;
+        _flameDuration = _battleItemBoxDataSO.FlameDuration;
+    }
+
+    void LevelValue(int level)
+    {
+        _ninjaStarDamage = _battleItemBoxDataSO.NinjaStarDamages[level];
+        _ninjaStarCoolTime = _battleItemBoxDataSO.NinjaStarCoolTimes[level];
+
+        _molotovCocktailCoolTime = _battleItemBoxDataSO.MolotovCocktailCoolTimes[level];
+        _flameDamage = _battleItemBoxDataSO.FlameDamages[level];
+    }
+
+    void OnEnable()
+    {
+        FixedValue();
+        LevelValue(2);
+        _throwingNinjaStarCoHandle = StartCoroutine(ThrowingNinjaStarCo());
+        _throwMolotovCocktailCoHandle = StartCoroutine(ThrowingMolotovCocktail());
+    }
+
+    void OnDisable()
     {
         StopCoHandle(_throwingNinjaStarCoHandle, _throwMolotovCocktailCoHandle);
     }
@@ -35,10 +66,11 @@ public class BattleItemBox : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return _ninjaStarCoolTime;
             NinjaStar ninjaStar = FactoryManager.Instance.GetNinjaStar();
+            ninjaStar.Initiazlie(_ninjaStarDamage, _ninjaStarSpeed, _ninjaStarDurtaion, _projectileRotate);
             ninjaStar.AttackPoint(transform.position);
-            ninjaStar.Throw(_attackDirection, _speed);
+            ninjaStar.Throw(_attackDirection);
         }
     }
 
@@ -48,8 +80,10 @@ public class BattleItemBox : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5);
+            yield return _molotovCocktailCoolTime;
             MolotovCocktail molotovCocktail = FactoryManager.Instance.GetMolotovCocktail();
+            molotovCocktail.Initialize(_molotovCocktailDuration, _projectileRotate,
+                                       _flameDamage, _flameDuration, _flameCoolTime);
             molotovCocktail.transform.position = transform.position;
             molotovCocktail.Throw(AttackDirection());
         }
@@ -57,7 +91,7 @@ public class BattleItemBox : MonoBehaviour
 
     Vector3 AttackDirection()
     {
-        Vector3 result = transform.position + (_attackDirection * 2.5f);
+        Vector3 result = transform.position + (_attackDirection * _molotovCocktailRange);
         return result;
     }
 
