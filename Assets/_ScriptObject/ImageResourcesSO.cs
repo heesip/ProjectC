@@ -20,9 +20,9 @@ public class ImageResourcesSO : ScriptableObject
                 return _emergencyPotionImage;
             case PotionType.HealPotion:
                 return _healPotionImage;
-            case PotionType.RareHealPortion:
+            case PotionType.RareHealPotion:
                 return _rareHealPotionImage;
-            case PotionType.SpiritPortion:
+            case PotionType.SpiritPotion:
                 return _spiritPotionImage;
             case PotionType.Atropine:
                 return _atropineImage;

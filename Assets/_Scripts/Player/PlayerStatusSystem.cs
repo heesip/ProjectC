@@ -46,10 +46,10 @@ public class PlayerStatusSystem
             case PotionType.HealPotion:
                 _health += 30;
                 break;
-            case PotionType.RareHealPortion:
+            case PotionType.RareHealPotion:
                 _health += 45;
                 break;
-            case PotionType.SpiritPortion:
+            case PotionType.SpiritPotion:
                 _health += 60;
                 break;
             case PotionType.Atropine:

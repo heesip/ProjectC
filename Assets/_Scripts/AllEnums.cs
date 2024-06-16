@@ -3,7 +3,7 @@ public enum PotionType
     None,
     EmergencyPotion,
     HealPotion,
-    RareHealPortion,
-    SpiritPortion,
+    RareHealPotion,
+    SpiritPotion,
     Atropine
 }

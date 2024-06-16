@@ -40,10 +40,10 @@ public class Potion : Item
                 break;
             case 6:
             case 7:
-                _potionType = PotionType.RareHealPortion;
+                _potionType = PotionType.RareHealPotion;
                 break;
             case 8:
-                _potionType = PotionType.SpiritPortion;
+                _potionType = PotionType.SpiritPotion;
                 break;
             case 9:
                 _potionType = PotionType.Atropine;
