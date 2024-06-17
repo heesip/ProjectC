@@ -19,7 +19,6 @@ public class Enemy : RecycleObject
     Vector2 _direction;
     Vector2 _nextVector;
 
-
     RuntimeAnimatorController RandomAnimation()
     {
         int randomNumber = Random.Range(1, 4);
@@ -63,11 +62,6 @@ public class Enemy : RecycleObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(AllStrings.AllKill))
-        {
-            DeadSet();
-        }
-
         if (!collision.CompareTag(AllStrings.Bullet))
         {
             return;
@@ -129,7 +123,6 @@ public class Enemy : RecycleObject
             return;
         }
         _spriteRenderer.flipX = _target.position.x < _rigidbody.position.x;
-
     }
 
     void Dead()
