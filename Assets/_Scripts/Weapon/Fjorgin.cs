@@ -36,6 +36,7 @@ public class Fjorgin : Weapon
         _rotate360Duration = _fjorginDataSO.Fjorgin360RotateDuration;
         _rotate90Duration = _fjorginDataSO.Fjorgin90RotateDuration;
         _coolTime = _fjorginDataSO.FjorginCoolTime;
+        _oneSecond = _fjorginDataSO.OneSecond;
     }
 
     private void OnEnable()
@@ -61,7 +62,6 @@ public class Fjorgin : Weapon
             Tween rotate360 = transform.DORotate(_rotateDirection, _rotate360Duration, RotateMode.FastBeyond360);
             yield return rotate360.WaitForCompletion();
             transform.DORotate(_rotateVector, _rotate90Duration).SetEase(Ease.InQuint);
-            yield return new WaitForSeconds(1f);
             yield return _oneSecond;
         }
     }
