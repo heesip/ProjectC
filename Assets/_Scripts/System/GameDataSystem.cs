@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class GameDataSystem
 {
+    #region WeaponData
     Mk2DataSO _mk2DataSO;
     DronDataSO _dronDataSO;
     FjorginDataSO _fjorginDataSO;
     ElectrodeDataSO _electrodeDataSO;
     ThunderStrokeDataSO _thunderStrokeDataSO;
     BattleItemBoxDataSO _battleItemBoxDataSO;
-
-    public void Initialize()
-    {
-        _mk2DataSO = Resources.Load<Mk2DataSO>(nameof(Mk2DataSO));
-        _dronDataSO = Resources.Load<DronDataSO>(nameof(DronDataSO));
-        _fjorginDataSO = Resources.Load<FjorginDataSO>(nameof(FjorginDataSO));
-        _electrodeDataSO = Resources.Load<ElectrodeDataSO>(nameof(ElectrodeDataSO));
-        _thunderStrokeDataSO = Resources.Load<ThunderStrokeDataSO>(nameof(ThunderStrokeDataSO));
-        _battleItemBoxDataSO = Resources.Load<BattleItemBoxDataSO>(nameof(BattleItemBoxDataSO));
-    }
 
     public Mk2DataSO GetMk2DataSO()
     {
@@ -50,4 +41,26 @@ public class GameDataSystem
     {
         return _battleItemBoxDataSO;
     }
+    #endregion
+
+    EnemyDataSO _enemyDataSO;
+
+    public EnemyDataSO GetEnemyDataSO()
+    {
+        return _enemyDataSO;
+    }
+
+    public void Initialize()
+    {
+        _mk2DataSO = Resources.Load<Mk2DataSO>(nameof(Mk2DataSO));
+        _dronDataSO = Resources.Load<DronDataSO>(nameof(DronDataSO));
+        _fjorginDataSO = Resources.Load<FjorginDataSO>(nameof(FjorginDataSO));
+        _electrodeDataSO = Resources.Load<ElectrodeDataSO>(nameof(ElectrodeDataSO));
+        _thunderStrokeDataSO = Resources.Load<ThunderStrokeDataSO>(nameof(ThunderStrokeDataSO));
+        _battleItemBoxDataSO = Resources.Load<BattleItemBoxDataSO>(nameof(BattleItemBoxDataSO));
+
+        _enemyDataSO = Resources.Load<EnemyDataSO>(nameof(EnemyDataSO));
+    }
+
+    
 }

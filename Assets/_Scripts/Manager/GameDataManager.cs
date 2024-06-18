@@ -10,7 +10,7 @@ public class GameDataManager : Singleton<GameDataManager>
     {
         _gameDataSystem.Initialize();
     }
-
+    #region WeaponData
     public Mk2DataSO GetMk2DataSO()
     {
         return _gameDataSystem.GetMk2DataSO();
@@ -41,4 +41,10 @@ public class GameDataManager : Singleton<GameDataManager>
         return _gameDataSystem.GetBattleItemBoxDataSO();
     }
 
+    #endregion
+
+    public EnemyDataSO GetEnemyDataSO()
+    {
+        return _gameDataSystem.GetEnemyDataSO();
+    }
 }

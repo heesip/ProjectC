@@ -5654,7 +5654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints: []
-  _spawnTime: 2
+  _spawnTime: 5
 --- !u!1 &905462468
 GameObject:
   m_ObjectHideFlags: 0
@@ -24172,16 +24172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faac649e8973d6a41b7a73f22ec91aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
-  _speed: 0
-  _count: 0
   _mk2: {fileID: 235993155}
   _mk2SpriteRenderer: {fileID: 235993157}
   _collider: {fileID: 0}
   _mk2DataSO: {fileID: 0}
-  _rightPosition: {x: 0, y: 0, z: 0}
-  _leftPosition: {x: 0, y: 0, z: 0}
-  _rotateDirection: {x: 0, y: 0, z: 0}
 --- !u!70 &1967462701
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

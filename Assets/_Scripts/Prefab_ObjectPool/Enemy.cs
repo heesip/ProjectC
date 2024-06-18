@@ -10,33 +10,22 @@ public class Enemy : RecycleObject
     Animator _animator;
     Collider2D _collider;
     #endregion
-
+    EnemyDataSO _enemyDataSO;
     bool _isDead;
     Rigidbody2D _target;
     [SerializeField] float _speed;
     [SerializeField] float _health;
     [SerializeField] float _maxHealth;
-    Vector2 _direction;
-    Vector2 _nextVector;
 
     RuntimeAnimatorController RandomAnimation()
     {
-        int randomNumber = Random.Range(1, 4);
-        switch (randomNumber)
-        {
-            case 1:
-                return GameResourcesManager.Instance.GetEnemyA_Animator();
-            case 2:
-                return GameResourcesManager.Instance.GetEnemyB_Animator();
-            case 3:
-                return GameResourcesManager.Instance.GetEnemyC_Animator();
-            default:
-                return GameResourcesManager.Instance.GetEnemyA_Animator();
-        }
+        int randomNumber = Random.Range(_enemyDataSO.MinRandomNumber, _enemyDataSO.MaxRandomNumber);
+        return _enemyDataSO.EnemyAnimators[randomNumber];
     }
 
     void Awake()
     {
+        _enemyDataSO = GameDataManager.Instance.GetEnemyDataSO();
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -59,19 +48,15 @@ public class Enemy : RecycleObject
         Turn();
     }
 
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag(AllStrings.Bullet))
         {
             return;
         }
-
-        if (_health <= 0)
-        {
-            DeadSet();
-        }
-
+        _animator.SetTrigger(AllStrings.Hit);
+        StopCoHandle(_knockBackCoHandle);
+        _knockBackCoHandle = StartCoroutine(KnockBackCo());
     }
 
     public void OnDamage(GameObject bullet, float damage)
@@ -80,8 +65,13 @@ public class Enemy : RecycleObject
         {
             return;
         }
+        
         _health -= damage;
-        print($"hit{damage}");
+
+        if (_health <= 0)
+        {
+            DeadSet();
+        }
     }
 
     void LiveSet()
@@ -102,18 +92,16 @@ public class Enemy : RecycleObject
         _animator.SetBool(AllStrings.Dead, true);
     }
 
-
     void Run()
     {
-        if (_isDead)
+        if (_isDead || _animator.GetCurrentAnimatorStateInfo(0).IsName(AllStrings.Hit))
         {
             return;
         }
-        _direction = _target.position - _rigidbody.position;
-        _nextVector = _direction.normalized * _speed * Time.deltaTime;
-        _rigidbody.MovePosition(_rigidbody.position + _nextVector);
+        Vector2 direction = _target.position - _rigidbody.position;
+        Vector2 nextVector = direction.normalized * _speed * Time.deltaTime;
+        _rigidbody.MovePosition(_rigidbody.position + nextVector);
         _rigidbody.velocity = Vector2.zero;
-
     }
 
     void Turn()
@@ -131,4 +119,24 @@ public class Enemy : RecycleObject
         ExpGem expGem = FactoryManager.Instance.GetExpGem();
         expGem.transform.position = transform.position;
     }
+    #region KnockBack
+    Coroutine _knockBackCoHandle;
+
+    IEnumerator KnockBackCo()
+    {
+        yield return _enemyDataSO.OneFixedWait;
+        Vector3 playerPosition = Player.Instance.transform.position;
+        Vector3 directionVector = transform.position - playerPosition;
+        _rigidbody.AddForce(directionVector.normalized
+                            * _enemyDataSO.KnockBackRange, ForceMode2D.Impulse);
+    }
+
+    void StopCoHandle(Coroutine coHandle)
+    {
+        if (coHandle != null)
+        {
+            StopCoroutine(coHandle);
+        }
+    }
+    #endregion
 }

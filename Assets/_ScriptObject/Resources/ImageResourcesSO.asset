@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18508f2772494f0e8115f4ac26a4145, type: 3}
   m_Name: ImageResourcesSO
   m_EditorClassIdentifier: 
-  _emergencyPotionImage: {fileID: 1248686342, guid: b1726fc8506974e2a93244ba4de80ee1, type: 3}
-  _healPotionImage: {fileID: 1205480329, guid: 403168319c52f430fb4f414dd1bf8847, type: 3}
-  _rareHealPotionImage: {fileID: 175199419, guid: 3879391662f204417b5c5d35a2f5aaec, type: 3}
-  _spiritPotionImage: {fileID: -2102319377, guid: 144e3c265c009412799a49d9c2976911, type: 3}
-  _atropineImage: {fileID: -1104752170, guid: 14f43383b5d364056bec776a10c318b4, type: 3}
+  _emergencyPotionImage: {fileID: 21300000, guid: 6a6981e225e0967428e01b7542c076ed, type: 3}
+  _healPotionImage: {fileID: 21300000, guid: e5fbebc64fdb9824ebcd602fd625d89e, type: 3}
+  _rareHealPotionImage: {fileID: 21300000, guid: c07976a256484b549aa09aa74b8c2815, type: 3}
+  _spiritPotionImage: {fileID: 21300000, guid: 9fed9c003408a8e4c8f057162bd3c037, type: 3}
+  _atropineImage: {fileID: 21300000, guid: 24ec17c4dd8191343b0e55300cbb9c56, type: 3}

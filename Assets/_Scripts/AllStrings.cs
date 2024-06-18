@@ -10,5 +10,7 @@ public static class AllStrings
     public readonly static string Run = "Run";
     public readonly static string Dead = "Dead";
     public readonly static string isAttack = "isAttack";
+
+    public readonly static string Hit = "Hit";
     #endregion
 }
