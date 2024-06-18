@@ -5654,7 +5654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints: []
-  _spawnTime: 5
 --- !u!1 &905462468
 GameObject:
   m_ObjectHideFlags: 0
@@ -5699,6 +5698,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a99c67bdd5a204487578b6567ccb75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gametime: 0
+  _level: 0
+  _isGame: 0
 --- !u!1 &927044788
 GameObject:
   m_ObjectHideFlags: 0

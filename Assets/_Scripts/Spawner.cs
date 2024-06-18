@@ -5,10 +5,13 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] Transform[] _spawnPoints;
-    WaitForSeconds _spawnTimeCo;
-
-    //TempCode
-    [SerializeField] float _spawnTime = 2.5f;
+    [SerializeField]
+    WaitForSeconds[] _enemySpawnTimes = new WaitForSeconds[]
+    {
+        new WaitForSeconds(3.5f), new WaitForSeconds(3),new WaitForSeconds(2.5f),
+        new WaitForSeconds(2), new WaitForSeconds(1.5f)
+    };
+    [SerializeField] WaitForSeconds _itemBoxSpawnTime = new WaitForSeconds(10);
 
     void OnEnable()
     {
@@ -30,14 +33,23 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            _spawnTimeCo = new WaitForSeconds(_spawnTime);
             Enemy enemy = FactoryManager.Instance.GetEnemy();
             enemy.transform.position = _spawnPoints[Random.Range(1, _spawnPoints.Length)].position;
-            yield return _spawnTimeCo;
+            enemy.LevelValue(GameManager.Instance.Level);
+            yield return _enemySpawnTimes[GameManager.Instance.Level];
         }
     }
 
-    void StopSpawnCo()
+    IEnumerator ItemBoxSpawn()
+    {
+        while (true)
+        {
+
+            yield return _itemBoxSpawnTime;
+        }
+    }
+
+    void StopCoHandle()
     {
         if (_spawnCoHandle != null)
         {
@@ -45,8 +57,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
-        StopSpawnCo();
+        StopCoHandle();
     }
+
 }

@@ -19,7 +19,7 @@ public class Enemy : RecycleObject
 
     RuntimeAnimatorController RandomAnimation()
     {
-        int randomNumber = Random.Range(_enemyDataSO.MinRandomNumber, _enemyDataSO.MaxRandomNumber);
+        int randomNumber = Random.Range(_enemyDataSO.MinNumber, _enemyDataSO.MaxNumber);
         return _enemyDataSO.EnemyAnimators[randomNumber];
     }
 
@@ -59,24 +59,8 @@ public class Enemy : RecycleObject
         _knockBackCoHandle = StartCoroutine(KnockBackCo());
     }
 
-    public void OnDamage(GameObject bullet, float damage)
-    {
-        if (!bullet.CompareTag(AllStrings.Bullet))
-        {
-            return;
-        }
-        
-        _health -= damage;
-
-        if (_health <= 0)
-        {
-            DeadSet();
-        }
-    }
-
     void LiveSet()
     {
-        _health = _maxHealth;
         _isDead = false;
         _collider.enabled = true;
         _rigidbody.simulated = true;
@@ -119,6 +103,7 @@ public class Enemy : RecycleObject
         ExpGem expGem = FactoryManager.Instance.GetExpGem();
         expGem.transform.position = transform.position;
     }
+
     #region KnockBack
     Coroutine _knockBackCoHandle;
 
@@ -139,4 +124,27 @@ public class Enemy : RecycleObject
         }
     }
     #endregion
+
+    public void LevelValue(int level)
+    {
+        _speed = _enemyDataSO.Speeds[level];
+        _maxHealth = _enemyDataSO.MaxHealths[level];
+        _health = _maxHealth;
+    }
+
+    public void OnDamage(GameObject bullet, float damage)
+    {
+        if (!bullet.CompareTag(AllStrings.Bullet))
+        {
+            return;
+        }
+
+        _health -= damage;
+
+        if (_health <= 0)
+        {
+            DeadSet();
+        }
+    }
+
 }

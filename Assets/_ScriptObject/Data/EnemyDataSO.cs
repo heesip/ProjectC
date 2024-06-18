@@ -7,10 +7,18 @@ public class EnemyDataSO : ScriptableObject
 {
     public RuntimeAnimatorController[] EnemyAnimators;
 
-    public readonly int MinRandomNumber = 0;
-    public readonly int MaxRandomNumber = 4;
+    // RandomRange 
+    public readonly int MinNumber = 0;
+    public readonly int MaxNumber = 4;
+
+    // KnockBack
     public readonly float KnockBackRange = 1.5f;
     public readonly WaitForFixedUpdate OneFixedWait = new WaitForFixedUpdate();
+
+    public readonly float[] MaxHealths = new float[]
+    {
+        7, 10, 15, 20, 30
+    };
 
     public readonly float[] Speeds = new float[]
     {
