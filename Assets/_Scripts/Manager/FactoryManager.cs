@@ -20,6 +20,12 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetExpGem();
     }
+
+    public ItemBox GetItemBox()
+    {
+        return _factorySystem.GetItemBox();
+    }
+
     #region Weapon & Bullet
     public Missile GetMissile()
     {

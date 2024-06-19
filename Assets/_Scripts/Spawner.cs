@@ -24,10 +24,11 @@ public class Spawner : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localScale = Vector3.one;
         _spawnPoints = GetComponentsInChildren<Transform>();
-        _spawnCoHandle = StartCoroutine(EnemySpawnCo());
+        _enemySpawnCoHandle = StartCoroutine(EnemySpawnCo());
+        _itemBoxSpawnCoHandle = StartCoroutine(ItemBoxSpawn());
     }
 
-    Coroutine _spawnCoHandle;
+    Coroutine _enemySpawnCoHandle;
 
     IEnumerator EnemySpawnCo()
     {
@@ -40,26 +41,33 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    Coroutine _itemBoxSpawnCoHandle;
     IEnumerator ItemBoxSpawn()
     {
         while (true)
         {
-
             yield return _itemBoxSpawnTime;
+            ItemBox itemBox = FactoryManager.Instance.GetItemBox();
+            itemBox.transform.position = _spawnPoints[Random.Range(1, _spawnPoints.Length)].position;
         }
     }
 
-    void StopCoHandle()
+    void StopCoHandle(Coroutine coHandle1, Coroutine coHandle2)
     {
-        if (_spawnCoHandle != null)
+        if (coHandle1 != null)
         {
-            StopCoroutine(_spawnCoHandle);
+            StopCoroutine(coHandle1);
+        }
+
+        if (coHandle2 != null)
+        {
+            StopCoroutine(coHandle2);
         }
     }
 
     void OnDisable()
     {
-        StopCoHandle();
+        StopCoHandle(_enemySpawnCoHandle, _itemBoxSpawnCoHandle);
     }
 
 }

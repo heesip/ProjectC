@@ -21,6 +21,11 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
         return _gameResourcesSystem.GetExpGemPrefab();
     }
 
+    public ItemBox GetItemBoxPrefab()
+    {
+        return _gameResourcesSystem.GetItemBoxPrefab();
+    }
+
     #region Weapon & Bullet
     public Missile GetMissilePrefab()
     {

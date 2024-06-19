@@ -21,6 +21,11 @@ public class GameResourcesSystem
         return _prefabResourcesSO.GetExpGemPrefab();
     }
 
+    public ItemBox GetItemBoxPrefab()
+    {
+        return _prefabResourcesSO.GetItemBoxPrefab();
+    }
+
     #region Weapon & Bullet
     public Missile GetMissilePrefab()
     {

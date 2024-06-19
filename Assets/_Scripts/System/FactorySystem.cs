@@ -16,13 +16,16 @@ public class FactorySystem
 
         _magnetPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMagnetPrefab(), 5, factoryManager);
         _potionPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetPotionPrefab(), 5, factoryManager);
+        _itemBoxPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetItemBoxPrefab(), 10, factoryManager);
     }
 
 
     ObjectPoolSystem _enemyPrefab;
     ObjectPoolSystem _expGemPrefab;
+    ObjectPoolSystem _itemBoxPrefab;
     Enemy _tempEnemy;
     ExpGem _tempExpGem;
+    ItemBox _tempItemBox;
 
     public Enemy GetEnemy()
     {
@@ -34,6 +37,12 @@ public class FactorySystem
     {
         _tempExpGem = _expGemPrefab.Get() as ExpGem;
         return _tempExpGem;
+    }
+
+    public ItemBox GetItemBox()
+    {
+        _tempItemBox = _itemBoxPrefab.Get() as ItemBox;
+        return _tempItemBox;
     }
 
     #region Weapon & Bullet
