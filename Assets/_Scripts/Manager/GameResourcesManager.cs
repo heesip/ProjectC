@@ -60,10 +60,4 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     }
     #endregion
 
-    #region Image
-    public Sprite GetPotionImage(PotionType potionType)
-    {
-        return _gameResourcesSystem.GetPotionImage(potionType);
-    }
-    #endregion
 }

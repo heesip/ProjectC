@@ -5,12 +5,10 @@ using UnityEngine;
 public class GameResourcesSystem
 {
     PrefabResourcesSO _prefabResourcesSO;
-    ImageResourcesSO _imageResourcesSO;
 
     public void Initialize()
     {
         _prefabResourcesSO = Resources.Load<PrefabResourcesSO>(nameof(PrefabResourcesSO));
-        _imageResourcesSO = Resources.Load<ImageResourcesSO>(nameof(ImageResourcesSO));
     }
 
     public Enemy GetEnemyPrefab()
@@ -63,10 +61,4 @@ public class GameResourcesSystem
     }
     #endregion
 
-    #region Image
-    public Sprite GetPotionImage(PotionType potionType)
-    {
-        return _imageResourcesSO.GetPotionImage(potionType);
-    }
-    #endregion
 }

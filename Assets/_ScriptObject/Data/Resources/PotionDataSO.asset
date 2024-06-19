@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a111c8f180545a9b3ba8411dd65b12, type: 3}
+  m_Name: PotionDataSO
+  m_EditorClassIdentifier: 
+  PotionImages:
+  - {fileID: 21300000, guid: 1aeaca664e230423f9acdecce56b5cc5, type: 3}
+  - {fileID: 21300000, guid: 6a6981e225e0967428e01b7542c076ed, type: 3}
+  - {fileID: 21300000, guid: e5fbebc64fdb9824ebcd602fd625d89e, type: 3}
+  - {fileID: 21300000, guid: c07976a256484b549aa09aa74b8c2815, type: 3}
+  - {fileID: 21300000, guid: 9fed9c003408a8e4c8f057162bd3c037, type: 3}
+  - {fileID: 21300000, guid: 24ec17c4dd8191343b0e55300cbb9c56, type: 3}
+  PotionSizes:
+  - {x: 0, y: 0}
+  - {x: 0.11, y: 0.53}
+  - {x: 0.2, y: 0.53}
+  - {x: 0.37, y: 0.62}
+  - {x: 0.72, y: 0.73}
+  - {x: 0.22, y: 0.41}

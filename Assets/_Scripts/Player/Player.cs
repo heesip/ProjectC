@@ -47,7 +47,6 @@ public class Player : Singleton<Player>
         _playerAnimationSystem.PlayerTurn();
     }
 
-
     void OnCollisionStay2D(Collision2D collision)
     {
         if (IsDead)
@@ -63,9 +62,9 @@ public class Player : Singleton<Player>
 
     }
 
-    public void GetPotion(PotionType potionType)
+    public void Healing(float healingPoint)
     {
-        _playerStatusSystem.GetPotion(potionType);
+        _playerStatusSystem.Healing(healingPoint);
     }
 
     public void GetExpGem()

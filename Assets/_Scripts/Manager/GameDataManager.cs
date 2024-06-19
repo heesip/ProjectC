@@ -47,4 +47,9 @@ public class GameDataManager : Singleton<GameDataManager>
     {
         return _gameDataSystem.GetEnemyDataSO();
     }
+
+    public PotionDataSO GetPotionDataSO()
+    {
+        return _gameDataSystem.GetPotionDataSO();
+    }
 }

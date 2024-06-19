@@ -34,29 +34,8 @@ public class PlayerStatusSystem
         _exp++;
     }
 
-    public void GetPotion(PotionType potionType)
+    public void Healing(float healingPoint)
     {
-        switch (potionType)
-        {
-            case PotionType.None:
-                break;
-            case PotionType.EmergencyPotion:
-                _health += 15;
-                break;
-            case PotionType.HealPotion:
-                _health += 30;
-                break;
-            case PotionType.RareHealPotion:
-                _health += 45;
-                break;
-            case PotionType.SpiritPotion:
-                _health += 60;
-                break;
-            case PotionType.Atropine:
-                _health -= 20;
-                break;
-            default:
-                break;
-        }
+        _health += healingPoint;
     }
 }

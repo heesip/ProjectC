@@ -5,6 +5,7 @@ public static class AllStrings
     public readonly static string Bullet = "Bullet";
     public readonly static string AllKill = "AllKill";
     public readonly static string Area = "Area";
+    public readonly static string Item = "Item";
 
     #region Animation
     public readonly static string Run = "Run";

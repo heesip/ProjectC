@@ -6,11 +6,12 @@ using DG.Tweening;
 public class Item : RecycleObject
 {
     bool _isGet;
-
-    //tempCode
     float _duration = 0.5f;
 
-    private void OnEnable()
+    protected virtual void ItemFunction() { }
+    protected virtual void OnStart() { }
+
+    void OnEnable()
     {
         transform.localScale = Vector3.one;
         _isGet = false;
@@ -28,11 +29,11 @@ public class Item : RecycleObject
 
     float MoveValue()
     {
-        float result = transform.position.y + 1.5f;
+        float result = transform.position.y + Vector2.up.y;
         return result;
     }
 
-    void GetItem()
+    public void GetItem()
     {
         if (_isGet)
         {
@@ -47,15 +48,4 @@ public class Item : RecycleObject
         sequence.Join(transform.DOScale(Vector3.zero, _duration));
     }
 
-    protected virtual void ItemFunction()
-    {
-
-    }
-
-    protected virtual void OnStart()
-    {
-
-    }
-
-  
 }

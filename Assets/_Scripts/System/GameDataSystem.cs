@@ -44,10 +44,16 @@ public class GameDataSystem
     #endregion
 
     EnemyDataSO _enemyDataSO;
+    PotionDataSO _potionDataSO;
 
     public EnemyDataSO GetEnemyDataSO()
     {
         return _enemyDataSO;
+    }
+
+    public PotionDataSO GetPotionDataSO()
+    {
+        return _potionDataSO;
     }
 
     public void Initialize()
@@ -60,7 +66,9 @@ public class GameDataSystem
         _battleItemBoxDataSO = Resources.Load<BattleItemBoxDataSO>(nameof(BattleItemBoxDataSO));
 
         _enemyDataSO = Resources.Load<EnemyDataSO>(nameof(EnemyDataSO));
+
+        _potionDataSO = Resources.Load<PotionDataSO>(nameof(PotionDataSO));
     }
 
-    
+
 }

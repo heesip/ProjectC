@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class Potion : Item
 {
-    SpriteRenderer _spriteRenderer;
     [SerializeField] PotionType _potionType = PotionType.None;
-    int _randomNumber;
+    PotionDataSO _potionDataSO;
+    SpriteRenderer _spriteRenderer;
+    CapsuleCollider2D _collider;
+    [SerializeField] int _healingPoint;
+    public int HealingPoint => _healingPoint;
 
     private void Awake()
     {
+        _potionDataSO = GameDataManager.Instance.GetPotionDataSO();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<CapsuleCollider2D>();
     }
+
     protected override void OnStart()
     {
         RandomPotion();
@@ -20,13 +26,13 @@ public class Potion : Item
 
     protected override void ItemFunction()
     {
-        Player.Instance.GetPotion(_potionType);
+        Player.Instance.Healing(_healingPoint);
     }
 
     void RandomPotion()
     {
-        _randomNumber = Random.Range(0, 10);
-        switch (_randomNumber)
+        int randomNumber = Random.Range(0, 10);
+        switch (randomNumber)
         {
             case 0:
             case 1:
@@ -51,8 +57,16 @@ public class Potion : Item
             default:
                 break;
         }
-        _spriteRenderer.sprite = GameResourcesManager.Instance.GetPotionImage(_potionType);
+        Setting(_potionType);
+
     }
 
+
+    void Setting(PotionType potionType)
+    {
+        _spriteRenderer.sprite = _potionDataSO.PotionImages[(int)potionType];
+        _collider.size = _potionDataSO.PotionSizes[(int)potionType];
+        _healingPoint = _potionDataSO.HealingPoints[(int)potionType];
+    }
 }
 

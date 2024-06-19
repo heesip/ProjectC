@@ -9,6 +9,7 @@ TagManager:
   - Map
   - Area
   - Enemy
+  - Item
   layers:
   - Default
   - TransparentFX
