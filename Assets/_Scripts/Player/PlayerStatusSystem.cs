@@ -5,24 +5,32 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatusSystem
 {
-    float _maxHealth;
+    int _enemyAttack = 10;
+    float _maxHealth = 100;
     [SerializeField] float _health;
     public float Health => _health;
+
+    [SerializeField] int _exp = 0;
+    public int Exp => _exp;
+
     [SerializeField] bool _isDead;
     public bool IsDead => _isDead;
-    [SerializeField] int _exp;
+
+    [SerializeField] bool _isAtropine;
+    public bool IsAtropine => _isAtropine;
+    [SerializeField] WaitForSeconds _atropineTime = new WaitForSeconds(10);
+
 
     public void Initialize()
     {
-        _isDead = false;
-        _maxHealth = 100;
         _health = _maxHealth;
-        _exp = 0;
+        _isDead = false;
+        _isAtropine = false;
     }
 
     public void OnDamage()
     {
-        _health -= Time.deltaTime * 10;
+        _health -= Time.deltaTime * _enemyAttack;
         if (_health <= 0)
         {
             _isDead = true;
@@ -34,8 +42,35 @@ public class PlayerStatusSystem
         _exp++;
     }
 
-    public void Healing(float healingPoint)
+    public void Healing(float healingPoint, bool isAtropine)
     {
         _health += healingPoint;
+        if (!isAtropine)
+        {
+            return;
+        }
+        UseAtropine();
+    }
+
+    void UseAtropine()
+    {
+        StopCoHandle(_atropineCoHandle);
+        _atropineCoHandle = Player.Instance.StartCoroutine(UseAtropineCo());
+    }
+
+    Coroutine _atropineCoHandle;
+    IEnumerator UseAtropineCo()
+    {
+        _isAtropine = true;
+        yield return _atropineTime;
+        _isAtropine = false;
+    }
+
+    void StopCoHandle(Coroutine coHandle)
+    {
+        if (coHandle != null)
+        {
+            Player.Instance.StopCoroutine(coHandle);
+        }
     }
 }

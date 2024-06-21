@@ -12,12 +12,6 @@ public class NinjaStar : Bullet
     float _rotateDuration;
     Vector3 _rotateVector;
 
-    private void Awake()
-    {
-        _spriteRenderer.sprite = _sprites[0];
-
-    }
-
     public void Initiazlie(float damage, float speed, float rotateDuration, Vector3 rotateVector)
     {
         _damage = damage;
@@ -29,6 +23,7 @@ public class NinjaStar : Bullet
     protected override void OnStart()
     {
         transform.DOKill();
+        _spriteRenderer.sprite = _sprites[0];
     }
 
     void OnDisable()

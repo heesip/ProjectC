@@ -13,6 +13,7 @@ public class Player : Singleton<Player>
 
     public bool IsDead => _playerStatusSystem.IsDead;
     public bool IsLeft => _playerAnimationSystem.IsLeft;
+    public bool IsAtropine => _playerStatusSystem.IsAtropine;
 
     void Awake()
     {
@@ -62,9 +63,9 @@ public class Player : Singleton<Player>
 
     }
 
-    public void Healing(float healingPoint)
+    public void Healing(float healingPoint, bool isAtropine)
     {
-        _playerStatusSystem.Healing(healingPoint);
+        _playerStatusSystem.Healing(healingPoint, isAtropine);
     }
 
     public void GetExpGem()

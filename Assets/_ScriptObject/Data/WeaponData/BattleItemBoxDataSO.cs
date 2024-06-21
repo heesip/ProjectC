@@ -36,4 +36,10 @@ public class BattleItemBoxDataSO : ScriptableObject
         4, 6, 10
     };
 
+    public readonly float AtroPineNinjaStarDamage = 7;
+    public readonly WaitForSeconds AtropineNinjaStarCoolTime = new WaitForSeconds(0.1f);
+
+    public readonly float AtroPineFlameDamage = 999999;
+    public readonly WaitForSeconds AtropineMolotovCocktailCoolTime = new WaitForSeconds(3f);
+
 }

@@ -10,6 +10,7 @@ public class Potion : Item
     SpriteRenderer _spriteRenderer;
     CapsuleCollider2D _collider;
     [SerializeField] int _healingPoint;
+    bool _isAtropine;
     public int HealingPoint => _healingPoint;
 
     private void Awake()
@@ -21,12 +22,16 @@ public class Potion : Item
 
     protected override void OnStart()
     {
-        RandomPotion();
+        //RandomPotion();
+
+        _isAtropine = true;
+        _potionType = PotionType.Atropine;
+        Setting(_potionType);
     }
 
     protected override void ItemFunction()
     {
-        Player.Instance.Healing(_healingPoint);
+        Player.Instance.Healing(_healingPoint, _isAtropine);
     }
 
     void RandomPotion()
@@ -37,21 +42,26 @@ public class Potion : Item
             case 0:
             case 1:
             case 2:
+                _isAtropine = false;
                 _potionType = PotionType.EmergencyPotion;
                 break;
             case 3:
             case 4:
             case 5:
+                _isAtropine = false;
                 _potionType = PotionType.HealPotion;
                 break;
             case 6:
             case 7:
+                _isAtropine = false;
                 _potionType = PotionType.RareHealPotion;
                 break;
             case 8:
+                _isAtropine = false;
                 _potionType = PotionType.SpiritPotion;
                 break;
             case 9:
+                _isAtropine = true;
                 _potionType = PotionType.Atropine;
                 break;
             default:

@@ -8,7 +8,7 @@ public class Bullet : RecycleObject
 {
     protected SpriteRenderer _spriteRenderer;
     [SerializeField] protected bool _isProjectile;
-    protected float _damage = 0;
+    [SerializeField] protected float _damage = 0;
 
     protected float _duration = 1.5f;
 

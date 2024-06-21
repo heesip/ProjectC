@@ -57,20 +57,34 @@ public class BattleItemBox : MonoBehaviour
 
     void OnDisable()
     {
-        StopCoHandle(_throwingNinjaStarCoHandle, _throwMolotovCocktailCoHandle);
+        StopCoHandle(_throwingNinjaStarCoHandle);
+        StopCoHandle(_throwMolotovCocktailCoHandle);
     }
 
     Coroutine _throwingNinjaStarCoHandle;
+
+    void ThrowingNinjaStar(float ninjaStarDamage)
+    {
+        NinjaStar ninjaStar = FactoryManager.Instance.GetNinjaStar();
+        ninjaStar.Initiazlie(ninjaStarDamage, _ninjaStarSpeed, _ninjaStarDurtaion, _projectileRotate);
+        ninjaStar.AttackPoint(transform.position);
+        ninjaStar.Throw(_attackDirection);
+    }
 
     IEnumerator ThrowingNinjaStarCo()
     {
         while (true)
         {
-            yield return _ninjaStarCoolTime;
-            NinjaStar ninjaStar = FactoryManager.Instance.GetNinjaStar();
-            ninjaStar.Initiazlie(_ninjaStarDamage, _ninjaStarSpeed, _ninjaStarDurtaion, _projectileRotate);
-            ninjaStar.AttackPoint(transform.position);
-            ninjaStar.Throw(_attackDirection);
+            if (Player.Instance.IsAtropine)
+            {
+                yield return _battleItemBoxDataSO.AtropineNinjaStarCoolTime;
+                ThrowingNinjaStar(_battleItemBoxDataSO.AtroPineNinjaStarDamage);
+            }
+            else
+            {
+                yield return _ninjaStarCoolTime;
+                ThrowingNinjaStar(_ninjaStarDamage);
+            }
         }
     }
 
@@ -95,17 +109,12 @@ public class BattleItemBox : MonoBehaviour
         return result;
     }
 
-
-    void StopCoHandle(Coroutine coHandle1, Coroutine coHandle2)
+    void StopCoHandle(Coroutine coHandle)
     {
-        if (coHandle1 != null)
+        if (coHandle != null)
         {
-            StopCoroutine(coHandle1);
-        }
-        if (coHandle2 != null)
-        {
-            StopCoroutine(coHandle2);
+            StopCoroutine(coHandle);
         }
     }
-
+    
 }
