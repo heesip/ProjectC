@@ -10,7 +10,6 @@ public class Bullet : RecycleObject
     [SerializeField] protected bool _isProjectile;
     protected float _damage = 0;
 
-    //TempCode
     protected float _duration = 1.5f;
 
     protected void OnEnable()

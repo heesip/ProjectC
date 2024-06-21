@@ -8,11 +8,15 @@ public class NinjaStar : Bullet
     [SerializeField] Sprite[] _sprites;
     bool _isAttack;
 
-    //TempCode
-    [SerializeField] bool _isRare;
     float _speed;
     float _rotateDuration;
     Vector3 _rotateVector;
+
+    private void Awake()
+    {
+        _spriteRenderer.sprite = _sprites[0];
+
+    }
 
     public void Initiazlie(float damage, float speed, float rotateDuration, Vector3 rotateVector)
     {
@@ -25,16 +29,6 @@ public class NinjaStar : Bullet
     protected override void OnStart()
     {
         transform.DOKill();
-        switch (_isRare)
-        {
-            case false:
-                _spriteRenderer.sprite = _sprites[0];
-                break;
-            case true:
-                _spriteRenderer.sprite = _sprites[1];
-                break;
-        }
-        NinjaStarRotate();
     }
 
     void OnDisable()
@@ -45,7 +39,7 @@ public class NinjaStar : Bullet
 
     void NinjaStarRotate()
     {
-        transform.DORotate(_rotateVector, _duration, RotateMode.FastBeyond360).SetEase(Ease.Linear);
+        transform.DORotate(_rotateVector, _rotateDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear);
     }
 
     Coroutine _throwingCoHandle;
@@ -71,6 +65,7 @@ public class NinjaStar : Bullet
         {
             return;
         }
+        NinjaStarRotate();
         _throwingCoHandle = StartCoroutine(ThrowingCo(nextVector));
     }
 }

@@ -50,9 +50,9 @@ public class BattleItemBox : MonoBehaviour
     void OnEnable()
     {
         FixedValue();
-        LevelValue(2);
-        _throwingNinjaStarCoHandle = StartCoroutine(ThrowingNinjaStarCo());
+        LevelValue(1);
         _throwMolotovCocktailCoHandle = StartCoroutine(ThrowingMolotovCocktail());
+        _throwingNinjaStarCoHandle = StartCoroutine(ThrowingNinjaStarCo());
     }
 
     void OnDisable()
