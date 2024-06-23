@@ -52,6 +52,11 @@ public class GameResourcesSystem
         return _prefabResourcesSO.GetFlamePrefab();
     }
 
+    public FjorginBuff GetFjorginBuffPrefab()
+    {
+         return _prefabResourcesSO.GetFjorginBuffPrefab();
+    }
+
     #endregion
 
     #region Item

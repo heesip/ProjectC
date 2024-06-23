@@ -7,6 +7,8 @@ public class PlayerStatusSystem
 {
     int _enemyAttack = 10;
     float _maxHealth = 100;
+    [SerializeField] float _shield;
+    float _maxshield = 50;
     [SerializeField] float _health;
     public float Health => _health;
 
@@ -30,11 +32,16 @@ public class PlayerStatusSystem
 
     public void OnDamage()
     {
-        _health -= Time.deltaTime * _enemyAttack;
-        if (_health <= 0)
+        if (_shield > 0)
         {
-            _isDead = true;
+            _shield -= Time.deltaTime * _enemyAttack;
         }
+
+        else
+        {
+            _health -= Time.deltaTime * _enemyAttack;
+        }
+        Dead();
     }
 
     public void GetExpGem()
@@ -50,6 +57,20 @@ public class PlayerStatusSystem
             return;
         }
         UseAtropine();
+        Dead();
+    }
+
+    public void GetBuff()
+    {
+        _shield = _maxshield;
+    }
+
+    void Dead()
+    {
+        if (_health <= 0)
+        {
+            _isDead = true;
+        }
     }
 
     void UseAtropine()

@@ -13,6 +13,7 @@ public class FactorySystem
         _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 5, factoryManager);
         _molotovCocktailPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMolotovCocktailPrefab(), 2, factoryManager);
         _flamePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFlamePrefab(), 2, factoryManager);
+        _fjorginBuffPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFjorginBuffPrefab(), 2, factoryManager);
 
         _magnetPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMagnetPrefab(), 5, factoryManager);
         _potionPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetPotionPrefab(), 5, factoryManager);
@@ -51,11 +52,13 @@ public class FactorySystem
     ObjectPoolSystem _thunderPrefab;
     ObjectPoolSystem _molotovCocktailPrefab;
     ObjectPoolSystem _flamePrefab;
+    ObjectPoolSystem _fjorginBuffPrefab;
     Missile _tempMissile;
     NinjaStar _tempNinjaStar;
     Thunder _tempThunder;
     MolotovCocktail _tempMolotovCocktail;
     Flame _tempFlame;
+    FjorginBuff _tempFjorginBuff;
 
     public Missile GetMissile()
     {
@@ -86,6 +89,13 @@ public class FactorySystem
         _tempFlame = _flamePrefab.Get() as Flame;
         return _tempFlame;
     }
+
+    public FjorginBuff GetFjorginBuff()
+    {
+        _tempFjorginBuff = _fjorginBuffPrefab.Get() as FjorginBuff;
+        return _tempFjorginBuff;
+    }
+
     #endregion
 
     #region Item

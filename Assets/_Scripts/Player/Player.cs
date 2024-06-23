@@ -72,4 +72,9 @@ public class Player : Singleton<Player>
     {
         _playerStatusSystem.GetExpGem();
     }
+
+    public void GetBuff()
+    {
+        _playerStatusSystem.GetBuff();
+    }
 }

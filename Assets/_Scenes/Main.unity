@@ -23945,6 +23945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isProjectile: 0
+  _damage: 0
 --- !u!1 &1880311053
 GameObject:
   m_ObjectHideFlags: 0
@@ -24320,9 +24321,11 @@ MonoBehaviour:
   _playerAnimationSystem:
     _isLeft: 0
   _playerStatusSystem:
+    _shield: 0
     _health: 0
-    _isDead: 0
     _exp: 0
+    _isDead: 0
+    _isAtropine: 0
   _playerIndicatorSystem:
     _indicator: {fileID: 1277727963}
     _socket: {fileID: 1187004770}

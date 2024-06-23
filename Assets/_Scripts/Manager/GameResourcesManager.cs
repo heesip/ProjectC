@@ -51,6 +51,12 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetFlamePrefab();
     }
+
+    public FjorginBuff GetFjorginBuffPrefab()
+    {
+        return _gameResourcesSystem.GetFjorginBuffPrefab();
+    }
+
     #endregion
 
     #region Item

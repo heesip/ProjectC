@@ -31,7 +31,7 @@ public class PrefabResourcesSO : ScriptableObject
     [SerializeField] Thunder _thunderPrefab;
     [SerializeField] MolotovCocktail _molotovCocktailPrefab;
     [SerializeField] Flame _flamePrefab;
-
+    [SerializeField] FjorginBuff _fjorginBuffPrefab;
     public Missile GetMissilePrefab()
     {
         return _missilePrefab;
@@ -56,6 +56,12 @@ public class PrefabResourcesSO : ScriptableObject
     {
         return _flamePrefab;
     }
+
+    public FjorginBuff GetFjorginBuffPrefab()
+    {
+        return _fjorginBuffPrefab;
+    }
+
     #endregion
 
     #region Item

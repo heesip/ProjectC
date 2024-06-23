@@ -51,6 +51,12 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetFlame();
     }
+
+    public FjorginBuff GetFjorginBuff()
+    {
+        return _factorySystem.GetFjorginBuff();
+    }
+
     #endregion
 
     #region Item
