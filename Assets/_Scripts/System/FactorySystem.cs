@@ -13,7 +13,7 @@ public class FactorySystem
         _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 5, factoryManager);
         _molotovCocktailPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMolotovCocktailPrefab(), 2, factoryManager);
         _flamePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFlamePrefab(), 2, factoryManager);
-        _fjorginBuffPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFjorginBuffPrefab(), 2, factoryManager);
+        _fjorginBuffPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFjorginBuffPrefab(), 1, factoryManager);
 
         _magnetPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMagnetPrefab(), 5, factoryManager);
         _potionPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetPotionPrefab(), 5, factoryManager);

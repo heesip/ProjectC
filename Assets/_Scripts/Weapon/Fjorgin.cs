@@ -31,7 +31,7 @@ public class Fjorgin : Weapon
     {
         _readyPosition = _fjorginDataSO.FjorginPosition;
         _rotateDirection = _fjorginDataSO.FjorginRotateDirection;
-        _rotateVector = _fjorginDataSO.FjorginBuff;
+        _rotateVector = _fjorginDataSO.FjorginAttack;
         _readyRotation = _fjorginDataSO.FjorginRotation;
         _rotate360Duration = _fjorginDataSO.Fjorgin360RotateDuration;
         _rotate90Duration = _fjorginDataSO.Fjorgin90RotateDuration;
@@ -59,10 +59,16 @@ public class Fjorgin : Weapon
             yield return _coolTime;
             AttackPosition();
             yield return _oneSecond;
+            FjorginBuff fjorginBuff = FactoryManager.Instance.GetFjorginBuff();
+            fjorginBuff.transform.position = transform.position + _fjorginDataSO.FjorginBuffPosition;
+            fjorginBuff.MagicSquare(_rotate360Duration);
             Tween rotate360 = transform.DORotate(_rotateDirection, _rotate360Duration, RotateMode.FastBeyond360);
             yield return rotate360.WaitForCompletion();
-            transform.DORotate(_rotateVector, _rotate90Duration).SetEase(Ease.InQuint);
+            Tween tween2 = transform.DORotate(_rotateVector, _rotate90Duration).SetEase(Ease.InQuint);
+            yield return tween2.WaitForCompletion();
+            fjorginBuff.ShockWave();
             yield return _oneSecond;
+
         }
     }
 
@@ -89,6 +95,5 @@ public class Fjorgin : Weapon
         transform.rotation = _readyRotation;
         transform.SetParent(Player.Instance.transform);
     }
-
 
 }
