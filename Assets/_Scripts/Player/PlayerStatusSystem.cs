@@ -8,12 +8,21 @@ public class PlayerStatusSystem
     int _enemyAttack = 10;
     float _maxHealth = 100;
     [SerializeField] float _shield;
+    public float Shield => _shield;
     float _maxshield = 50;
     [SerializeField] float _health;
     public float Health => _health;
 
-    [SerializeField] int _exp = 0;
+    int _level = 0;
+    public int Level => _level;
+
+    int _exp = 0;
     public int Exp => _exp;
+    int[] _nextExp = new int[]
+    {
+        3,6,9,12,15,18,21
+    };
+    public int[] NextExp => _nextExp;
 
     [SerializeField] bool _isDead;
     public bool IsDead => _isDead;
@@ -47,6 +56,13 @@ public class PlayerStatusSystem
     public void GetExpGem()
     {
         _exp++;
+        if (_exp >= _nextExp[_level])
+        {
+            int tempExp = _nextExp[Level] - _exp;
+            _level++;
+            _exp = tempExp;
+        }
+        UIManager.Instance.UpdateExpUI();
     }
 
     public void Healing(float healingPoint, bool isAtropine)

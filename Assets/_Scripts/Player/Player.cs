@@ -15,6 +15,12 @@ public class Player : Singleton<Player>
     public bool IsLeft => _playerAnimationSystem.IsLeft;
     public bool IsAtropine => _playerStatusSystem.IsAtropine;
 
+    public int Level => _playerStatusSystem.Level;
+    public int Exp => _playerStatusSystem.Exp;
+    public int[] NextExp => _playerStatusSystem.NextExp;
+    public float Health => _playerStatusSystem.Health;
+    public float Shield => _playerStatusSystem.Shield;
+
     void Awake()
     {
         _playerMoveSystem.Initialize(this);
