@@ -7,9 +7,11 @@ public class PlayerStatusSystem
 {
     int _enemyAttack = 10;
     float _maxHealth = 100;
+    public float MaxHealth => _maxHealth;
     [SerializeField] float _shield;
     public float Shield => _shield;
     float _maxshield = 50;
+    public float MaxShield => _maxshield;
     [SerializeField] float _health;
     public float Health => _health;
 
@@ -37,6 +39,7 @@ public class PlayerStatusSystem
         _health = _maxHealth;
         _isDead = false;
         _isAtropine = false;
+        UIManager.Instance.UpdateHpUI();
     }
 
     public void OnDamage()
@@ -44,11 +47,13 @@ public class PlayerStatusSystem
         if (_shield > 0)
         {
             _shield -= Time.deltaTime * _enemyAttack;
+            UIManager.Instance.UpdateShieldUI();
         }
 
         else
         {
             _health -= Time.deltaTime * _enemyAttack;
+            UIManager.Instance.UpdateHpUI();
         }
         Dead();
     }
@@ -68,6 +73,7 @@ public class PlayerStatusSystem
     public void Healing(float healingPoint, bool isAtropine)
     {
         _health += healingPoint;
+        UIManager.Instance.UpdateHpUI();
         if (!isAtropine)
         {
             return;
@@ -79,6 +85,7 @@ public class PlayerStatusSystem
     public void GetBuff()
     {
         _shield = _maxshield;
+        UIManager.Instance.UpdateShieldUI();
     }
 
     void Dead()

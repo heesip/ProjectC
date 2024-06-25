@@ -18,15 +18,16 @@ public class Player : Singleton<Player>
     public int Level => _playerStatusSystem.Level;
     public int Exp => _playerStatusSystem.Exp;
     public int[] NextExp => _playerStatusSystem.NextExp;
+    public float MaxHealth => _playerStatusSystem.MaxHealth;
     public float Health => _playerStatusSystem.Health;
     public float Shield => _playerStatusSystem.Shield;
+    public float MaxShield => _playerStatusSystem.MaxShield;
 
     void Awake()
     {
         _playerMoveSystem.Initialize(this);
         _playerAnimationSystem.Initialize(this);
         _playerStatusSystem.Initialize();
-
     }
 
     void FixedUpdate()
