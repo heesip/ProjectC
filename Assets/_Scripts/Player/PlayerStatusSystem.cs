@@ -7,24 +7,19 @@ public class PlayerStatusSystem
 {
     int _enemyAttack = 10;
     float _maxHealth = 100;
-    public float MaxHealth => _maxHealth;
     [SerializeField] float _shield;
-    public float Shield => _shield;
-    float _maxshield = 50;
-    public float MaxShield => _maxshield;
+    float _maxShield = 50;
     [SerializeField] float _health;
-    public float Health => _health;
 
     int _level = 0;
-    public int Level => _level;
 
     int _exp = 0;
-    public int Exp => _exp;
     int[] _nextExp = new int[]
     {
-        3,6,9,12,15,18,21
+        3,6,9,12,15,18,21,24,27,30
     };
-    public int[] NextExp => _nextExp;
+    int _endExp => _nextExp.Length - 1;
+    int _nextExpValue => Mathf.Min(_level, _endExp);
 
     [SerializeField] bool _isDead;
     public bool IsDead => _isDead;
@@ -39,7 +34,8 @@ public class PlayerStatusSystem
         _health = _maxHealth;
         _isDead = false;
         _isAtropine = false;
-        UIManager.Instance.UpdateHpUI();
+        UIManager.Instance.UpdateHpUI(_health, _maxHealth);
+        UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
     }
 
     public void OnDamage()
@@ -47,13 +43,13 @@ public class PlayerStatusSystem
         if (_shield > 0)
         {
             _shield -= Time.deltaTime * _enemyAttack;
-            UIManager.Instance.UpdateShieldUI();
+            UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
         }
 
         else
         {
             _health -= Time.deltaTime * _enemyAttack;
-            UIManager.Instance.UpdateHpUI();
+            UIManager.Instance.UpdateHpUI(_health, _maxHealth);
         }
         Dead();
     }
@@ -61,19 +57,19 @@ public class PlayerStatusSystem
     public void GetExpGem()
     {
         _exp++;
-        if (_exp >= _nextExp[_level])
+        if (_exp >= _nextExp[_nextExpValue])
         {
-            int tempExp = _nextExp[Level] - _exp;
+            int tempExp = _nextExp[_nextExpValue] - _exp;
             _level++;
             _exp = tempExp;
         }
-        UIManager.Instance.UpdateExpUI();
+        UIManager.Instance.UpdateExpUI(_exp, _nextExp[_nextExpValue]);
     }
 
     public void Healing(float healingPoint, bool isAtropine)
     {
         _health += healingPoint;
-        UIManager.Instance.UpdateHpUI();
+        UIManager.Instance.UpdateHpUI(_health, _maxHealth);
         if (!isAtropine)
         {
             return;
@@ -84,8 +80,8 @@ public class PlayerStatusSystem
 
     public void GetBuff()
     {
-        _shield = _maxshield;
-        UIManager.Instance.UpdateShieldUI();
+        _shield = _maxShield;
+        UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
     }
 
     void Dead()
@@ -117,4 +113,5 @@ public class PlayerStatusSystem
             Player.Instance.StopCoroutine(coHandle);
         }
     }
+
 }

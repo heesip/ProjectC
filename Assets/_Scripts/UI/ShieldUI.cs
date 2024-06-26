@@ -6,17 +6,14 @@ using UnityEngine.UI;
 public class ShieldUI : MonoBehaviour
 {
     Slider _mySlider;
-    float _currentShield => Player.Instance.Shield;
-    float _maxShield => Player.Instance.MaxShield;
 
     void Awake()
     {
         _mySlider = GetComponent<Slider>();
-        UpdateShieldUI();
     }
 
-    public void UpdateShieldUI()
+    public void UpdateShieldUI(float currentShield, float maxShield)
     {
-        _mySlider.value = _currentShield / _maxShield;
+        _mySlider.value = currentShield / maxShield;
     }
 }

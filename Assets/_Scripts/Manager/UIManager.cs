@@ -11,18 +11,18 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] ShieldUI _shieldUI;
 
 
-    public void UpdateExpUI()
+    public void UpdateExpUI(float currentExp, float maxExp)
     {
-        _expUI.UpdateExpUI();
+        _expUI.UpdateExpUI(currentExp, maxExp);
     }
 
-    public void UpdateHpUI()
+    public void UpdateHpUI(float currentHp, float maxHp)
     {
-        _hpUI.UpdateHpUI();
+        _hpUI.UpdateHpUI(currentHp, maxHp);
     }
 
-    public void UpdateShieldUI()
+    public void UpdateShieldUI(float currentShield, float maxShield)
     {
-        _shieldUI.UpdateShieldUI();
+        _shieldUI.UpdateShieldUI(currentShield, maxShield);
     }
 }

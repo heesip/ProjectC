@@ -6,19 +6,15 @@ using UnityEngine.UI;
 public class ExpUI : MonoBehaviour
 {
     Slider _mySlider;
-    float _currentExp => Player.Instance.Exp;
-    float _maxExp;
 
     void Awake()
     {
         _mySlider = GetComponent<Slider>();
     }
 
-    public void UpdateExpUI()
+    public void UpdateExpUI(float currentExp, float maxExp)
     {
-        int nextExp = Mathf.Min(Player.Instance.Level, Player.Instance.NextExp.Length - 1);
-        _maxExp = Player.Instance.NextExp[nextExp];
-        _mySlider.value = _currentExp / _maxExp;
+        _mySlider.value = currentExp / maxExp;
     }
 }
 
