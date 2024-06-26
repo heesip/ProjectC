@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    protected readonly int _maxLevel = 2;
+    protected int _weaponLevel;
+
     protected float _damage;
     protected float _speed;
     protected WaitForSeconds _coolTime;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThunderStroke : MonoBehaviour
+public class ThunderStroke : Weapon
 {
     [SerializeField] ThunderStrokeDataSO _thunderStrokeDataSO;
 
@@ -16,13 +16,12 @@ public class ThunderStroke : MonoBehaviour
     WaitForSeconds _thunderStrokeCoolTime;
 
 
-    private void Awake()
+    protected override void Initialize()
     {
         _thunderStrokeDataSO = GameDataManager.Instance.GetThunderStrokeDataSO();
-        FixedValue();
     }
 
-    void FixedValue()
+    protected override void FixedValue()
     {
         _xMinValue= _thunderStrokeDataSO.X_MinValue;
         _xMaxValue = _thunderStrokeDataSO.X_MaxValue;
