@@ -41,6 +41,11 @@ public class GameDataManager : Singleton<GameDataManager>
         return _gameDataSystem.GetBattleItemBoxDataSO();
     }
 
+    public NinjaStarBoxDataSO GetNinjaStarBoxDataSO()
+    {
+        return _gameDataSystem.GetNinjaStarBoxDataSO();
+    }
+
     #endregion
 
     public EnemyDataSO GetEnemyDataSO()

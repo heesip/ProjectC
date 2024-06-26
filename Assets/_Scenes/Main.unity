@@ -6317,7 +6317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 982413440}
   m_Layer: 5
-  m_Name: TestBox
+  m_Name: WeaponBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19302,7 +19302,7 @@ GameObject:
   - component: {fileID: 1384494129}
   - component: {fileID: 1384494128}
   m_Layer: 5
-  m_Name: TestBattleItem
+  m_Name: TestNinjaStarBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19373,10 +19373,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1385989796}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1385989798}
+        m_TargetAssemblyTypeName: NinjaStarBox, Assembly-CSharp
+        m_MethodName: UseWeapon
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19434,7 +19434,7 @@ GameObject:
   - component: {fileID: 1385989797}
   - component: {fileID: 1385989798}
   m_Layer: 0
-  m_Name: BattleItemBox
+  m_Name: NinjaStarBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19464,10 +19464,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1385989796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44bed05bcb8014eb884001bce07f6a13, type: 3}
+  m_Script: {fileID: 11500000, guid: 4128b3ac65c984a58b498bfc0bb69e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _battleItemBoxDataSO: {fileID: 0}
+  _ninjaStarBoxDataSO: {fileID: 0}
 --- !u!1001 &1433444399
 PrefabInstance:
   m_ObjectHideFlags: 0

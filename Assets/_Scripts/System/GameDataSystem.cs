@@ -11,6 +11,7 @@ public class GameDataSystem
     ElectrodeDataSO _electrodeDataSO;
     ThunderStrokeDataSO _thunderStrokeDataSO;
     BattleItemBoxDataSO _battleItemBoxDataSO;
+    NinjaStarBoxDataSO _ninjaStarBoxDataSO;
 
     public Mk2DataSO GetMk2DataSO()
     {
@@ -41,6 +42,11 @@ public class GameDataSystem
     {
         return _battleItemBoxDataSO;
     }
+
+    public NinjaStarBoxDataSO GetNinjaStarBoxDataSO()
+    {
+        return _ninjaStarBoxDataSO;
+    }
     #endregion
 
     EnemyDataSO _enemyDataSO;
@@ -64,6 +70,7 @@ public class GameDataSystem
         _electrodeDataSO = Resources.Load<ElectrodeDataSO>(nameof(ElectrodeDataSO));
         _thunderStrokeDataSO = Resources.Load<ThunderStrokeDataSO>(nameof(ThunderStrokeDataSO));
         _battleItemBoxDataSO = Resources.Load<BattleItemBoxDataSO>(nameof(BattleItemBoxDataSO));
+        _ninjaStarBoxDataSO = Resources.Load<NinjaStarBoxDataSO>(nameof(NinjaStarBoxDataSO));
 
         _enemyDataSO = Resources.Load<EnemyDataSO>(nameof(EnemyDataSO));
 
