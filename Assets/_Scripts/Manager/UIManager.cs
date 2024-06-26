@@ -9,6 +9,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] ExpUI _expUI;
     [SerializeField] HpUI _hpUI;
     [SerializeField] ShieldUI _shieldUI;
+    [SerializeField] TimeUI _timeUI;
 
 
     public void UpdateExpUI(float currentExp, float maxExp)
@@ -24,5 +25,10 @@ public class UIManager : Singleton<UIManager>
     public void UpdateShieldUI(float currentShield, float maxShield)
     {
         _shieldUI.UpdateShieldUI(currentShield, maxShield);
+    }
+
+    public void UpdateTimeUI(int minute, int second)
+    {
+        _timeUI.UpdateTimeUI(minute, second);
     }
 }

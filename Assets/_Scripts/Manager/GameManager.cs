@@ -10,7 +10,9 @@ public class GameManager : Singleton<GameManager>
     int _oneMinute = 60;
     int _maxLevel = 4;
 
-    public float GameTime => _gametime;
+    public int _minute => Mathf.FloorToInt(_gametime / 60);
+    public int _second => Mathf.FloorToInt(_gametime % 60);
+
     public int Level => _level;
 
     void Awake()
@@ -34,7 +36,7 @@ public class GameManager : Singleton<GameManager>
     void UpdateGameTime()
     {
         _gametime += Time.deltaTime;
-
+        UIManager.Instance.UpdateTimeUI(_minute, _second);
         _level = (int)_gametime / _oneMinute;
 
         if (_level >= _maxLevel)
