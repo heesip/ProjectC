@@ -15,6 +15,7 @@ public abstract class Weapon : MonoBehaviour
 
     protected abstract void Initialize();
     protected abstract void FixedValue();
+    public abstract void UseWeapon();
 
     private void Awake()
     {

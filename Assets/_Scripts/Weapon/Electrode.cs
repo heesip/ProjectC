@@ -25,6 +25,25 @@ public class Electrode : Weapon
         _attackInterval = _electrodeDataSO.AttackInterval;
     }
 
+    public override void UseWeapon()
+    {
+        if (gameObject.activeSelf)
+        {
+            LevelUp();
+        }
+        gameObject.SetActive(true);
+    }
+
+    void LevelUp()
+    {
+        _collider.enabled = false;
+        gameObject.SetActive(false);
+        if (_weaponLevel < _maxLevel)
+        {
+            _weaponLevel++;
+        }
+    }
+
     void LevelValue(int level)
     {
         _coolTime = _electrodeDataSO.ElectrodeCoolTimes[level];
@@ -35,7 +54,7 @@ public class Electrode : Weapon
 
     void OnEnable()
     {
-        LevelValue(0);
+        LevelValue(_weaponLevel);
         transform.localScale = Vector3.one * _electrodeSize;
         _attackCoHandle = StartCoroutine(AttackCo());
     }

@@ -26,7 +26,6 @@ public class Fjorgin : Weapon
         _fjorgin.transform.Translate(transform.up);
     }
 
-
     protected override void FixedValue()
     {
         _readyPosition = _fjorginDataSO.FjorginPosition;
@@ -37,6 +36,25 @@ public class Fjorgin : Weapon
         _rotate90Duration = _fjorginDataSO.Fjorgin90RotateDuration;
         _coolTime = _fjorginDataSO.FjorginCoolTime;
         _oneSecond = _fjorginDataSO.OneSecond;
+    }
+
+    public override void UseWeapon()
+    {
+        if (gameObject.activeSelf)
+        {
+            LevelUp();
+        }
+        gameObject.SetActive(true);
+    }
+
+    void LevelUp()
+    {
+        WeaponReturn();
+        gameObject.SetActive(false);
+        if (_weaponLevel < _maxLevel)
+        {
+            _weaponLevel++;
+        }
     }
 
     private void OnEnable()

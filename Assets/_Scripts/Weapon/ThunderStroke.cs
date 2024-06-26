@@ -31,6 +31,24 @@ public class ThunderStroke : Weapon
         _exceptionMaxValue = _thunderStrokeDataSO.ExceptionMaxValue;
     }
 
+    public override void UseWeapon()
+    {
+        if (gameObject.activeSelf)
+        {
+            LevelUp();
+        }
+        gameObject.SetActive(true);
+    }
+
+    void LevelUp()
+    {
+        gameObject.SetActive(false);
+        if (_weaponLevel < _maxLevel)
+        {
+            _weaponLevel++;
+        }
+    }
+
     void LevelValue(int level)
     {
         _thunderStrokeCoolTime = _thunderStrokeDataSO.ThunderStrokeCoolTimes[level];
@@ -38,7 +56,7 @@ public class ThunderStroke : Weapon
 
     void OnEnable()
     {
-        LevelValue(0);
+        LevelValue(_weaponLevel);
         _attackCoHandle = StartCoroutine(AttackCo());
     }
 

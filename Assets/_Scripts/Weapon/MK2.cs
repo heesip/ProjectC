@@ -32,6 +32,25 @@ public class Mk2 : Weapon
         _speed = _mk2DataSO.Mk2Speed;
     }
 
+    public override void UseWeapon()
+    {
+        if (gameObject.activeSelf)
+        {
+            LevelUp();
+        }
+        gameObject.SetActive(true);
+    }
+
+    void LevelUp()
+    {
+        WeaponReturn();
+        gameObject.SetActive(false);
+        if (_weaponLevel < _maxLevel)
+        {
+            _weaponLevel++;
+        }
+    }
+
     void LevelValue(int level)
     {
         _damage = _mk2DataSO.Mk2Damages[level];
@@ -42,7 +61,7 @@ public class Mk2 : Weapon
     void OnEnable()
     {
         _attackCoHandle = StartCoroutine(AttackCo());
-        LevelValue(0);
+        LevelValue(_weaponLevel);
     }
     void OnDisable()
     {

@@ -29,6 +29,24 @@ public class Dron : Weapon
         _range = _dronDataSO.DronRange;
     }
 
+    public override void UseWeapon()
+    {
+        if (gameObject.activeSelf)
+        {
+            LevelUp();
+        }
+        gameObject.SetActive(true);
+    }
+
+    void LevelUp()
+    {
+        gameObject.SetActive(false);
+        if (_weaponLevel < _maxLevel)
+        {
+            _weaponLevel++;
+        }
+    }
+
     void LevelValue(int level)
     {
         _coolTime = _dronDataSO.DronCoolTimes[level];
@@ -45,7 +63,7 @@ public class Dron : Weapon
     void OnEnable()
     {
         _attackCoHandle = StartCoroutine(AttackCo());
-        LevelValue(0);
+        LevelValue(_weaponLevel);
     }
 
     Coroutine _attackCoHandle;
