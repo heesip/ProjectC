@@ -26,10 +26,14 @@ public class GameManager : Singleton<GameManager>
         GameResourcesManager.Instance.Initialize();
         FactoryManager.Instance.Initialize();
         GameDataManager.Instance.Initialize();
-        UIManager.Instance.UpdaateKillUI(Kill);
     }
 
-    private void Update()
+    void Start()
+    {
+        UIManager.Instance.UpdaateKillUI(0);
+    }
+
+    void Update()
     {
         if (!_isGame)
         {

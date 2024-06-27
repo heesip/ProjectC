@@ -8,7 +8,7 @@ public class PlayerStatusSystem
     int _enemyAttack = 10;
     float _maxHealth = 100;
     [SerializeField] float _shield;
-    float _maxShield = 50;
+    float _maxShield = 30;
     [SerializeField] float _health;
 
     int _level = 0;
