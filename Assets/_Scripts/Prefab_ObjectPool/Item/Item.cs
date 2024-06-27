@@ -6,7 +6,7 @@ using DG.Tweening;
 public class Item : RecycleObject
 {
     bool _isGet;
-    float _duration = 0.5f;
+    float _duration = 0.3f;
 
     protected virtual void ItemFunction() { }
     protected virtual void OnStart() { }
@@ -27,12 +27,6 @@ public class Item : RecycleObject
         GetItem();
     }
 
-    float MoveValue()
-    {
-        float result = transform.position.y + Vector2.up.y;
-        return result;
-    }
-
     public void GetItem()
     {
         if (_isGet)
@@ -43,9 +37,14 @@ public class Item : RecycleObject
         _isGet = true;
 
         ItemFunction();
-        var sequence = DOTween.Sequence().OnComplete(Restore);
-        sequence.Append(transform.DOMoveY(MoveValue(), _duration));
-        sequence.Join(transform.DOScale(Vector3.zero, _duration));
+        var playerPosition = Player.Instance.transform.position;
+        var sequence = DOTween.Sequence();
+
+        Vector3 direction = (transform.position - playerPosition).normalized;
+        Vector3 target = gameObject.transform.position + direction;
+        sequence.Append(transform.DOMove(target, _duration));
+        sequence.Append(transform.DOMove(playerPosition, _duration));
+        sequence.Join(transform.DOScale(Vector3.zero, _duration)).OnComplete(Restore);
     }
 
 }

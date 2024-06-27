@@ -10,6 +10,7 @@ TagManager:
   - Area
   - Enemy
   - Item
+  - Magnet
   layers:
   - Default
   - TransparentFX

@@ -4,10 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 public class ExpGem : RecycleObject
 {
-    [SerializeField] bool _isFly;
-    //Temp Code
-    [SerializeField] float _gemMoveUp = 1.5f;
-    [SerializeField] float _gemMoveDuration = 0.5f;
+    bool _isFly;
+    float _duration = 0.3f;
 
     private void OnEnable()
     {
@@ -16,7 +14,7 @@ public class ExpGem : RecycleObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag(AllStrings.Player))
+        if (!collision.CompareTag(AllStrings.Player) && !collision.CompareTag(AllStrings.Magnet))
         {
             return;
         }
@@ -24,21 +22,22 @@ public class ExpGem : RecycleObject
         Player.Instance.GetExpGem();
     }
 
-
     void FlyExpGem()
     {
-
         if (_isFly)
         {
             return;
         }
 
         _isFly = true;
+        var playerPosition = Player.Instance.transform.position;
+        var sequence = DOTween.Sequence();
 
-        var originalPosition = transform.position;
-        var sequence = DOTween.Sequence().OnComplete(Restore);
-        sequence.Append(transform.DOMoveY(originalPosition.y + _gemMoveUp, _gemMoveDuration));
+        Vector3 direction = (transform.position - playerPosition).normalized;
+        Vector3 target = gameObject.transform.position + direction;
+        sequence.Append(transform.DOMove(target, _duration));
+        sequence.Append(transform.DOMove(playerPosition, _duration));
+        sequence.Join(transform.DOScale(Vector3.zero,_duration)).OnComplete(Restore);
     }
-
 
 }

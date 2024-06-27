@@ -8,7 +8,7 @@ public class Magnet : Item
 
     protected override void ItemFunction()
     {
-        gameObject.tag = AllStrings.Player;
+        gameObject.tag = AllStrings.Magnet;
         _boxCollider.enabled = true;
     }
     protected override void OnStart()

@@ -114,6 +114,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e9e51fe31a24e18bd03dbefc2fc365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isFly: 0
-  _gemMoveUp: 1.5
-  _gemMoveDuration: 0.5

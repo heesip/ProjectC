@@ -6,6 +6,7 @@ public static class AllStrings
     public readonly static string AllKill = "AllKill";
     public readonly static string Area = "Area";
     public readonly static string Item = "Item";
+    public readonly static string Magnet = "Magnet";
 
     #region Animation
     public readonly static string Run = "Run";
