@@ -14,6 +14,11 @@ public class GameManager : Singleton<GameManager>
     public int _second => Mathf.FloorToInt(_gametime % 60);
 
     public int Level => _level;
+    public int Kill
+    {
+        get;
+        set;
+    }
 
     void Awake()
     {
@@ -21,6 +26,7 @@ public class GameManager : Singleton<GameManager>
         GameResourcesManager.Instance.Initialize();
         FactoryManager.Instance.Initialize();
         GameDataManager.Instance.Initialize();
+        UIManager.Instance.UpdaateKillUI(Kill);
     }
 
     private void Update()
@@ -30,7 +36,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
         UpdateGameTime();
-        
+
     }
 
     void UpdateGameTime()

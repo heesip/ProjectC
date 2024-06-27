@@ -70,6 +70,8 @@ public class Enemy : RecycleObject
 
     void DeadSet()
     {
+        GameManager.Instance.Kill++;
+        UIManager.Instance.UpdaateKillUI(GameManager.Instance.Kill);
         _isDead = true;
         _collider.enabled = false;
         _rigidbody.simulated = false;
