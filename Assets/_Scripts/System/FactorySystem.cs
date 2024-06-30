@@ -17,6 +17,7 @@ public class FactorySystem
 
         _magnetPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMagnetPrefab(), 5, factoryManager);
         _potionPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetPotionPrefab(), 5, factoryManager);
+        _ninjaStarPiecePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPiecePrefab(), 1, factoryManager);
         _itemBoxPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetItemBoxPrefab(), 10, factoryManager);
     }
 
@@ -101,8 +102,10 @@ public class FactorySystem
     #region Item
     ObjectPoolSystem _magnetPrefab;
     ObjectPoolSystem _potionPrefab;
+    ObjectPoolSystem _ninjaStarPiecePrefab;
     Magnet _tempMagent;
     Potion _tempPotion;
+    NinjaStarPiece _tempNinjaStarPiece;
 
     public Magnet GetMagnet()
     {
@@ -114,6 +117,12 @@ public class FactorySystem
     {
         _tempPotion = _potionPrefab.Get() as Potion;
         return _tempPotion;
+    }
+
+    public NinjaStarPiece GetNinjaStarPiece()
+    {
+        _tempNinjaStarPiece = _ninjaStarPiecePrefab.Get() as NinjaStarPiece;
+        return _tempNinjaStarPiece;
     }
     #endregion
 }

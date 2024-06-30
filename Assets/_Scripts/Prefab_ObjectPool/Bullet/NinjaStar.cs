@@ -7,7 +7,7 @@ public class NinjaStar : Bullet
 {
     [SerializeField] Sprite[] _sprites;
     bool _isAttack;
-
+    bool _isRare;
     float _speed;
     float _rotateDuration;
     Vector3 _rotateVector;
@@ -23,7 +23,16 @@ public class NinjaStar : Bullet
     protected override void OnStart()
     {
         transform.DOKill();
-        _spriteRenderer.sprite = _sprites[0];
+        _isRare = AchieveManager.Instance.IsRareNinjaStar;
+        switch (_isRare)
+        {
+            case true:
+                _spriteRenderer.sprite = _sprites[1];
+                break;
+            case false:
+                _spriteRenderer.sprite = _sprites[0];
+                break;
+        }
     }
 
     void OnDisable()

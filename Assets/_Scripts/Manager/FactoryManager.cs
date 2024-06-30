@@ -69,5 +69,10 @@ public class FactoryManager : Singleton<FactoryManager>
     {
         return _factorySystem.GetPotion();
     }
+
+    public NinjaStarPiece GetNinjaStarPiece()
+    {
+        return _factorySystem.GetNinjaStarPiece();
+    }
     #endregion
 }

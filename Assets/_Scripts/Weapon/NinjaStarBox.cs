@@ -56,7 +56,7 @@ public class NinjaStarBox : Weapon
         _damage = _ninjaStarBoxDataSO.NinjaStarDamages[level];
         _coolTime = _ninjaStarBoxDataSO.NinjaStarCoolTimes[level];
     }
-    
+
     Coroutine _throwingNinjaStarCoHandle;
     IEnumerator ThrowingNinjaStarCo()
     {

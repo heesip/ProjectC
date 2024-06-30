@@ -102,8 +102,30 @@ public class Enemy : RecycleObject
     void Dead()
     {
         Restore();
-        ExpGem expGem = FactoryManager.Instance.GetExpGem();
-        expGem.transform.position = transform.position;
+        DropTable();
+    }
+
+    void DropTable()
+    {
+        int randomNumber = Random.Range(0, 100);
+        switch (randomNumber)
+        {
+            case 77:
+                if (!AchieveManager.Instance.IsRareNinjaStar)
+                {
+                    NinjaStarPiece ninjaStarPiece = FactoryManager.Instance.GetNinjaStarPiece();
+                    ninjaStarPiece.transform.position = transform.position;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            default:
+                ExpGem expGem = FactoryManager.Instance.GetExpGem();
+                expGem.transform.position = transform.position;
+                break;
+        }
     }
 
     #region KnockBack

@@ -69,6 +69,11 @@ public class GameResourcesSystem
     {
         return _prefabResourcesSO.GetPotionPrefab();
     }
+
+    public NinjaStarPiece GetNinjaStarPiecePrefab()
+    {
+        return _prefabResourcesSO.GetNinjaStarPiecePrefab();
+    }
     #endregion
 
 }

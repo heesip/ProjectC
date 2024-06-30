@@ -67,6 +67,7 @@ public class PrefabResourcesSO : ScriptableObject
     #region Item
     [SerializeField] Magnet _magnetPrefab;
     [SerializeField] Potion _potionPrefab;
+    [SerializeField] NinjaStarPiece _ninjaStarPiece;
 
     public Magnet GetMagnetPrefab()
     {
@@ -76,6 +77,11 @@ public class PrefabResourcesSO : ScriptableObject
     public Potion GetPotionPrefab()
     {
         return _potionPrefab;
+    }
+
+    public NinjaStarPiece GetNinjaStarPiecePrefab()
+    {
+        return _ninjaStarPiece;
     }
     #endregion
 

@@ -20,18 +20,16 @@ public class GameManager : Singleton<GameManager>
         set;
     }
 
-    void Awake()
+    void Start()
     {
         _isGame = true;
         GameResourcesManager.Instance.Initialize();
         FactoryManager.Instance.Initialize();
         GameDataManager.Instance.Initialize();
+        UIManager.Instance.Initialize();
+        AchieveManager.Instance.Load();
     }
 
-    void Start()
-    {
-        UIManager.Instance.UpdaateKillUI(0);
-    }
 
     void Update()
     {

@@ -69,6 +69,11 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     {
         return _gameResourcesSystem.GetPotionPrefab();
     }
+
+    public NinjaStarPiece GetNinjaStarPiecePrefab()
+    {
+        return _gameResourcesSystem.GetNinjaStarPiecePrefab();
+    }
     #endregion
 
 }

@@ -23,3 +23,4 @@ MonoBehaviour:
   _fjorginBuffPrefab: {fileID: 7594270535344883916, guid: 10eefe29596a20742b769b765e193c69, type: 3}
   _magnetPrefab: {fileID: 3265567156160260536, guid: 335b74ce083be4aaa85c481fe48a756f, type: 3}
   _potionPrefab: {fileID: 8179718103061786643, guid: c50aad901168a4415ac5c59eab68af51, type: 3}
+  _ninjaStarPiece: {fileID: 5561761225608847784, guid: 25d0bf7ab711148c29041e79f2a04bae, type: 3}

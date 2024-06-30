@@ -12,6 +12,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] TimeUI _timeUI;
     [SerializeField] KillUI _killUI;
 
+    public void Initialize()
+    {
+        UpdaateKillUI(0);
+    }
 
     public void UpdateExpUI(float currentExp, float maxExp)
     {

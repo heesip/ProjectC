@@ -27,9 +27,12 @@ public class ItemBox : RecycleObject
                 break;
             case 7:
             case 8:
-            case 9:
                 Magnet magnet = FactoryManager.Instance.GetMagnet();
                 BoxOpen(magnet);
+                break;
+            case 9:
+                
+                
                 break;
             default:
                 break;
