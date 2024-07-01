@@ -20,7 +20,13 @@ public class NinjaStarBoxDataSO : ScriptableObject
         new WaitForSeconds(1.2f), new WaitForSeconds(1f), new WaitForSeconds (.7f)
     };
 
-    public readonly float AtroPineNinjaStarDamage = 7;
-    public readonly WaitForSeconds AtropineNinjaStarCoolTime = new WaitForSeconds(0.5f);
+    public readonly float[] AtroPineNinjaStarDamages = new float[]
+    {
+        4,6,8
+    };
 
+    public readonly WaitForSeconds[] AtropineNinjaStarCoolTimes = new WaitForSeconds[]
+    {
+        new WaitForSeconds(0.9f), new WaitForSeconds(0.6f), new WaitForSeconds (.4f)
+    };
 }

@@ -62,17 +62,23 @@ public class NinjaStarBox : Weapon
     {
         while (true)
         {
-            if (Player.Instance.IsAtropine)
-            {
-                yield return _ninjaStarBoxDataSO.AtropineNinjaStarCoolTime;
-                ThrowingNinjaStar(_ninjaStarBoxDataSO.AtroPineNinjaStarDamage);
-            }
-            else
-            {
-                yield return _coolTime;
-                ThrowingNinjaStar(_damage);
-            }
+            yield return CheckAtropine().coolTime;
+            ThrowingNinjaStar(CheckAtropine().damage);
         }
+    }
+
+    (WaitForSeconds coolTime, float damage) CheckAtropine()
+    {
+        if (Player.Instance.IsAtropine)
+        {
+            return (_ninjaStarBoxDataSO.AtropineNinjaStarCoolTimes[_weaponLevel],
+                _ninjaStarBoxDataSO.AtroPineNinjaStarDamages[_weaponLevel]);
+        }
+        else
+        {
+            return (_coolTime, _damage);
+        }
+
     }
 
     void ThrowingNinjaStar(float ninjaStarDamage)

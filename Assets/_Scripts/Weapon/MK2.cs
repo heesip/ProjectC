@@ -53,7 +53,6 @@ public class Mk2 : Weapon
 
     void LevelValue(int level)
     {
-        _damage = _mk2DataSO.Mk2Damages[level];
         _coolTime = _mk2DataSO.Mk2CoolTimes[level];
         _count = _mk2DataSO.Mk2Counts[level];
     }
@@ -77,14 +76,26 @@ public class Mk2 : Weapon
 
     IEnumerator AttackCo()
     {
-        Tween tween;
         while (true)
         {
-            yield return _coolTime;
+            yield return CheckAtropine().coolTime;
+            _damage = CheckAtropine().damage;
             AttackPosition();
-            tween = transform.DORotate(EndValue(), _speed, RotateMode.FastBeyond360).SetEase(Ease.InSine);
-            yield return tween.WaitForCompletion();
+            Tween attack = transform.DORotate(EndValue(), _speed, RotateMode.FastBeyond360).SetEase(Ease.InSine);
+            yield return attack.WaitForCompletion();
             WeaponReturn();
+        }
+    }
+
+    (WaitForSeconds coolTime, float damage) CheckAtropine()
+    {
+        if (Player.Instance.IsAtropine)
+        {
+            return (_mk2DataSO.AtropineMk2CoolTimes[_weaponLevel], _mk2DataSO.AtropineMk2Damage);
+        }
+        else
+        {
+            return (_coolTime, _mk2DataSO.Mk2Damage);
         }
     }
 

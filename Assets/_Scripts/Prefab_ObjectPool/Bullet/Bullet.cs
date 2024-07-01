@@ -32,6 +32,11 @@ public class Bullet : RecycleObject
     {
         transform.position = attackPoint;
     }
+    public void AttackPoint(Vector2 attackPoint, float damage)
+    {
+        _damage = damage;
+        transform.position = attackPoint;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

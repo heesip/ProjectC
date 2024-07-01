@@ -72,37 +72,34 @@ public class Dron : Weapon
     {
         while (true)
         {
-            yield return _coolTime;
-            Missile[] missiles = new Missile[_count];
+            yield return CheckAtropine().coolTime;
 
-            for (int i = 0; i < missiles.Length; i++)
+            for (int i = 0; i < _count; i++)
             {
-                missiles[i] = FactoryManager.Instance.GetMissile();
-                switch (i % 2)
-                {
-                    case 0:
-                        missiles[i].AttackPoint(_dronAttackPoint1.position);
-                        missiles[i].Shoting(NextVector().x, _speed, _damage);
-                        break;
-                    case 1:
-                        missiles[i].AttackPoint(_dronAttackPoint2.position);
-                        missiles[i].Shoting(NextVector().x, _speed, _damage);
-                        break;
-                    default:
-                        break;
-                }
+                Vector3 attackPoint = i % 2 == 0 ? _dronAttackPoint1.position : _dronAttackPoint2.position;
+                Missile missile = FactoryManager.Instance.GetMissile();
+                missile.AttackPoint(attackPoint);
+                missile.Shoting(NextVector().x, _speed, CheckAtropine().damage);
             }
+        }
+    }
 
+    (WaitForSeconds coolTime, float damage) CheckAtropine()
+    {
+        if (Player.Instance.IsAtropine)
+        {
+            return (_dronDataSO.AtropineDronCoolTimes[_weaponLevel],
+                _dronDataSO.AtroPineDronDamages[_weaponLevel]);
+        }
+        else
+        {
+            return (_coolTime, _damage);
         }
     }
 
     Vector2 NextVector()
     {
-        Vector2 nextVector;
-        Vector2 curVector = transform.position;
-        Vector2 direction = Player.Instance.IsLeft ? Vector2.left : Vector2.right;
-        nextVector = curVector + (direction * _range);
-        return nextVector;
+        return transform.position + (Player.Instance.IsLeft ? Vector3.left : Vector3.right) * _range;
     }
 
     void StopAttackCo()

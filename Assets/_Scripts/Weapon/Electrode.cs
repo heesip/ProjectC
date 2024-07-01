@@ -46,10 +46,7 @@ public class Electrode : Weapon
 
     void LevelValue(int level)
     {
-        _coolTime = _electrodeDataSO.ElectrodeCoolTimes[level];
-        _damage = _electrodeDataSO.ElectrodeDamages[level];
         _electrodeSize = _electrodeDataSO.ElectrodeSizes[level];
-
     }
 
     void OnEnable()
@@ -70,6 +67,7 @@ public class Electrode : Weapon
     {
         while (true)
         {
+            _damage = CheckAtropine().damage;
             _spriteRenderer.enabled = true;
             for (int i = 0; i < _count; i++)
             {
@@ -77,7 +75,21 @@ public class Electrode : Weapon
                 yield return _attackInterval;
             }
             _spriteRenderer.enabled = false;
-            yield return _coolTime;
+
+            yield return CheckAtropine().coolTime;
+        }
+    }
+
+    (WaitForSeconds coolTime, float damage) CheckAtropine()
+    {
+        if (Player.Instance.IsAtropine)
+        {
+            return (_electrodeDataSO.AtropineElectrodeCoolTimes[_weaponLevel],
+                    _electrodeDataSO.AtropineElectrodeDamage);
+        }
+        else
+        {
+            return (_coolTime, _electrodeDataSO.ElectrodeDamage);
         }
     }
 

@@ -14,11 +14,21 @@ public class DronDataSO : ScriptableObject
 
     public readonly float[] DronDamages = new float[]
     {
-        4,5,6
+        4,5,7
     };
 
     public readonly WaitForSeconds[] DronCoolTimes = new WaitForSeconds[]
     {
         new WaitForSeconds(3), new WaitForSeconds(2), new WaitForSeconds(1)
+    };
+
+    public readonly float[] AtroPineDronDamages = new float[]
+    {
+        6,7,9
+    };
+
+    public readonly WaitForSeconds[] AtropineDronCoolTimes = new WaitForSeconds[]
+    {
+        new WaitForSeconds(2.5f), new WaitForSeconds(1.5f), new WaitForSeconds (0.5f)
     };
 }

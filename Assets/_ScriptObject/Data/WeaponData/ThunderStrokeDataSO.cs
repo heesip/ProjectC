@@ -12,9 +12,19 @@ public class ThunderStrokeDataSO : ScriptableObject
     public readonly float Y_MaxValue = 6f;
     public readonly float ExceptionMinValue = -0.5f;
     public readonly float ExceptionMaxValue = 0.5f;
-    public readonly WaitForSeconds[] ThunderStrokeCoolTimes = new WaitForSeconds[]
+
+    public readonly float[] ThunderDamages = new float[]
     {
-        new WaitForSeconds(1.2f), new WaitForSeconds(0.9f),  new WaitForSeconds(0.5f)
+        6, 7, 10
     };
 
+    public readonly WaitForSeconds[] ThunderStrokeCoolTimes = new WaitForSeconds[]
+    {
+        new WaitForSeconds(1.1f), new WaitForSeconds(0.8f),  new WaitForSeconds(0.5f)
+    };
+
+    public readonly WaitForSeconds[] AtropineThunderStrokeCoolTimes = new WaitForSeconds[]
+    {
+        new WaitForSeconds(.9f), new WaitForSeconds(0.6f),  new WaitForSeconds(0.2f)
+    };
 }

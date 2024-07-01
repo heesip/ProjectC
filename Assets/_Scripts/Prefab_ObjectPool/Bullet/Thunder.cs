@@ -7,18 +7,17 @@ public class Thunder : Bullet
     Animator _animator;
     Collider2D _collider;
 
+    protected override void OnStart()
+    {
+        _attackCoHandle = StartCoroutine(AttackCo());
+    }
+
     void Awake()
     {
         _animator = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
         _collider.enabled = false;
         _isProjectile = false;
-    }
-
-    protected override void OnStart()
-    {
-        _damage = 6;
-        _attackCoHandle = StartCoroutine(AttackCo());
     }
 
     void OnDisable()

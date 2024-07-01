@@ -23,10 +23,10 @@ public class ThunderStroke : Weapon
 
     protected override void FixedValue()
     {
-        _xMinValue= _thunderStrokeDataSO.X_MinValue;
+        _xMinValue = _thunderStrokeDataSO.X_MinValue;
         _xMaxValue = _thunderStrokeDataSO.X_MaxValue;
         _yMinValue = _thunderStrokeDataSO.Y_MinValue;
-        _yMaxValue= _thunderStrokeDataSO.Y_MaxValue;
+        _yMaxValue = _thunderStrokeDataSO.Y_MaxValue;
         _exceptionMinValue = _thunderStrokeDataSO.ExceptionMinValue;
         _exceptionMaxValue = _thunderStrokeDataSO.ExceptionMaxValue;
     }
@@ -52,6 +52,7 @@ public class ThunderStroke : Weapon
     void LevelValue(int level)
     {
         _thunderStrokeCoolTime = _thunderStrokeDataSO.ThunderStrokeCoolTimes[level];
+        _damage = _thunderStrokeDataSO.ThunderDamages[level];
     }
 
     void OnEnable()
@@ -90,9 +91,21 @@ public class ThunderStroke : Weapon
         {
             _randomVector = RandomVector(RandomNumber(_xMinValue, _xMaxValue), RandomNumber(_yMinValue, _yMaxValue));
             _randomVector += Player.Instance.transform.position;
-            yield return _thunderStrokeCoolTime;
+            yield return CheckAtropine();
             Thunder thunder = FactoryManager.Instance.GetThunder();
-            thunder.AttackPoint(_randomVector);
+            thunder.AttackPoint(_randomVector,_damage);
+        }
+    }
+
+    WaitForSeconds CheckAtropine()
+    {
+        if (Player.Instance.IsAtropine)
+        {
+            return _thunderStrokeDataSO.AtropineThunderStrokeCoolTimes[_weaponLevel];
+        }
+        else
+        {
+            return _thunderStrokeCoolTime;
         }
     }
 
