@@ -21,8 +21,7 @@ public class PlayerStatusSystem
     int _endExp => _nextExp.Length - 1;
     int _nextExpValue => Mathf.Min(_level, _endExp);
 
-    [SerializeField] bool _isDead;
-    public bool IsDead => _isDead;
+    public bool IsDead => Dead();
 
     [SerializeField] bool _isAtropine;
     public bool IsAtropine => _isAtropine;
@@ -32,7 +31,7 @@ public class PlayerStatusSystem
     public void Initialize()
     {
         _health = _maxHealth;
-        _isDead = false;
+        Dead();
         _isAtropine = false;
         UIManager.Instance.UpdateHpUI(_health, _maxHealth);
         UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
@@ -70,12 +69,21 @@ public class PlayerStatusSystem
     {
         _health += healingPoint;
         UIManager.Instance.UpdateHpUI(_health, _maxHealth);
+
         if (!isAtropine)
         {
             return;
         }
-        UseAtropine();
-        Dead();
+
+        if (!Dead())
+        {
+            UseAtropine();
+        }
+
+        else
+        {
+            AchieveManager.Instance.GetAtropineTitle();
+        }
     }
 
     public void GetBuff()
@@ -84,12 +92,9 @@ public class PlayerStatusSystem
         UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
     }
 
-    void Dead()
+    bool Dead()
     {
-        if (_health <= 0)
-        {
-            _isDead = true;
-        }
+        return _health <= 0;
     }
 
     void UseAtropine()
