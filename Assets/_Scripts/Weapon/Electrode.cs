@@ -9,7 +9,7 @@ public class Electrode : Weapon
     SpriteRenderer _spriteRenderer;
 
     float _electrodeSize;
-    WaitForSeconds _attackInterval;
+    WaitForSeconds _attackDelay;
 
 
     protected override void Initialize()
@@ -22,7 +22,7 @@ public class Electrode : Weapon
     protected override void FixedValue()
     {
         _count = _electrodeDataSO.ElectrodeCount;
-        _attackInterval = _electrodeDataSO.AttackInterval;
+        _attackDelay = _electrodeDataSO.AttackDelay;
     }
 
     public override void UseWeapon()
@@ -73,7 +73,7 @@ public class Electrode : Weapon
             for (int i = 0; i < _count; i++)
             {
                 _collider.enabled = !_collider.enabled;
-                yield return _attackInterval;
+                yield return _attackDelay;
             }
             _spriteRenderer.enabled = false;
 
