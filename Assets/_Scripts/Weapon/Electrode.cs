@@ -46,6 +46,7 @@ public class Electrode : Weapon
 
     void LevelValue(int level)
     {
+        _coolTime = _electrodeDataSO.ElectrodeCoolTimes[level];
         _electrodeSize = _electrodeDataSO.ElectrodeSizes[level];
     }
 

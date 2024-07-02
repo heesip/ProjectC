@@ -11,7 +11,7 @@ public class ElectrodeDataSO : ScriptableObject
     public readonly float ElectrodeDamage = 2;
     public readonly float[] ElectrodeSizes = new float[]
     {
-        1.0f, 1.3f, 1.7f
+        1.0f, 1.25f, 1.5f
     };
     public readonly WaitForSeconds[] ElectrodeCoolTimes = new WaitForSeconds[]
     {
