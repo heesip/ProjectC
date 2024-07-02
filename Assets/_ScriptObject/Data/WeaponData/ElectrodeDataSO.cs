@@ -6,7 +6,7 @@ using UnityEngine;
 public class ElectrodeDataSO : ScriptableObject
 {
     public readonly int ElectrodeCount = 10;
-    public readonly WaitForSeconds AttackInterval = new WaitForSeconds(0.5f);
+    public readonly WaitForSeconds AttackDelay = new WaitForSeconds(0.5f);
 
     public readonly float ElectrodeDamage = 2;
     public readonly float[] ElectrodeSizes = new float[]

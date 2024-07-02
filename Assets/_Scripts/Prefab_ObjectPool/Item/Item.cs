@@ -5,11 +5,31 @@ using DG.Tweening;
 
 public class Item : RecycleObject
 {
-    bool _isGet;
-    float _duration = 0.3f;
+    protected bool _isGet;
+    protected float _duration = 0.3f;
 
     protected virtual void ItemFunction() { }
     protected virtual void OnStart() { }
+
+    protected virtual void GetItem()
+    {
+        if (_isGet)
+        {
+            return;
+        }
+
+        _isGet = true;
+
+        ItemFunction();
+        var sequence = DOTween.Sequence();
+
+        Vector3 playerPosition = Player.Instance.transform.position;
+        Vector3 direction = (transform.position - playerPosition).normalized;
+        Vector3 target = gameObject.transform.position + direction;
+        sequence.Append(transform.DOMove(target, _duration));
+        sequence.Append(transform.DOMove(playerPosition, _duration));
+        sequence.Join(transform.DOScale(Vector3.zero, _duration)).OnComplete(Restore);
+    }
 
     void OnEnable()
     {
@@ -25,26 +45,6 @@ public class Item : RecycleObject
             return;
         }
         GetItem();
-    }
-
-    public void GetItem()
-    {
-        if (_isGet)
-        {
-            return;
-        }
-
-        _isGet = true;
-
-        ItemFunction();
-        var playerPosition = Player.Instance.transform.position;
-        var sequence = DOTween.Sequence();
-
-        Vector3 direction = (transform.position - playerPosition).normalized;
-        Vector3 target = gameObject.transform.position + direction;
-        sequence.Append(transform.DOMove(target, _duration));
-        sequence.Append(transform.DOMove(playerPosition, _duration));
-        sequence.Join(transform.DOScale(Vector3.zero, _duration)).OnComplete(Restore);
     }
 
 }

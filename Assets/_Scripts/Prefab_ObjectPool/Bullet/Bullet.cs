@@ -14,9 +14,9 @@ public class Bullet : RecycleObject
 
     protected void OnEnable()
     {
+        OnStart();
         StopCoHandle(_restoreCoHandle);
         _restoreCoHandle = StartCoroutine(RestoreCo());
-        OnStart();
 
     }
 
@@ -28,6 +28,14 @@ public class Bullet : RecycleObject
 
     protected virtual void OnStart() { }
 
+    protected void StopCoHandle(Coroutine coHandle)
+    {
+        if (coHandle != null)
+        {
+            StopCoroutine(coHandle);
+        }
+    }
+
     public void AttackPoint(Vector2 attackPoint)
     {
         transform.position = attackPoint;
@@ -38,7 +46,7 @@ public class Bullet : RecycleObject
         transform.position = attackPoint;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag(AllStrings.Enemy))
         {
@@ -56,14 +64,6 @@ public class Bullet : RecycleObject
             return;
         }
         Restore();
-    }
-
-    protected void StopCoHandle(Coroutine coHandle)
-    {
-        if (coHandle != null)
-        {
-            StopCoroutine(coHandle);
-        }
     }
 
     Coroutine _restoreCoHandle;

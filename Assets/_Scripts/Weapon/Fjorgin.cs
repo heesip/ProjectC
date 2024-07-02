@@ -82,8 +82,8 @@ public class Fjorgin : Weapon
             fjorginBuff.MagicSquare(_rotate360Duration);
             Tween rotate360 = transform.DORotate(_rotateDirection, _rotate360Duration, RotateMode.FastBeyond360);
             yield return rotate360.WaitForCompletion();
-            Tween tween2 = transform.DORotate(_rotateVector, _rotate90Duration).SetEase(Ease.InQuint);
-            yield return tween2.WaitForCompletion();
+            Tween attack = transform.DORotate(_rotateVector, _rotate90Duration).SetEase(Ease.InQuint);
+            yield return attack.WaitForCompletion();
             fjorginBuff.ShockWave();
             yield return _oneSecond;
 

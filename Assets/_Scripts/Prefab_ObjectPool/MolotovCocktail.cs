@@ -4,42 +4,44 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using DG.Tweening;
 
-public class MolotovCocktail : RecycleObject
+public class MolotovCocktail : Item
 {
-    float _flameDamage;
-    float _flameDuration;
-    WaitForSeconds _flameCoolTime;
-    float _molotovCocktailDuration;
-    Vector3 _molotovCocktailRotate;
+    WaitForSeconds _throwingReady = new WaitForSeconds(2f);
+    Vector3 _rotate360 = new Vector3(0, 0, 360);
+    float _speed = 0.5f;
+    float _range = 1.7f;
 
-    public void Initialize(float molotovCocktailDuration,
-                           Vector3 molotovCocktailRotate,
-                           float flameDamage,
-                           float flameDuration,
-                           WaitForSeconds flameCoolTime)
+    protected override void ItemFunction()
     {
-        _molotovCocktailDuration = molotovCocktailDuration;
-        _molotovCocktailRotate = molotovCocktailRotate;
-
-        _flameCoolTime = flameCoolTime;
-        _flameDamage = flameDamage;
-        _flameDuration = flameDuration;
+        Throwing();
     }
 
-    public void Throw(Vector3 attackDirection)
+    protected override void GetItem()
     {
-        var sequence = DOTween.Sequence();
-        sequence.Append(transform.DOMove(attackDirection, _molotovCocktailDuration).OnComplete(Bomb)); ;
-        sequence.Join(transform.DORotate(_molotovCocktailRotate, _molotovCocktailDuration, RotateMode.FastBeyond360));
+        if (_isGet)
+        {
+            return;
+        }
+
+        _isGet = true;
+        ItemFunction();
+    }
+
+    void Throwing()
+    {
+        Vector3 playerPosition = Player.Instance.transform.position;
+        Vector3 direction = (transform.position - playerPosition).normalized;
+        Vector3 target = gameObject.transform.position + direction * _range;
+        var sequence = DOTween.Sequence().OnComplete(Bomb);
+
+        sequence.Append(transform.DOMove(target, _speed));
+        sequence.Join(transform.DORotate(_rotate360, _speed, RotateMode.FastBeyond360));
     }
 
     void Bomb()
     {
         Flame flame = FactoryManager.Instance.GetFlame();
-        flame.Initialize(_flameDamage, _flameDuration);
         flame.AttackPoint(transform.position);
         Restore();
     }
-
-
 }

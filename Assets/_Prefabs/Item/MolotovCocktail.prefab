@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7135594496366514285}
   - component: {fileID: 7135594496366514274}
   - component: {fileID: 7135594496366514284}
+  - component: {fileID: 3868264327064754569}
   m_Layer: 0
   m_Name: MolotovCocktail
   m_TagString: Untagged
@@ -97,3 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a954bb9fdde6489496b08293635af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &3868264327064754569
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135594496366514275}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.06}
+  serializedVersion: 2
+  m_Radius: 0.18
