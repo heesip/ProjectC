@@ -10,7 +10,6 @@ public class GameDataSystem
     FjorginDataSO _fjorginDataSO;
     ElectrodeDataSO _electrodeDataSO;
     ThunderStrokeDataSO _thunderStrokeDataSO;
-    BattleItemBoxDataSO _battleItemBoxDataSO;
     NinjaStarBoxDataSO _ninjaStarBoxDataSO;
 
     public Mk2DataSO GetMk2DataSO()
@@ -36,11 +35,6 @@ public class GameDataSystem
     public ThunderStrokeDataSO GetThunderStrokeDataSO()
     {
         return _thunderStrokeDataSO;
-    }
-
-    public BattleItemBoxDataSO GetBattleItemBoxDataSO()
-    {
-        return _battleItemBoxDataSO;
     }
 
     public NinjaStarBoxDataSO GetNinjaStarBoxDataSO()
@@ -69,7 +63,6 @@ public class GameDataSystem
         _fjorginDataSO = Resources.Load<FjorginDataSO>(nameof(FjorginDataSO));
         _electrodeDataSO = Resources.Load<ElectrodeDataSO>(nameof(ElectrodeDataSO));
         _thunderStrokeDataSO = Resources.Load<ThunderStrokeDataSO>(nameof(ThunderStrokeDataSO));
-        _battleItemBoxDataSO = Resources.Load<BattleItemBoxDataSO>(nameof(BattleItemBoxDataSO));
         _ninjaStarBoxDataSO = Resources.Load<NinjaStarBoxDataSO>(nameof(NinjaStarBoxDataSO));
 
         _enemyDataSO = Resources.Load<EnemyDataSO>(nameof(EnemyDataSO));
