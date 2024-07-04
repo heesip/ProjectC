@@ -82,7 +82,7 @@ public class PlayerStatusSystem
 
         else
         {
-            AchieveManager.Instance.GetAtropineTitle();
+            AchieveManager.Instance.GetAtropineTitleAchieve();
         }
     }
 

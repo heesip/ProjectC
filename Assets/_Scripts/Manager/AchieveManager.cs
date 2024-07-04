@@ -6,7 +6,8 @@ public class AchieveManager : Singleton<AchieveManager>
 {
     [SerializeField] AchieveSystem _achieveSystem = new AchieveSystem();
     public bool IsRareNinjaStar => _achieveSystem.IsRareNinjaStar;
-    public bool IsAtropineTitle => _achieveSystem.IsAtropineTitle;
+    public bool IsAtropineTitleAchieve => _achieveSystem.IsAtropineTitleAchieve;
+    public bool IsAtropineTitleActive => _achieveSystem.IsAtropineTitleActive;
 
     public void Load()
     {
@@ -23,9 +24,14 @@ public class AchieveManager : Singleton<AchieveManager>
         _achieveSystem.GetNinjaStarPiece();
     }
 
-    public void GetAtropineTitle()
+    public void GetAtropineTitleAchieve()
     {
-        _achieveSystem.GetAtropineTitle();
+        _achieveSystem.GetAtropineTitleAchieve();
+    }
+
+    public void SaveTitleAchtive()
+    {
+        _achieveSystem.SaveTitleActive();
     }
 
 }
