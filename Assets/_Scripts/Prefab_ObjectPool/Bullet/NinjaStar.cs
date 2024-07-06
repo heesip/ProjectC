@@ -16,14 +16,14 @@ public class NinjaStar : Bullet
     {
         _damage = damage;
         _speed = speed;
-        _rotateDuration = rotateDuration;
+        _rotateDuration = rotateDuration;   
         _rotateVector = rotateVector;
     }
 
     protected override void OnStart()
     {
         transform.DOKill();
-        _isRare = AchieveManager.Instance.IsRareNinjaStar;
+        _isRare = AchieveManager.Instance.IsDonePieceActive;
         switch (_isRare)
         {
             case true:

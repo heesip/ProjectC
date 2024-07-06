@@ -8,14 +8,19 @@ using UnityEngine;
 public class AchieveSystem
 {
     readonly string Piece = "Piece";
-    readonly string RareNinjaStar = "RareNinjaStar";
+    readonly string DonePieceAchieve = "DonePieceAchieve";
+    readonly string DonePieceActive = "DonePieceActive";
     readonly string AtropineTitleAchieve = "AtropineTitleAchieve";
     readonly string AtropineTitleActive = "AtropineTitleActive";
 
     [SerializeField] int _onePiece;
+    public int OnePiece => _onePiece;
     int _donePiece = 4;
-    bool _isRareNinjaStar;
-    public bool IsRareNinjaStar => _isRareNinjaStar;
+    bool _isDonePieceAchieve;
+    public bool IsDonePieceAchieve => _isDonePieceAchieve;
+
+    bool _isDonePieceActive;
+    public bool IsDonePieceActive=> _isDonePieceActive;
 
     bool _isAtropineTitleAchieve;
     public bool IsAtropineTitleAchieve => _isAtropineTitleAchieve;
@@ -26,6 +31,7 @@ public class AchieveSystem
     public void Load()
     {
         LoadPiece();
+        LoadDonePieceActive();
         LoadTitleAchieve();
         LoadTitleActive();
     }
@@ -36,12 +42,32 @@ public class AchieveSystem
         SaveTitleAchieve();
     }
     #region NinjaStar
-    public void GetNinjaStarPiece()
+    public void GetDonePieceAchieve()
     {
+        if (DonePiece())
+        {
+            return;
+        }
+
         _onePiece++;
-        _isRareNinjaStar = DonePiece();
-        PlayerPrefs.SetInt(RareNinjaStar, Convert.ToInt16(_isRareNinjaStar));
+        _isDonePieceAchieve = DonePiece();
+        PlayerPrefs.SetInt(DonePieceAchieve, Convert.ToInt16(_isDonePieceAchieve));
         SavePiece();
+    }
+
+    public void SaveDonePieceActive()
+    {
+        if (!_isDonePieceAchieve)
+        {
+            return;
+        }
+        _isDonePieceActive = !_isDonePieceActive;
+        PlayerPrefs.SetInt(DonePieceActive, Convert.ToInt16(_isDonePieceActive));
+    }
+
+    void LoadDonePieceActive()
+    {
+        _isDonePieceActive = Convert.ToBoolean(PlayerPrefs.GetInt(DonePieceActive));
     }
 
     bool DonePiece()
@@ -57,7 +83,7 @@ public class AchieveSystem
     void LoadPiece()
     {
         _onePiece = PlayerPrefs.GetInt(Piece);
-        _isRareNinjaStar = Convert.ToBoolean(PlayerPrefs.GetInt(RareNinjaStar));
+        _isDonePieceAchieve = Convert.ToBoolean(PlayerPrefs.GetInt(DonePieceAchieve));
     }
     #endregion
 

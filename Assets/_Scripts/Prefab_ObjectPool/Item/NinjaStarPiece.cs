@@ -6,6 +6,6 @@ public class NinjaStarPiece : Item
 {
     protected override void ItemFunction()
     {
-        AchieveManager.Instance.GetNinjaStarPiece();
+        AchieveManager.Instance.GetDonePieceAchieve();
     }
 }

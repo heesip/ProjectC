@@ -5,9 +5,12 @@ using UnityEngine;
 public class AchieveManager : Singleton<AchieveManager>
 {
     [SerializeField] AchieveSystem _achieveSystem = new AchieveSystem();
-    public bool IsRareNinjaStar => _achieveSystem.IsRareNinjaStar;
+    public bool IsDonePieceAchieve => _achieveSystem.IsDonePieceAchieve;
+    public bool IsDonePieceActive=> _achieveSystem.IsDonePieceActive;
     public bool IsAtropineTitleAchieve => _achieveSystem.IsAtropineTitleAchieve;
     public bool IsAtropineTitleActive => _achieveSystem.IsAtropineTitleActive;
+    public int OnePiece => _achieveSystem.OnePiece;
+    
 
     public void Load()
     {
@@ -19,9 +22,14 @@ public class AchieveManager : Singleton<AchieveManager>
         _achieveSystem.Save();
     }
 
-    public void GetNinjaStarPiece()
+    public void GetDonePieceAchieve()
     {
-        _achieveSystem.GetNinjaStarPiece();
+        _achieveSystem.GetDonePieceAchieve();
+    }
+
+    public void SaveDonePieceActive()
+    {
+        _achieveSystem.SaveDonePieceActive();
     }
 
     public void GetAtropineTitleAchieve()
