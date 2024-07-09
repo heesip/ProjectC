@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShieldUI : MonoBehaviour
+public class ShieldUI : Singleton<ShieldUI>
 {
     Slider _mySlider;
 

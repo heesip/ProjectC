@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class FollowUI : MonoBehaviour
+public class FollowUI : Singleton<FollowUI>
 {
     RectTransform _rectTransform;
 

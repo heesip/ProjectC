@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExpUI : MonoBehaviour
+public class ExpUI : Singleton<ExpUI>
 {
     Slider _mySlider;
 

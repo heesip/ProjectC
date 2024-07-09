@@ -6,11 +6,7 @@ public class UIManager : Singleton<UIManager>
 {
     [SerializeField] Joystick _joystick;
     public Joystick Joystick => _joystick;
-    [SerializeField] ExpUI _expUI;
-    [SerializeField] HpUI _hpUI;
-    [SerializeField] ShieldUI _shieldUI;
-    [SerializeField] TimeUI _timeUI;
-    [SerializeField] KillUI _killUI;
+
 
     public void Initialize()
     {
@@ -19,26 +15,37 @@ public class UIManager : Singleton<UIManager>
 
     public void UpdateExpUI(float currentExp, float maxExp)
     {
-        _expUI.UpdateExpUI(currentExp, maxExp);
+        ExpUI.Instance.UpdateExpUI(currentExp, maxExp);
     }
 
     public void UpdateHpUI(float currentHp, float maxHp)
     {
-        _hpUI.UpdateHpUI(currentHp, maxHp);
+        HpUI.Instance.UpdateHpUI(currentHp, maxHp);
     }
 
     public void UpdateShieldUI(float currentShield, float maxShield)
     {
-        _shieldUI.UpdateShieldUI(currentShield, maxShield);
+        ShieldUI.Instance.UpdateShieldUI(currentShield, maxShield);
     }
 
     public void UpdateTimeUI(int minute, int second)
     {
-        _timeUI.UpdateTimeUI(minute, second);
+        TimeUI.Instance.UpdateTimeUI(minute, second);
     }
 
     public void UpdaateKillUI(int kill)
     {
-        _killUI.UpdateKillUI(kill);
+        KillUI.Instance.UpdateKillUI(kill);
     }
+
+    public void ToggleDonePiece()
+    {
+        AchieveUI.Instance.ToggleDonePiece();
+    }
+
+    public void ToggleAtropine()
+    {
+        AchieveUI.Instance.ToggleAtropine();
+    }
+
 }

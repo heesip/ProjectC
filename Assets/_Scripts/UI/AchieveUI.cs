@@ -3,30 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AchieveUI : MonoBehaviour
+public class AchieveUI : Singleton<AchieveUI>
 {
     [SerializeField] GameObject _atropineTitle;
     [SerializeField] GameObject _atropine;
 
     [SerializeField] GameObject[] _pieces;
-    [SerializeField] GameObject _donePiece;
 
-    void Start()
+    void Awake()
     {
         AchieveManager.Instance.Load();
         DonePieceUILoad();
         AtropineUILoad();
-        if (!AchieveManager.Instance.IsAtropineTitleActive)
-        {
-            _atropineTitle.SetActive(false);
-            return;
-        }
-        _atropineTitle.SetActive(true);
+        AtropineTitleLoad();
     }
 
     void DonePieceUILoad()
     {
-        if(AchieveManager.Instance.OnePiece == 0 || AchieveManager.Instance.OnePiece > 4)
+        if (AchieveManager.Instance.OnePiece == 0 || AchieveManager.Instance.OnePiece > 4)
         {
             return;
         }
@@ -45,7 +39,17 @@ public class AchieveUI : MonoBehaviour
         _atropine.SetActive(true);
     }
 
-    public void DonePieceToggle()
+    void AtropineTitleLoad()
+    {
+        if (!AchieveManager.Instance.IsAtropineTitleActive)
+        {
+            _atropineTitle.SetActive(false);
+            return;
+        }
+        _atropineTitle.SetActive(true);
+    }
+
+    public void ToggleDonePiece()
     {
         if (!AchieveManager.Instance.IsDonePieceAchieve)
         {
@@ -54,7 +58,7 @@ public class AchieveUI : MonoBehaviour
         AchieveManager.Instance.SaveDonePieceActive();
     }
 
-    public void AtropineToggle()
+    public void ToggleAtropine()
     {
         if (!AchieveManager.Instance.IsAtropineTitleAchieve)
         {
