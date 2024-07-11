@@ -12,6 +12,8 @@ public class Enemy : RecycleObject
     #endregion
     EnemyDataSO _enemyDataSO;
     bool _isDead;
+    LayerMask _enemyLayer => LayerMask.NameToLayer(AllStrings.Enemy);
+    LayerMask _deadLayer = 0;
     Rigidbody2D _target;
     [SerializeField] float _speed;
     [SerializeField] float _health;
@@ -61,6 +63,7 @@ public class Enemy : RecycleObject
 
     void LiveSet()
     {
+        gameObject.layer = _enemyLayer;
         _isDead = false;
         _collider.enabled = true;
         _rigidbody.simulated = true;
@@ -70,6 +73,7 @@ public class Enemy : RecycleObject
 
     void DeadSet()
     {
+        gameObject.layer = _deadLayer;
         GameManager.Instance.Kill++;
         UIManager.Instance.UpdaateKillUI(GameManager.Instance.Kill);
         _isDead = true;

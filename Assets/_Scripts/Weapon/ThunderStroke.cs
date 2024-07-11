@@ -6,14 +6,11 @@ public class ThunderStroke : Weapon
 {
     [SerializeField] ThunderStrokeDataSO _thunderStrokeDataSO;
 
-    Vector3 _randomVector;
-    float _xMinValue;
-    float _xMaxValue;
-    float _yMinValue;
-    float _yMaxValue;
-    float _exceptionMinValue;
-    float _exceptionMaxValue;
+    TargetSystem _targetSystem = new TargetSystem();
+    [SerializeField] Transform _randomTarget;
+    Vector3 _playerPosition => Player.Instance.transform.position;
     WaitForSeconds _thunderStrokeCoolTime;
+    WaitForSeconds _targetNullCoolTime;
 
 
     protected override void Initialize()
@@ -23,12 +20,7 @@ public class ThunderStroke : Weapon
 
     protected override void FixedValue()
     {
-        _xMinValue = _thunderStrokeDataSO.X_MinValue;
-        _xMaxValue = _thunderStrokeDataSO.X_MaxValue;
-        _yMinValue = _thunderStrokeDataSO.Y_MinValue;
-        _yMaxValue = _thunderStrokeDataSO.Y_MaxValue;
-        _exceptionMinValue = _thunderStrokeDataSO.ExceptionMinValue;
-        _exceptionMaxValue = _thunderStrokeDataSO.ExceptionMaxValue;
+        _targetNullCoolTime = _thunderStrokeDataSO.ThunderStrokeCoolTimes[_maxLevel];
     }
 
     public override void UseWeapon()
@@ -66,34 +58,24 @@ public class ThunderStroke : Weapon
         StopCoHandle(_attackCoHandle);
     }
 
-    float RandomNumber(float minNumber, float maxNumber)
-    {
-        float randomNumber = Random.Range(minNumber, maxNumber);
-        while (randomNumber >= _exceptionMinValue && randomNumber <= _exceptionMaxValue)
-        {
-            randomNumber = Random.Range(minNumber, maxNumber);
-        }
-        return randomNumber;
-    }
-
-    Vector2 RandomVector(float randomX, float randomY)
-    {
-        Vector2 randomVector = new Vector2(randomX, randomY);
-        return randomVector;
-    }
-
-
     Coroutine _attackCoHandle;
 
     IEnumerator AttackCo()
     {
         while (true)
         {
-            _randomVector = RandomVector(RandomNumber(_xMinValue, _xMaxValue), RandomNumber(_yMinValue, _yMaxValue));
-            _randomVector += Player.Instance.transform.position;
-            yield return CheckAtropine();
-            Thunder thunder = FactoryManager.Instance.GetThunder();
-            thunder.AttackPoint(_randomVector,_damage);
+            _randomTarget = _targetSystem.GetRandomTarget(_playerPosition);
+            if (_randomTarget != null)
+            {
+                Thunder thunder = FactoryManager.Instance.GetThunder();
+                thunder.AttackPoint(_randomTarget.position, _damage);
+                yield return CheckAtropine();
+            }
+            else
+            {
+                yield return _targetNullCoolTime;
+            }
+
         }
     }
 

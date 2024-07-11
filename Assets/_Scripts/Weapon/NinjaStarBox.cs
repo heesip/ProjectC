@@ -6,6 +6,9 @@ using UnityEngine;
 public class NinjaStarBox : Weapon
 {
     [SerializeField] NinjaStarBoxDataSO _ninjaStarBoxDataSO;
+    [SerializeField] TargetSystem _targetSystem = new TargetSystem();
+    Transform _nearestTarget;
+    Vector3 _playerPosition => Player.Instance.transform.position;
     Vector3 _attackDirection => Player.Instance.AttackDirection;
     Vector3 _projectileRotate;
     float _duration;
@@ -83,10 +86,22 @@ public class NinjaStarBox : Weapon
 
     void ThrowingNinjaStar(float ninjaStarDamage)
     {
+        _nearestTarget = _targetSystem.GetNearestTarget(_playerPosition);
         NinjaStar ninjaStar = FactoryManager.Instance.GetNinjaStar();
         ninjaStar.Initiazlie(ninjaStarDamage, _speed, _duration, _projectileRotate);
         ninjaStar.AttackPoint(transform.position);
+        if (_nearestTarget != null)
+        {
+            ninjaStar.Throw(Targeting());
+        }
         ninjaStar.Throw(_attackDirection);
+    }
+
+    Vector3 Targeting()
+    {
+        Vector3 direction = _nearestTarget.position - _playerPosition;
+        direction = direction.normalized;
+        return direction;
     }
 
     void StopCoHandle(Coroutine coHandle)
