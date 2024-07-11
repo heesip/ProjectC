@@ -5,12 +5,13 @@ using UnityEngine;
 public class TargetSystem
 {
     LayerMask _enemyLayer => LayerMask.GetMask(AllStrings.Enemy);
-    float _scanRange = 3;
+    float _circleRange = 3;
+    Vector2 _boxRange = new Vector2(6, 10);
     RaycastHit2D[] _targets;
 
     public Transform GetNearestTarget(Vector2 playerPosition)
     {
-        TargetScan(playerPosition);
+        TargetCircleScan(playerPosition);
         Transform result = null;
         float distance = 100;
 
@@ -30,8 +31,8 @@ public class TargetSystem
 
     public Transform GetRandomTarget(Vector2 playerPosition)
     {
+        TargetBoxScan(playerPosition);
         Transform result = null;
-        TargetScan(playerPosition);
         if (_targets.Length > 0)
         {
             int randomIndex = Random.Range(0, _targets.Length);
@@ -41,8 +42,13 @@ public class TargetSystem
         return result;
     }
 
-    void TargetScan(Vector2 playerPosition)
+    void TargetCircleScan(Vector2 playerPosition)
     {
-        _targets = Physics2D.CircleCastAll(playerPosition, _scanRange, Vector2.zero, 0, _enemyLayer);
+        _targets = Physics2D.CircleCastAll(playerPosition, _circleRange, Vector2.zero, distance: 0, _enemyLayer);
+    }
+
+    void TargetBoxScan(Vector2 playerPosition)
+    {
+        _targets = Physics2D.BoxCastAll(playerPosition, _boxRange, angle: 0, Vector2.zero, distance: 0, _enemyLayer);
     }
 }

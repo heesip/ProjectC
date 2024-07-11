@@ -8,16 +8,16 @@ public class ThunderStrokeDataSO : ScriptableObject
 {
     public readonly float[] ThunderDamages = new float[]
     {
-        6, 7, 10
+        2.5f, 3, 4
     };
 
     public readonly WaitForSeconds[] ThunderStrokeCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(1.1f), new WaitForSeconds(0.8f),  new WaitForSeconds(0.5f)
+        new WaitForSeconds(1.1f), new WaitForSeconds(0.9f),  new WaitForSeconds(0.7f)
     };
 
     public readonly WaitForSeconds[] AtropineThunderStrokeCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(.9f), new WaitForSeconds(0.6f),  new WaitForSeconds(0.2f)
+        new WaitForSeconds(0.9f), new WaitForSeconds(0.7f),  new WaitForSeconds(0.5f)
     };
 }
