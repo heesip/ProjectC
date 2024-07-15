@@ -19,6 +19,11 @@ public class PlayerIndicatorSystem
         }
     }
 
+    public void SocketOn()
+    {
+        _socket.gameObject.SetActive(true);
+    }
+
     Vector3 IndicatorDirection()
     {
         Vector3 result = _socket.position - _indicator.position;

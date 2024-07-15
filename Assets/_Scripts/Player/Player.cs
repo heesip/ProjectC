@@ -76,4 +76,9 @@ public class Player : Singleton<Player>
     {
         _playerStatusSystem.GetBuff();
     }
+
+    public void SocketOn()
+    {
+        _playerIndicatorSystem.SocketOn();
+    }
 }

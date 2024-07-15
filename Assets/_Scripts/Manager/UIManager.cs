@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
     [SerializeField] Joystick _joystick;
     public Joystick Joystick => _joystick;
 
+    [SerializeField] Button _achieveSwitch;
 
     public void Initialize()
     {
+        _achieveSwitch.onClick.AddListener(() => AchieveUION());
+        _joystick.gameObject.SetActive(false);
         UpdaateKillUI(0);
     }
 
@@ -38,4 +42,15 @@ public class UIManager : Singleton<UIManager>
         KillUI.Instance.UpdateKillUI(kill);
     }
 
+    public void GameStartUISetting()
+    {
+        _achieveSwitch.gameObject.SetActive(false);
+        _joystick.gameObject.SetActive(true);
+        Player.Instance.SocketOn();
+    }
+
+    void AchieveUION()
+    {
+        AchieveUI.Instance.gameObject.SetActive(true);
+    }
 }

@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] Button _startButton;
+
     [SerializeField] float _gametime;
     [SerializeField] int _level;
     [SerializeField] bool _isGame;
+    public bool IsGame => _isGame;
+    
     int _oneMinute = 60;
     int _maxLevel = 4;
 
@@ -20,9 +25,15 @@ public class GameManager : Singleton<GameManager>
         set;
     }
 
+    private void Awake()
+    {
+        _isGame = false;
+        _startButton.onClick.AddListener(() => GameStart());
+        _startButton.gameObject.SetActive(true);
+    }
+
     void Start()
     {
-        _isGame = true;
         GameResourcesManager.Instance.Initialize();
         FactoryManager.Instance.Initialize();
         GameDataManager.Instance.Initialize();
@@ -53,4 +64,10 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    void GameStart()
+    {
+        _isGame = true;
+        _startButton.gameObject.SetActive(false);
+        UIManager.Instance.GameStartUISetting();
+    }
 }

@@ -17,6 +17,7 @@ public class AchieveUI : Singleton<AchieveUI>
         _donePieceUIBox.DonePieceButton.onClick.AddListener(() => ToggleDonePiece());
         _madnessUIBox.MadnessButton.onClick.AddListener(() => ToggleMadness());
         MadnessTitleLoad();
+        gameObject.SetActive(false);
     }
 
     void MadnessTitleLoad()
