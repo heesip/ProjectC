@@ -10,8 +10,8 @@ public class AchieveSystem
     readonly string Piece = "Piece";
     readonly string DonePieceAchieve = "DonePieceAchieve";
     readonly string DonePieceActive = "DonePieceActive";
-    readonly string AtropineTitleAchieve = "AtropineTitleAchieve";
-    readonly string AtropineTitleActive = "AtropineTitleActive";
+    readonly string MadnessTitleAchieve = "AtropineTitleAchieve";
+    readonly string MadnessTitleActive = "AtropineTitleActive";
 
     [SerializeField] int _onePiece;
     public int OnePiece => _onePiece;
@@ -22,11 +22,11 @@ public class AchieveSystem
     bool _isDonePieceActive;
     public bool IsDonePieceActive=> _isDonePieceActive;
 
-    bool _isAtropineTitleAchieve;
-    public bool IsAtropineTitleAchieve => _isAtropineTitleAchieve;
+    bool _isMadnessTitleAchieve;
+    public bool IsMadnessTitleAchieve => _isMadnessTitleAchieve;
 
-    bool _isAtropineTitleActive;
-    public bool IsAtropineTitleActive => _isAtropineTitleActive;
+    bool _isMadnessTitleActive;
+    public bool IsMadnessTitleActive => _isMadnessTitleActive;
 
     public void Load()
     {
@@ -41,7 +41,7 @@ public class AchieveSystem
         SavePiece();
         SaveTitleAchieve();
     }
-    #region NinjaStar
+    #region DonePiece
     public void GetDonePieceAchieve()
     {
         if (DonePiece())
@@ -87,36 +87,36 @@ public class AchieveSystem
     }
     #endregion
 
-    #region Atropine
-    public void GetAtropineTitleAchieve()
+    #region Madness
+    public void GetMadnessTitleAchieve()
     {
-        _isAtropineTitleAchieve = true;
+        _isMadnessTitleAchieve = true;
         SaveTitleAchieve();
     }
 
     public void SaveTitleActive()
     {
-        if (!_isAtropineTitleAchieve)
+        if (!_isMadnessTitleAchieve)
         {
             return;
         }
-        _isAtropineTitleActive = !_isAtropineTitleActive;
-        PlayerPrefs.SetInt(AtropineTitleActive, Convert.ToInt16(_isAtropineTitleActive));
+        _isMadnessTitleActive = !_isMadnessTitleActive;
+        PlayerPrefs.SetInt(MadnessTitleActive, Convert.ToInt16(_isMadnessTitleActive));
     }
 
     void LoadTitleActive()
     {
-        _isAtropineTitleActive = Convert.ToBoolean(PlayerPrefs.GetInt(AtropineTitleActive));
+        _isMadnessTitleActive = Convert.ToBoolean(PlayerPrefs.GetInt(MadnessTitleActive));
     }
 
     void SaveTitleAchieve()
     {
-        PlayerPrefs.SetInt(AtropineTitleAchieve, Convert.ToInt16(_isAtropineTitleAchieve));
+        PlayerPrefs.SetInt(MadnessTitleAchieve, Convert.ToInt16(_isMadnessTitleAchieve));
     }
 
     void LoadTitleAchieve()
     {
-        _isAtropineTitleAchieve = Convert.ToBoolean(PlayerPrefs.GetInt(AtropineTitleAchieve));
+        _isMadnessTitleAchieve = Convert.ToBoolean(PlayerPrefs.GetInt(MadnessTitleAchieve));
     }
 
     #endregion

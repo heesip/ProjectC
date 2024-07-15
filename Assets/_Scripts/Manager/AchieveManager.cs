@@ -7,8 +7,8 @@ public class AchieveManager : Singleton<AchieveManager>
     [SerializeField] AchieveSystem _achieveSystem = new AchieveSystem();
     public bool IsDonePieceAchieve => _achieveSystem.IsDonePieceAchieve;
     public bool IsDonePieceActive=> _achieveSystem.IsDonePieceActive;
-    public bool IsAtropineTitleAchieve => _achieveSystem.IsAtropineTitleAchieve;
-    public bool IsAtropineTitleActive => _achieveSystem.IsAtropineTitleActive;
+    public bool IsMadnessTitleAchieve => _achieveSystem.IsMadnessTitleAchieve;
+    public bool IsMadnessTitleActive => _achieveSystem.IsMadnessTitleActive;
     public int OnePiece => _achieveSystem.OnePiece;
     
 
@@ -32,9 +32,9 @@ public class AchieveManager : Singleton<AchieveManager>
         _achieveSystem.SaveDonePieceActive();
     }
 
-    public void GetAtropineTitleAchieve()
+    public void GetMadnessTitleAchieve()
     {
-        _achieveSystem.GetAtropineTitleAchieve();
+        _achieveSystem.GetMadnessTitleAchieve();
     }
 
     public void SaveTitleAchtive()

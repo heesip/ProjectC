@@ -38,14 +38,4 @@ public class UIManager : Singleton<UIManager>
         KillUI.Instance.UpdateKillUI(kill);
     }
 
-    public void ToggleDonePiece()
-    {
-        AchieveUI.Instance.ToggleDonePiece();
-    }
-
-    public void ToggleAtropine()
-    {
-        AchieveUI.Instance.ToggleAtropine();
-    }
-
 }
