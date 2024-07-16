@@ -69,5 +69,6 @@ public class GameManager : Singleton<GameManager>
         _isGame = true;
         _startButton.gameObject.SetActive(false);
         UIManager.Instance.GameStartUISetting();
+        Spawner.Instance.gameObject.SetActive(true);
     }
 }
