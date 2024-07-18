@@ -15,7 +15,7 @@ public class MadnessUIBox
 
     public void MadnessUILoad()
     {
-        if (!AchieveManager.Instance.IsMadnessTitleAchieve)
+        if (!AchieveManager.Instance.IsMadnessAchieve)
         {
             return;
         }

@@ -10,20 +10,21 @@ public class AchieveSystem
     readonly string Piece = "Piece";
     readonly string DonePieceAchieve = "DonePieceAchieve";
     readonly string DonePieceActive = "DonePieceActive";
-    readonly string MadnessTitleAchieve = "AtropineTitleAchieve";
-    readonly string MadnessTitleActive = "AtropineTitleActive";
+    readonly string MadnessAchieve = "MadnessAchieve";
+    readonly string MadnessTitleActive = "MadnessTitleActive";
 
     [SerializeField] int _onePiece;
     public int OnePiece => _onePiece;
     int _donePiece = 4;
+
     bool _isDonePieceAchieve;
     public bool IsDonePieceAchieve => _isDonePieceAchieve;
 
     bool _isDonePieceActive;
-    public bool IsDonePieceActive=> _isDonePieceActive;
+    public bool IsDonePieceActive => _isDonePieceActive;
 
-    bool _isMadnessTitleAchieve;
-    public bool IsMadnessTitleAchieve => _isMadnessTitleAchieve;
+    bool _isMadnessAchieve;
+    public bool IsMadnessAchieve => _isMadnessAchieve;
 
     bool _isMadnessTitleActive;
     public bool IsMadnessTitleActive => _isMadnessTitleActive;
@@ -31,16 +32,16 @@ public class AchieveSystem
     public void Load()
     {
         LoadPiece();
-        LoadDonePieceActive();
-        LoadTitleAchieve();
-        LoadTitleActive();
+        LoadAchieve(DonePieceActive, out _isDonePieceActive);
+        LoadAchieve(MadnessAchieve, out _isMadnessAchieve);
+        LoadTitleActive(MadnessTitleActive, out _isMadnessTitleActive);
     }
 
     public void Save()
     {
         SavePiece();
-        SaveTitleAchieve();
     }
+
     #region DonePiece
     public void GetDonePieceAchieve()
     {
@@ -57,17 +58,7 @@ public class AchieveSystem
 
     public void SaveDonePieceActive()
     {
-        if (!_isDonePieceAchieve)
-        {
-            return;
-        }
-        _isDonePieceActive = !_isDonePieceActive;
-        PlayerPrefs.SetInt(DonePieceActive, Convert.ToInt16(_isDonePieceActive));
-    }
-
-    void LoadDonePieceActive()
-    {
-        _isDonePieceActive = Convert.ToBoolean(PlayerPrefs.GetInt(DonePieceActive));
+        _isDonePieceActive = SaveActiveToggle(DonePieceActive, _isDonePieceAchieve, _isDonePieceActive);
     }
 
     bool DonePiece()
@@ -83,41 +74,47 @@ public class AchieveSystem
     void LoadPiece()
     {
         _onePiece = PlayerPrefs.GetInt(Piece);
-        _isDonePieceAchieve = Convert.ToBoolean(PlayerPrefs.GetInt(DonePieceAchieve));
+        LoadAchieve(DonePieceAchieve, out _isDonePieceAchieve);
     }
     #endregion
 
     #region Madness
-    public void GetMadnessTitleAchieve()
+    public void GetMadnessAchieve()
     {
-        _isMadnessTitleAchieve = true;
-        SaveTitleAchieve();
+        _isMadnessAchieve = true;
+        SaveAchieve(MadnessAchieve, _isMadnessAchieve);
     }
 
-    public void SaveTitleActive()
+    public void SaveMadnessTitleActive()
     {
-        if (!_isMadnessTitleAchieve)
-        {
-            return;
-        }
-        _isMadnessTitleActive = !_isMadnessTitleActive;
-        PlayerPrefs.SetInt(MadnessTitleActive, Convert.ToInt16(_isMadnessTitleActive));
+        _isMadnessTitleActive = SaveActiveToggle(MadnessTitleActive, _isMadnessAchieve, _isMadnessTitleActive);
     }
-
-    void LoadTitleActive()
-    {
-        _isMadnessTitleActive = Convert.ToBoolean(PlayerPrefs.GetInt(MadnessTitleActive));
-    }
-
-    void SaveTitleAchieve()
-    {
-        PlayerPrefs.SetInt(MadnessTitleAchieve, Convert.ToInt16(_isMadnessTitleAchieve));
-    }
-
-    void LoadTitleAchieve()
-    {
-        _isMadnessTitleAchieve = Convert.ToBoolean(PlayerPrefs.GetInt(MadnessTitleAchieve));
-    }
-
     #endregion
+
+    void SaveAchieve(string key, bool achieve)
+    {
+        PlayerPrefs.SetInt(key, Convert.ToInt16(achieve));
+    }
+
+    void LoadAchieve(string key, out bool achieve)
+    {
+        achieve = Convert.ToBoolean(PlayerPrefs.GetInt(key));
+    }
+
+    bool SaveActiveToggle(string key, bool achieve, bool isActive)
+    {
+        if (!achieve)
+        {
+            return isActive;
+        }
+
+        isActive = !isActive;
+        PlayerPrefs.SetInt(key, Convert.ToInt16(isActive));
+        return isActive;
+    }
+
+    void LoadTitleActive(string key, out bool titleActive)
+    {
+        titleActive = Convert.ToBoolean(PlayerPrefs.GetInt(key));
+    }
 }

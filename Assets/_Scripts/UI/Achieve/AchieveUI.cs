@@ -42,7 +42,7 @@ public class AchieveUI : Singleton<AchieveUI>
 
     void ToggleMadness()
     {
-        if (!AchieveManager.Instance.IsMadnessTitleAchieve)
+        if (!AchieveManager.Instance.IsMadnessAchieve)
         {
             return;
         }
