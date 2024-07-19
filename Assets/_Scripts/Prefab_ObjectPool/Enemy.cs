@@ -115,7 +115,7 @@ public class Enemy : RecycleObject
         switch (randomNumber)
         {
             case 77:
-                if (!AchieveManager.Instance.IsDonePieceAchieve)
+                if (!AchieveManager.Instance.IsAchieveDonePiece)
                 {
                     NinjaStarPiece ninjaStarPiece = FactoryManager.Instance.GetNinjaStarPiece();
                     ninjaStarPiece.transform.position = transform.position;

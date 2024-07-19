@@ -11,12 +11,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] int _level;
     [SerializeField] bool _isGame;
     public bool IsGame => _isGame;
-    
-    int _oneMinute = 60;
-    int _maxLevel = 4;
 
-    public int _minute => Mathf.FloorToInt(_gametime / 60);
-    public int _second => Mathf.FloorToInt(_gametime % 60);
+    int _maxLevel = 4;
+    int _minute => Mathf.FloorToInt(_gametime / 60);
+    int _second => Mathf.FloorToInt(_gametime % 60);
 
     public int Level => _level;
     public int Kill
@@ -25,7 +23,7 @@ public class GameManager : Singleton<GameManager>
         set;
     }
 
-    private void Awake()
+    void Awake()
     {
         _isGame = false;
         _startButton.onClick.AddListener(() => GameStart());
@@ -41,22 +39,21 @@ public class GameManager : Singleton<GameManager>
         AchieveManager.Instance.Load();
     }
 
-
     void Update()
     {
         if (!_isGame)
         {
             return;
         }
+        AchieveCheck();
         UpdateGameTime();
-
     }
 
     void UpdateGameTime()
     {
         _gametime += Time.deltaTime;
         UIManager.Instance.UpdateTimeUI(_minute, _second);
-        _level = (int)_gametime / _oneMinute;
+        _level = (int)_gametime / 60;
 
         if (_level >= _maxLevel)
         {
@@ -70,5 +67,18 @@ public class GameManager : Singleton<GameManager>
         _startButton.gameObject.SetActive(false);
         UIManager.Instance.GameStartUISetting();
         Spawner.Instance.gameObject.SetActive(true);
+    }
+
+    void AchieveCheck()
+    {
+        if (AchieveManager.Instance.IsAchieveClearEyes)
+        {
+            return;
+        }
+
+        if (_gametime > 60 && Kill < 1)
+        {
+            AchieveManager.Instance.GetClearEyesAchieve();
+        }
     }
 }

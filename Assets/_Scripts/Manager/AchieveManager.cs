@@ -5,21 +5,21 @@ using UnityEngine;
 public class AchieveManager : Singleton<AchieveManager>
 {
     [SerializeField] AchieveSystem _achieveSystem = new AchieveSystem();
-    public bool IsDonePieceAchieve => _achieveSystem.IsDonePieceAchieve;
-    public bool IsDonePieceActive=> _achieveSystem.IsDonePieceActive;
-    public bool IsMadnessAchieve => _achieveSystem.IsMadnessAchieve;
-    public bool IsMadnessTitleActive => _achieveSystem.IsMadnessTitleActive;
+
     public int OnePiece => _achieveSystem.OnePiece;
+    public bool IsAchieveDonePiece => _achieveSystem.IsAchieveDonePiece;
+    public bool IsActiveDonePiece=> _achieveSystem.IsActiveDonePiece;
+
+    public bool IsAchieveMadness => _achieveSystem.IsAchieveMadness;
+    public bool IsActiveTitleMadness => _achieveSystem.IsActiveTitleMadness;
+
+    public bool IsAchieveClearEyes => _achieveSystem.IsAchieveClearEyes;
+    public bool IsActiveTitleClearEyes => _achieveSystem.IsActiveTitleClearEyes;
     
 
     public void Load()
     {
         _achieveSystem.Load();
-    }
-
-    public void Save()
-    {
-        _achieveSystem.Save();
     }
 
     public void GetDonePieceAchieve()
@@ -37,9 +37,19 @@ public class AchieveManager : Singleton<AchieveManager>
         _achieveSystem.GetMadnessAchieve();
     }
 
-    public void SaveTitleAchtive()
+    public void SaveMadnessTitleActive()
     {
         _achieveSystem.SaveMadnessTitleActive();
+    }
+
+    public void GetClearEyesAchieve()
+    {
+        _achieveSystem.GetClearEyesAchieve();
+    }
+
+    public void SaveClearEyesTitleActive()
+    {
+        _achieveSystem.SaveClearEyesTitleActive();
     }
 
 }

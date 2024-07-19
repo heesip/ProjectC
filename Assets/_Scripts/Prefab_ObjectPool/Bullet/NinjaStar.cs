@@ -23,7 +23,7 @@ public class NinjaStar : Bullet
     protected override void OnStart()
     {
         transform.DOKill();
-        _isRare = AchieveManager.Instance.IsDonePieceActive;
+        _isRare = AchieveManager.Instance.IsActiveDonePiece;
         switch (_isRare)
         {
             case true:

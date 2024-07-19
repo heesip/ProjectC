@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1723922240}
   - component: {fileID: 1723922242}
   - component: {fileID: 1723922241}
+  - component: {fileID: 1042521081}
   m_Layer: 5
   m_Name: TitleUI
   m_TagString: Untagged
@@ -80,6 +81,18 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\uAD11\uAE30\uC5B4\uB9B0 \uC544\uB4DC\uB85C\uD540"
+--- !u!114 &1042521081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723922239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13fc0ff2c6cc040ed9febc1650042b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &621586236502210247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2906,7 +2919,12 @@ MonoBehaviour:
     _madnessUnlock: {fileID: 3861818907063072859}
     _madnessLock: {fileID: 3861818906656131590}
     _star: {fileID: 3861818907764846662}
-  _madnessTitle: {fileID: 1723922239}
+  _clearEyesUIBox:
+    ClearEyesButton: {fileID: 319913489042849831}
+    _clearEyesUnlock: {fileID: 2777978122279250930}
+    _clearEyesLock: {fileID: 4387410987597724987}
+    _star: {fileID: 2879602863288875864}
+  _titleUI: {fileID: 1042521081}
 --- !u!1 &3861818907381012606
 GameObject:
   m_ObjectHideFlags: 0

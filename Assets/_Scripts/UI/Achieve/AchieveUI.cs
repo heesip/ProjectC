@@ -1,39 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AchieveUI : Singleton<AchieveUI>
 {
     [SerializeField] DonePieceUIBox _donePieceUIBox;
     [SerializeField] MadnessUIBox _madnessUIBox;
+    [SerializeField] ClearEyesUIBox _clearEyesUIBox;
 
-    [SerializeField] GameObject _madnessTitle;
+    [SerializeField] TitleUI _titleUI;
 
     void Awake()
     {
         AchieveManager.Instance.Load();
         _donePieceUIBox.DonePieceUILoad();
         _madnessUIBox.MadnessUILoad();
+        _clearEyesUIBox.ClearEyesUILoad();
+        ActiveTitleLoad();
         _donePieceUIBox.DonePieceButton.onClick.AddListener(() => ToggleDonePiece());
         _madnessUIBox.MadnessButton.onClick.AddListener(() => ToggleMadness());
-        MadnessTitleLoad();
-        gameObject.SetActive(false);
-    }
+        _clearEyesUIBox.ClearEyesButton.onClick.AddListener(() => ToggleClearEyes());
 
-    void MadnessTitleLoad()
-    {
-        if (!AchieveManager.Instance.IsMadnessTitleActive)
-        {
-            _madnessTitle.SetActive(false);
-            return;
-        }
-        _madnessTitle.SetActive(true);
-        TitleUIMove();
+        _titleUI.transform.SetParent(FollowUI.Instance.transform);
+        gameObject.SetActive(false);
     }
 
     void ToggleDonePiece()
     {
-        if (!AchieveManager.Instance.IsDonePieceAchieve)
+        if (!AchieveManager.Instance.IsAchieveDonePiece)
         {
             return;
         }
@@ -42,26 +37,29 @@ public class AchieveUI : Singleton<AchieveUI>
 
     void ToggleMadness()
     {
-        if (!AchieveManager.Instance.IsMadnessAchieve)
+        if (!AchieveManager.Instance.IsAchieveMadness)
         {
             return;
         }
 
-        AchieveManager.Instance.SaveTitleAchtive();
-        _madnessTitle.SetActive(AchieveManager.Instance.IsMadnessTitleActive);
-        TitleUIMove();
+        AchieveManager.Instance.SaveMadnessTitleActive();
+        ActiveTitleLoad();
     }
 
-    void TitleUIMove()
+    void ToggleClearEyes()
     {
-        if (AchieveManager.Instance.IsMadnessTitleActive)
+        if (!AchieveManager.Instance.IsAchieveClearEyes)
         {
-            _madnessTitle.transform.SetParent(FollowUI.Instance.transform);
+            return;
         }
-        else
-        {
-            _madnessTitle.transform.SetParent(transform);
-        }
+
+        AchieveManager.Instance.SaveClearEyesTitleActive();
+        ActiveTitleLoad();
+    }
+
+    void ActiveTitleLoad()
+    {
+        _titleUI.ActiveTitleLoad();
     }
 
 }
