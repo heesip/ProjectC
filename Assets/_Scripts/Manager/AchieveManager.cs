@@ -8,14 +8,15 @@ public class AchieveManager : Singleton<AchieveManager>
 
     public int OnePiece => _achieveSystem.OnePiece;
     public bool IsAchieveDonePiece => _achieveSystem.IsAchieveDonePiece;
-    public bool IsActiveDonePiece=> _achieveSystem.IsActiveDonePiece;
+    public bool IsActiveDonePiece => _achieveSystem.IsActiveDonePiece;
 
     public bool IsAchieveMadness => _achieveSystem.IsAchieveMadness;
     public bool IsActiveTitleMadness => _achieveSystem.IsActiveTitleMadness;
 
     public bool IsAchieveClearEyes => _achieveSystem.IsAchieveClearEyes;
     public bool IsActiveTitleClearEyes => _achieveSystem.IsActiveTitleClearEyes;
-    
+    public bool IsAchieveHidden => _achieveSystem.IsAchieveHidden;
+
 
     public void Load()
     {
@@ -52,4 +53,8 @@ public class AchieveManager : Singleton<AchieveManager>
         _achieveSystem.SaveClearEyesTitleActive();
     }
 
+    public void GetHiddenAchieve()
+    {
+        _achieveSystem.GetHiddenAchieve();
+    }
 }

@@ -28,6 +28,10 @@ public class TitleUI : MonoBehaviour
         {
             _myText.text = _clearEyes;
             _myText.color = _clearEyesColor;
+            if (AchieveManager.Instance.IsAchieveHidden)
+            {
+                _myText.color = _madnessColor;
+            }
         }
 
         else

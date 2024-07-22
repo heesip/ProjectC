@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class DonePieceUIBox
 {
+    readonly int _donePiece = 4;
     public Button DonePieceButton;
     [SerializeField] GameObject _donePieceUnlock;
     [SerializeField] GameObject _donePieceLock;
@@ -17,7 +18,7 @@ public class DonePieceUIBox
 
     public void DonePieceUILoad()
     {
-        if (AchieveManager.Instance.OnePiece == 0 || AchieveManager.Instance.OnePiece > 4)
+        if (AchieveManager.Instance.OnePiece == 0 || AchieveManager.Instance.OnePiece > _donePiece)
         {
             return;
         }
@@ -26,7 +27,7 @@ public class DonePieceUIBox
             _stars[i].SetActive(true);
         }
 
-        if (AchieveManager.Instance.OnePiece == 4)
+        if (AchieveManager.Instance.OnePiece == _donePiece)
         {
             _donePieceLock.SetActive(false);
             _donePieceUnlock.SetActive(true);

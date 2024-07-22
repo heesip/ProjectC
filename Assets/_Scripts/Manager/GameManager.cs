@@ -73,7 +73,14 @@ public class GameManager : Singleton<GameManager>
     {
         if (AchieveManager.Instance.IsAchieveClearEyes)
         {
-            return;
+            if (AchieveManager.Instance.IsAchieveHidden)
+            {
+                return;
+            }
+            if (_gametime > 180 && Kill < 1)
+            {
+                AchieveManager.Instance.GetHiddenAchieve();
+            }
         }
 
         if (_gametime > 60 && Kill < 1)

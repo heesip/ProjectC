@@ -13,6 +13,7 @@ public class AchieveSystem
         LoadAchieve(ActiveDonePiece, out _isActiveDonePiece);
         LoadAchieve(AchieveMadness, out _isAchieveMadness);
         LoadAchieve(AchieveClearEyes, out _isAchieveClearEyes);
+        LoadAchieve(AchieveHidden, out _isAchieveHiiden);
         LoadTitleActive(ActiveTitleMadness, out _isActiveTitleMadness);
         LoadTitleActive(ActiveTitleClearEyes, out _isActiveTitileClearEyes);
     }
@@ -141,12 +142,16 @@ public class AchieveSystem
     #region ClearEyes
     readonly string AchieveClearEyes = "ClearEyesAchieve";
     readonly string ActiveTitleClearEyes = "ClearEyesTitleActive";
+    readonly string AchieveHidden = "Hidden";
 
     bool _isAchieveClearEyes;
     public bool IsAchieveClearEyes => _isAchieveClearEyes;
 
     bool _isActiveTitileClearEyes;
     public bool IsActiveTitleClearEyes => _isActiveTitileClearEyes;
+
+    bool _isAchieveHiiden;
+    public bool IsAchieveHidden => _isAchieveHiiden;
 
     public void GetClearEyesAchieve()
     {
@@ -157,6 +162,12 @@ public class AchieveSystem
     public void SaveClearEyesTitleActive()
     {
         _isActiveTitileClearEyes = SaveTitleActive(ActiveTitleClearEyes, _isAchieveClearEyes, _isActiveTitileClearEyes);
+    }
+
+    public void GetHiddenAchieve()
+    {
+        _isAchieveHiiden = true;
+        SaveAchieve(AchieveHidden, _isAchieveHiiden);
     }
     #endregion
 
