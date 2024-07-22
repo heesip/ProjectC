@@ -14,6 +14,7 @@ public class AchieveSystem
         LoadAchieve(AchieveMadness, out _isAchieveMadness);
         LoadAchieve(AchieveClearEyes, out _isAchieveClearEyes);
         LoadAchieve(AchieveHidden, out _isAchieveHiiden);
+        LoadAchieve(AchieveApple, out _isAchieveApple);
         LoadTitleActive(ActiveTitleMadness, out _isActiveTitleMadness);
         LoadTitleActive(ActiveTitleClearEyes, out _isActiveTitileClearEyes);
     }
@@ -171,16 +172,16 @@ public class AchieveSystem
     }
     #endregion
 
-    //#region Apple
-    //readonly string AchieveApple = "AchieveApple";
-    //readonly string ActiveIconApple = "ActiveIconApple";
+    #region Apple
+    readonly string AchieveApple = "AchieveApple";
 
-    //bool _isAchieveApple;
-    //public bool IsAchieveApple => _isAchieveApple;
+    bool _isAchieveApple;
+    public bool IsAchieveApple => _isAchieveApple;
 
-    //bool _isActiveIconApple;
-    //public bool IsActiveIconApple => _isActiveIconApple;
-
-
-    //#endregion
+    public void GetAppleAchieve()
+    {
+        _isAchieveApple = true;
+        SaveAchieve(AchieveApple, _isAchieveApple);
+    }
+    #endregion
 }

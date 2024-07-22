@@ -8,22 +8,34 @@ public class AchieveUI : Singleton<AchieveUI>
     [SerializeField] DonePieceUIBox _donePieceUIBox;
     [SerializeField] MadnessUIBox _madnessUIBox;
     [SerializeField] ClearEyesUIBox _clearEyesUIBox;
+    [SerializeField] AppleUIBox _appleUIBox;
 
     [SerializeField] TitleUI _titleUI;
-
+    [SerializeField] Button _appleButton;
     void Awake()
+    {
+        Load();
+        ButtonSetting();
+        _titleUI.transform.SetParent(FollowUI.Instance.transform);
+        gameObject.SetActive(false);
+    }
+
+    void Load()
     {
         AchieveManager.Instance.Load();
         _donePieceUIBox.DonePieceUILoad();
         _madnessUIBox.MadnessUILoad();
         _clearEyesUIBox.ClearEyesUILoad();
+        _appleUIBox.AppleUILoad();
         ActiveTitleLoad();
+    }
+
+    void ButtonSetting()
+    {
+        _appleButton.onClick.AddListener(() => AppleAchieve());
         _donePieceUIBox.DonePieceButton.onClick.AddListener(() => ToggleDonePiece());
         _madnessUIBox.MadnessButton.onClick.AddListener(() => ToggleMadness());
         _clearEyesUIBox.ClearEyesButton.onClick.AddListener(() => ToggleClearEyes());
-
-        _titleUI.transform.SetParent(FollowUI.Instance.transform);
-        gameObject.SetActive(false);
     }
 
     void ToggleDonePiece()
@@ -65,4 +77,9 @@ public class AchieveUI : Singleton<AchieveUI>
         _clearEyesUIBox.ShowActive();
     }
 
+    void AppleAchieve()
+    {
+        AchieveManager.Instance.GetAppleAchieve();
+        _appleUIBox.AppleUILoad();
+    }
 }

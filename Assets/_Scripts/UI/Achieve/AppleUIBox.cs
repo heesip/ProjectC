@@ -14,7 +14,10 @@ public class AppleUIBox
 
     public void AppleUILoad()
     {
-
+        if (!AchieveManager.Instance.IsAchieveApple)
+        {
+            return;
+        }
         _star.SetActive(true);
         _appleLock.SetActive(false);
         _appleUnlock.SetActive(true);
