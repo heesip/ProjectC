@@ -13,6 +13,8 @@ public class DonePieceUIBox
 
     [SerializeField] GameObject[] _stars;
 
+    [SerializeField] GameObject _active;
+
     public void DonePieceUILoad()
     {
         if (AchieveManager.Instance.OnePiece == 0 || AchieveManager.Instance.OnePiece > 4)
@@ -29,6 +31,11 @@ public class DonePieceUIBox
             _donePieceLock.SetActive(false);
             _donePieceUnlock.SetActive(true);
         }
+        ShowActive();
     }
 
+    public void ShowActive()
+    {
+        _active.SetActive(AchieveManager.Instance.IsActiveDonePiece);
+    }
 }

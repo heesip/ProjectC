@@ -13,6 +13,8 @@ public class MadnessUIBox
 
     [SerializeField] GameObject _star;
 
+    [SerializeField] GameObject _active;
+
     public void MadnessUILoad()
     {
         if (!AchieveManager.Instance.IsAchieveMadness)
@@ -22,5 +24,10 @@ public class MadnessUIBox
         _star.SetActive(true);
         _madnessLock.SetActive(false);
         _madnessUnlock.SetActive(true);
+    }
+
+    public void ShowActive()
+    {
+        _active.SetActive(AchieveManager.Instance.IsActiveTitleMadness);
     }
 }

@@ -33,6 +33,7 @@ public class AchieveUI : Singleton<AchieveUI>
             return;
         }
         AchieveManager.Instance.SaveDonePieceActive();
+        _donePieceUIBox.ShowActive();
     }
 
     void ToggleMadness()
@@ -60,6 +61,8 @@ public class AchieveUI : Singleton<AchieveUI>
     void ActiveTitleLoad()
     {
         _titleUI.ActiveTitleLoad();
+        _madnessUIBox.ShowActive();
+        _clearEyesUIBox.ShowActive();
     }
 
 }
