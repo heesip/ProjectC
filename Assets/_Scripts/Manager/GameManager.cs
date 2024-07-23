@@ -83,9 +83,14 @@ public class GameManager : Singleton<GameManager>
             }
         }
 
-        if (_gametime > 60 && Kill < 1)
+        else if(_gametime > 60 && Kill < 1)
         {
             AchieveManager.Instance.GetClearEyesAchieve();
+        }
+
+        else
+        {
+            return;
         }
     }
 }

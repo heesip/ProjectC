@@ -28,8 +28,6 @@ public class AchieveManager : Singleton<AchieveManager>
     public void GetDonePieceAchieve()
     {
         _achieveSystem.GetDonePieceAchieve();
-        NoticeUI.Instance.NoticeStopCoHandle();
-        NoticeUI.Instance.GetPiece();
     }
 
     public void SaveDonePieceActive()

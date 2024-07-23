@@ -93,6 +93,8 @@ public class AchieveSystem
         _onePiece++;
         _isAchieveDonePiece = DonePiece();
         PlayerPrefs.SetInt(AchieveDonePiece, Convert.ToInt16(_isAchieveDonePiece));
+        NoticeUI.Instance.NoticeStopCoHandle();
+        NoticeUI.Instance.DonePieceNotice();
         SavePiece();
     }
 
@@ -130,7 +132,13 @@ public class AchieveSystem
 
     public void GetMadnessAchieve()
     {
+        if (IsAchieveMadness)
+        {
+            return;
+        }
         _isAchieveMadness = true;
+        NoticeUI.Instance.NoticeStopCoHandle();
+        NoticeUI.Instance.MadnessNotice();
         SaveAchieve(AchieveMadness, _isAchieveMadness);
     }
 
@@ -156,7 +164,13 @@ public class AchieveSystem
 
     public void GetClearEyesAchieve()
     {
+        if (IsAchieveClearEyes)
+        {
+            return;
+        }
         _isAchieveClearEyes = true;
+        NoticeUI.Instance.NoticeStopCoHandle();
+        NoticeUI.Instance.ClearEyesNotice();
         SaveAchieve(AchieveClearEyes, _isAchieveClearEyes);
     }
 
@@ -167,7 +181,13 @@ public class AchieveSystem
 
     public void GetHiddenAchieve()
     {
+        if (IsAchieveHidden)
+        {
+            return;
+        }
         _isAchieveHiiden = true;
+        NoticeUI.Instance.NoticeStopCoHandle();
+        NoticeUI.Instance.ClearEyesNotice();
         SaveAchieve(AchieveHidden, _isAchieveHiiden);
     }
     #endregion
@@ -180,7 +200,13 @@ public class AchieveSystem
 
     public void GetAppleAchieve()
     {
+        if (IsAchieveApple)
+        {
+            return;
+        }
         _isAchieveApple = true;
+        NoticeUI.Instance.NoticeStopCoHandle();
+        NoticeUI.Instance.AppleNotice();
         SaveAchieve(AchieveApple, _isAchieveApple);
     }
     #endregion

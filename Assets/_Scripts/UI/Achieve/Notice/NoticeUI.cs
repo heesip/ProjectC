@@ -1,33 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NoticeUI : Singleton<NoticeUI>
 {
+    CanvasGroup _canvasGroup;
     WaitForSecondsRealtime _threeSeconds = new WaitForSecondsRealtime(3);
     [SerializeField] DonepieceNotice _donepieceNotice = new DonepieceNotice();
-    Image _noticePanel;
-
+    [SerializeField] MadnessNotice _madnessNotice = new MadnessNotice();
+    [SerializeField] ClearEyesNotice _clearEyesNotice = new ClearEyesNotice();
+    [SerializeField] AppleNotice _appleNotice = new AppleNotice();
+    
     void Awake()
     {
-        _noticePanel = GetComponent<Image>();
-        _noticePanel.color = Color.clear;
-        _donepieceNotice.HideNotice();
+        _canvasGroup = GetComponent<CanvasGroup>();
+        Hide();
     }
-    Coroutine _noticeCoHandle;
-    IEnumerator GetPieceCo()
+    
+    public void DonePieceNotice()
     {
-        _noticePanel.color = Color.white;
-        _donepieceNotice.GetPiece();
-        yield return _threeSeconds;
-        _donepieceNotice.HideNotice();
-        _noticePanel.color = Color.clear;
+        _noticeCoHandle = StartCoroutine(NoticeCo(_donepieceNotice));
     }
 
-    public void GetPiece()
+    public void MadnessNotice()
     {
-        _noticeCoHandle = StartCoroutine(GetPieceCo());
+        _noticeCoHandle = StartCoroutine(NoticeCo(_madnessNotice));
+    }
+
+    public void ClearEyesNotice()
+    {
+        _noticeCoHandle = StartCoroutine(NoticeCo(_clearEyesNotice));
+    }
+
+    public void AppleNotice()
+    {
+        _noticeCoHandle = StartCoroutine(NoticeCo(_appleNotice));
     }
 
     public void NoticeStopCoHandle()
@@ -35,6 +43,31 @@ public class NoticeUI : Singleton<NoticeUI>
         if (_noticeCoHandle != null)
         {
             StopCoroutine(_noticeCoHandle);
+            Hide();
         }
+    }
+
+    Coroutine _noticeCoHandle;
+
+    IEnumerator NoticeCo(NoticeSystem noticeSystem)
+    {
+        Show();
+        noticeSystem.Show();
+        yield return _threeSeconds;
+        Hide();
+    }
+
+    void Hide()
+    {
+        _canvasGroup.alpha = 0;
+        _donepieceNotice.Hide();
+        _madnessNotice.Hide();
+        _clearEyesNotice.Hide();
+        _appleNotice.Hide();
+    }
+
+    void Show()
+    {
+        _canvasGroup.alpha = 1;
     }
 }

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DonepieceNotice
+public class DonepieceNotice : NoticeSystem
 {
-    [SerializeField] GameObject _myNotice;
+    [SerializeField] GameObject _myPanel;
     [SerializeField] GameObject _onePieceNotice;
     [SerializeField] GameObject _donePieceNotice;
 
     [SerializeField] GameObject[] _donePieceStars;
 
-    public void GetPiece()
+    public override void Show()
     {
-        _myNotice.SetActive(true);
+        _myPanel.SetActive(true);
         _onePieceNotice.SetActive(true);
         for (int i = 0; i < AchieveManager.Instance.OnePiece; i++)
         {
@@ -26,9 +26,11 @@ public class DonepieceNotice
         }
     }
 
-    public void HideNotice()
+    public override void Hide()
     {
-        _myNotice.SetActive(false);
+        _myPanel.SetActive(false);
+        _onePieceNotice.SetActive(false);
+        _donePieceNotice.SetActive(false);
     }
 
 }
