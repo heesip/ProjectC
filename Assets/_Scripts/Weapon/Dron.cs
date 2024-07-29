@@ -3,39 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Dron : Weapon
+public class Dron : Singleton<Dron>
 {
     [SerializeField] Transform _dronAttackPoint1;
     [SerializeField] Transform _dronAttackPoint2;
     [SerializeField] SpriteRenderer _spriteRenderer;
-    [SerializeField] DronDataSO _dronDataSO;
-
+    [SerializeField] WeaponDataSO _weaponDataSO;
     Vector3 _rightPosition;
     Vector3 _leftPosition;
-    int _range;
 
-    protected override void Initialize()
+    readonly int _maxLevel = 2;
+    int _weaponLevel;
+
+    int _count;
+    int _range;
+    float _damage;
+    float _speed;
+    WaitForSeconds _coolTime;
+
+    void Initialize()
     {
-        _dronDataSO = GameDataManager.Instance.GetDronDataSO();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    protected override void FixedValue()
+    void FixedValue()
     {
-        _rightPosition = _dronDataSO.DronRightPosition;
-        _leftPosition = _dronDataSO.DronLeftPosition;
-        _count = _dronDataSO.DronCount;
-        _speed = _dronDataSO.DronSpeed;
-        _range = _dronDataSO.DronRange;
+        _rightPosition = _weaponDataSO.DronRightPosition;
+        _leftPosition = _weaponDataSO.DronLeftPosition;
+        _count = _weaponDataSO.DronCount;
+        _speed = _weaponDataSO.DronSpeed;
+        _range = _weaponDataSO.DronRange;
     }
 
-    public override void UseWeapon()
+    public void UseWeapon()
     {
         if (gameObject.activeSelf)
         {
             LevelUp();
         }
         gameObject.SetActive(true);
+    }
+    void Awake()
+    {
+        Initialize();
+        FixedValue();
     }
 
     void LevelUp()
@@ -49,8 +61,8 @@ public class Dron : Weapon
 
     void LevelValue(int level)
     {
-        _coolTime = _dronDataSO.DronCoolTimes[level];
-        _damage = _dronDataSO.DronDamages[level];
+        _coolTime = _weaponDataSO.DronCoolTimes[level];
+        _damage = _weaponDataSO.DronDamages[level];
     }
 
     void LateUpdate()
@@ -88,8 +100,8 @@ public class Dron : Weapon
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_dronDataSO.AtropineDronCoolTimes[_weaponLevel],
-                _dronDataSO.AtroPineDronDamages[_weaponLevel]);
+            return (_weaponDataSO.AtropineDronCoolTimes[_weaponLevel],
+                _weaponDataSO.AtroPineDronDamages[_weaponLevel]);
         }
         else
         {

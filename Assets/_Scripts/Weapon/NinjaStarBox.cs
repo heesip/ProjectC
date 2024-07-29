@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class NinjaStarBox : Weapon
+public class NinjaStarBox : Singleton<NinjaStarBox>
 {
-    [SerializeField] NinjaStarBoxDataSO _ninjaStarBoxDataSO;
+    [SerializeField] WeaponDataSO _weaponDataSO;
     [SerializeField] TargetSystem _targetSystem = new TargetSystem();
     Transform _nearestTarget;
     Vector3 _playerPosition => Player.Instance.transform.position;
@@ -13,25 +14,37 @@ public class NinjaStarBox : Weapon
     Vector3 _projectileRotate;
     float _duration;
 
-    protected override void Initialize()
+    readonly int _maxLevel = 2;
+    int _weaponLevel;
+
+    float _damage;
+    float _speed;
+    WaitForSeconds _coolTime;
+
+    void Initialize()
     {
-        _ninjaStarBoxDataSO = GameDataManager.Instance.GetNinjaStarBoxDataSO();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
     }
 
-    protected override void FixedValue()
+    void FixedValue()
     {
-        _projectileRotate = _ninjaStarBoxDataSO.ProjectileRotate;
-        _speed = _ninjaStarBoxDataSO.NinjaStarSpeed;
-        _duration = _ninjaStarBoxDataSO.NinjaStarDuration;
+        _projectileRotate = _weaponDataSO.ProjectileRotate;
+        _speed = _weaponDataSO.NinjaStarSpeed;
+        _duration = _weaponDataSO.NinjaStarDuration;
     }
 
-    public override void UseWeapon()
+    public void UseWeapon()
     {
         if (gameObject.activeSelf)
         {
             LevelUp();
         }
         gameObject.SetActive(true);
+    }
+    void Awake()
+    {
+        Initialize();
+        FixedValue();
     }
 
     void OnEnable()
@@ -56,8 +69,8 @@ public class NinjaStarBox : Weapon
     }
     void LevelValue(int level)
     {
-        _damage = _ninjaStarBoxDataSO.NinjaStarDamages[level];
-        _coolTime = _ninjaStarBoxDataSO.NinjaStarCoolTimes[level];
+        _damage = _weaponDataSO.NinjaStarDamages[level];
+        _coolTime = _weaponDataSO.NinjaStarCoolTimes[level];
     }
 
     Coroutine _throwingNinjaStarCoHandle;
@@ -74,8 +87,8 @@ public class NinjaStarBox : Weapon
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_ninjaStarBoxDataSO.AtropineNinjaStarCoolTimes[_weaponLevel],
-                _ninjaStarBoxDataSO.AtroPineNinjaStarDamages[_weaponLevel]);
+            return (_weaponDataSO.AtropineNinjaStarCoolTimes[_weaponLevel],
+                _weaponDataSO.AtroPineNinjaStarDamages[_weaponLevel]);
         }
         else
         {

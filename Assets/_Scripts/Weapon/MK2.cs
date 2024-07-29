@@ -3,42 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using DG.Tweening;
+using Unity.VisualScripting;
 
-public class Mk2 : Weapon
+public class Mk2 : Singleton<Mk2>
 {
     [SerializeField] GameObject _mk2;
     [SerializeField] SpriteRenderer _mk2SpriteRenderer;
     [SerializeField] Collider2D _collider;
-    [SerializeField] Mk2DataSO _mk2DataSO;
+    [SerializeField] WeaponDataSO _weaponDataSO;
 
     Vector3 _rightPosition;
     Vector3 _leftPosition;
     Vector3 _rotateDirection;
 
-    protected override void Initialize()
+    readonly int _maxLevel = 2;
+    int _weaponLevel;
+
+    int _count;
+    float _damage;
+    float _speed;
+    WaitForSeconds _coolTime;
+
+    void Initialize()
     {
-        _mk2DataSO = GameDataManager.Instance.GetMk2DataSO();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _mk2SpriteRenderer = _mk2.GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
         _mk2.transform.Translate(transform.up, Space.World);
     }
 
-    protected override void FixedValue()
+    void FixedValue()
     {
-        _mk2.transform.rotation = _mk2DataSO.Mk2Rotation;
-        _rightPosition = _mk2DataSO.Mk2RightPosition;
-        _leftPosition = _mk2DataSO.Mk2LeftPosition;
-        _rotateDirection = _mk2DataSO.Mk2RotateDirection;
-        _speed = _mk2DataSO.Mk2Speed;
+        _mk2.transform.rotation = _weaponDataSO.Mk2Rotation;
+        _rightPosition = _weaponDataSO.Mk2RightPosition;
+        _leftPosition = _weaponDataSO.Mk2LeftPosition;
+        _rotateDirection = _weaponDataSO.Mk2RotateDirection;
+        _speed = _weaponDataSO.Mk2Speed;
     }
 
-    public override void UseWeapon()
+    public void UseWeapon()
     {
         if (gameObject.activeSelf)
         {
             LevelUp();
         }
         gameObject.SetActive(true);
+    }
+
+    void Awake()
+    {
+        Initialize();
+        FixedValue();
     }
 
     void LevelUp()
@@ -53,8 +68,8 @@ public class Mk2 : Weapon
 
     void LevelValue(int level)
     {
-        _coolTime = _mk2DataSO.Mk2CoolTimes[level];
-        _count = _mk2DataSO.Mk2Counts[level];
+        _coolTime = _weaponDataSO.Mk2CoolTimes[level];
+        _count = _weaponDataSO.Mk2Counts[level];
     }
 
     void OnEnable()
@@ -91,11 +106,11 @@ public class Mk2 : Weapon
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_mk2DataSO.AtropineMk2CoolTimes[_weaponLevel], _mk2DataSO.AtropineMk2Damage);
+            return (_weaponDataSO.AtropineMk2CoolTimes[_weaponLevel], _weaponDataSO.AtropineMk2Damage);
         }
         else
         {
-            return (_coolTime, _mk2DataSO.Mk2Damage);
+            return (_coolTime, _weaponDataSO.Mk2Damage);
         }
     }
 

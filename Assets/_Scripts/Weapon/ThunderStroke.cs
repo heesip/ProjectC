@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ThunderStroke : Weapon
+public class ThunderStroke : Singleton<ThunderStroke>
 {
-    [SerializeField] ThunderStrokeDataSO _thunderStrokeDataSO;
+    [SerializeField] WeaponDataSO _weaponDataSO;
 
     TargetSystem _targetSystem = new TargetSystem();
     [SerializeField] Transform _randomTarget;
@@ -12,24 +13,33 @@ public class ThunderStroke : Weapon
     WaitForSeconds _thunderStrokeCoolTime;
     WaitForSeconds _targetNullCoolTime;
 
+    readonly int _maxLevel = 2;
+    int _weaponLevel;
 
-    protected override void Initialize()
+    float _damage;
+
+    void Initialize()
     {
-        _thunderStrokeDataSO = GameDataManager.Instance.GetThunderStrokeDataSO();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
     }
 
-    protected override void FixedValue()
+    void FixedValue()
     {
-        _targetNullCoolTime = _thunderStrokeDataSO.ThunderStrokeCoolTimes[_maxLevel];
+        _targetNullCoolTime = _weaponDataSO.ThunderStrokeCoolTimes[_maxLevel];
     }
 
-    public override void UseWeapon()
+    public void UseWeapon()
     {
         if (gameObject.activeSelf)
         {
             LevelUp();
         }
         gameObject.SetActive(true);
+    }
+    void Awake()
+    {
+        Initialize();
+        FixedValue();
     }
 
     void LevelUp()
@@ -43,8 +53,8 @@ public class ThunderStroke : Weapon
 
     void LevelValue(int level)
     {
-        _thunderStrokeCoolTime = _thunderStrokeDataSO.ThunderStrokeCoolTimes[level];
-        _damage = _thunderStrokeDataSO.ThunderDamages[level];
+        _thunderStrokeCoolTime = _weaponDataSO.ThunderStrokeCoolTimes[level];
+        _damage = _weaponDataSO.ThunderDamages[level];
     }
 
     void OnEnable()
@@ -83,7 +93,7 @@ public class ThunderStroke : Weapon
     {
         if (Player.Instance.IsAtropine)
         {
-            return _thunderStrokeDataSO.AtropineThunderStrokeCoolTimes[_weaponLevel];
+            return _weaponDataSO.AtropineThunderStrokeCoolTimes[_weaponLevel];
         }
         else
         {

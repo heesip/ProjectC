@@ -3,48 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Fjorgin : Weapon
+public class Fjorgin : Singleton<Fjorgin>
 {
     [SerializeField] GameObject _fjorgin;
     SpriteRenderer _fjorginSprite;
     Collider2D _collider;
 
-    [SerializeField] FjorginDataSO _fjorginDataSO;
+    [SerializeField] WeaponDataSO _weaponDataSO;
     Vector3 _readyPosition;
     Vector3 _rotateDirection;
     Vector3 _rotateVector;
     Quaternion _readyRotation;
     float _rotate360Duration;
     float _rotate90Duration;
-    WaitForSeconds _oneSecond;
 
-    protected override void Initialize()
+    readonly int _maxLevel = 2;
+    int _weaponLevel;
+
+    WaitForSeconds _oneSecond;
+    WaitForSeconds _coolTime;
+
+    void Initialize()
     {
-        _fjorginDataSO = GameDataManager.Instance.GetFjorginDataSO();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _collider = _fjorgin.GetComponent<Collider2D>();
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
         _fjorgin.transform.Translate(transform.up);
     }
 
-    protected override void FixedValue()
+    void FixedValue()
     {
-        _readyPosition = _fjorginDataSO.FjorginPosition;
-        _rotateDirection = _fjorginDataSO.FjorginRotateDirection;
-        _rotateVector = _fjorginDataSO.FjorginAttack;
-        _readyRotation = _fjorginDataSO.FjorginRotation;
-        _rotate360Duration = _fjorginDataSO.Fjorgin360RotateDuration;
-        _rotate90Duration = _fjorginDataSO.Fjorgin90RotateDuration;
-        _coolTime = _fjorginDataSO.FjorginCoolTime;
-        _oneSecond = _fjorginDataSO.OneSecond;
+        _readyPosition = _weaponDataSO.FjorginPosition;
+        _rotateDirection = _weaponDataSO.FjorginRotateDirection;
+        _rotateVector = _weaponDataSO.FjorginAttack;
+        _readyRotation = _weaponDataSO.FjorginRotation;
+        _rotate360Duration = _weaponDataSO.Fjorgin360RotateDuration;
+        _rotate90Duration = _weaponDataSO.Fjorgin90RotateDuration;
+        _coolTime = _weaponDataSO.FjorginCoolTime;
+        _oneSecond = _weaponDataSO.OneSecond;
     }
 
-    public override void UseWeapon()
+    public void UseWeapon()
     {
         if (gameObject.activeSelf)
         {
             LevelUp();
         }
         gameObject.SetActive(true);
+    }
+
+    void Awake()
+    {
+        Initialize();
+        FixedValue();
     }
 
     void LevelUp()
@@ -78,7 +89,7 @@ public class Fjorgin : Weapon
             AttackPosition();
             yield return _oneSecond;
             FjorginBuff fjorginBuff = FactoryManager.Instance.GetFjorginBuff();
-            fjorginBuff.transform.position = transform.position + _fjorginDataSO.FjorginBuffPosition;
+            fjorginBuff.transform.position = transform.position + _weaponDataSO.FjorginBuffPosition;
             fjorginBuff.MagicSquare(_rotate360Duration);
             Tween rotate360 = transform.DORotate(_rotateDirection, _rotate360Duration, RotateMode.FastBeyond360);
             yield return rotate360.WaitForCompletion();

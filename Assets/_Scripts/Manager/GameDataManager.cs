@@ -10,38 +10,11 @@ public class GameDataManager : Singleton<GameDataManager>
     {
         _gameDataSystem.Initialize();
     }
-    #region WeaponData
-    public Mk2DataSO GetMk2DataSO()
+  
+    public WeaponDataSO GetWeaponDataSO()
     {
-        return _gameDataSystem.GetMk2DataSO();
+        return _gameDataSystem.GetWeaponDataSO();
     }
-
-    public DronDataSO GetDronDataSO()
-    {
-        return _gameDataSystem.GetDronDataSO();
-    }
-
-    public FjorginDataSO GetFjorginDataSO()
-    {
-        return _gameDataSystem.GetFjorginDataSO();
-    }
-
-    public ElectrodeDataSO GetElectrodeDataSO()
-    {
-        return _gameDataSystem.GetElectrodeDataSO();
-    }
-
-    public ThunderStrokeDataSO GetThunderStrokeDataSO()
-    {
-        return _gameDataSystem.GetThunderStrokeDataSO();
-    }
-
-    public NinjaStarBoxDataSO GetNinjaStarBoxDataSO()
-    {
-        return _gameDataSystem.GetNinjaStarBoxDataSO();
-    }
-
-    #endregion
 
     public EnemyDataSO GetEnemyDataSO()
     {

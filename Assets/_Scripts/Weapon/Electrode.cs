@@ -2,36 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Electrode : Weapon
+public class Electrode : Singleton<Electrode>
 {
-    [SerializeField] ElectrodeDataSO _electrodeDataSO;
+    [SerializeField] WeaponDataSO _weaponDataSO;
     Collider2D _collider;
     SpriteRenderer _spriteRenderer;
 
+    readonly int _maxLevel = 2;
+    int _weaponLevel;
+
+    int _count;
+    float _damage;
     float _electrodeSize;
+    WaitForSeconds _coolTime;
     WaitForSeconds _attackDelay;
 
 
-    protected override void Initialize()
+    void Initialize()
     {
-        _electrodeDataSO = GameDataManager.Instance.GetElectrodeDataSO();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _collider = GetComponent<Collider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    protected override void FixedValue()
+    void FixedValue()
     {
-        _count = _electrodeDataSO.ElectrodeCount;
-        _attackDelay = _electrodeDataSO.AttackDelay;
+        _count = _weaponDataSO.ElectrodeCount;
+        _attackDelay = _weaponDataSO.AttackDelay;
     }
 
-    public override void UseWeapon()
+    public void UseWeapon()
     {
         if (gameObject.activeSelf)
         {
             LevelUp();
         }
         gameObject.SetActive(true);
+    }
+    void Awake()
+    {
+        Initialize();
+        FixedValue();
     }
 
     void LevelUp()
@@ -46,8 +57,8 @@ public class Electrode : Weapon
 
     void LevelValue(int level)
     {
-        _coolTime = _electrodeDataSO.ElectrodeCoolTimes[level];
-        _electrodeSize = _electrodeDataSO.ElectrodeSizes[level];
+        _coolTime = _weaponDataSO.ElectrodeCoolTimes[level];
+        _electrodeSize = _weaponDataSO.ElectrodeSizes[level];
     }
 
     void OnEnable()
@@ -85,12 +96,12 @@ public class Electrode : Weapon
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_electrodeDataSO.AtropineElectrodeCoolTimes[_weaponLevel],
-                    _electrodeDataSO.AtropineElectrodeDamage);
+            return (_weaponDataSO.AtropineElectrodeCoolTimes[_weaponLevel],
+                    _weaponDataSO.AtropineElectrodeDamage);
         }
         else
         {
-            return (_coolTime, _electrodeDataSO.ElectrodeDamage);
+            return (_coolTime, _weaponDataSO.ElectrodeDamage);
         }
     }
 
