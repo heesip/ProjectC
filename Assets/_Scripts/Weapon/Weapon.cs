@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : Singleton<Weapon>
 {
     protected readonly int _maxLevel = 2;
     protected int _weaponLevel;

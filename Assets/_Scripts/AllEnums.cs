@@ -7,3 +7,18 @@ public enum PotionType
     SpiritPotion = 4,
     Atropine = 5
 }
+
+public enum SelectUIType
+{
+    None = 0,
+    Dron = 1,
+    Electrode = 2,
+    Fjorgin = 3 ,
+    Mk2 = 4 ,
+    NinjaStar = 5,
+    Thunder = 6,
+    DonePiece = 7,
+    Atropine = 8,
+    Emergency = 9,
+    HealPotion = 10
+}

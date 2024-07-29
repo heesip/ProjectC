@@ -15,7 +15,7 @@ public class PotionDataSO : ScriptableObject
 
     public readonly int[] HealingPoints = new int[]
     {
-       0, 15, 30, 45, 60, -20
+       0, 15, 30, 45, 60, -25
     };
 
 }

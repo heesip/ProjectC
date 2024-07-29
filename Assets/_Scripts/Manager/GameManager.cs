@@ -23,6 +23,18 @@ public class GameManager : Singleton<GameManager>
         set;
     }
 
+    public void Stop()
+    {
+        _isGame = false;
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        _isGame = true;
+        Time.timeScale = 1;
+    }
+
     void Awake()
     {
         _isGame = false;
@@ -67,6 +79,7 @@ public class GameManager : Singleton<GameManager>
         _startButton.gameObject.SetActive(false);
         UIManager.Instance.GameStartUISetting();
         Spawner.Instance.gameObject.SetActive(true);
+        LevelUp.Instance.Show();
     }
 
     void AchieveCheck()

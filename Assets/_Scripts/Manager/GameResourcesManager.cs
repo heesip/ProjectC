@@ -76,4 +76,54 @@ public class GameResourcesManager : Singleton<GameResourcesManager>
     }
     #endregion
 
+    #region UIBox
+    public SelectBoxType DronBox()
+    {
+        return _gameResourcesSystem.DronBox();
+    }
+    public SelectBoxType ElectrodeBox()
+    {
+        return _gameResourcesSystem.ElectrodeBox();
+    }
+
+    public SelectBoxType FjorginBox()
+    {
+        return _gameResourcesSystem.FjorginBox();
+    }
+
+    public SelectBoxType Mk2Box()
+    {
+        return _gameResourcesSystem.Mk2Box();
+    }
+
+    public SelectBoxType NinjaStarBox()
+    {
+        return _gameResourcesSystem.NinjaStarBox();
+    }
+
+    public SelectBoxType ThunderBox()
+    {
+        return _gameResourcesSystem.ThunderBox();
+    }
+
+    public SelectBoxType DonePieceBox()
+    {
+        return _gameResourcesSystem.DonePieceBox();
+    }
+
+    public SelectBoxType AtropineBox()
+    {
+        return _gameResourcesSystem.AtropineBox();
+    }
+
+    public SelectBoxType EmergencyBox()
+    {
+        return _gameResourcesSystem.EmergencyBox();
+    }
+
+    public SelectBoxType HealPotionBox()
+    {
+        return _gameResourcesSystem.HealPotionBox();
+    }
+    #endregion
 }

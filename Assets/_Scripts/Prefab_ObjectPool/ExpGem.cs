@@ -19,7 +19,6 @@ public class ExpGem : RecycleObject
             return;
         }
         FlyExpGem();
-        Player.Instance.GetExpGem();
     }
 
     void FlyExpGem()
@@ -37,6 +36,7 @@ public class ExpGem : RecycleObject
         Vector3 target = gameObject.transform.position + direction;
         sequence.Append(transform.DOMove(target, _duration));
         sequence.Append(transform.DOMove(playerPosition, _duration));
+        Player.Instance.GetExpGem();
         sequence.Join(transform.DOScale(Vector3.zero,_duration)).OnComplete(Restore);
     }
 

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1c32050bea649fba28b158772aecee, type: 3}
+  m_Name: UIPrefabResourcesSO
+  m_EditorClassIdentifier: 
+  _dronBox: {fileID: -5165360498840328130, guid: aacbf4f2daf0b46388964b8f4c9b9e0d, type: 3}
+  _electrodeBox: {fileID: -2317142332851822037, guid: 2e8dd4acaea5f4bf08e6a43abbc16778, type: 3}
+  _fjorginBox: {fileID: -6488780201402414800, guid: ca40740d5883443c0a7caf66edbebde9, type: 3}
+  _mk2Box: {fileID: 1291034916244499108, guid: 2438b9f172d6845659e5a073d5e31531, type: 3}
+  _ninjaStarBox: {fileID: 6314003588396376774, guid: 6b25678fcece24303956bb2a90e64a81, type: 3}
+  _thunderBox: {fileID: 365692516327487903, guid: 7cd766280e7ca4dd49ded048de8265e9, type: 3}
+  _donePieceBox: {fileID: 7271665206250824311, guid: 609d9fdde7d504a5ca6dcf146bad5119, type: 3}
+  _atropineBox: {fileID: -5772156244849020919, guid: c4f52c991e0ce431b88c0691b3729f95, type: 3}
+  _emergencyBox: {fileID: 3217491979422377423, guid: 0dd76fb5cf3024d1aa848e6a4bfb4ffd, type: 3}
+  _healPotionBox: {fileID: 40588068807548925, guid: f13d511cee93c45f0b3e3e79fad77220, type: 3}

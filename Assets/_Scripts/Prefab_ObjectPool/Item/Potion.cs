@@ -13,7 +13,7 @@ public class Potion : Item
     bool _isAtropine;
     public int HealingPoint => _healingPoint;
 
-    private void Awake()
+    void Awake()
     {
         _potionDataSO = GameDataManager.Instance.GetPotionDataSO();
         _spriteRenderer = GetComponent<SpriteRenderer>();

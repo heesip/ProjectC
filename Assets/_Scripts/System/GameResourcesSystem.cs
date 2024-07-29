@@ -5,10 +5,12 @@ using UnityEngine;
 public class GameResourcesSystem
 {
     PrefabResourcesSO _prefabResourcesSO;
+    UIPrefabResourcesSO _uIPrefabResourcesSO;
 
     public void Initialize()
     {
         _prefabResourcesSO = Resources.Load<PrefabResourcesSO>(nameof(PrefabResourcesSO));
+        _uIPrefabResourcesSO = Resources.Load<UIPrefabResourcesSO>(nameof(UIPrefabResourcesSO));
     }
 
     public Enemy GetEnemyPrefab()
@@ -76,4 +78,55 @@ public class GameResourcesSystem
     }
     #endregion
 
+    #region UIBox
+    public SelectBoxType DronBox()
+    {
+        return _uIPrefabResourcesSO.DronBox();
+    }
+
+    public SelectBoxType ElectrodeBox()
+    {
+        return _uIPrefabResourcesSO.ElectrodeBox();
+    }
+
+    public SelectBoxType FjorginBox()
+    {
+        return _uIPrefabResourcesSO.FjorginBox();
+    }
+
+    public SelectBoxType Mk2Box()
+    {
+        return _uIPrefabResourcesSO.Mk2Box();
+    }
+
+    public SelectBoxType NinjaStarBox()
+    {
+        return _uIPrefabResourcesSO.NinjaStarBox();
+    }
+
+    public SelectBoxType ThunderBox()
+    {
+        return _uIPrefabResourcesSO.ThunderBox();
+    }
+
+    public SelectBoxType DonePieceBox()
+    {
+        return _uIPrefabResourcesSO.DonePieceBox();
+    }
+
+    public SelectBoxType AtropineBox()
+    {
+        return _uIPrefabResourcesSO.AtropineBox();
+    }
+
+    public SelectBoxType EmergencyBox()
+    {
+        return _uIPrefabResourcesSO.EmergencyBox();
+    }
+
+    public SelectBoxType HealPotionBox()
+    {
+        return _uIPrefabResourcesSO.HealPotionBox();
+    }
+    #endregion
 }
