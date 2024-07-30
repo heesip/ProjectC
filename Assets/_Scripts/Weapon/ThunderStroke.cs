@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class ThunderStroke : Singleton<ThunderStroke>
 {
-    [SerializeField] WeaponDataSO _weaponDataSO;
+    WeaponDataSO _weaponDataSO;
 
     TargetSystem _targetSystem = new TargetSystem();
-    [SerializeField] Transform _randomTarget;
+    Transform _randomTarget;
     Vector3 _playerPosition => Player.Instance.transform.position;
     WaitForSeconds _thunderStrokeCoolTime;
     WaitForSeconds _targetNullCoolTime;
@@ -17,16 +17,6 @@ public class ThunderStroke : Singleton<ThunderStroke>
     int _weaponLevel;
 
     float _damage;
-
-    void Initialize()
-    {
-        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
-    }
-
-    void FixedValue()
-    {
-        _targetNullCoolTime = _weaponDataSO.ThunderStrokeCoolTimes[_maxLevel];
-    }
 
     public void UseWeapon()
     {
@@ -38,8 +28,19 @@ public class ThunderStroke : Singleton<ThunderStroke>
     }
     void Awake()
     {
-        Initialize();
-        FixedValue();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
+        _targetNullCoolTime = _weaponDataSO.ThunderStrokeCoolTimes[_maxLevel];
+    }
+
+    void OnEnable()
+    {
+        LevelValue(_weaponLevel);
+        _attackCoHandle = StartCoroutine(AttackCo());
+    }
+
+    void OnDisable()
+    {
+        StopCoHandle(_attackCoHandle);
     }
 
     void LevelUp()
@@ -55,17 +56,6 @@ public class ThunderStroke : Singleton<ThunderStroke>
     {
         _thunderStrokeCoolTime = _weaponDataSO.ThunderStrokeCoolTimes[level];
         _damage = _weaponDataSO.ThunderDamages[level];
-    }
-
-    void OnEnable()
-    {
-        LevelValue(_weaponLevel);
-        _attackCoHandle = StartCoroutine(AttackCo());
-    }
-
-    void OnDisable()
-    {
-        StopCoHandle(_attackCoHandle);
     }
 
     Coroutine _attackCoHandle;
@@ -85,7 +75,6 @@ public class ThunderStroke : Singleton<ThunderStroke>
             {
                 yield return _targetNullCoolTime;
             }
-
         }
     }
 
@@ -108,6 +97,4 @@ public class ThunderStroke : Singleton<ThunderStroke>
             StopCoroutine(coHandle);
         }
     }
-
-
 }

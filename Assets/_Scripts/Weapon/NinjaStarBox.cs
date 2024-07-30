@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class NinjaStarBox : Singleton<NinjaStarBox>
 {
-    [SerializeField] WeaponDataSO _weaponDataSO;
-    [SerializeField] TargetSystem _targetSystem = new TargetSystem();
+    WeaponDataSO _weaponDataSO;
+    TargetSystem _targetSystem = new TargetSystem();
     Transform _nearestTarget;
     Vector3 _playerPosition => Player.Instance.transform.position;
     Vector3 _attackDirection => Player.Instance.AttackDirection;
@@ -21,18 +21,6 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     float _speed;
     WaitForSeconds _coolTime;
 
-    void Initialize()
-    {
-        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
-    }
-
-    void FixedValue()
-    {
-        _projectileRotate = _weaponDataSO.ProjectileRotate;
-        _speed = _weaponDataSO.NinjaStarSpeed;
-        _duration = _weaponDataSO.NinjaStarDuration;
-    }
-
     public void UseWeapon()
     {
         if (gameObject.activeSelf)
@@ -43,13 +31,14 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     }
     void Awake()
     {
-        Initialize();
-        FixedValue();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
+        _projectileRotate = _weaponDataSO.ProjectileRotate;
+        _speed = _weaponDataSO.NinjaStarSpeed;
+        _duration = _weaponDataSO.NinjaStarDuration;
     }
 
     void OnEnable()
     {
-        FixedValue();
         LevelValue(_weaponLevel);
         _throwingNinjaStarCoHandle = StartCoroutine(ThrowingNinjaStarCo());
     }
@@ -94,7 +83,6 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
         {
             return (_coolTime, _damage);
         }
-
     }
 
     void ThrowingNinjaStar(float ninjaStarDamage)
@@ -124,5 +112,4 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
             StopCoroutine(coHandle);
         }
     }
-
 }

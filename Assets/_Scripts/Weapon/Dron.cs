@@ -7,8 +7,8 @@ public class Dron : Singleton<Dron>
 {
     [SerializeField] Transform _dronAttackPoint1;
     [SerializeField] Transform _dronAttackPoint2;
-    [SerializeField] SpriteRenderer _spriteRenderer;
-    [SerializeField] WeaponDataSO _weaponDataSO;
+    SpriteRenderer _spriteRenderer;
+    WeaponDataSO _weaponDataSO;
     Vector3 _rightPosition;
     Vector3 _leftPosition;
 
@@ -20,22 +20,6 @@ public class Dron : Singleton<Dron>
     float _damage;
     float _speed;
     WaitForSeconds _coolTime;
-
-    void Initialize()
-    {
-        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    void FixedValue()
-    {
-        _rightPosition = _weaponDataSO.DronRightPosition;
-        _leftPosition = _weaponDataSO.DronLeftPosition;
-        _count = _weaponDataSO.DronCount;
-        _speed = _weaponDataSO.DronSpeed;
-        _range = _weaponDataSO.DronRange;
-    }
-
     public void UseWeapon()
     {
         if (gameObject.activeSelf)
@@ -46,8 +30,31 @@ public class Dron : Singleton<Dron>
     }
     void Awake()
     {
-        Initialize();
-        FixedValue();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
+        _rightPosition = _weaponDataSO.DronRightPosition;
+        _leftPosition = _weaponDataSO.DronLeftPosition;
+        _count = _weaponDataSO.DronCount;
+        _speed = _weaponDataSO.DronSpeed;
+        _range = _weaponDataSO.DronRange;
+    }
+
+    void LateUpdate()
+    {
+        bool isReverse = Player.Instance.IsLeft;
+        _spriteRenderer.flipX = isReverse;
+        transform.localPosition = isReverse ? _leftPosition : _rightPosition;
+    }
+
+    void OnEnable()
+    {
+        _attackCoHandle = StartCoroutine(AttackCo());
+        LevelValue(_weaponLevel);
+    }
+
+    void OnDisable()
+    {
+        StopAttackCo();
     }
 
     void LevelUp()
@@ -65,21 +72,7 @@ public class Dron : Singleton<Dron>
         _damage = _weaponDataSO.DronDamages[level];
     }
 
-    void LateUpdate()
-    {
-        bool isReverse = Player.Instance.IsLeft;
-        _spriteRenderer.flipX = isReverse;
-        transform.localPosition = isReverse ? _leftPosition : _rightPosition;
-    }
-
-    void OnEnable()
-    {
-        _attackCoHandle = StartCoroutine(AttackCo());
-        LevelValue(_weaponLevel);
-    }
-
     Coroutine _attackCoHandle;
-
     IEnumerator AttackCo()
     {
         while (true)
@@ -91,10 +84,11 @@ public class Dron : Singleton<Dron>
                 Vector3 attackPoint = i % 2 == 0 ? _dronAttackPoint1.position : _dronAttackPoint2.position;
                 Missile missile = FactoryManager.Instance.GetMissile();
                 missile.AttackPoint(attackPoint);
-                missile.Shoting(NextVector().x, _speed, CheckAtropine().damage);
+                missile.Shoting(_targetVecter.x, _speed, CheckAtropine().damage);
             }
         }
     }
+    Vector2 _targetVecter => transform.position + (Player.Instance.IsLeft ? Vector3.left : Vector3.right) * _range;
 
     (WaitForSeconds coolTime, float damage) CheckAtropine()
     {
@@ -109,21 +103,11 @@ public class Dron : Singleton<Dron>
         }
     }
 
-    Vector2 NextVector()
-    {
-        return transform.position + (Player.Instance.IsLeft ? Vector3.left : Vector3.right) * _range;
-    }
-
     void StopAttackCo()
     {
         if (_attackCoHandle != null)
         {
             StopCoroutine(_attackCoHandle);
         }
-    }
-
-    void OnDisable()
-    {
-        StopAttackCo();
     }
 }

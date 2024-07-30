@@ -22,17 +22,16 @@ public class Fjorgin : Singleton<Fjorgin>
 
     WaitForSeconds _oneSecond;
     WaitForSeconds _coolTime;
-
-    void Initialize()
+    void Awake()
     {
-        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _collider = _fjorgin.GetComponent<Collider2D>();
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
-        _fjorgin.transform.Translate(transform.up);
+        _fjorgin.transform.Translate(transform.up); 
+        DataLoad();
     }
-
-    void FixedValue()
+    void DataLoad()
     {
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _readyPosition = _weaponDataSO.FjorginPosition;
         _rotateDirection = _weaponDataSO.FjorginRotateDirection;
         _rotateVector = _weaponDataSO.FjorginAttack;
@@ -52,11 +51,7 @@ public class Fjorgin : Singleton<Fjorgin>
         gameObject.SetActive(true);
     }
 
-    void Awake()
-    {
-        Initialize();
-        FixedValue();
-    }
+    
 
     void LevelUp()
     {

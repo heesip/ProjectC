@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Electrode : Singleton<Electrode>
 {
-    [SerializeField] WeaponDataSO _weaponDataSO;
+    WeaponDataSO _weaponDataSO;
     Collider2D _collider;
     SpriteRenderer _spriteRenderer;
 
@@ -17,20 +17,6 @@ public class Electrode : Singleton<Electrode>
     WaitForSeconds _coolTime;
     WaitForSeconds _attackDelay;
 
-
-    void Initialize()
-    {
-        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
-        _collider = GetComponent<Collider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    void FixedValue()
-    {
-        _count = _weaponDataSO.ElectrodeCount;
-        _attackDelay = _weaponDataSO.AttackDelay;
-    }
-
     public void UseWeapon()
     {
         if (gameObject.activeSelf)
@@ -39,10 +25,40 @@ public class Electrode : Singleton<Electrode>
         }
         gameObject.SetActive(true);
     }
+
     void Awake()
     {
-        Initialize();
-        FixedValue();
+        _collider = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
+        _count = _weaponDataSO.ElectrodeCount;
+        _attackDelay = _weaponDataSO.AttackDelay;
+    }
+
+    void OnEnable()
+    {
+        LevelValue(_weaponLevel);
+        transform.localScale = Vector3.one * _electrodeSize;
+        _attackCoHandle = StartCoroutine(AttackCo());
+    }
+
+    void OnDisable()
+    {
+        StopAttackCo();
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag(AllStrings.Enemy))
+        {
+            return;
+        }
+        var enemy = collision.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            enemy.OnDamage(gameObject, _damage);
+        }
     }
 
     void LevelUp()
@@ -59,18 +75,6 @@ public class Electrode : Singleton<Electrode>
     {
         _coolTime = _weaponDataSO.ElectrodeCoolTimes[level];
         _electrodeSize = _weaponDataSO.ElectrodeSizes[level];
-    }
-
-    void OnEnable()
-    {
-        LevelValue(_weaponLevel);
-        transform.localScale = Vector3.one * _electrodeSize;
-        _attackCoHandle = StartCoroutine(AttackCo());
-    }
-
-    void OnDisable()
-    {
-        StopAttackCo();
     }
 
     Coroutine _attackCoHandle;
@@ -110,20 +114,6 @@ public class Electrode : Singleton<Electrode>
         if (_attackCoHandle != null)
         {
             StopCoroutine(_attackCoHandle);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.CompareTag(AllStrings.Enemy))
-        {
-            return;
-        }
-        var enemy = collision.GetComponent<Enemy>();
-
-        if (enemy != null)
-        {
-            enemy.OnDamage(gameObject, _damage);
         }
     }
 }

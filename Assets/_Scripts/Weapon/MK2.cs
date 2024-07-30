@@ -8,9 +8,9 @@ using Unity.VisualScripting;
 public class Mk2 : Singleton<Mk2>
 {
     [SerializeField] GameObject _mk2;
-    [SerializeField] SpriteRenderer _mk2SpriteRenderer;
-    [SerializeField] Collider2D _collider;
-    [SerializeField] WeaponDataSO _weaponDataSO;
+    SpriteRenderer _mk2SpriteRenderer;
+    Collider2D _collider;
+    WeaponDataSO _weaponDataSO;
 
     Vector3 _rightPosition;
     Vector3 _leftPosition;
@@ -24,16 +24,42 @@ public class Mk2 : Singleton<Mk2>
     float _speed;
     WaitForSeconds _coolTime;
 
-    void Initialize()
+    void Awake()
     {
-        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _mk2SpriteRenderer = _mk2.GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
         _mk2.transform.Translate(transform.up, Space.World);
+        DataLoad();
     }
 
-    void FixedValue()
+    void OnEnable()
     {
+        _attackCoHandle = StartCoroutine(AttackCo());
+        LevelValue(_weaponLevel);
+    }
+
+    void OnDisable()
+    {
+        StopAttackCo();
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag(AllStrings.Enemy))
+        {
+            return;
+        }
+        var enemy = collision.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            enemy.OnDamage(gameObject, _damage);
+        }
+    }
+
+    void DataLoad()
+    {
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _mk2.transform.rotation = _weaponDataSO.Mk2Rotation;
         _rightPosition = _weaponDataSO.Mk2RightPosition;
         _leftPosition = _weaponDataSO.Mk2LeftPosition;
@@ -50,12 +76,6 @@ public class Mk2 : Singleton<Mk2>
         gameObject.SetActive(true);
     }
 
-    void Awake()
-    {
-        Initialize();
-        FixedValue();
-    }
-
     void LevelUp()
     {
         WeaponReturn();
@@ -70,16 +90,6 @@ public class Mk2 : Singleton<Mk2>
     {
         _coolTime = _weaponDataSO.Mk2CoolTimes[level];
         _count = _weaponDataSO.Mk2Counts[level];
-    }
-
-    void OnEnable()
-    {
-        _attackCoHandle = StartCoroutine(AttackCo());
-        LevelValue(_weaponLevel);
-    }
-    void OnDisable()
-    {
-        StopAttackCo();
     }
 
     Vector3 EndValue()
@@ -137,19 +147,5 @@ public class Mk2 : Singleton<Mk2>
         _collider.enabled = false;
         _mk2SpriteRenderer.enabled = false;
         transform.SetParent(Player.Instance.transform);
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!collision.CompareTag(AllStrings.Enemy))
-        {
-            return;
-        }
-        var enemy = collision.GetComponent<Enemy>();
-
-        if (enemy != null)
-        {
-            enemy.OnDamage(gameObject, _damage);
-        }
     }
 }
