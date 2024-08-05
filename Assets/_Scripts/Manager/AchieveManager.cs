@@ -17,7 +17,7 @@ public class AchieveManager : Singleton<AchieveManager>
     public bool IsActiveTitleClearEyes => _achieveSystem.IsActiveTitleClearEyes;
     public bool IsAchieveHidden => _achieveSystem.IsAchieveHidden;
 
-    public bool IsAchieveApple => _achieveSystem.IsAchieveApple;
+    public bool IsAchieveApple => _achieveSystem.IsAchieveTier0;
 
 
     public void Load()
@@ -60,8 +60,8 @@ public class AchieveManager : Singleton<AchieveManager>
         _achieveSystem.GetHiddenAchieve();
     }
 
-    public void GetAppleAchieve()
+    public void GetTier0Achieve()
     {
-        _achieveSystem.GetAppleAchieve();
+        _achieveSystem.GetTier0Achieve();
     }
 }

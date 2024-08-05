@@ -152,6 +152,82 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &934846400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934846401}
+  - component: {fileID: 934846403}
+  - component: {fileID: 934846402}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &934846401
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934846400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.56, y: 2.56, z: 2.56}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6204616451356640580}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 6.3515625, y: 7.6875}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &934846403
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934846400}
+  m_CullTransparentMesh: 1
+--- !u!114 &934846402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934846400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 32efe05236d084ecb983f68e0bc359b0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1005454852
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,7 +1097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: 0}
+  m_AnchoredPosition: {x: 14, y: -4}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2917436360001121947
@@ -1065,7 +1141,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC774\uAC78 \uC5BB\uC740 \uB2F9\uC2E0....\n\uD639\uC2DC \uC560\uD50C\uBE60?!"
+  m_Text: "\uC544\uB4DC+\uD654\uC5FC\uBCD1...\n(\uBC30\uBC14\uBC84\uAE30 \uC2DC\uB108\uC9C0)\n\uC5EC\uAE30\uC11C\uB3C4
+    \uBA39\uD790\uAE4C?"
 --- !u!1 &1601727751960337422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,9 +1154,8 @@ GameObject:
   - component: {fileID: 1553015323068270464}
   - component: {fileID: 257163549105739762}
   - component: {fileID: 6271919097215274326}
-  - component: {fileID: 585482918701687558}
   m_Layer: 5
-  m_Name: AppleUIBox
+  m_Name: Tier0UIBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1106,7 +1182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -66.899994}
+  m_AnchoredPosition: {x: -1, y: -66.89999}
   m_SizeDelta: {x: 90, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &257163549105739762
@@ -1147,50 +1223,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &585482918701687558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601727751960337422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 6271919097215274326}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1948364343226019314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6771676602553033925}
   m_Layer: 5
-  m_Name: Lock_Apple
+  m_Name: Lock_Tier0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1503,7 +1535,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: vdd
+  m_Text: dxd
 --- !u!1 &3246715117177455898
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,13 +3654,12 @@ MonoBehaviour:
     _hiddenAchieve: {fileID: 2415292889316528497}
     _star: {fileID: 2879602863288875864}
     _active: {fileID: 899695878}
-  _appleUIBox:
-    AppleButton: {fileID: 585482918701687558}
-    _appleUnlock: {fileID: 6312182131274392306}
-    _appleLock: {fileID: 1948364343226019314}
+  _tier0UIBox:
+    _tier0Unlock: {fileID: 6312182131274392306}
+    _tier0Lock: {fileID: 1948364343226019314}
     _star: {fileID: 4170860092542238838}
   _titleUI: {fileID: 1042521081}
-  _appleButton: {fileID: 1368690316}
+  _tier0Button: {fileID: 1368690316}
 --- !u!1 &3861818907381012606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4506,7 +4537,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "[\uC544\uC774\uD3F0 09:41]"
+  m_Text: "[0\uD2F0\uC5B4]"
 --- !u!1 &4072675833596080480
 GameObject:
   m_ObjectHideFlags: 0
@@ -4894,7 +4925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: -1}
+  m_AnchoredPosition: {x: 15, y: -4}
   m_SizeDelta: {x: 50, y: 15.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2153885870798665720
@@ -4938,8 +4969,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uC774\uAC78 \uCC3E\uC744 \uC218 \uC788\uC744\uAE4C? \n-\uAC8C\uC784\uACFC
-    \uBB34\uAD00\uD568-"
+  m_Text: "\uC774\uAC70\uBA74 \uD0C0\uC774\uD0C8\uB85C\uC2A4\uB294\n3\uBD84 \uCEF7!\n(\uC5B4\uB518\uAC00\uC5D0
+    \uC228\uACA8\uC838\uC788\uB2E4.)"
 --- !u!1 &5264784949929754953
 GameObject:
   m_ObjectHideFlags: 0
@@ -5254,7 +5285,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 934846401}
   m_Father: {fileID: 8722306526308717080}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5391,7 +5423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8722306526308717080}
   m_Layer: 5
-  m_Name: Unlock_Apple
+  m_Name: Unlock_Tier0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,7 +14,7 @@ public class AchieveSystem
         LoadAchieve(AchieveMadness, out _isAchieveMadness);
         LoadAchieve(AchieveClearEyes, out _isAchieveClearEyes);
         LoadAchieve(AchieveHidden, out _isAchieveHiiden);
-        LoadAchieve(AchieveApple, out _isAchieveApple);
+        LoadAchieve(AchieveTier0, out _isAchieveTier0);
         LoadTitleActive(ActiveTitleMadness, out _isActiveTitleMadness);
         LoadTitleActive(ActiveTitleClearEyes, out _isActiveTitileClearEyes);
     }
@@ -192,22 +192,22 @@ public class AchieveSystem
     }
     #endregion
 
-    #region Apple
-    readonly string AchieveApple = "AchieveApple";
+    #region Tier0
+    readonly string AchieveTier0 = "AchieveTier0";
 
-    bool _isAchieveApple;
-    public bool IsAchieveApple => _isAchieveApple;
+    bool _isAchieveTier0;
+    public bool IsAchieveTier0 => _isAchieveTier0;
 
-    public void GetAppleAchieve()
+    public void GetTier0Achieve()
     {
-        if (IsAchieveApple)
+        if (IsAchieveTier0)
         {
             return;
         }
-        _isAchieveApple = true;
+        _isAchieveTier0 = true;
         NoticeUI.Instance.NoticeStopCoHandle();
-        NoticeUI.Instance.AppleNotice();
-        SaveAchieve(AchieveApple, _isAchieveApple);
+        NoticeUI.Instance.Tier0Notice();
+        SaveAchieve(AchieveTier0, _isAchieveTier0);
     }
     #endregion
 }

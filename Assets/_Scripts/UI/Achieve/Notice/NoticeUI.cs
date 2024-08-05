@@ -10,7 +10,7 @@ public class NoticeUI : Singleton<NoticeUI>
     [SerializeField] DonepieceNotice _donepieceNotice = new DonepieceNotice();
     [SerializeField] MadnessNotice _madnessNotice = new MadnessNotice();
     [SerializeField] ClearEyesNotice _clearEyesNotice = new ClearEyesNotice();
-    [SerializeField] AppleNotice _appleNotice = new AppleNotice();
+    [SerializeField] Tier0Notice _tier0Notice = new Tier0Notice();
     
     void Awake()
     {
@@ -33,9 +33,9 @@ public class NoticeUI : Singleton<NoticeUI>
         _noticeCoHandle = StartCoroutine(NoticeCo(_clearEyesNotice));
     }
 
-    public void AppleNotice()
+    public void Tier0Notice()
     {
-        _noticeCoHandle = StartCoroutine(NoticeCo(_appleNotice));
+        _noticeCoHandle = StartCoroutine(NoticeCo(_tier0Notice));
     }
 
     public void NoticeStopCoHandle()
@@ -63,7 +63,7 @@ public class NoticeUI : Singleton<NoticeUI>
         _donepieceNotice.Hide();
         _madnessNotice.Hide();
         _clearEyesNotice.Hide();
-        _appleNotice.Hide();
+        _tier0Notice.Hide();
     }
 
     void Show()

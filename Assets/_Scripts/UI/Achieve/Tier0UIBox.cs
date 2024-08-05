@@ -4,22 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class AppleUIBox
+public class Tier0UIBox
 {
-    public Button AppleButton;
-    [SerializeField] GameObject _appleUnlock;
-    [SerializeField] GameObject _appleLock;
+    [SerializeField] GameObject _tier0Unlock;
+    [SerializeField] GameObject _tier0Lock;
 
     [SerializeField] GameObject _star;
 
-    public void AppleUILoad()
+    public void Tier0UILoad()
     {
         if (!AchieveManager.Instance.IsAchieveApple)
         {
             return;
         }
         _star.SetActive(true);
-        _appleLock.SetActive(false);
-        _appleUnlock.SetActive(true);
+        _tier0Lock.SetActive(false);
+        _tier0Unlock.SetActive(true);
     }
 }

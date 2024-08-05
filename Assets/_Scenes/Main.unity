@@ -413,6 +413,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1593390429}
     m_Modifications:
+    - target: {fileID: 3072501736248422126, guid: ae6d576dbfd174faf8ea2c3853db3c64, type: 3}
+      propertyPath: m_Text
+      value: "00\uB97C\uBA39\uACE0 000\uC744 \uC4F0\uBA74\n\uD0C0\uC774\uD0C8\uB85C\uC2A4\uB294
+        3\uBD84 \uCEF7!\n(\uC5B4\uB518\uAC00\uC5D0 \uC228\uACA8\uC838\uC788\uB2E4.)"
+      objectReference: {fileID: 0}
     - target: {fileID: 3861818907364234218, guid: ae6d576dbfd174faf8ea2c3853db3c64, type: 3}
       propertyPath: m_Name
       value: AchieveUI
@@ -538,7 +543,7 @@ GameObject:
   - component: {fileID: 235993156}
   - component: {fileID: 235993157}
   m_Layer: 0
-  m_Name: MK2
+  m_Name: Mk2
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5607,7 +5612,7 @@ GameObject:
   - component: {fileID: 1967462700}
   - component: {fileID: 1967462701}
   m_Layer: 0
-  m_Name: MK2_Position
+  m_Name: Mk2_Position
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
