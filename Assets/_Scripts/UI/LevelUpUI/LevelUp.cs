@@ -19,8 +19,16 @@ public class LevelUp : Singleton<LevelUp>
 
     RectTransform _rectTransform;
 
+    void Start()
+    {
+        _rectTransform = GetComponent<RectTransform>();
+        _selectBoxs = GetComponentsInChildren<SelectBox>();
+        InitializeSelectBox();
+    }
+
     public void Show()
     {
+        Batch();
         _rectTransform.localScale = Vector3.one;
         GameManager.Instance.Stop();
     }
@@ -28,22 +36,8 @@ public class LevelUp : Singleton<LevelUp>
     public void Hide()
     {
         _rectTransform.localScale = Vector3.zero;
+        Recover();
         GameManager.Instance.Resume();
-    }
-
-    //public void Batch()
-    //{
-    //    _dronBox.transform.SetParent(_selectBoxs[1].transform);
-    //    _dronBox.transform.localScale = Vector3.one;
-    //    _dronBox.transform.localPosition = Vector3.zero;
-    //    Test();
-    //}
-
-    void Start()
-    {
-        _rectTransform = GetComponent<RectTransform>();
-        _selectBoxs = GetComponentsInChildren<SelectBox>();
-        InitializeSelectBox();
     }
 
     void InitializeSelectBox()
@@ -70,60 +64,55 @@ public class LevelUp : Singleton<LevelUp>
         _healPotionBox.transform.SetParent(_tempObject.transform);
     }
 
-    int RandomItem()
+    SelectBoxType RandomItem()
     {
-        int randomNumber = Random.Range(0, 7);
+        int randomNumber = Random.Range(0, 6);
         switch (randomNumber)
         {
             case 0:
-                return randomNumber;
+                return _dronBox;
             case 1:
-                return randomNumber;
+                return _electrodeBox;
             case 2:
-                return randomNumber;
+                return _fjorginBox;
             case 3:
-                return randomNumber;
+                return _mk2Box;
             case 4:
-                return randomNumber;
+                return _ninjaStarBox;
             case 5:
-                return randomNumber;
-            case 6:
-                return randomNumber;
-
+                return _thunderBox;
             default:
-                return randomNumber;
+                return _emergencyBox;
         }
     }
 
-    void Test()
+    void Batch()
     {
-        int a = RandomItem();
-        int b = RandomItem();
-        int c = RandomItem();
-
         while (true)
         {
-            if (a == b)
-            {
-                b = RandomItem();
-            }
+            SelectBoxType selectA = RandomItem();
+            SelectBoxType selectB = RandomItem();
+            SelectBoxType selectC = RandomItem();
 
-            else if (a == c)
+            if (selectA != selectB && selectA != selectC && selectB != selectC)
             {
-                c = RandomItem();
-            }
-
-            else if (b == c)
-            {
-                c = RandomItem();
-            }
-            else
-            {
-                print(a);
-                print(b);
-                print(c);
+                selectA.transform.SetParent(_selectBoxs[0].transform);
+                selectA.transform.localScale = Vector3.one;
+                selectB.transform.SetParent(_selectBoxs[1].transform);
+                selectB.transform.localScale = Vector3.one;
+                selectC.transform.SetParent(_selectBoxs[2].transform);
+                selectC.transform.localScale = Vector3.one;
                 break;
             }
+        }
+    }
+
+    void Recover()
+    {
+        for (int i = 0; i < _selectBoxs.Length; i++)
+        {
+            SelectBoxType recoveBox = _selectBoxs[i].GetComponentInChildren<SelectBoxType>();
+            recoveBox.transform.SetParent(_tempObject.transform);
         }
     }
 }

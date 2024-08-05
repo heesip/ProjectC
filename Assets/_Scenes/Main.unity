@@ -735,8 +735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19daab04187ef41a192be6981585b630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thunderStrokeDataSO: {fileID: 0}
-  _randomTarget: {fileID: 0}
 --- !u!1 &487302535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fjorgin: {fileID: 505064509}
-  _fjorginDataSO: {fileID: 0}
+  _weaponDataSO: {fileID: 0}
 --- !u!1 &558234810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,7 +3552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2183fb2cd41e74117b8f6379c8a703be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _electrodeDataSO: {fileID: 0}
 --- !u!1 &1361769063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3769,7 +3766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4128b3ac65c984a58b498bfc0bb69e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ninjaStarBoxDataSO: {fileID: 0}
 --- !u!1001 &1433444399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5477,8 +5473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dronAttackPoint1: {fileID: 1452882775}
   _dronAttackPoint2: {fileID: 2024327649}
-  _spriteRenderer: {fileID: 0}
-  _dronDataSO: {fileID: 0}
 --- !u!1 &1937370154
 GameObject:
   m_ObjectHideFlags: 0
@@ -5648,9 +5642,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mk2: {fileID: 235993155}
-  _mk2SpriteRenderer: {fileID: 235993157}
-  _collider: {fileID: 0}
-  _mk2DataSO: {fileID: 0}
 --- !u!70 &1967462701
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

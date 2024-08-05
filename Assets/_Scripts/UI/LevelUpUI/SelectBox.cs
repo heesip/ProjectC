@@ -10,10 +10,10 @@ public class SelectBox : MonoBehaviour
     void Start()
     {
         _myButton = GetComponent<Button>();
-        _myButton.onClick.AddListener(() => Test());
+        _myButton.onClick.AddListener(() => UIClick());
     }
 
-    void Test()
+    void UIClick()
     {
         _myBoxType = GetComponentInChildren<SelectBoxType>();
         _myBoxType.Use();
