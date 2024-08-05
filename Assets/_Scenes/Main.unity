@@ -413,11 +413,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1593390429}
     m_Modifications:
-    - target: {fileID: 3072501736248422126, guid: ae6d576dbfd174faf8ea2c3853db3c64, type: 3}
-      propertyPath: m_Text
-      value: "00\uB97C\uBA39\uACE0 000\uC744 \uC4F0\uBA74\n\uD0C0\uC774\uD0C8\uB85C\uC2A4\uB294
-        3\uBD84 \uCEF7!\n(\uC5B4\uB518\uAC00\uC5D0 \uC228\uACA8\uC838\uC788\uB2E4.)"
-      objectReference: {fileID: 0}
     - target: {fileID: 3861818907364234218, guid: ae6d576dbfd174faf8ea2c3853db3c64, type: 3}
       propertyPath: m_Name
       value: AchieveUI
@@ -516,18 +511,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5967717066318992631, guid: ae6d576dbfd174faf8ea2c3853db3c64, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357371781548419003, guid: ae6d576dbfd174faf8ea2c3853db3c64, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357371781548419003, guid: ae6d576dbfd174faf8ea2c3853db3c64, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357371781548419003, guid: ae6d576dbfd174faf8ea2c3853db3c64, type: 3}
-      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
