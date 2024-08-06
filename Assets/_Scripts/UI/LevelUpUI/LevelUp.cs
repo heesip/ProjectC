@@ -18,19 +18,20 @@ public class LevelUp : Singleton<LevelUp>
     SelectBoxType _healPotionBox;
 
     RectTransform _rectTransform;
+    WaitForSeconds _loadWait;
+    bool _isAble;
 
     void Start()
     {
         _rectTransform = GetComponent<RectTransform>();
         _selectBoxs = GetComponentsInChildren<SelectBox>();
         InitializeSelectBox();
+        _isAble = true;
     }
 
     public void Show()
     {
-        Batch();
-        _rectTransform.localScale = Vector3.one;
-        GameManager.Instance.Stop();
+        _showCoHandle = StartCoroutine(ShowCo());
     }
 
     public void Hide()
@@ -86,8 +87,9 @@ public class LevelUp : Singleton<LevelUp>
         }
     }
 
-    void Batch()
+    void UIBatch()
     {
+        _isAble = false;
         while (true)
         {
             SelectBoxType selectA = RandomItem();
@@ -96,15 +98,20 @@ public class LevelUp : Singleton<LevelUp>
 
             if (selectA != selectB && selectA != selectC && selectB != selectC)
             {
-                selectA.transform.SetParent(_selectBoxs[0].transform);
-                selectA.transform.localScale = Vector3.one;
-                selectB.transform.SetParent(_selectBoxs[1].transform);
-                selectB.transform.localScale = Vector3.one;
-                selectC.transform.SetParent(_selectBoxs[2].transform);
-                selectC.transform.localScale = Vector3.one;
+                BoxSetting(selectA, _selectBoxs[0].transform);
+                BoxSetting(selectB, _selectBoxs[1].transform);
+                BoxSetting(selectC, _selectBoxs[2].transform);
                 break;
             }
         }
+    }
+
+    void BoxSetting(SelectBoxType selectBoxType, Transform transform)
+    {
+        selectBoxType.transform.SetParent(transform);
+        selectBoxType.transform.localPosition = Vector3.zero;
+        selectBoxType.transform.localScale = Vector3.one;
+
     }
 
     void Recover()
@@ -114,5 +121,19 @@ public class LevelUp : Singleton<LevelUp>
             SelectBoxType recoveBox = _selectBoxs[i].GetComponentInChildren<SelectBoxType>();
             recoveBox.transform.SetParent(_tempObject.transform);
         }
+        _isAble = true;
+    }
+
+    Coroutine _showCoHandle;
+    IEnumerator ShowCo()
+    {
+        if(!_isAble)
+        {
+            yield return new WaitUntil(() => _isAble);
+        }
+        UIBatch();
+        yield return _loadWait;
+        _rectTransform.localScale = Vector3.one;
+        GameManager.Instance.Stop();
     }
 }
