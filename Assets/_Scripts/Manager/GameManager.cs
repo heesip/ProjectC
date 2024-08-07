@@ -79,7 +79,8 @@ public class GameManager : Singleton<GameManager>
         _startButton.gameObject.SetActive(false);
         UIManager.Instance.GameStartUISetting();
         Spawner.Instance.gameObject.SetActive(true);
-        LevelUp.Instance.Show();
+        LevelUpUI.Instance.Ininialize();
+        LevelUpUI.Instance.Show();
     }
 
     void AchieveCheck()

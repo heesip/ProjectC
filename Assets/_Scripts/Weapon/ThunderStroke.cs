@@ -14,7 +14,8 @@ public class ThunderStroke : Singleton<ThunderStroke>
     WaitForSeconds _targetNullCoolTime;
 
     readonly int _maxLevel = 2;
-    int _weaponLevel;
+    int _level;
+    public int Level => _level;
 
     float _damage;
 
@@ -34,7 +35,7 @@ public class ThunderStroke : Singleton<ThunderStroke>
 
     void OnEnable()
     {
-        LevelValue(_weaponLevel);
+        LevelValue(_level);
         _attackCoHandle = StartCoroutine(AttackCo());
     }
 
@@ -46,9 +47,9 @@ public class ThunderStroke : Singleton<ThunderStroke>
     void LevelUp()
     {
         gameObject.SetActive(false);
-        if (_weaponLevel < _maxLevel)
+        if (_level < _maxLevel)
         {
-            _weaponLevel++;
+            _level++;
         }
     }
 
@@ -82,7 +83,7 @@ public class ThunderStroke : Singleton<ThunderStroke>
     {
         if (Player.Instance.IsAtropine)
         {
-            return _weaponDataSO.AtropineThunderStrokeCoolTimes[_weaponLevel];
+            return _weaponDataSO.AtropineThunderStrokeCoolTimes[_level];
         }
         else
         {

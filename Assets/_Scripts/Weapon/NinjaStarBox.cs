@@ -15,7 +15,8 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     float _duration;
 
     readonly int _maxLevel = 2;
-    int _weaponLevel;
+    int _level;
+    public int Level => _level;
 
     float _damage;
     float _speed;
@@ -39,7 +40,7 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
 
     void OnEnable()
     {
-        LevelValue(_weaponLevel);
+        LevelValue(_level);
         _throwingNinjaStarCoHandle = StartCoroutine(ThrowingNinjaStarCo());
     }
 
@@ -51,9 +52,9 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     void LevelUp()
     {
         gameObject.SetActive(false);
-        if (_weaponLevel < _maxLevel)
+        if (_level < _maxLevel)
         {
-            _weaponLevel++;
+            _level++;
         }
     }
     void LevelValue(int level)
@@ -76,8 +77,8 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_weaponDataSO.AtropineNinjaStarCoolTimes[_weaponLevel],
-                _weaponDataSO.AtroPineNinjaStarDamages[_weaponLevel]);
+            return (_weaponDataSO.AtropineNinjaStarCoolTimes[_level],
+                _weaponDataSO.AtroPineNinjaStarDamages[_level]);
         }
         else
         {

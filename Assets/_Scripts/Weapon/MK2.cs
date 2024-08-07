@@ -17,7 +17,8 @@ public class Mk2 : Singleton<Mk2>
     Vector3 _rotateDirection;
 
     readonly int _maxLevel = 2;
-    int _weaponLevel;
+    int _level;
+    public int Level => _level;
 
     int _count;
     float _damage;
@@ -35,7 +36,7 @@ public class Mk2 : Singleton<Mk2>
     void OnEnable()
     {
         _attackCoHandle = StartCoroutine(AttackCo());
-        LevelValue(_weaponLevel);
+        LevelValue(_level);
     }
 
     void OnDisable()
@@ -80,9 +81,9 @@ public class Mk2 : Singleton<Mk2>
     {
         WeaponReturn();
         gameObject.SetActive(false);
-        if (_weaponLevel < _maxLevel)
+        if (_level < _maxLevel)
         {
-            _weaponLevel++;
+            _level++;
         }
     }
 
@@ -116,7 +117,7 @@ public class Mk2 : Singleton<Mk2>
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_weaponDataSO.AtropineMk2CoolTimes[_weaponLevel], _weaponDataSO.AtropineMk2Damage);
+            return (_weaponDataSO.AtropineMk2CoolTimes[_level], _weaponDataSO.AtropineMk2Damage);
         }
         else
         {

@@ -18,7 +18,8 @@ public class Fjorgin : Singleton<Fjorgin>
     float _rotate90Duration;
 
     readonly int _maxLevel = 2;
-    int _weaponLevel;
+    int _level;
+    public int Level => _level;
 
     WaitForSeconds _oneSecond;
     WaitForSeconds _coolTime;
@@ -57,9 +58,9 @@ public class Fjorgin : Singleton<Fjorgin>
     {
         WeaponReturn();
         gameObject.SetActive(false);
-        if (_weaponLevel < _maxLevel)
+        if (_level < _maxLevel)
         {
-            _weaponLevel++;
+            _level++;
         }
     }
 

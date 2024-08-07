@@ -61,7 +61,7 @@ public class PlayerStatusSystem
             int tempExp = _nextExp[_nextExpValue] - _exp;
             _level++;
             _exp = tempExp;
-            LevelUp.Instance.Show();
+            LevelUpUI.Instance.Show();
         }
         UIManager.Instance.UpdateExpUI(_exp, _nextExp[_nextExpValue]);
     }

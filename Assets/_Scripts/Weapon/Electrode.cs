@@ -9,7 +9,8 @@ public class Electrode : Singleton<Electrode>
     SpriteRenderer _spriteRenderer;
 
     readonly int _maxLevel = 2;
-    int _weaponLevel;
+    int _level;
+    public int Level => _level;
 
     int _count;
     float _damage;
@@ -37,7 +38,7 @@ public class Electrode : Singleton<Electrode>
 
     void OnEnable()
     {
-        LevelValue(_weaponLevel);
+        LevelValue(_level);
         transform.localScale = Vector3.one * _electrodeSize;
         _attackCoHandle = StartCoroutine(AttackCo());
     }
@@ -65,9 +66,9 @@ public class Electrode : Singleton<Electrode>
     {
         _collider.enabled = false;
         gameObject.SetActive(false);
-        if (_weaponLevel < _maxLevel)
+        if (_level < _maxLevel)
         {
-            _weaponLevel++;
+            _level++;
         }
     }
 
@@ -100,7 +101,7 @@ public class Electrode : Singleton<Electrode>
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_weaponDataSO.AtropineElectrodeCoolTimes[_weaponLevel],
+            return (_weaponDataSO.AtropineElectrodeCoolTimes[_level],
                     _weaponDataSO.AtropineElectrodeDamage);
         }
         else

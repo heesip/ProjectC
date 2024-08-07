@@ -13,7 +13,8 @@ public class Dron : Singleton<Dron>
     Vector3 _leftPosition;
 
     readonly int _maxLevel = 2;
-    int _weaponLevel;
+    int _level;
+    public int Level => _level;
 
     int _count;
     int _range;
@@ -49,7 +50,7 @@ public class Dron : Singleton<Dron>
     void OnEnable()
     {
         _attackCoHandle = StartCoroutine(AttackCo());
-        LevelValue(_weaponLevel);
+        LevelValue(_level);
     }
 
     void OnDisable()
@@ -60,9 +61,9 @@ public class Dron : Singleton<Dron>
     void LevelUp()
     {
         gameObject.SetActive(false);
-        if (_weaponLevel < _maxLevel)
+        if (_level < _maxLevel)
         {
-            _weaponLevel++;
+            _level++;
         }
     }
 
@@ -94,8 +95,8 @@ public class Dron : Singleton<Dron>
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_weaponDataSO.AtropineDronCoolTimes[_weaponLevel],
-                _weaponDataSO.AtroPineDronDamages[_weaponLevel]);
+            return (_weaponDataSO.AtropineDronCoolTimes[_level],
+                _weaponDataSO.AtroPineDronDamages[_level]);
         }
         else
         {

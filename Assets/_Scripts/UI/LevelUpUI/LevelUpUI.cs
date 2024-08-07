@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelUp : Singleton<LevelUp>
+public class LevelUpUI : Singleton<LevelUpUI>
 {
     [SerializeField] GameObject _tempObject;
     SelectBox[] _selectBoxs;
@@ -16,22 +16,24 @@ public class LevelUp : Singleton<LevelUp>
     SelectBoxType _atropineBox;
     SelectBoxType _emergencyBox;
     SelectBoxType _healPotionBox;
+    SelectBoxType[] _weaponBox;
 
     RectTransform _rectTransform;
     WaitForSeconds _loadWait;
     bool _isAble;
 
-    void Start()
+    public void Ininialize()
     {
         _rectTransform = GetComponent<RectTransform>();
         _selectBoxs = GetComponentsInChildren<SelectBox>();
         InitializeSelectBox();
+        InitializeTempBox();
         _isAble = true;
     }
 
     public void Show()
     {
-        _showCoHandle = StartCoroutine(ShowCo());
+        _showCoHandle = StartCoroutine(UIShowCo());
     }
 
     public void Hide()
@@ -65,26 +67,41 @@ public class LevelUp : Singleton<LevelUp>
         _healPotionBox.transform.SetParent(_tempObject.transform);
     }
 
+    void InitializeTempBox()
+    {
+        if (AchieveManager.Instance.IsActiveDonePiece)
+        {
+            _weaponBox = new SelectBoxType[] { _dronBox, _electrodeBox, _fjorginBox, _mk2Box, _donePieceBox, _thunderBox };
+        }
+        else
+        {
+            _weaponBox = new SelectBoxType[] { _dronBox, _electrodeBox, _fjorginBox, _mk2Box, _ninjaStarBox, _thunderBox };
+        }
+    }
+
     SelectBoxType RandomItem()
     {
-        int randomNumber = Random.Range(0, 6);
-        switch (randomNumber)
+        List<SelectBoxType> randomList = new List<SelectBoxType>();
+        SelectBoxType[] randomBox;
+        foreach (var item in _weaponBox)
         {
-            case 0:
-                return _dronBox;
-            case 1:
-                return _electrodeBox;
-            case 2:
-                return _fjorginBox;
-            case 3:
-                return _mk2Box;
-            case 4:
-                return _ninjaStarBox;
-            case 5:
-                return _thunderBox;
-            default:
-                return _emergencyBox;
+            if (item.Level() == item.MaxLevel)
+            {
+                continue;
+            }
+            randomList.Add(item);
         }
+
+        if (randomList.Count < 3)
+        {
+            randomList.Add(_emergencyBox);
+            randomList.Add(_healPotionBox);
+            randomList.Add(_atropineBox);
+        }
+        randomBox = randomList.ToArray();
+
+        int randomNumber = Random.Range(0, randomBox.Length);
+        return randomBox[randomNumber];
     }
 
     void UIBatch()
@@ -125,9 +142,9 @@ public class LevelUp : Singleton<LevelUp>
     }
 
     Coroutine _showCoHandle;
-    IEnumerator ShowCo()
+    IEnumerator UIShowCo()
     {
-        if(!_isAble)
+        if (!_isAble)
         {
             yield return new WaitUntil(() => _isAble);
         }

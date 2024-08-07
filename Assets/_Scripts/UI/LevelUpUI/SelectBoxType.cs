@@ -5,6 +5,9 @@ using UnityEngine;
 public class SelectBoxType : MonoBehaviour
 {
     [SerializeField] SelectUIType _myType;
+    public SelectUIType Type => _myType;
+    int _maxLevel = 2;
+    public int MaxLevel => _maxLevel;
 
     public void Use()
     {
@@ -42,6 +45,28 @@ public class SelectBoxType : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public int Level()
+    {
+        switch (_myType)
+        {
+            case SelectUIType.Dron:
+                return Dron.Instance.Level;
+            case SelectUIType.Electrode:
+                return Electrode.Instance.Level;
+            case SelectUIType.Fjorgin:
+                return Fjorgin.Instance.Level;
+            case SelectUIType.Mk2:
+                return Mk2.Instance.Level;
+            case SelectUIType.NinjaStar:
+            case SelectUIType.DonePiece:
+                return NinjaStarBox.Instance.Level;
+            case SelectUIType.Thunder:
+                return ThunderStroke.Instance.Level;
+            default:
+                return 0;
         }
     }
 }

@@ -7,6 +7,7 @@ public class SelectBox : MonoBehaviour
 {
     [SerializeField] Button _myButton;
     SelectBoxType _myBoxType;
+
     void Start()
     {
         _myButton = GetComponent<Button>();
@@ -17,7 +18,6 @@ public class SelectBox : MonoBehaviour
     {
         _myBoxType = GetComponentInChildren<SelectBoxType>();
         _myBoxType.Use();
-        LevelUp.Instance.Hide();
+        LevelUpUI.Instance.Hide();
     }
-
 }
