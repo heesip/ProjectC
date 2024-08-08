@@ -21,6 +21,7 @@ public class Dron : Singleton<Dron>
     float _damage;
     float _speed;
     WaitForSeconds _coolTime;
+    
     public void UseWeapon()
     {
         if (gameObject.activeSelf)
@@ -32,6 +33,28 @@ public class Dron : Singleton<Dron>
     void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        DataLoad();
+        Positioning();
+    }
+
+    void LateUpdate()
+    {
+        Positioning();
+    }
+
+    void OnEnable()
+    {
+        LevelValue(_level);
+        _attackCoHandle = StartCoroutine(AttackCo());
+    }
+
+    void OnDisable()
+    {
+        StopAttackCo();
+    }
+
+    void DataLoad()
+    {
         _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _rightPosition = _weaponDataSO.DronRightPosition;
         _leftPosition = _weaponDataSO.DronLeftPosition;
@@ -40,22 +63,11 @@ public class Dron : Singleton<Dron>
         _range = _weaponDataSO.DronRange;
     }
 
-    void LateUpdate()
+    void Positioning()
     {
         bool isReverse = Player.Instance.IsLeft;
         _spriteRenderer.flipX = isReverse;
         transform.localPosition = isReverse ? _leftPosition : _rightPosition;
-    }
-
-    void OnEnable()
-    {
-        _attackCoHandle = StartCoroutine(AttackCo());
-        LevelValue(_level);
-    }
-
-    void OnDisable()
-    {
-        StopAttackCo();
     }
 
     void LevelUp()
@@ -78,8 +90,6 @@ public class Dron : Singleton<Dron>
     {
         while (true)
         {
-            yield return CheckAtropine().coolTime;
-
             for (int i = 0; i < _count; i++)
             {
                 Vector3 attackPoint = i % 2 == 0 ? _dronAttackPoint1.position : _dronAttackPoint2.position;
@@ -87,6 +97,7 @@ public class Dron : Singleton<Dron>
                 missile.AttackPoint(attackPoint);
                 missile.Shoting(_targetVecter.x, _speed, CheckAtropine().damage);
             }
+            yield return CheckAtropine().coolTime;
         }
     }
     Vector2 _targetVecter => transform.position + (Player.Instance.IsLeft ? Vector3.left : Vector3.right) * _range;

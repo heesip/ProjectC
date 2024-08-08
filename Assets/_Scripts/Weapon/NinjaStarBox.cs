@@ -68,8 +68,8 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     {
         while (true)
         {
-            yield return CheckAtropine().coolTime;
             ThrowingNinjaStar(CheckAtropine().damage);
+            yield return CheckAtropine().coolTime;
         }
     }
 
@@ -101,8 +101,7 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
 
     Vector3 Targeting()
     {
-        Vector3 direction = _nearestTarget.position - _playerPosition;
-        direction = direction.normalized;
+        Vector3 direction = (_nearestTarget.position - _playerPosition).normalized;
         return direction;
     }
 

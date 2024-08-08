@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetSystem
 {
     LayerMask _enemyLayer => LayerMask.GetMask(AllStrings.Enemy);
-    float _circleRange = 3;
+    float _circleRange = 3.5f;
     Vector2 _boxRange = new Vector2(6, 10);
     RaycastHit2D[] _targets;
 

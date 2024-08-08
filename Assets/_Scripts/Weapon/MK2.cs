@@ -35,8 +35,8 @@ public class Mk2 : Singleton<Mk2>
 
     void OnEnable()
     {
-        _attackCoHandle = StartCoroutine(AttackCo());
         LevelValue(_level);
+        _attackCoHandle = StartCoroutine(AttackCo());
     }
 
     void OnDisable()
@@ -104,12 +104,12 @@ public class Mk2 : Singleton<Mk2>
     {
         while (true)
         {
-            yield return CheckAtropine().coolTime;
             _damage = CheckAtropine().damage;
             AttackPosition();
             Tween attack = transform.DORotate(EndValue(), _speed, RotateMode.FastBeyond360).SetEase(Ease.InSine);
             yield return attack.WaitForCompletion();
             WeaponReturn();
+            yield return CheckAtropine().coolTime;
         }
     }
 
