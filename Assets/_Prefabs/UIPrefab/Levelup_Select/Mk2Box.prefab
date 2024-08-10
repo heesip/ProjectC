@@ -310,8 +310,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uCF00\uB098\uC778\uC774 \uAC1C\uBC1C\uD55C\n\uC2E4\uBC84\uD638\uD06C_Mk2\n\uCF54\uB2C8
-    \uB4A4\uB97C\n\uC9C0\uCF1C\uC904 \uAC83 \uAC19\uB2E4."
+  m_Text: 
 --- !u!114 &1749941133203367450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,3 +475,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _myType: 4
+  _myText: {fileID: 1749941133203367451}

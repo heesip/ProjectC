@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class Electrode : Singleton<Electrode>
     Collider2D _collider;
     SpriteRenderer _spriteRenderer;
 
-    readonly int _maxLevel = 2;
+    readonly int _maxLevel = 3;
     int _level;
     public int Level => _level;
 
@@ -20,10 +20,7 @@ public class Electrode : Singleton<Electrode>
 
     public void UseWeapon()
     {
-        if (gameObject.activeSelf)
-        {
-            LevelUp();
-        }
+        LevelUp();
         gameObject.SetActive(true);
     }
 
@@ -64,8 +61,11 @@ public class Electrode : Singleton<Electrode>
 
     void LevelUp()
     {
-        _collider.enabled = false;
-        gameObject.SetActive(false);
+        if (_level > 0)
+        {
+            _collider.enabled = false;
+            gameObject.SetActive(false);
+        }
         if (_level < _maxLevel)
         {
             _level++;

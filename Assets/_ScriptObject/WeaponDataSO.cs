@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,23 +15,26 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] DronDamages = new float[]
     {
-        4,5,7
+        0, 4, 5, 7
     };
 
     public readonly WaitForSeconds[] DronCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(3), new WaitForSeconds(2), new WaitForSeconds(1)
+        new WaitForSeconds(0), new WaitForSeconds(3), new WaitForSeconds(2), new WaitForSeconds(1)
     };
 
     public readonly float[] AtroPineDronDamages = new float[]
     {
-        6,7,9
+        0, 6, 7, 9
     };
 
     public readonly WaitForSeconds[] AtropineDronCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(2.5f), new WaitForSeconds(1.5f), new WaitForSeconds (0.5f)
+        new WaitForSeconds(0), new WaitForSeconds(2.5f), new WaitForSeconds(1.5f), new WaitForSeconds (0.5f)
     };
+
+    public readonly string DronExplain = $"미사일을 사용하는 드론을 소환한다.";
+    public readonly string DronLevelExplain = $"미사일 데미지가 증가하며 쿨타임 감소이 감소한다.";
     #endregion
 
     #region Electrode
@@ -41,18 +44,21 @@ public class WeaponDataSO : ScriptableObject
     public readonly float ElectrodeDamage = 2;
     public readonly float[] ElectrodeSizes = new float[]
     {
-        1.0f, 1.25f, 1.5f
+        0, 1.0f, 1.25f, 1.5f
     };
     public readonly WaitForSeconds[] ElectrodeCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(6), new WaitForSeconds(5), new WaitForSeconds (3)
+        new WaitForSeconds(0), new WaitForSeconds(6), new WaitForSeconds(5), new WaitForSeconds (3)
     };
 
     public readonly float AtropineElectrodeDamage = 3;
     public readonly WaitForSeconds[] AtropineElectrodeCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(4), new WaitForSeconds(3), new WaitForSeconds (1)
+        new WaitForSeconds(0), new WaitForSeconds(4), new WaitForSeconds(3), new WaitForSeconds (1)
     };
+
+    public readonly string ElectrodeExplain = $"전극에테르를 사용한다.";
+    public readonly string ElectrodeLevelExplain = $"전극 크기가 증가하며 쿨타임이 감소한다.";
     #endregion
 
     #region Fjorgin
@@ -65,6 +71,10 @@ public class WeaponDataSO : ScriptableObject
     public readonly WaitForSeconds OneSecond = new WaitForSeconds(1);
     public readonly float Fjorgin360RotateDuration = 0.7f;
     public readonly float Fjorgin90RotateDuration = 0.5f;
+
+    public readonly string FjorginExplain = $"피요르긴?!?!";
+    public readonly string FjorginLevelExplain = $"?!?!";
+
     #endregion
 
     #region Mk2 
@@ -76,22 +86,25 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly WaitForSeconds[] Mk2CoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(5), new WaitForSeconds(4), new WaitForSeconds(3)
+        new WaitForSeconds(0), new WaitForSeconds(5), new WaitForSeconds(4), new WaitForSeconds(3)
     };
 
     public readonly float Mk2Damage = 2.5f;
 
     public readonly int[] Mk2Counts = new int[]
     {
-        3,4,6
+        0, 3, 4, 6
     };
 
     public readonly float AtropineMk2Damage = 4f;
 
     public readonly WaitForSeconds[] AtropineMk2CoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(3), new WaitForSeconds(2), new WaitForSeconds(1)
+        new WaitForSeconds(0), new WaitForSeconds(3), new WaitForSeconds(2), new WaitForSeconds(1)
     };
+
+    public readonly string Mk2Explain = $"회전하며 공격하는 민국이를 소환한다.";
+    public readonly string Mk2LevelExplain = $"민국이 회전 수 증가하며 쿨타임이 감소한다.";
     #endregion
 
     #region NinjaStarBox
@@ -102,39 +115,45 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] NinjaStarDamages = new float[]
     {
-        2, 3, 5
+        0, 2, 3, 5
     };
 
     public readonly WaitForSeconds[] NinjaStarCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(1.2f), new WaitForSeconds(1f), new WaitForSeconds (.7f)
+        new WaitForSeconds(0), new WaitForSeconds(1.2f), new WaitForSeconds(1f), new WaitForSeconds (.7f)
     };
 
     public readonly float[] AtroPineNinjaStarDamages = new float[]
     {
-        4,6,8
+        0, 4, 6, 8
     };
 
     public readonly WaitForSeconds[] AtropineNinjaStarCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(0.9f), new WaitForSeconds(0.6f), new WaitForSeconds (.4f)
+        new WaitForSeconds(0), new WaitForSeconds(0.9f), new WaitForSeconds(0.6f), new WaitForSeconds (.4f)
     };
+
+    public readonly string NinjaStarBoxExplain = $"가까운 적을 향해 표창을 던진다.";
+    public readonly string NinjaStarBoxLevelExplain = $"표창 데미지가 증가하며 쿨타임이 감소한다";
     #endregion
 
     #region ThunderStroke
     public readonly float[] ThunderDamages = new float[]
     {
-        2.5f, 3, 4
+        0, 2.5f, 3, 4
     };
 
     public readonly WaitForSeconds[] ThunderStrokeCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(1.1f), new WaitForSeconds(0.9f),  new WaitForSeconds(0.7f)
+        new WaitForSeconds(0), new WaitForSeconds(1.1f), new WaitForSeconds(0.9f),  new WaitForSeconds(0.7f)
     };
 
     public readonly WaitForSeconds[] AtropineThunderStrokeCoolTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(0.9f), new WaitForSeconds(0.7f),  new WaitForSeconds(0.5f)
+        new WaitForSeconds(0), new WaitForSeconds(0.9f), new WaitForSeconds(0.7f),  new WaitForSeconds(0.5f)
     };
+
+    public readonly string ThunderStrokeExplain = $"낙뢰에테르를 사용한다.";
+    public readonly string ThunderStrokeLevelExplain = $"낙뢰 데미지 증가하며 쿨타임이 감소한다";
     #endregion
 }

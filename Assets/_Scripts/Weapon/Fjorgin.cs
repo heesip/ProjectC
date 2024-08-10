@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -17,7 +17,7 @@ public class Fjorgin : Singleton<Fjorgin>
     float _rotate360Duration;
     float _rotate90Duration;
 
-    readonly int _maxLevel = 2;
+    readonly int _maxLevel = 3;
     int _level;
     public int Level => _level;
 
@@ -27,7 +27,7 @@ public class Fjorgin : Singleton<Fjorgin>
     {
         _collider = _fjorgin.GetComponent<Collider2D>();
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
-        _fjorgin.transform.Translate(transform.up); 
+        _fjorgin.transform.Translate(transform.up);
         DataLoad();
     }
     void DataLoad()
@@ -45,19 +45,17 @@ public class Fjorgin : Singleton<Fjorgin>
 
     public void UseWeapon()
     {
-        if (gameObject.activeSelf)
-        {
-            LevelUp();
-        }
+        LevelUp();
         gameObject.SetActive(true);
     }
 
-    
-
     void LevelUp()
     {
-        WeaponReturn();
-        gameObject.SetActive(false);
+        if (_level > 0)
+        {
+            WeaponReturn();
+            gameObject.SetActive(false);
+        }
         if (_level < _maxLevel)
         {
             _level++;

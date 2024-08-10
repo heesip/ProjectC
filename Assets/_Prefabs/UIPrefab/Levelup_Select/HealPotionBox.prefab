@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _myType: 10
+  _myText: {fileID: 0}
 --- !u!1 &1003379163827178340
 GameObject:
   m_ObjectHideFlags: 0

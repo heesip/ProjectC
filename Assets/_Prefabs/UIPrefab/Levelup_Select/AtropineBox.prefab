@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _myType: 8
+  _myText: {fileID: 0}
 --- !u!1 &2339374814273140134
 GameObject:
   m_ObjectHideFlags: 0

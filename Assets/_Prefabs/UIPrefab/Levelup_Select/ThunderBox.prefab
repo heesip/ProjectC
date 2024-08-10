@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _myType: 6
+  _myText: {fileID: 3360425033200478363}
 --- !u!1 &3360425031389206268
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,8 +460,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uB099\uB8B0\uB97C \uC0DD\uC131\uD558\uB294\n\uC5D0\uD14C\uB974 \uCF54\uB2C8\uB97C\n\uACF5\uACA9\uD558\uC9C4
-    \uC54A\uC73C\uB2C8\n\uC548\uC2EC\uD574\uB3C4 \uC88B\uB2E4."
+  m_Text: 
 --- !u!114 &3360425033200478362
 MonoBehaviour:
   m_ObjectHideFlags: 0

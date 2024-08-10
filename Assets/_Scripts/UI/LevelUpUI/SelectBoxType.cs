@@ -1,13 +1,21 @@
+﻿
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectBoxType : MonoBehaviour
 {
+    public readonly int MaxLevel = 3;
     [SerializeField] SelectUIType _myType;
-    public SelectUIType Type => _myType;
-    int _maxLevel = 2;
-    public int MaxLevel => _maxLevel;
+    [SerializeField] Text _myText;
+    WeaponDataSO _weaponDataSO;
+
+    void Awake()
+    {
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
+    }
 
     public void Use()
     {
@@ -67,6 +75,29 @@ public class SelectBoxType : MonoBehaviour
                 return ThunderStroke.Instance.Level;
             default:
                 return 0;
+        }
+    }
+
+    void UseText()
+    {
+        switch (_myType)
+        {
+            case SelectUIType.Dron:
+                break;
+            case SelectUIType.Electrode:
+                break;
+            case SelectUIType.Fjorgin:
+                break;
+            case SelectUIType.Mk2:
+                break;
+            case SelectUIType.NinjaStar:
+                break;
+            case SelectUIType.Thunder:
+                break;
+            case SelectUIType.DonePiece:
+                break;
+            default:
+                return;
         }
     }
 }

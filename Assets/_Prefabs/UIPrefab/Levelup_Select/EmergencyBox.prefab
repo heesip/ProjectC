@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _myType: 9
+  _myText: {fileID: 0}
 --- !u!1 &2223337737061937188
 GameObject:
   m_ObjectHideFlags: 0

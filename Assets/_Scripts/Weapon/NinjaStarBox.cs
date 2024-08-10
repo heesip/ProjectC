@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
@@ -14,7 +14,7 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     Vector3 _projectileRotate;
     float _duration;
 
-    readonly int _maxLevel = 2;
+    readonly int _maxLevel = 3;
     int _level;
     public int Level => _level;
 
@@ -24,10 +24,7 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
 
     public void UseWeapon()
     {
-        if (gameObject.activeSelf)
-        {
-            LevelUp();
-        }
+        LevelUp();
         gameObject.SetActive(true);
     }
     void Awake()

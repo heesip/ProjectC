@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,7 +13,7 @@ public class ThunderStroke : Singleton<ThunderStroke>
     WaitForSeconds _thunderStrokeCoolTime;
     WaitForSeconds _targetNullCoolTime;
 
-    readonly int _maxLevel = 2;
+    readonly int _maxLevel = 3;
     int _level;
     public int Level => _level;
 
@@ -21,10 +21,7 @@ public class ThunderStroke : Singleton<ThunderStroke>
 
     public void UseWeapon()
     {
-        if (gameObject.activeSelf)
-        {
-            LevelUp();
-        }
+        LevelUp();
         gameObject.SetActive(true);
     }
     void Awake()

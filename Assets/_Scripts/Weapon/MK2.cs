@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -16,7 +16,7 @@ public class Mk2 : Singleton<Mk2>
     Vector3 _leftPosition;
     Vector3 _rotateDirection;
 
-    readonly int _maxLevel = 2;
+    readonly int _maxLevel = 3;
     int _level;
     public int Level => _level;
 
@@ -70,17 +70,17 @@ public class Mk2 : Singleton<Mk2>
 
     public void UseWeapon()
     {
-        if (gameObject.activeSelf)
-        {
-            LevelUp();
-        }
+        LevelUp();
         gameObject.SetActive(true);
     }
 
     void LevelUp()
     {
-        WeaponReturn();
-        gameObject.SetActive(false);
+        if (_level > 0)
+        {
+            WeaponReturn();
+            gameObject.SetActive(false);
+        }
         if (_level < _maxLevel)
         {
             _level++;
