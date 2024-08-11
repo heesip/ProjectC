@@ -11,10 +11,19 @@ public class SelectBoxType : MonoBehaviour
     [SerializeField] SelectUIType _myType;
     [SerializeField] Text _myText;
     WeaponDataSO _weaponDataSO;
-
+    [SerializeField] GameObject[] _levelImages;
     void Awake()
     {
         _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
+    }
+
+    public void LevelCheck()
+    {
+        int nextLevel = Level() - 1;
+        if (Level() > 0)
+        {
+            _levelImages[nextLevel].SetActive(true);
+        }
     }
 
     public void Use()
@@ -74,7 +83,7 @@ public class SelectBoxType : MonoBehaviour
             case SelectUIType.Thunder:
                 return ThunderStroke.Instance.Level;
             default:
-                return 0;
+                return -1;
         }
     }
 
@@ -100,4 +109,6 @@ public class SelectBoxType : MonoBehaviour
                 return;
         }
     }
+
+
 }
