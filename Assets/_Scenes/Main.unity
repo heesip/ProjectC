@@ -1841,8 +1841,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: de66c89fe2cfe4abcb7aa82ddf9d365c, type: 3}
-    m_FontSize: 15
+    m_Font: {fileID: 12800000, guid: a7b301d464bf24b15bf5f468f08f4fa3, type: 3}
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1853,7 +1853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: rkwlt
+  m_Text: "\uAC8C\uC784 \uC2DC\uC791"
 --- !u!222 &839117728
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3856,11 +3856,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: de66c89fe2cfe4abcb7aa82ddf9d365c, type: 3}
-    m_FontSize: 10
+    m_Font: {fileID: 12800000, guid: a7b301d464bf24b15bf5f468f08f4fa3, type: 3}
+    m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3868,7 +3868,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: rjwqjd
+  m_Text: "\uB2EC\uC131 \uC5C5\uC801"
 --- !u!222 &1609804686
 CanvasRenderer:
   m_ObjectHideFlags: 0
