@@ -112,9 +112,14 @@ public class Enemy : RecycleObject
     void DropTable()
     {
         int randomNumber = Random.Range(0, 100);
+        ExpGem expGem;
         switch (randomNumber)
         {
+            case 33:
+            case 55:
+            case 66:
             case 77:
+            case 99:
                 if (!AchieveManager.Instance.IsAchieveDonePiece)
                 {
                     NinjaStarPiece ninjaStarPiece = FactoryManager.Instance.GetNinjaStarPiece();
@@ -123,10 +128,12 @@ public class Enemy : RecycleObject
                 }
                 else
                 {
+                    expGem = FactoryManager.Instance.GetExpGem();
+                    expGem.transform.position = transform.position;
                     break;
                 }
             default:
-                ExpGem expGem = FactoryManager.Instance.GetExpGem();
+                expGem = FactoryManager.Instance.GetExpGem();
                 expGem.transform.position = transform.position;
                 break;
         }

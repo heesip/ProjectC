@@ -135,7 +135,7 @@ public class WeaponDataSO : ScriptableObject
     #region ThunderStroke
     public readonly float[] ThunderDamages = new float[]
     {
-        0, 0.5f, 1, 2
+        0, 1, 1.5f, 2
     };
 
     public readonly WaitForSeconds[] ThunderStrokeCoolTimes = new WaitForSeconds[]
