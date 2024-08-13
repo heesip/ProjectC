@@ -5,15 +5,11 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] Joystick _joystick;
-    public Joystick Joystick => _joystick;
-
     [SerializeField] Button _achieveSwitch;
 
     public void Initialize()
     {
         _achieveSwitch.onClick.AddListener(() => AchieveUION());
-        _joystick.gameObject.SetActive(false);
         UpdaateKillUI(0);
     }
 
@@ -45,7 +41,6 @@ public class UIManager : Singleton<UIManager>
     public void GameStartUISetting()
     {
         _achieveSwitch.gameObject.SetActive(false);
-        _joystick.gameObject.SetActive(true);
         Player.Instance.SocketOn();
     }
 

@@ -1,5 +1,5 @@
 {
-    "name": "ProjectC",
+    "name": "Player",
     "maps": [
         {
             "name": "Player",
@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "83f2a30b-4618-4871-9cca-b0f6cfb9ec72",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 }

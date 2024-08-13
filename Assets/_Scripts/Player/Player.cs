@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : Singleton<Player>
 {
     PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
-    [SerializeField] PlayerAnimationSystem _playerAnimationSystem = new PlayerAnimationSystem();
     [SerializeField] PlayerStatusSystem _playerStatusSystem = new PlayerStatusSystem();
     [SerializeField] PlayerIndicatorSystem _playerIndicatorSystem = new PlayerIndicatorSystem();
     public Vector2 MoveDirection => _playerMoveSystem.MoveDirection;
     public Vector3 AttackDirection => _playerIndicatorSystem.AttackDirection;
 
     public bool IsDead => _playerStatusSystem.IsDead;
-    public bool IsLeft => _playerAnimationSystem.IsLeft;
+    public bool IsLeft => _playerMoveSystem.IsLeft;
     public bool IsAtropine => _playerStatusSystem.IsAtropine;
 
     void Awake()
     {
         _playerMoveSystem.Initialize(this);
-        _playerAnimationSystem.Initialize(this);
         _playerStatusSystem.Initialize();
     }
 
@@ -32,19 +31,20 @@ public class Player : Singleton<Player>
         _playerIndicatorSystem.IndicatorMove(MoveDirection);
     }
 
+    void OnMove(InputValue inputValue)
+    {
+        _playerMoveSystem.OnMove(inputValue);
+    }
+
     void LateUpdate()
     {
         if (IsDead)
         {
             return;
         }
-        _playerAnimationSystem.PlayerRunStance();
+        _playerMoveSystem.PlayerRunStance();
 
-        if (!UIManager.Instance.Joystick.IsDrag)
-        {
-            return;
-        }
-        _playerAnimationSystem.PlayerTurn();
+        _playerMoveSystem.PlayerTurn();
     }
 
     void OnCollisionStay2D(Collision2D collision)
