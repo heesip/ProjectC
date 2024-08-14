@@ -15,10 +15,13 @@ public class Player : Singleton<Player>
     public bool IsLeft => _playerMoveSystem.IsLeft;
     public bool IsAtropine => _playerStatusSystem.IsAtropine;
 
+    PlayerInput _playerInput;
+
     void Awake()
     {
         _playerMoveSystem.Initialize(this);
         _playerStatusSystem.Initialize();
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     void FixedUpdate()
@@ -80,5 +83,15 @@ public class Player : Singleton<Player>
     public void SocketOn()
     {
         _playerIndicatorSystem.SocketOn();
+    }
+
+    public void JoyStickSet()
+    {
+        _playerInput.defaultControlScheme = "Gamepad";
+    }
+
+    public void KeyBoardSet()
+    {
+        _playerInput.defaultControlScheme = "Keyboard&Mouse";
     }
 }

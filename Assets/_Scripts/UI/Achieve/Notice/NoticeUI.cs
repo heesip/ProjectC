@@ -59,6 +59,7 @@ public class NoticeUI : Singleton<NoticeUI>
 
     void Hide()
     {
+        transform.localScale = Vector3.zero;
         _canvasGroup.alpha = 0;
         _donepieceNotice.Hide();
         _madnessNotice.Hide();
@@ -68,6 +69,7 @@ public class NoticeUI : Singleton<NoticeUI>
 
     void Show()
     {
+        transform.localScale = Vector3.one;
         _canvasGroup.alpha = 1;
     }
 }

@@ -77,6 +77,7 @@ public class GameManager : Singleton<GameManager>
     {
         _isGame = true;
         _startButton.gameObject.SetActive(false);
+        Player.Instance.gameObject.SetActive(true);
         UIManager.Instance.GameStartUISetting();
         Spawner.Instance.gameObject.SetActive(true);
         LevelUpUI.Instance.Ininialize();
@@ -97,7 +98,7 @@ public class GameManager : Singleton<GameManager>
             }
         }
 
-        else if(_gametime > 60 && Kill < 1)
+        else if (_gametime > 60 && Kill < 1)
         {
             AchieveManager.Instance.GetClearEyesAchieve();
         }
