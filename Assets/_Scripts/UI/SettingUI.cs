@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,17 +6,41 @@ using UnityEngine.UI;
 
 public class SettingUI : Singleton<SettingUI>
 {
-    bool _isJoyStick;
-    public bool IsJoyStick => _isJoyStick;
+    bool _isKeyboard;
+    public bool IsKeyboard => _isKeyboard;
     [SerializeField] Button _closeButton;
     [SerializeField] Button _joyStickButton;
     [SerializeField] Button _keyBoardButton;
+    readonly string KeySetting = "KeySetting"; 
 
     void Awake()
     {
         gameObject.SetActive(false);
+        LoadKeySetting();
         _closeButton.onClick.AddListener(() => gameObject.SetActive(false));
-        _joyStickButton.onClick.AddListener(() => _isJoyStick = true);
-        _keyBoardButton.onClick.AddListener(() => _isJoyStick = false);
+        _joyStickButton.onClick.AddListener(() => JoyStickSet());
+        _keyBoardButton.onClick.AddListener(() => KeyBoardSet());
+    }
+
+    void SaveKeySetting()
+    {
+        PlayerPrefs.SetInt(KeySetting, Convert.ToInt16(_isKeyboard));
+    }
+
+    void LoadKeySetting()
+    {
+        _isKeyboard = Convert.ToBoolean(PlayerPrefs.GetInt(KeySetting));
+    }
+
+    void JoyStickSet()
+    {
+        _isKeyboard = true;
+        SaveKeySetting();
+    }
+
+    void KeyBoardSet()
+    {
+        _isKeyboard = false;
+        SaveKeySetting();
     }
 }

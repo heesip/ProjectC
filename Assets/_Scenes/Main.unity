@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 52698332}
   - component: {fileID: 52698331}
   m_Layer: 5
-  m_Name: JoyStick
+  m_Name: Keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 70, y: 30}
+  m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &52698331
 MonoBehaviour:
@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 248252490}
   - component: {fileID: 248252489}
   m_Layer: 5
-  m_Name: KeyBoard
+  m_Name: Joystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,7 +771,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 70, y: 30}
+  m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248252489
 MonoBehaviour:
@@ -1128,9 +1128,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'KeyBoard
-
-'
+  m_Text: Joystick
 --- !u!222 &363094989
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1833,7 +1831,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: JoyStick
+  m_Text: 'Keyboard
+
+'
 --- !u!222 &697979672
 CanvasRenderer:
   m_ObjectHideFlags: 0

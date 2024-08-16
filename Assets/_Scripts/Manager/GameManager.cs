@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] int _level;
     [SerializeField] bool _isGame;
     public bool IsGame => _isGame;
-    public bool IsJoyStick => SettingUI.Instance.IsJoyStick;
+    public bool IsKeyboard => SettingUI.Instance.IsKeyboard;
  
 
     int _maxLevel = 4;

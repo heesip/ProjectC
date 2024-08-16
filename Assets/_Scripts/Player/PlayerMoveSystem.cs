@@ -29,13 +29,14 @@ public class PlayerMoveSystem
 
     public void PlayerMove()
     {
-        if (GameManager.Instance.IsJoyStick)
+        if (GameManager.Instance.IsKeyboard)
         {
-            MoveJoyStick();
+            MoveKeyboard();
+
         }
         else
         {
-            MoveKeyboard();
+            MoveJoyStick();
         }
     }
 
@@ -70,13 +71,13 @@ public class PlayerMoveSystem
 
     public void PlayerRunStance()
     {
-        if (GameManager.Instance.IsJoyStick)
+        if (GameManager.Instance.IsKeyboard)
         {
-            _animator.SetBool(AllStrings.Run_Joy, _joystick.IsDrag);
+            _animator.SetFloat(AllStrings.Run_Key, _moveDirection.magnitude);
         }
         else
         {
-            _animator.SetFloat(AllStrings.Run_Key, _moveDirection.magnitude);
+            _animator.SetBool(AllStrings.Run_Joy, _joystick.IsDrag);
         }
     }
 
