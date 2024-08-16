@@ -6,14 +6,12 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     [SerializeField] Button _achieveSwitch;
-    [SerializeField] Button _settingSwitch;
     [SerializeField] Button _hideButton;
 
 
     public void Initialize()
     {
         _achieveSwitch.onClick.AddListener(() => AchieveUION());
-        _settingSwitch.onClick.AddListener(() => SettingUION());
         _hideButton.onClick.AddListener(() => GetTier0Achieve());
 
 
@@ -48,19 +46,12 @@ public class UIManager : Singleton<UIManager>
     public void GameStartUISetting()
     {
         _achieveSwitch.gameObject.SetActive(false);
-        _settingSwitch.gameObject.SetActive(false);
         Player.Instance.SocketOn();
     }
 
     void AchieveUION()
     {
         AchieveUI.Instance.gameObject.SetActive(true);
-    }
-
-    void SettingUION()
-    {
-        SettingUI.Instance.gameObject.SetActive(true);
-        Player.Instance.gameObject.SetActive(false);
     }
 
     void GetTier0Achieve()
