@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -26,11 +26,11 @@ public class ItemBox : RecycleObject
                 Potion potion = FactoryManager.Instance.GetPotion();
                 BoxOpen(potion);
                 break;
-            case 7:
             case 8:
                 Magnet magnet = FactoryManager.Instance.GetMagnet();
                 BoxOpen(magnet);
                 break;
+            case 7:
             case 9:
                 MolotovCocktail molotovCocktail = FactoryManager.Instance.GetMolotovCocktail();
                 BoxOpen(molotovCocktail);

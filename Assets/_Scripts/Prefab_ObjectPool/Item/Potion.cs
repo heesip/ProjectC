@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,11 +22,11 @@ public class Potion : Item
 
     protected override void OnStart()
     {
-        //RandomPotion();
+        RandomPotion();
 
-        _isAtropine = true;
+       /* _isAtropine = true;
         _potionType = PotionType.Atropine;
-        Setting(_potionType);
+        Setting(_potionType);*/
     }
 
     protected override void ItemFunction()

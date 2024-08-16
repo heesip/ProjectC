@@ -1,10 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class PlayerStatusSystem
 {
+    [SerializeField] Animator _healingAnimation;
+
     int _enemyAttack = 10;
     float _maxHealth = 100;
     [SerializeField] float _shield;
@@ -73,6 +75,7 @@ public class PlayerStatusSystem
 
         if (!isAtropine)
         {
+            _healingAnimation.SetTrigger("Heal");
             return;
         }
 
