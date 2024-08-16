@@ -9,10 +9,14 @@ public class UIManager : Singleton<UIManager>
     public Joystick Joystick => _joystick;
 
     [SerializeField] Button _achieveSwitch;
+    [SerializeField] Button _settingSwitch;
+    [SerializeField] Button _hideButton;
 
     public void Initialize()
     {
         _achieveSwitch.onClick.AddListener(() => AchieveUION());
+        _settingSwitch.onClick.AddListener(() => SettingUION());
+        _hideButton.onClick.AddListener(() => AchieveUI.Instance.Tier0Achieve());
         _joystick.gameObject.SetActive(false);
         UpdaateKillUI(0);
     }
@@ -45,6 +49,8 @@ public class UIManager : Singleton<UIManager>
     public void GameStartUISetting()
     {
         _achieveSwitch.gameObject.SetActive(false);
+        _settingSwitch.gameObject.SetActive(false);
+        _hideButton.gameObject.SetActive(false);
         _joystick.gameObject.SetActive(true);
         Player.Instance.SocketOn();
     }
@@ -52,5 +58,10 @@ public class UIManager : Singleton<UIManager>
     void AchieveUION()
     {
         AchieveUI.Instance.gameObject.SetActive(true);
+    }
+
+    void SettingUION()
+    {
+        SettingUI.Instance.gameObject.SetActive(true);
     }
 }

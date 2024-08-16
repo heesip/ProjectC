@@ -11,7 +11,7 @@ public class AchieveUI : Singleton<AchieveUI>
     [SerializeField] Tier0UIBox _tier0UIBox;
 
     [SerializeField] TitleUI _titleUI;
-    [SerializeField] Button _tier0Button;
+    [SerializeField] Button _closeButton;
     void Awake()
     {
         Load();
@@ -32,10 +32,10 @@ public class AchieveUI : Singleton<AchieveUI>
 
     void ButtonSetting()
     {
-        _tier0Button.onClick.AddListener(() => Tier0Achieve());
         _donePieceUIBox.DonePieceButton.onClick.AddListener(() => ToggleDonePiece());
         _madnessUIBox.MadnessButton.onClick.AddListener(() => ToggleMadness());
         _clearEyesUIBox.ClearEyesButton.onClick.AddListener(() => ToggleClearEyes());
+        _closeButton.onClick.AddListener(() => UIClose());
     }
 
     void ToggleDonePiece()
@@ -77,7 +77,12 @@ public class AchieveUI : Singleton<AchieveUI>
         _clearEyesUIBox.ShowActive();
     }
 
-    void Tier0Achieve()
+    void UIClose()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Tier0Achieve()
     {
         AchieveManager.Instance.GetTier0Achieve();
         _tier0UIBox.Tier0UILoad();

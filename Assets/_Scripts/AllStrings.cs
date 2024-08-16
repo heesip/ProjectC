@@ -10,6 +10,8 @@ public static class AllStrings
 
     #region Animation
     public readonly static string Run = "Run";
+    public readonly static string Run_Key = "Run_Key";
+    public readonly static string Run_Joy = "Run_Joy";
     public readonly static string Dead = "Dead";
     public readonly static string isAttack = "isAttack";
 
