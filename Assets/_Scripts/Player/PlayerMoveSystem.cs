@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
 public class PlayerMoveSystem
 {
     Player _player;
@@ -17,7 +18,7 @@ public class PlayerMoveSystem
     float _speed = 3f;
     Vector2 _moveDirection;
     public Vector2 MoveDirection => _moveDirection;
-
+    [SerializeField] SpriteRenderer _effectRenderer;
     public void Initialize(Player player)
     {
         _player = player;
@@ -67,6 +68,7 @@ public class PlayerMoveSystem
             _spriteRenderer.flipX = _player.MoveDirection.x < 0;
         }
         _isLeft = _spriteRenderer.flipX;
+        _effectRenderer.flipX = _isLeft;
     }
 
     public void PlayerRunStance()
@@ -84,5 +86,10 @@ public class PlayerMoveSystem
     public void OnMove(InputValue inputValue)
     {
         _moveDirection = inputValue.Get<Vector2>();
+    }
+
+    public void VeleoCityZero()
+    {
+        _rigidbody.velocity = Vector2.zero;
     }
 }

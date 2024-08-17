@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : Singleton<Player>
 {
-    PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
+    [SerializeField] PlayerMoveSystem _playerMoveSystem = new PlayerMoveSystem();
     [SerializeField] PlayerStatusSystem _playerStatusSystem = new PlayerStatusSystem();
     [SerializeField] PlayerIndicatorSystem _playerIndicatorSystem = new PlayerIndicatorSystem();
     public Vector2 MoveDirection => _playerMoveSystem.MoveDirection;
@@ -58,6 +58,7 @@ public class Player : Singleton<Player>
             return;
         }
         _playerStatusSystem.OnDamage();
+        _playerMoveSystem.VeleoCityZero();
 
     }
 

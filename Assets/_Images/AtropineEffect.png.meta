@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 014781b4686eda0458fbedc2c8d6711b
+guid: 9af8b6048adbd440398d289d4e224597
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,27 +113,15 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealEffect_0
+      name: AtropineEffect_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 81
+        x: 13
+        y: 79
         width: 47
         height: 40
       alignment: 0
@@ -143,18 +131,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1262e70675baf794c98839a9cccaadae
-      internalID: 1640231962
+      spriteID: 1a1a4d8aa288e4825b34f45307c01683
+      internalID: 696682854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealEffect_1
+      name: AtropineEffect_1
       rect:
         serializedVersion: 2
-        x: 79
-        y: 86
+        x: 78
+        y: 73
         width: 47
         height: 40
       alignment: 0
@@ -164,50 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b576c4de4f5d25d4591b7b0947bd965c
-      internalID: -1481302842
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealEffect_2
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 33
-        width: 47
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8370f4d936221384bb656ce7dcf7be6b
-      internalID: 1182900409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealEffect_3
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 7
-        width: 47
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c12fd597deeccbf40ac9efcac893d3f1
-      internalID: 2029195973
+      spriteID: 0bc7e3f5b346f49e7b86dc8490f25584
+      internalID: -992754927
       vertices: []
       indices: 
       edges: []
@@ -223,10 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HealEffect_0: 1640231962
-      HealEffect_3: 2029195973
-      HealEffect_1: -1481302842
-      HealEffect_2: 1182900409
+      AtropineEffect_0: 696682854
+      AtropineEffect_1: -992754927
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

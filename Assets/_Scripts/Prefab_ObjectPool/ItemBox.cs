@@ -8,12 +8,10 @@ public class ItemBox : RecycleObject
 {
     Collider2D _collider2D;
     float _duration = 0.2f;
-    int _minNumber = 0;
-    int _maxNumber = 10;
 
     void DropTable()
     {
-        int randomNumber = Random.Range(_minNumber, _maxNumber);
+        int randomNumber = Random.Range(0, 10);
         switch (randomNumber)
         {
             case 0:

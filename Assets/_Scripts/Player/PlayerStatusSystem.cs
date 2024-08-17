@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatusSystem
 {
-    [SerializeField] Animator _healingAnimation;
+    [SerializeField] Animator _effectAnimator;
 
     int _enemyAttack = 10;
     float _maxHealth = 100;
@@ -75,7 +75,7 @@ public class PlayerStatusSystem
 
         if (!isAtropine)
         {
-            _healingAnimation.SetTrigger("Heal");
+            _effectAnimator.SetTrigger(AllStrings.IsHeal);
             return;
         }
 
@@ -111,8 +111,10 @@ public class PlayerStatusSystem
     IEnumerator UseAtropineCo()
     {
         _isAtropine = true;
+        _effectAnimator.SetBool(AllStrings.IsAtropine, _isAtropine);
         yield return _atropineTime;
         _isAtropine = false;
+        _effectAnimator.SetBool(AllStrings.IsAtropine, _isAtropine);
     }
 
     void StopCoHandle(Coroutine coHandle)

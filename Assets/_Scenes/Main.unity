@@ -3600,34 +3600,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1301675532}
   - component: {fileID: 1301675531}
-  - component: {fileID: 1301675530}
+  - component: {fileID: 1301675533}
   m_Layer: 0
-  m_Name: HealEffect
+  m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1301675530
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301675529}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a2f7d242ccf56ca40b216e4112bdf922, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!212 &1301675531
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3695,6 +3675,26 @@ Transform:
   m_Father: {fileID: 1996202536}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1301675533
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301675529}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2f7d242ccf56ca40b216e4112bdf922, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!224 &1341699534 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
@@ -6226,8 +6226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9aea45b4359d54fa926a15d5330ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerMoveSystem:
+    _isLeft: 0
+    _effectRenderer: {fileID: 1301675531}
   _playerStatusSystem:
-    _healingAnimation: {fileID: 1301675530}
+    _effectAnimator: {fileID: 1301675533}
     _shield: 0
     _health: 0
     _isAtropine: 0

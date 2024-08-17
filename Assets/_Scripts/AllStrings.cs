@@ -16,5 +16,8 @@ public static class AllStrings
     public readonly static string isAttack = "isAttack";
 
     public readonly static string Hit = "Hit";
+
+    public readonly static string IsHeal = "IsHeal";
+    public readonly static string IsAtropine = "IsAtropine";
     #endregion
 }
