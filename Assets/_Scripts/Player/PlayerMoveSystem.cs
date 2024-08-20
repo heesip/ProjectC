@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +7,8 @@ using UnityEngine.InputSystem;
 [System.Serializable]
 public class PlayerMoveSystem
 {
-    Player _player;
     SpriteRenderer _spriteRenderer;
-    Animator _animator;
-    [SerializeField] bool _isLeft;
+    bool _isLeft;
     public bool IsLeft => _isLeft;
 
     Rigidbody2D _rigidbody;
@@ -19,13 +17,12 @@ public class PlayerMoveSystem
     Vector2 _moveDirection;
     public Vector2 MoveDirection => _moveDirection;
     [SerializeField] SpriteRenderer _effectRenderer;
-    public void Initialize(Player player)
+
+    public void Initialize()
     {
-        _player = player;
         _joystick = UIManager.Instance.Joystick;
-        _rigidbody = player.GetComponent<Rigidbody2D>();
-        _spriteRenderer = player.GetComponent<SpriteRenderer>();
-        _animator = player.GetComponent<Animator>();
+        _rigidbody = Player.Instance.GetComponent<Rigidbody2D>();
+        _spriteRenderer = Player.Instance.GetComponent<SpriteRenderer>();
     }
 
     public void PlayerMove()
@@ -65,7 +62,7 @@ public class PlayerMoveSystem
     {
         if (_moveDirection.x != 0)
         {
-            _spriteRenderer.flipX = _player.MoveDirection.x < 0;
+            _spriteRenderer.flipX = Player.Instance.MoveDirection.x < 0;
         }
         _isLeft = _spriteRenderer.flipX;
         _effectRenderer.flipX = _isLeft;
@@ -75,11 +72,11 @@ public class PlayerMoveSystem
     {
         if (GameManager.Instance.IsKeyboard)
         {
-            _animator.SetFloat(AllStrings.Run_Key, _moveDirection.magnitude);
+            Player.Instance.RunAnimation(_moveDirection.magnitude);
         }
         else
         {
-            _animator.SetBool(AllStrings.Run_Joy, _joystick.IsDrag);
+            Player.Instance.RunAnimation(_joystick.IsDrag);
         }
     }
 

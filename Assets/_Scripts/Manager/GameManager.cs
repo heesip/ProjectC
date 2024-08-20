@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -77,7 +77,7 @@ public class GameManager : Singleton<GameManager>
 
     void GameStart()
     {
-        _isGame = true;
+        Resume();
         _startButton.gameObject.SetActive(false);
         UIManager.Instance.GameStartUISetting();
         Spawner.Instance.gameObject.SetActive(true);

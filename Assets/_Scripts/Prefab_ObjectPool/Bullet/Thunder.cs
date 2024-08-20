@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ public class Thunder : Bullet
 
     void OnDisable()
     {
-        _animator.SetBool(AllStrings.isAttack, false);
+        _animator.SetBool(AllStrings.Attack, false);
         StopAttackCo();
     }
 
@@ -30,7 +30,7 @@ public class Thunder : Bullet
 
     IEnumerator AttackCo()
     {
-        _animator.SetBool(AllStrings.isAttack, true);
+        _animator.SetBool(AllStrings.Attack, true);
         yield return null;
     }
 
@@ -41,9 +41,6 @@ public class Thunder : Bullet
             StopCoroutine(_attackCoHandle);
         }
     }
-
-
-
 
 }
 

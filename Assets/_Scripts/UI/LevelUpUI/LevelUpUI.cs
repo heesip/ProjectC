@@ -33,7 +33,7 @@ public class LevelUpUI : Singleton<LevelUpUI>
 
     public void Show()
     {
-        _showCoHandle = StartCoroutine(UIShowCo());
+        StartCoroutine(UIShowCo());
     }
 
     public void Hide()
@@ -142,7 +142,6 @@ public class LevelUpUI : Singleton<LevelUpUI>
         _isAble = true;
     }
 
-    Coroutine _showCoHandle;
     IEnumerator UIShowCo()
     {
         if (!_isAble)

@@ -5,8 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatusSystem
 {
-    [SerializeField] Animator _effectAnimator;
-
     int _enemyAttack = 10;
     float _maxHealth = 100;
     [SerializeField] float _shield;
@@ -23,17 +21,26 @@ public class PlayerStatusSystem
     int _endExp => _nextExp.Length - 1;
     int _nextExpValue => Mathf.Min(_level, _endExp);
 
-    public bool IsDead => Dead();
+    bool _isDead;
+    public bool IsDead => _isDead;
 
     [SerializeField] bool _isAtropine;
     public bool IsAtropine => _isAtropine;
     [SerializeField] WaitForSeconds _atropineTime = new WaitForSeconds(10);
 
+    bool Dead()
+    {
+        if (_health <= 0)
+        {
+            Player.Instance.DeadAnimation();
+        }
+        return _health <= 0;
+    }
 
     public void Initialize()
     {
         _health = _maxHealth;
-        Dead();
+        _isDead = false;
         _isAtropine = false;
         UIManager.Instance.UpdateHpUI(_health, _maxHealth);
         UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
@@ -52,7 +59,7 @@ public class PlayerStatusSystem
             _health -= Time.deltaTime * _enemyAttack;
             UIManager.Instance.UpdateHpUI(_health, _maxHealth);
         }
-        Dead();
+        _isDead = Dead();
     }
 
     public void GetExpGem()
@@ -75,11 +82,11 @@ public class PlayerStatusSystem
 
         if (!isAtropine)
         {
-            _effectAnimator.SetTrigger(AllStrings.IsHeal);
+            Player.Instance.HealEffect();
             return;
         }
 
-        if (!Dead())
+        if (!_isDead)
         {
             UseAtropine();
         }
@@ -96,11 +103,6 @@ public class PlayerStatusSystem
         UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
     }
 
-    bool Dead()
-    {
-        return _health <= 0;
-    }
-
     void UseAtropine()
     {
         StopCoHandle(_atropineCoHandle);
@@ -111,10 +113,10 @@ public class PlayerStatusSystem
     IEnumerator UseAtropineCo()
     {
         _isAtropine = true;
-        _effectAnimator.SetBool(AllStrings.IsAtropine, _isAtropine);
+        Player.Instance.AtropineEffect(_isAtropine);
         yield return _atropineTime;
         _isAtropine = false;
-        _effectAnimator.SetBool(AllStrings.IsAtropine, _isAtropine);
+        Player.Instance.AtropineEffect(_isAtropine);
     }
 
     void StopCoHandle(Coroutine coHandle)
@@ -124,5 +126,4 @@ public class PlayerStatusSystem
             Player.Instance.StopCoroutine(coHandle);
         }
     }
-
 }
