@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +12,7 @@ public class NoticeUI : Singleton<NoticeUI>
     [SerializeField] ClearEyesNotice _clearEyesNotice = new ClearEyesNotice();
     [SerializeField] Tier0Notice _tier0Notice = new Tier0Notice();
     
-    void Awake()
+    public void Initialize()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
         Hide();

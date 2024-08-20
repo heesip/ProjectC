@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +13,7 @@ public class SettingUI : Singleton<SettingUI>
     [SerializeField] Button _keyBoardButton;
     readonly string KeySetting = "KeySetting"; 
 
-    void Awake()
+    public void Initialize()
     {
         gameObject.SetActive(false);
         LoadKeySetting();

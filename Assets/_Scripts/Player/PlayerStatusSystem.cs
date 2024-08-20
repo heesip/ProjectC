@@ -33,6 +33,7 @@ public class PlayerStatusSystem
         if (_health <= 0)
         {
             Player.Instance.DeadAnimation();
+            GameOverUI.Instance.GameOver();
         }
         return _health <= 0;
     }

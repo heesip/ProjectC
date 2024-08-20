@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +12,7 @@ public class AchieveUI : Singleton<AchieveUI>
 
     [SerializeField] TitleUI _titleUI;
     [SerializeField] Button _closeButton;
-    void Awake()
+    public void Initialize()
     {
         Load();
         ButtonSetting();

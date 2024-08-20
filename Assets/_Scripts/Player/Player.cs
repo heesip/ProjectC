@@ -44,7 +44,6 @@ public class Player : Singleton<Player>
             return;
         }
         _playerMoveSystem.PlayerRunStance();
-
         _playerMoveSystem.PlayerTurn();
     }
 

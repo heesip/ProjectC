@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +17,10 @@ public class UIManager : Singleton<UIManager>
         _achieveSwitch.onClick.AddListener(() => AchieveUION());
         _settingSwitch.onClick.AddListener(() => SettingUION());
         _hideButton.onClick.AddListener(() => AchieveUI.Instance.Tier0Achieve());
+        AchieveUI.Instance.Initialize();
+        NoticeUI.Instance.Initialize();
+        SettingUI.Instance.Initialize();
+        GameOverUI.Instance.Initialize();
         _joystick.gameObject.SetActive(false);
         UpdaateKillUI(0);
     }
