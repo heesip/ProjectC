@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] Collider2D _allkill;
     [SerializeField] Button _startButton;
-
-    [SerializeField] float _gametime;
+    readonly float _maxGameTime = 600;
+    [SerializeField] float _gameTime;
     [SerializeField] int _level;
     [SerializeField] bool _isGame;
     public bool IsGame => _isGame;
     public bool IsKeyboard => SettingUI.Instance.IsKeyboard;
- 
 
     int _maxLevel = 4;
-    int _minute => Mathf.FloorToInt(_gametime / 60);
-    int _second => Mathf.FloorToInt(_gametime % 60);
+    int _minute => Mathf.FloorToInt(_gameTime / 60);
+    int _second => Mathf.FloorToInt(_gameTime % 60);
 
     public int Level => _level;
     public int Kill
@@ -45,9 +45,10 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        _isGame = false;
         _startButton.onClick.AddListener(() => GameStart());
         _startButton.gameObject.SetActive(true);
+        _allkill = GetComponentInChildren<Collider2D>();
+        Stop();
     }
 
     void Start()
@@ -71,24 +72,39 @@ public class GameManager : Singleton<GameManager>
 
     void UpdateGameTime()
     {
-        _gametime += Time.deltaTime;
+        _gameTime += Time.deltaTime;
         UIManager.Instance.UpdateTimeUI(_minute, _second);
-        _level = (int)_gametime / 60;
+        _level = (int)_gameTime / 30;
 
         if (_level >= _maxLevel)
         {
             _level = _maxLevel;
         }
+
+        if (_gameTime < _maxGameTime)
+        {
+            return;
+        }
+        StartCoroutine(Victory());
     }
 
     void GameStart()
     {
         Resume();
         _startButton.gameObject.SetActive(false);
+        _allkill.enabled = false;
         UIManager.Instance.GameStartUISetting();
         Spawner.Instance.gameObject.SetActive(true);
         LevelUpUI.Instance.Ininialize();
         LevelUpUI.Instance.Show();
+    }
+
+    IEnumerator Victory()
+    {
+        _allkill.enabled = true;
+        yield return new WaitForSeconds(.5f);
+        Stop();
+        GameOverUI.Instance.Victory();
     }
 
     void AchieveCheck()
@@ -99,13 +115,13 @@ public class GameManager : Singleton<GameManager>
             {
                 return;
             }
-            if (_gametime > 180 && Kill < 1)
+            if (_gameTime > 180 && Kill < 1)
             {
                 AchieveManager.Instance.GetHiddenAchieve();
             }
         }
 
-        else if(_gametime > 60 && Kill < 1)
+        else if (_gameTime > 60 && Kill < 1)
         {
             AchieveManager.Instance.GetClearEyesAchieve();
         }

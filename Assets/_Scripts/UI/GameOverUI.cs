@@ -18,7 +18,6 @@ public class GameOverUI : Singleton<GameOverUI>
 
     public void Victory()
     {
-        GameManager.Instance.Stop();
         gameObject.SetActive(true);
         _victoryUI.SetActive(true);
     }
