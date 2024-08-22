@@ -53,7 +53,6 @@ public class UIManager : Singleton<UIManager>
     public void GameStartUISetting()
     {
         _achieveSwitch.gameObject.SetActive(false);
-        _settingSwitch.gameObject.SetActive(false);
         _hideButton.gameObject.SetActive(false);
         _joystick.gameObject.SetActive(true);
         Player.Instance.SocketOn();

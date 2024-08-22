@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     readonly float _maxGameTime = 600;
     [SerializeField] float _gameTime;
     [SerializeField] int _level;
+    bool _gameStartCheck => UIManager.Instance.Joystick.gameObject.activeSelf;
     [SerializeField] bool _isGame;
     public bool IsGame => _isGame;
     public bool IsKeyboard => SettingUI.Instance.IsKeyboard;
@@ -39,7 +41,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void Restart()
-    {
+    {   
         SceneManager.LoadScene(0);
     }
 
@@ -62,7 +64,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        if (!_isGame)
+        if (!_isGame || !_gameStartCheck)
         {
             return;
         }
@@ -90,10 +92,10 @@ public class GameManager : Singleton<GameManager>
 
     void GameStart()
     {
-        Resume();
+        UIManager.Instance.GameStartUISetting();
         _startButton.gameObject.SetActive(false);
         _allkill.enabled = false;
-        UIManager.Instance.GameStartUISetting();
+        Resume();   
         Spawner.Instance.gameObject.SetActive(true);
         LevelUpUI.Instance.Ininialize();
         LevelUpUI.Instance.Show();

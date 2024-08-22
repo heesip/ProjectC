@@ -11,15 +11,26 @@ public class SettingUI : Singleton<SettingUI>
     [SerializeField] Button _closeButton;
     [SerializeField] Button _joyStickButton;
     [SerializeField] Button _keyBoardButton;
-    readonly string KeySetting = "KeySetting"; 
+    readonly string KeySetting = "KeySetting";
 
     public void Initialize()
     {
         gameObject.SetActive(false);
         LoadKeySetting();
-        _closeButton.onClick.AddListener(() => gameObject.SetActive(false));
+        _closeButton.onClick.AddListener(() => UIClose());
         _joyStickButton.onClick.AddListener(() => JoyStickSet());
         _keyBoardButton.onClick.AddListener(() => KeyBoardSet());
+    }
+
+    void OnEnable()
+    {
+        GameManager.Instance.Stop();
+    }
+
+    void UIClose()
+    {
+        gameObject.SetActive(false);
+        GameManager.Instance.Resume();
     }
 
     void SaveKeySetting()
