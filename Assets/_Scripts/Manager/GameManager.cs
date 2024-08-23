@@ -41,7 +41,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void Restart()
-    {   
+    {
         SceneManager.LoadScene(0);
     }
 
@@ -58,6 +58,7 @@ public class GameManager : Singleton<GameManager>
         GameResourcesManager.Instance.Initialize();
         FactoryManager.Instance.Initialize();
         GameDataManager.Instance.Initialize();
+        AudioManager.Instance.Initialize();
         UIManager.Instance.Initialize();
         AchieveManager.Instance.Load();
     }
@@ -95,7 +96,8 @@ public class GameManager : Singleton<GameManager>
         UIManager.Instance.GameStartUISetting();
         _startButton.gameObject.SetActive(false);
         _allkill.enabled = false;
-        Resume();   
+        AudioManager.Instance.PlaySFX(SFXType.Select);
+        Resume();
         Spawner.Instance.gameObject.SetActive(true);
         LevelUpUI.Instance.Ininialize();
         LevelUpUI.Instance.Show();

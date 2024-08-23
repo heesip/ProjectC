@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +18,7 @@ public class SelectBox : MonoBehaviour
     {
         _myBoxType = GetComponentInChildren<SelectBoxType>();
         _myBoxType.Use();
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         LevelUpUI.Instance.Hide();
     }
 }

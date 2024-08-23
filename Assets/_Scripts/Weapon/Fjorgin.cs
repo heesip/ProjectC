@@ -89,6 +89,7 @@ public class Fjorgin : Singleton<Fjorgin>
             yield return rotate360.WaitForCompletion();
             Tween attack = transform.DORotate(_rotateVector, _rotate90Duration).SetEase(Ease.InQuint);
             yield return attack.WaitForCompletion();
+            AudioManager.Instance.PlaySFX(SFXType.Fjorgin);
             fjorginBuff.ShockWave();
             yield return _oneSecond;
 

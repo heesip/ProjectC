@@ -71,5 +71,6 @@ public class NoticeUI : Singleton<NoticeUI>
     {
         gameObject.transform.localScale = Vector3.one;
         _canvasGroup.alpha = 1;
+        AudioManager.Instance.PlaySFX(SFXType.LevelUp);
     }
 }

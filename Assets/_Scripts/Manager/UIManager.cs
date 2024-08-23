@@ -60,11 +60,13 @@ public class UIManager : Singleton<UIManager>
 
     void AchieveUION()
     {
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         AchieveUI.Instance.gameObject.SetActive(true);
     }
 
     void SettingUION()
     {
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         SettingUI.Instance.gameObject.SetActive(true);
     }
 }

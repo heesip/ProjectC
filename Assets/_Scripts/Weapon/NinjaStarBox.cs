@@ -93,6 +93,7 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
         {
             ninjaStar.Throw(Targeting());
         }
+        AudioManager.Instance.PlaySFX(SFXType.Throwing, 1);
         ninjaStar.Throw(_attackDirection);
     }
 

@@ -89,6 +89,7 @@ public class Electrode : Singleton<Electrode>
             for (int i = 0; i < _count; i++)
             {
                 _collider.enabled = !_collider.enabled;
+                AudioManager.Instance.PlaySFX(SFXType.Electrode);
                 yield return _attackDelay;
             }
             _spriteRenderer.enabled = false;

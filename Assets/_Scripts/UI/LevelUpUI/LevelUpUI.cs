@@ -121,6 +121,7 @@ public class LevelUpUI : Singleton<LevelUpUI>
                 break;
             }
         }
+        AudioManager.Instance.PlaySFX(SFXType.LevelUp);
     }
 
     void BoxSetting(SelectBoxType selectBoxType, Transform transform)

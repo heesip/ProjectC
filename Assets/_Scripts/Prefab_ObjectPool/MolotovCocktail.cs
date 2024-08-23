@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -33,9 +33,9 @@ public class MolotovCocktail : Item
         Vector3 direction = (transform.position - playerPosition).normalized;
         Vector3 target = gameObject.transform.position + direction * _range;
         var sequence = DOTween.Sequence().OnComplete(Bomb);
-
         sequence.Append(transform.DOMove(target, _speed));
         sequence.Join(transform.DORotate(_rotate360, _speed, RotateMode.FastBeyond360));
+        AudioManager.Instance.PlaySFX(SFXType.Throwing);
     }
 
     void Bomb()

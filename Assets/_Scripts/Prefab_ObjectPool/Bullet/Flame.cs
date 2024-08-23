@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class Flame : Bullet
     #region FlameInfo
     WaitForSeconds _attackDelay = new WaitForSeconds(0.5f);
     float _flameDamage = 3;
-    float _flameDuration = 5;
+    float _flameDuration = 10;
 
     float _atorpineFlameDamage = 10;
     float _atorpineFlameDuration = 10;
@@ -25,6 +25,7 @@ public class Flame : Bullet
 
     IEnumerator AttackCo()
     {
+        AudioManager.Instance.PlaySFX(SFXType.Fire);
         while (true)
         {
             _collider.enabled = !_collider.enabled;

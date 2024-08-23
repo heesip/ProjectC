@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,12 +17,12 @@ public class EnemyDataSO : ScriptableObject
 
     public readonly float[] MaxHealths = new float[]
     {
-        7, 10, 15, 20, 30
+        7, 10, 15, 20, 25, 30
     };
 
     public readonly float[] Speeds = new float[]
     {
-        1, 1.2f, 1.5f, 1.7f, 2
+        1, 1.2f, 1.5f, 1.7f, 2, 2.2f
     };
 
 }

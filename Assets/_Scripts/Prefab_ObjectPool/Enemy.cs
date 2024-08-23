@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -149,6 +149,7 @@ public class Enemy : RecycleObject
         Vector3 directionVector = transform.position - playerPosition;
         _rigidbody.AddForce(directionVector.normalized
                             * _enemyDataSO.KnockBackRange, ForceMode2D.Impulse);
+        AudioManager.Instance.PlaySFX(SFXType.Hit);
     }
 
     void StopCoHandle(Coroutine coHandle)

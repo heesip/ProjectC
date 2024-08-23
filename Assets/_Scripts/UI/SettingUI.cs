@@ -29,6 +29,7 @@ public class SettingUI : Singleton<SettingUI>
 
     void UIClose()
     {
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         gameObject.SetActive(false);
         GameManager.Instance.Resume();
     }
@@ -45,12 +46,14 @@ public class SettingUI : Singleton<SettingUI>
 
     void JoyStickSet()
     {
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         _isKeyboard = true;
         SaveKeySetting();
     }
 
     void KeyBoardSet()
     {
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         _isKeyboard = false;
         SaveKeySetting();
     }

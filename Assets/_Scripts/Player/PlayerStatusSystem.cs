@@ -16,7 +16,7 @@ public class PlayerStatusSystem
     int _exp = 0;
     int[] _nextExp = new int[]
     {
-        3,6,9,12,15,18,21,24,27,30
+        3,5,5,5,7,7,9,9,9,9,12,12,12,12,20
     };
     int _endExp => _nextExp.Length - 1;
     int _nextExpValue => Mathf.Min(_level, _endExp);
@@ -101,6 +101,7 @@ public class PlayerStatusSystem
     public void GetBuff()
     {
         _shield = _maxShield;
+        AudioManager.Instance.PlaySFX(SFXType.Shield);
         UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
     }
 

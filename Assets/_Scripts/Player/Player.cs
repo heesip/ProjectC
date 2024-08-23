@@ -66,11 +66,13 @@ public class Player : Singleton<Player>
     public void Healing(float healingPoint, bool isAtropine)
     {
         _playerStatusSystem.Healing(healingPoint, isAtropine);
+        AudioManager.Instance.PlaySFX(SFXType.Potion);
     }
 
     public void GetExpGem()
     {
         _playerStatusSystem.GetExpGem();
+        AudioManager.Instance.PlaySFX(SFXType.Coin);
     }
 
     public void GetBuff()
@@ -94,6 +96,7 @@ public class Player : Singleton<Player>
 
     public void DeadAnimation()
     {
+        AudioManager.Instance.PlaySFX(SFXType.Dead);
         _playerAnimatorSystem.DeadAnimation();
     }
 

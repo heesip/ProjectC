@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Thunder : Bullet
 {
+    float _myVolume = 0.2f;
     Animator _animator;
     Collider2D _collider;
+
 
     protected override void OnStart()
     {
@@ -31,6 +33,7 @@ public class Thunder : Bullet
     IEnumerator AttackCo()
     {
         _animator.SetBool(AllStrings.Attack, true);
+        AudioManager.Instance.PlaySFX(SFXType.Thunder, _myVolume);
         yield return null;
     }
 

@@ -44,6 +44,7 @@ public class AchieveUI : Singleton<AchieveUI>
         {
             return;
         }
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         AchieveManager.Instance.SaveDonePieceActive();
         _donePieceUIBox.ShowActive();
     }
@@ -54,7 +55,7 @@ public class AchieveUI : Singleton<AchieveUI>
         {
             return;
         }
-
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         AchieveManager.Instance.SaveMadnessTitleActive();
         ActiveTitleLoad();
     }
@@ -65,7 +66,7 @@ public class AchieveUI : Singleton<AchieveUI>
         {
             return;
         }
-
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         AchieveManager.Instance.SaveClearEyesTitleActive();
         ActiveTitleLoad();
     }
@@ -79,12 +80,14 @@ public class AchieveUI : Singleton<AchieveUI>
 
     void UIClose()
     {
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         gameObject.SetActive(false);
     }
 
     public void Tier0Achieve()
     {
         AchieveManager.Instance.GetTier0Achieve();
+        AudioManager.Instance.PlaySFX(SFXType.Select);
         _tier0UIBox.Tier0UILoad();
     }
 }

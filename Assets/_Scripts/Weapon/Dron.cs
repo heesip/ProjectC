@@ -93,6 +93,7 @@ public class Dron : Singleton<Dron>
                 missile.AttackPoint(attackPoint);
                 missile.Shoting(_targetVecter.x, _speed, CheckAtropine().damage);
             }
+            AudioManager.Instance.PlaySFX(SFXType.Range);
             yield return CheckAtropine().coolTime;
         }
     }
