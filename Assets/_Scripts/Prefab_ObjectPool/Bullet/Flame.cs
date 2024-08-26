@@ -9,9 +9,7 @@ public class Flame : Bullet
     WaitForSeconds _attackDelay = new WaitForSeconds(0.5f);
     float _flameDamage = 3;
     float _flameDuration = 10;
-
-    float _atorpineFlameDamage = 10;
-    float _atorpineFlameDuration = 10;
+    float _atorpineFlameDamage = 9999999;
     #endregion
     protected override void OnStart()
     {
@@ -41,19 +39,19 @@ public class Flame : Bullet
 
     void FlameSetting()
     {
-        _damage = CheckAtropine().damage;
-        _duration = CheckAtropine().duration;
+        _damage = CheckAtropine();
+        _duration = _flameDuration;
     }
 
-    (float damage, float duration) CheckAtropine()
+    float CheckAtropine()
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_atorpineFlameDamage, _atorpineFlameDuration);
+            return _atorpineFlameDamage;
         }
         else
         {
-            return (_flameDamage, _flameDuration);
+            return _flameDamage;
         }
     }
 

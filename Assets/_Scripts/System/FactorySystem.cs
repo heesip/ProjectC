@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,19 +6,19 @@ public class FactorySystem
 {
     public void Initialize(Transform factoryManager)
     {
-        _enemyPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetEnemyPrefab(), 100, factoryManager);
-        _expGemPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetExpGemPrefab(), 100, factoryManager);
-        _missilePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMissilePrefab(), 5, factoryManager);
-        _ninjaStarPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPrefab(), 5, factoryManager);
-        _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 5, factoryManager);
-        _molotovCocktailPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMolotovCocktailPrefab(), 2, factoryManager);
-        _flamePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFlamePrefab(), 2, factoryManager);
+        _enemyPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetEnemyPrefab(), 10, factoryManager);
+        _expGemPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetExpGemPrefab(), 10, factoryManager);
+        _missilePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMissilePrefab(), 4, factoryManager);
+        _ninjaStarPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPrefab(), 1, factoryManager);
+        _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 1, factoryManager);
+        _molotovCocktailPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMolotovCocktailPrefab(), 1, factoryManager);
+        _flamePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFlamePrefab(), 1, factoryManager);
         _fjorginBuffPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetFjorginBuffPrefab(), 1, factoryManager);
 
-        _magnetPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMagnetPrefab(), 5, factoryManager);
-        _potionPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetPotionPrefab(), 5, factoryManager);
+        _magnetPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMagnetPrefab(), 1, factoryManager);
+        _potionPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetPotionPrefab(), 1, factoryManager);
         _ninjaStarPiecePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPiecePrefab(), 1, factoryManager);
-        _itemBoxPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetItemBoxPrefab(), 10, factoryManager);
+        _itemBoxPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetItemBoxPrefab(), 1, factoryManager);
     }
 
 

@@ -22,11 +22,6 @@ public class SettingUI : Singleton<SettingUI>
         _keyBoardButton.onClick.AddListener(() => KeyBoardSet());
     }
 
-    void OnEnable()
-    {
-        GameManager.Instance.Stop();
-    }
-
     void UIClose()
     {
         AudioManager.Instance.PlaySFX(SFXType.Select);

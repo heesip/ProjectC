@@ -40,5 +40,5 @@ public enum SFXType
     Shield = 12,
     Fire = 13,
     Potion = 14,
-    Coin = 15
+    Gem = 15
 }

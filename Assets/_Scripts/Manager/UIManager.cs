@@ -68,5 +68,6 @@ public class UIManager : Singleton<UIManager>
     {
         AudioManager.Instance.PlaySFX(SFXType.Select);
         SettingUI.Instance.gameObject.SetActive(true);
+        GameManager.Instance.Stop();
     }
 }

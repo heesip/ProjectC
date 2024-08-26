@@ -107,6 +107,7 @@ public class Mk2 : Singleton<Mk2>
             _damage = CheckAtropine().damage;
             AttackPosition();
             Tween attack = transform.DORotate(EndValue(), _speed, RotateMode.FastBeyond360).SetEase(Ease.InSine);
+            AudioManager.Instance.PlaySFX(SFXType.Throwing);
             yield return attack.WaitForCompletion();
             WeaponReturn();
             yield return CheckAtropine().coolTime;

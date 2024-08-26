@@ -3347,7 +3347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bgmClip: {fileID: 8300000, guid: 7043965b7c492fd4680fa60762e110c4, type: 3}
-  _bgmVolume: 0.2
+  _bgmVolume: 0.1
   _sfxClips:
   - {fileID: 8300000, guid: 3d265ae485abcbc4ba34dd5db1ab7c6e, type: 3}
   - {fileID: 8300000, guid: 21872141b6d61584394c195cb46a7404, type: 3}
@@ -3365,7 +3365,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: abc91f420c6752141ac23749209d31eb, type: 3}
   - {fileID: 8300000, guid: 72e30f98be163594b97d17e40cd5bc24, type: 3}
   - {fileID: 8300000, guid: f18150118fa0c8548a97bd56c79bec9b, type: 3}
-  _sfxVolume: 0.2
 --- !u!1 &1068453443
 GameObject:
   m_ObjectHideFlags: 0

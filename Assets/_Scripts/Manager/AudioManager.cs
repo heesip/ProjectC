@@ -11,7 +11,7 @@ public class AudioManager : Singleton<AudioManager>
 
     [Header("#SFX")]
     [SerializeField] AudioClip[] _sfxClips;
-    [SerializeField] float _sfxVolume;
+    // [SerializeField] float _sfxVolume;
     readonly int channels = 30;
     int _channelIndex;
     AudioSource[] _sfxPlayers;
@@ -34,11 +34,20 @@ public class AudioManager : Singleton<AudioManager>
         {
             _sfxPlayers[i] = sfxObject.AddComponent<AudioSource>();
             _sfxPlayers[i].playOnAwake = false;
-            _sfxPlayers[i].volume = _sfxVolume;
         }
     }
 
-    public void PlaySFX(SFXType sfxtype)
+    public void PlayBGM()
+    {
+        _bgmPlayer.Play();
+    }
+
+    public void PauseBGM()
+    {
+        _bgmPlayer.Pause();
+    }
+
+    public void PlaySFX(SFXType sfxType)
     {
         for (int i = 0; i < _sfxPlayers.Length; i++)
         {
@@ -48,26 +57,51 @@ public class AudioManager : Singleton<AudioManager>
                 continue;
             }
             _channelIndex = loopIndex;
-            _sfxPlayers[loopIndex].clip = _sfxClips[(int)sfxtype];
+            _sfxPlayers[loopIndex].clip = _sfxClips[(int)sfxType];
+            _sfxPlayers[loopIndex].volume = VolumeSetting(sfxType);
             _sfxPlayers[loopIndex].Play();
             break;
         }
     }
 
-    public void PlaySFX(SFXType sfxtype, float volume)
+    float VolumeSetting(SFXType sfxType)
     {
-        _sfxVolume = volume;
-        for (int i = 0; i < _sfxPlayers.Length; i++)
+        switch (sfxType)
         {
-            int loopIndex = (i + _channelIndex) % _sfxPlayers.Length;
-            if (_sfxPlayers[loopIndex].isPlaying)
-            {
-                continue;
-            }
-            _channelIndex = loopIndex;
-            _sfxPlayers[loopIndex].clip = _sfxClips[(int)sfxtype];
-            _sfxPlayers[loopIndex].Play();
-            break;
+            case SFXType.Dead:
+                return 0.2f;
+            case SFXType.Win:
+                return 0.2f;
+            case SFXType.Lose:
+                return 0.2f;
+            case SFXType.LevelUp:
+                return 0.1f;
+            case SFXType.Select:
+                return 0.2f;
+            case SFXType.Hit:
+                return 0.1f;
+            case SFXType.Melee:
+                return 0.2f;
+            case SFXType.Range:
+                return 0.2f;
+            case SFXType.Throwing:
+                return 0.7f;
+            case SFXType.Thunder:
+                return 0.15f;
+            case SFXType.Electrode:
+                return 0.15f;
+            case SFXType.Fjorgin:
+                return 0.2f;
+            case SFXType.Shield:
+                return 0.1f;
+            case SFXType.Fire:
+                return 0.2f;
+            case SFXType.Potion:
+                return 0.6f;
+            case SFXType.Gem:
+                return 0.1f;
+            default:
+                return 0.2f;
         }
     }
 

@@ -66,6 +66,7 @@ public class PlayerStatusSystem
     public void GetExpGem()
     {
         _exp++;
+        AudioManager.Instance.PlaySFX(SFXType.Gem);
         if (_exp >= _nextExp[_nextExpValue])
         {
             int tempExp = _nextExp[_nextExpValue] - _exp;
@@ -80,6 +81,7 @@ public class PlayerStatusSystem
     {
         _health += healingPoint;
         UIManager.Instance.UpdateHpUI(_health, _maxHealth);
+        AudioManager.Instance.PlaySFX(SFXType.Potion);
 
         if (!isAtropine)
         {

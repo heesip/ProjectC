@@ -20,6 +20,7 @@ public class GameOverUI : Singleton<GameOverUI>
     {
         gameObject.SetActive(true);
         _victoryUI.SetActive(true);
+        AudioManager.Instance.PauseBGM();
         AudioManager.Instance.PlaySFX(SFXType.Win);
     }
 
@@ -28,6 +29,7 @@ public class GameOverUI : Singleton<GameOverUI>
         GameManager.Instance.Stop();
         gameObject.SetActive(true);
         _gameOverUI.SetActive(true);
+        AudioManager.Instance.PauseBGM();
         AudioManager.Instance.PlaySFX(SFXType.Lose);
     }
 

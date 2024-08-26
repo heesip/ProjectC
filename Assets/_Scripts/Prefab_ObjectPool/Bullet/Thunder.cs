@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Thunder : Bullet
 {
-    float _myVolume = 0.2f;
     Animator _animator;
     Collider2D _collider;
 
@@ -33,7 +32,7 @@ public class Thunder : Bullet
     IEnumerator AttackCo()
     {
         _animator.SetBool(AllStrings.Attack, true);
-        AudioManager.Instance.PlaySFX(SFXType.Thunder, _myVolume);
+        AudioManager.Instance.PlaySFX(SFXType.Thunder);
         yield return null;
     }
 

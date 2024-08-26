@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     readonly float _maxGameTime = 600;
     [SerializeField] float _gameTime;
     [SerializeField] int _level;
+    public int Level => _level;
     bool _gameStartCheck => UIManager.Instance.Joystick.gameObject.activeSelf;
     [SerializeField] bool _isGame;
     public bool IsGame => _isGame;
@@ -21,7 +22,8 @@ public class GameManager : Singleton<GameManager>
     int _minute => Mathf.FloorToInt(_gameTime / 60);
     int _second => Mathf.FloorToInt(_gameTime % 60);
 
-    public int Level => _level;
+    WaitForSeconds _victoryDelay = new WaitForSeconds(0.5f);
+
     public int Kill
     {
         get;
@@ -50,7 +52,6 @@ public class GameManager : Singleton<GameManager>
         _startButton.onClick.AddListener(() => GameStart());
         _startButton.gameObject.SetActive(true);
         _allkill = GetComponentInChildren<Collider2D>();
-        Stop();
     }
 
     void Start()
@@ -61,6 +62,7 @@ public class GameManager : Singleton<GameManager>
         AudioManager.Instance.Initialize();
         UIManager.Instance.Initialize();
         AchieveManager.Instance.Load();
+        Stop();
     }
 
     void Update()
@@ -98,6 +100,7 @@ public class GameManager : Singleton<GameManager>
         _allkill.enabled = false;
         AudioManager.Instance.PlaySFX(SFXType.Select);
         Resume();
+        AudioManager.Instance.PlayBGM();
         Spawner.Instance.gameObject.SetActive(true);
         LevelUpUI.Instance.Ininialize();
         LevelUpUI.Instance.Show();
@@ -106,7 +109,7 @@ public class GameManager : Singleton<GameManager>
     IEnumerator Victory()
     {
         _allkill.enabled = true;
-        yield return new WaitForSeconds(.5f);
+        yield return _victoryDelay;
         Stop();
         GameOverUI.Instance.Victory();
     }
