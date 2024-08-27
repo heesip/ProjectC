@@ -23,7 +23,7 @@ public class Flame : Bullet
 
     IEnumerator AttackCo()
     {
-        AudioManager.Instance.PlaySFX(SFXType.Fire);
+        AudioManager.Instance.PlaySFX(SFXType.Flame);
         while (true)
         {
             _collider.enabled = !_collider.enabled;

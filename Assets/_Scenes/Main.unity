@@ -1388,7 +1388,6 @@ GameObject:
   m_Component:
   - component: {fileID: 505064510}
   - component: {fileID: 505064511}
-  - component: {fileID: 505064512}
   m_Layer: 0
   m_Name: Fjorgin
   m_TagString: Untagged
@@ -1463,22 +1462,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &505064512
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505064509}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.45}
-  m_Size: {x: 1.13, y: 0.87}
-  m_Direction: 1
 --- !u!1 &532108489
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,7 +3345,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 74a08ed99deea264b92e4e739745221d, type: 3}
   - {fileID: 8300000, guid: 4526182c2e02a8b4da57e4b99546ca93, type: 3}
   - {fileID: 8300000, guid: a989c523f788d9a49a2fc0691ebc0dfd, type: 3}
-  - {fileID: 8300000, guid: abc91f420c6752141ac23749209d31eb, type: 3}
+  - {fileID: 8300000, guid: 85bdc78c8850b3440af0c55052234b66, type: 3}
   - {fileID: 8300000, guid: 72e30f98be163594b97d17e40cd5bc24, type: 3}
   - {fileID: 8300000, guid: f18150118fa0c8548a97bd56c79bec9b, type: 3}
 --- !u!1 &1068453443

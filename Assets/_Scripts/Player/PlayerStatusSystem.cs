@@ -12,7 +12,7 @@ public class PlayerStatusSystem
     [SerializeField] float _health;
 
     int _level = 0;
-
+    int _healthUp = 25; 
     int _exp = 0;
     int[] _nextExp = new int[]
     {
@@ -73,6 +73,7 @@ public class PlayerStatusSystem
             _level++;
             _exp = tempExp;
             LevelUpUI.Instance.Show();
+            Healing(_healthUp, false);
         }
         UIManager.Instance.UpdateExpUI(_exp, _nextExp[_nextExpValue]);
     }
@@ -80,18 +81,24 @@ public class PlayerStatusSystem
     public void Healing(float healingPoint, bool isAtropine)
     {
         _health += healingPoint;
+        if (_health > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
         UIManager.Instance.UpdateHpUI(_health, _maxHealth);
-        AudioManager.Instance.PlaySFX(SFXType.Potion);
 
         if (!isAtropine)
         {
             Player.Instance.HealEffect();
+            AudioManager.Instance.PlaySFX(SFXType.Potion);
             return;
         }
 
+        _isDead = Dead();
         if (!_isDead)
         {
             UseAtropine();
+            AudioManager.Instance.PlaySFX(SFXType.Potion);
         }
 
         else

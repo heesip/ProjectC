@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +8,10 @@ public class Spawner : Singleton<Spawner>
     [SerializeField]
     WaitForSeconds[] _enemySpawnTimes = new WaitForSeconds[]
     {
-        new WaitForSeconds(3.5f), new WaitForSeconds(3),new WaitForSeconds(2.5f),
-        new WaitForSeconds(2), new WaitForSeconds(1.5f)
+        new WaitForSeconds(3f), new WaitForSeconds(2.5f),new WaitForSeconds(2f),
+        new WaitForSeconds(1.7f), new WaitForSeconds(1.5f)
     };
-    [SerializeField] WaitForSeconds _itemBoxSpawnTime = new WaitForSeconds(10);
+    [SerializeField] WaitForSeconds _itemBoxSpawnTime = new WaitForSeconds(30);
 
     void OnEnable()
     {

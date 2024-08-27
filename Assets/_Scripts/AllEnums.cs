@@ -38,7 +38,7 @@ public enum SFXType
     Electrode = 10,
     Fjorgin = 11,
     Shield = 12,
-    Fire = 13,
+    Flame = 13,
     Potion = 14,
     Gem = 15
 }

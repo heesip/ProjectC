@@ -94,7 +94,7 @@ public class AudioManager : Singleton<AudioManager>
                 return 0.2f;
             case SFXType.Shield:
                 return 0.1f;
-            case SFXType.Fire:
+            case SFXType.Flame:
                 return 0.2f;
             case SFXType.Potion:
                 return 0.6f;

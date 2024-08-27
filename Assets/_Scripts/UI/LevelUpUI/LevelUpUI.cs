@@ -89,6 +89,12 @@ public class LevelUpUI : Singleton<LevelUpUI>
             {
                 continue;
             }
+
+            if (Fjorgin.Instance.IsFjorgin && item == _fjorginBox)
+            {
+                continue;
+            }
+
             randomList.Add(item);
         }
 
@@ -98,6 +104,7 @@ public class LevelUpUI : Singleton<LevelUpUI>
             randomList.Add(_healPotionBox);
             randomList.Add(_atropineBox);
         }
+        
         randomBox = randomList.ToArray();
 
         int randomNumber = Random.Range(0, randomBox.Length);
@@ -130,7 +137,6 @@ public class LevelUpUI : Singleton<LevelUpUI>
         selectBoxType.transform.SetParent(transform);
         selectBoxType.transform.localPosition = Vector3.zero;
         selectBoxType.transform.localScale = Vector3.one;
-
     }
 
     void Recover()

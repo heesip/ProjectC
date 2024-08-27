@@ -7,7 +7,6 @@ public class Fjorgin : Singleton<Fjorgin>
 {
     [SerializeField] GameObject _fjorgin;
     SpriteRenderer _fjorginSprite;
-    Collider2D _collider;
 
     [SerializeField] WeaponDataSO _weaponDataSO;
     Vector3 _readyPosition;
@@ -17,17 +16,18 @@ public class Fjorgin : Singleton<Fjorgin>
     float _rotate360Duration;
     float _rotate90Duration;
 
-    readonly int _maxLevel = 3;
-    int _level;
-    public int Level => _level;
-
     WaitForSeconds _oneSecond;
     WaitForSeconds _coolTime;
+
+    bool _isFjorgin;
+    public bool IsFjorgin => _isFjorgin;
+
+
     void Awake()
     {
-        _collider = _fjorgin.GetComponent<Collider2D>();
         _fjorginSprite = _fjorgin.GetComponent<SpriteRenderer>();
         _fjorgin.transform.Translate(transform.up);
+        _isFjorgin = false;
         DataLoad();
     }
     void DataLoad()
@@ -45,21 +45,8 @@ public class Fjorgin : Singleton<Fjorgin>
 
     public void UseWeapon()
     {
-        LevelUp();
         gameObject.SetActive(true);
-    }
-
-    void LevelUp()
-    {
-        if (_level > 0)
-        {
-            WeaponReturn();
-            gameObject.SetActive(false);
-        }
-        if (_level < _maxLevel)
-        {
-            _level++;
-        }
+        _isFjorgin = true;
     }
 
     private void OnEnable()
@@ -79,7 +66,6 @@ public class Fjorgin : Singleton<Fjorgin>
         while (true)
         {
             WeaponReturn();
-            yield return _coolTime;
             AttackPosition();
             yield return _oneSecond;
             FjorginBuff fjorginBuff = FactoryManager.Instance.GetFjorginBuff();
@@ -92,7 +78,8 @@ public class Fjorgin : Singleton<Fjorgin>
             AudioManager.Instance.PlaySFX(SFXType.Fjorgin);
             fjorginBuff.ShockWave();
             yield return _oneSecond;
-
+            WeaponReturn();
+            yield return _coolTime;
         }
     }
 
@@ -107,7 +94,6 @@ public class Fjorgin : Singleton<Fjorgin>
     void AttackPosition()
     {
         transform.localPosition = _readyPosition;
-        _collider.enabled = true;
         _fjorginSprite.enabled = true;
         transform.SetParent(null);
     }
@@ -115,7 +101,6 @@ public class Fjorgin : Singleton<Fjorgin>
     void WeaponReturn()
     {
         _fjorginSprite.enabled = false;
-        _collider.enabled = false;
         transform.rotation = _readyRotation;
         transform.SetParent(Player.Instance.transform);
     }

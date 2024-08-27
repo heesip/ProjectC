@@ -10,12 +10,7 @@ public class SelectBoxType : MonoBehaviour
     public readonly int MaxLevel = 3;
     [SerializeField] SelectUIType _myType;
     [SerializeField] Text _myText;
-    WeaponDataSO _weaponDataSO;
     [SerializeField] GameObject[] _levelImages;
-    void Awake()
-    {
-        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
-    }
 
     public void LevelCheck()
     {
@@ -73,8 +68,6 @@ public class SelectBoxType : MonoBehaviour
                 return Dron.Instance.Level;
             case SelectUIType.Electrode:
                 return Electrode.Instance.Level;
-            case SelectUIType.Fjorgin:
-                return Fjorgin.Instance.Level;
             case SelectUIType.Mk2:
                 return Mk2.Instance.Level;
             case SelectUIType.NinjaStar:
@@ -83,32 +76,7 @@ public class SelectBoxType : MonoBehaviour
             case SelectUIType.Thunder:
                 return ThunderStroke.Instance.Level;
             default:
-                return -1;
+                return -100;
         }
     }
-
-    void UseText()
-    {
-        switch (_myType)
-        {
-            case SelectUIType.Dron:
-                break;
-            case SelectUIType.Electrode:
-                break;
-            case SelectUIType.Fjorgin:
-                break;
-            case SelectUIType.Mk2:
-                break;
-            case SelectUIType.NinjaStar:
-                break;
-            case SelectUIType.Thunder:
-                break;
-            case SelectUIType.DonePiece:
-                break;
-            default:
-                return;
-        }
-    }
-
-
 }
