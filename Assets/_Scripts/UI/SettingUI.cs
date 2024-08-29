@@ -11,6 +11,8 @@ public class SettingUI : Singleton<SettingUI>
     [SerializeField] Button _closeButton;
     [SerializeField] Button _joyStickButton;
     [SerializeField] Button _keyBoardButton;
+    [SerializeField] Button _restartButton;
+
     readonly string KeySetting = "KeySetting";
 
     public void Initialize()
@@ -20,6 +22,13 @@ public class SettingUI : Singleton<SettingUI>
         _closeButton.onClick.AddListener(() => UIClose());
         _joyStickButton.onClick.AddListener(() => JoyStickSet());
         _keyBoardButton.onClick.AddListener(() => KeyBoardSet());
+        _restartButton.onClick.AddListener(() => ReStart());
+        _restartButton.gameObject.SetActive(false);
+    }
+
+    public void ShowUI()
+    {
+        _restartButton.gameObject.SetActive(true);
     }
 
     void UIClose()
@@ -51,5 +60,10 @@ public class SettingUI : Singleton<SettingUI>
         AudioManager.Instance.PlaySFX(SFXType.Select);
         _isKeyboard = false;
         SaveKeySetting();
+    }
+    void ReStart()
+    {
+        UIClose();
+        GameOverUI.Instance.GameOver();
     }
 }

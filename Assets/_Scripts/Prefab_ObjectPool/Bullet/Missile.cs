@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -7,6 +7,7 @@ public class Missile : Bullet
 {
     protected override void OnStart()
     {
+        _isProjectile = false;
         transform.DOKill();
         _spriteRenderer.flipX = Player.Instance.IsLeft;
     }
@@ -16,6 +17,5 @@ public class Missile : Bullet
         _damage = damage;
         transform.DOMoveX(nextVector_X, duration).SetEase(Ease.InCubic);
     }
-
 }
 

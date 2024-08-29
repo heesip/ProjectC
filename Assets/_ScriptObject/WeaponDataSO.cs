@@ -15,12 +15,12 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] DronDamages = new float[]
     {
-        0, 4, 5, 7
+        0, 2, 3, 4
     };
 
     public readonly float[] DronCoolTimes = new float[]
     {
-        0, 1.8f, 1.3f, 1
+        0, 2, 1.5f, 1
     };
 
     public readonly float[] AtroPineDronDamages = new float[]
@@ -30,7 +30,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] AtropineDronCoolTimes = new float[]
     {
-        0, 1.5f, 1f, 0.5f
+        0, 1.5f, 1, 0.5f
     };
     #endregion
 
@@ -74,7 +74,7 @@ public class WeaponDataSO : ScriptableObject
     public readonly float Mk2Speed = 1.5f;
 
     public readonly float Mk2Damage = 2;
-    
+
     public readonly float[] Mk2CoolTimes = new float[]
     {
         0, 5, 4, 3
@@ -101,7 +101,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] NinjaStarDamages = new float[]
     {
-        0, 2, 3, 5
+        0, 3, 4, 6
     };
 
     public readonly float[] NinjaStarCoolTimes = new float[]
@@ -111,7 +111,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] AtroPineNinjaStarDamages = new float[]
     {
-        0, 4, 6, 8
+        0, 4, 5, 7
     };
 
     public readonly float[] AtropineNinjaStarCoolTimes = new float[]
@@ -123,17 +123,17 @@ public class WeaponDataSO : ScriptableObject
     #region ThunderStroke
     public readonly float[] ThunderDamages = new float[]
     {
-        0, 1.2f, 1.5f, 2
+        0, 1.5f, 2, 2.5f
     };
 
     public readonly float[] ThunderCoolTimes = new float[]
     {
-        0, 1.3f, 1, 0.8f
+        0, 1.5f, 1.2f, 1
     };
 
     public readonly float[] AtropineThunderCoolTimes = new float[]
     {
-        0, 1, 0.8f, 0.5f
+        0, 1.2f, 1, 0.5f
     };
     #endregion
 }

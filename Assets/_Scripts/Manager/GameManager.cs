@@ -104,6 +104,7 @@ public class GameManager : Singleton<GameManager>
         Spawner.Instance.gameObject.SetActive(true);
         LevelUpUI.Instance.Ininialize();
         LevelUpUI.Instance.Show();
+        SettingUI.Instance.ShowUI();
     }
 
     IEnumerator Victory()
