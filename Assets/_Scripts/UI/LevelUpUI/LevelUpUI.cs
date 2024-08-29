@@ -134,6 +134,7 @@ public class LevelUpUI : Singleton<LevelUpUI>
     void BoxSetting(SelectBoxType selectBoxType, Transform transform)
     {
         selectBoxType.LevelCheck();
+        selectBoxType.Test();
         selectBoxType.transform.SetParent(transform);
         selectBoxType.transform.localPosition = Vector3.zero;
         selectBoxType.transform.localScale = Vector3.one;

@@ -7,10 +7,55 @@ using UnityEngine.UI;
 
 public class SelectBoxType : MonoBehaviour
 {
+    readonly string _description = "데미지 : {0}\n쿨타임 : {1}초";
     public readonly int MaxLevel = 3;
     [SerializeField] SelectUIType _myType;
     [SerializeField] Text _myText;
     [SerializeField] GameObject[] _levelImages;
+    WeaponDataSO _weaponDataSO;
+
+    void Awake()
+    {
+        _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
+    }
+
+    public void Test()
+    {
+        int tempLevel = Level() + 1;
+        float tempDamage;
+        float tempCoolTime;
+        switch (_myType)
+        {
+            case SelectUIType.Dron:
+                tempDamage = _weaponDataSO.DronDamages[tempLevel];
+                tempCoolTime = _weaponDataSO.DronCoolTimes[tempLevel];
+                _myText.text = string.Format(_description, tempDamage, tempCoolTime);
+                break;
+            case SelectUIType.Electrode:
+                tempDamage = _weaponDataSO.ElectrodeDamage;
+                tempCoolTime = _weaponDataSO.ElectrodeCoolTimes[tempLevel];
+                _myText.text = string.Format(_description, tempDamage, tempCoolTime);
+                break;
+            case SelectUIType.Mk2:
+                tempDamage = _weaponDataSO.Mk2Damage;
+                tempCoolTime = _weaponDataSO.Mk2CoolTimes[tempLevel];
+                _myText.text = string.Format(_description, tempDamage, tempCoolTime);
+                break;
+            case SelectUIType.NinjaStar:
+            case SelectUIType.DonePiece:
+                tempDamage = _weaponDataSO.NinjaStarDamages[tempLevel];
+                tempCoolTime = _weaponDataSO.NinjaStarCoolTimes[tempLevel];
+                _myText.text = string.Format(_description, tempDamage, tempCoolTime);
+                break;
+            case SelectUIType.Thunder:
+                tempDamage = _weaponDataSO.ThunderDamages[tempLevel];
+                tempCoolTime = _weaponDataSO.ThunderCoolTimes[tempLevel];
+                _myText.text = string.Format(_description, tempDamage, tempCoolTime);
+                break;
+            default:
+                break;
+        }
+    }
 
     public void LevelCheck()
     {

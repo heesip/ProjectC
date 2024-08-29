@@ -16,7 +16,7 @@ public class Fjorgin : Singleton<Fjorgin>
     float _rotate360Duration;
     float _rotate90Duration;
 
-    WaitForSeconds _oneSecond;
+    WaitForSeconds _attackDelay;
     WaitForSeconds _coolTime;
 
     bool _isFjorgin;
@@ -39,8 +39,8 @@ public class Fjorgin : Singleton<Fjorgin>
         _readyRotation = _weaponDataSO.FjorginRotation;
         _rotate360Duration = _weaponDataSO.Fjorgin360RotateDuration;
         _rotate90Duration = _weaponDataSO.Fjorgin90RotateDuration;
-        _coolTime = _weaponDataSO.FjorginCoolTime;
-        _oneSecond = _weaponDataSO.OneSecond;
+        _coolTime = new WaitForSeconds(_weaponDataSO.FjorginCoolTime);
+        _attackDelay = _weaponDataSO.AttackDelay;
     }
 
     public void UseWeapon()
@@ -67,7 +67,7 @@ public class Fjorgin : Singleton<Fjorgin>
         {
             WeaponReturn();
             AttackPosition();
-            yield return _oneSecond;
+            yield return _attackDelay;
             FjorginBuff fjorginBuff = FactoryManager.Instance.GetFjorginBuff();
             fjorginBuff.transform.position = transform.position + _weaponDataSO.FjorginBuffPosition;
             fjorginBuff.MagicSquare(_rotate360Duration);
@@ -77,7 +77,7 @@ public class Fjorgin : Singleton<Fjorgin>
             yield return attack.WaitForCompletion();
             AudioManager.Instance.PlaySFX(SFXType.Fjorgin);
             fjorginBuff.ShockWave();
-            yield return _oneSecond;
+            yield return _attackDelay;
             WeaponReturn();
             yield return _coolTime;
         }

@@ -19,8 +19,10 @@ public class Dron : Singleton<Dron>
     int _count;
     int _range;
     float _damage;
+    float _damageAtropine;
     float _speed;
     WaitForSeconds _coolTime;
+    WaitForSeconds _coolTimeAtropine;
     public void UseWeapon()
     {
         LevelUp();
@@ -77,8 +79,10 @@ public class Dron : Singleton<Dron>
 
     void LevelValue(int level)
     {
-        _coolTime = _weaponDataSO.DronCoolTimes[level];
+        _coolTime = new WaitForSeconds(_weaponDataSO.DronCoolTimes[level]);
         _damage = _weaponDataSO.DronDamages[level];
+        _coolTimeAtropine = new WaitForSeconds(_weaponDataSO.AtropineDronCoolTimes[_level]);
+        _damageAtropine = _weaponDataSO.AtroPineDronDamages[_level];
     }
 
     Coroutine _attackCoHandle;
@@ -103,8 +107,7 @@ public class Dron : Singleton<Dron>
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_weaponDataSO.AtropineDronCoolTimes[_level],
-                _weaponDataSO.AtroPineDronDamages[_level]);
+            return (_coolTimeAtropine, _damageAtropine);
         }
         else
         {

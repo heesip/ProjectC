@@ -14,8 +14,10 @@ public class Electrode : Singleton<Electrode>
 
     int _count;
     float _damage;
+    float _damageAtropine;
     float _electrodeSize;
     WaitForSeconds _coolTime;
+    WaitForSeconds _coolTimeAtropine;
     WaitForSeconds _attackDelay;
 
     public void UseWeapon()
@@ -31,6 +33,7 @@ public class Electrode : Singleton<Electrode>
         _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _count = _weaponDataSO.ElectrodeCount;
         _attackDelay = _weaponDataSO.AttackDelay;
+        _damageAtropine = _weaponDataSO.AtropineElectrodeDamage;
     }
 
     void OnEnable()
@@ -61,11 +64,11 @@ public class Electrode : Singleton<Electrode>
 
     void LevelUp()
     {
-        if (_level > 0)
+        if (Level > 0)
         {
             _collider.enabled = false;
-            gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
         if (_level < _maxLevel)
         {
             _level++;
@@ -74,7 +77,8 @@ public class Electrode : Singleton<Electrode>
 
     void LevelValue(int level)
     {
-        _coolTime = _weaponDataSO.ElectrodeCoolTimes[level];
+        _coolTime = new WaitForSeconds(_weaponDataSO.ElectrodeCoolTimes[level]);
+        _coolTimeAtropine = new(_weaponDataSO.AtropineElectrodeCoolTimes[level]);
         _electrodeSize = _weaponDataSO.ElectrodeSizes[level];
     }
 
@@ -105,8 +109,8 @@ public class Electrode : Singleton<Electrode>
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_weaponDataSO.AtropineElectrodeCoolTimes[_level],
-                    _weaponDataSO.AtropineElectrodeDamage);
+            return (_coolTimeAtropine, _damageAtropine);
+
         }
         else
         {

@@ -10,7 +10,8 @@ public class ThunderStroke : Singleton<ThunderStroke>
     TargetSystem _targetSystem = new TargetSystem();
     Transform _randomTarget;
     Vector3 _playerPosition => Player.Instance.transform.position;
-    WaitForSeconds _thunderStrokeCoolTime;
+    WaitForSeconds _coolTime;
+    WaitForSeconds _coolTimeAtropine;
     WaitForSeconds _targetNullCoolTime;
 
     readonly int _maxLevel = 3;
@@ -27,7 +28,7 @@ public class ThunderStroke : Singleton<ThunderStroke>
     void Awake()
     {
         _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
-        _targetNullCoolTime = _weaponDataSO.ThunderStrokeCoolTimes[_maxLevel];
+        _targetNullCoolTime = new WaitForSeconds(_weaponDataSO.ThunderCoolTimes[_maxLevel]);
     }
 
     void OnEnable()
@@ -52,7 +53,8 @@ public class ThunderStroke : Singleton<ThunderStroke>
 
     void LevelValue(int level)
     {
-        _thunderStrokeCoolTime = _weaponDataSO.ThunderStrokeCoolTimes[level];
+        _coolTime = new WaitForSeconds(_weaponDataSO.ThunderCoolTimes[level]);
+        _coolTimeAtropine = new WaitForSeconds(_weaponDataSO.AtropineThunderCoolTimes[level]);
         _damage = _weaponDataSO.ThunderDamages[level];
     }
 
@@ -80,11 +82,11 @@ public class ThunderStroke : Singleton<ThunderStroke>
     {
         if (Player.Instance.IsAtropine)
         {
-            return _weaponDataSO.AtropineThunderStrokeCoolTimes[_level];
+            return _coolTimeAtropine;
         }
         else
         {
-            return _thunderStrokeCoolTime;
+            return _coolTime;
         }
     }
 

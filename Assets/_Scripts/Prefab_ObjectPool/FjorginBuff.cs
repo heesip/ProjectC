@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class FjorginBuff : RecycleObject
 {
+    readonly float _duration = 0.5f;
     SpriteRenderer[] _spriteRenderers;
     Collider2D _collider;
     [SerializeField] SpriteRenderer _magicSquareSprite;
@@ -49,7 +50,7 @@ public class FjorginBuff : RecycleObject
     {
         var sequence = DOTween.Sequence().OnComplete(Restore);
         _shockWaveSprite.enabled = true;
-        sequence.Append(_shockWaveSprite.DOFade(0, 1));
+        sequence.Append(_shockWaveSprite.DOFade(0, _duration));
         _collider.enabled = true;
     }
 }

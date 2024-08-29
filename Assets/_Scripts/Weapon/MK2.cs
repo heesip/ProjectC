@@ -24,6 +24,8 @@ public class Mk2 : Singleton<Mk2>
     float _damage;
     float _speed;
     WaitForSeconds _coolTime;
+    WaitForSeconds _coolTimeAtropine;
+
 
     void Awake()
     {
@@ -89,7 +91,8 @@ public class Mk2 : Singleton<Mk2>
 
     void LevelValue(int level)
     {
-        _coolTime = _weaponDataSO.Mk2CoolTimes[level];
+        _coolTime = new WaitForSeconds(_weaponDataSO.Mk2CoolTimes[level]);
+        _coolTimeAtropine = new WaitForSeconds(_weaponDataSO.AtropineMk2CoolTimes[level]);
         _count = _weaponDataSO.Mk2Counts[level];
     }
 
@@ -118,7 +121,7 @@ public class Mk2 : Singleton<Mk2>
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_weaponDataSO.AtropineMk2CoolTimes[_level], _weaponDataSO.AtropineMk2Damage);
+            return (_coolTimeAtropine, _weaponDataSO.AtropineMk2Damage);
         }
         else
         {

@@ -19,8 +19,10 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     public int Level => _level;
 
     float _damage;
+    float _damageAtropine;
     float _speed;
     WaitForSeconds _coolTime;
+    WaitForSeconds _coolTimeAtropine;
 
     public void UseWeapon()
     {
@@ -56,8 +58,10 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     }
     void LevelValue(int level)
     {
+        _coolTime = new WaitForSeconds(_weaponDataSO.NinjaStarCoolTimes[level]);
+        _coolTimeAtropine = new WaitForSeconds(_weaponDataSO.AtropineNinjaStarCoolTimes[level]);
         _damage = _weaponDataSO.NinjaStarDamages[level];
-        _coolTime = _weaponDataSO.NinjaStarCoolTimes[level];
+        _damageAtropine = _weaponDataSO.AtroPineNinjaStarDamages[level];
     }
 
     Coroutine _throwingNinjaStarCoHandle;
@@ -74,8 +78,7 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_weaponDataSO.AtropineNinjaStarCoolTimes[_level],
-                _weaponDataSO.AtroPineNinjaStarDamages[_level]);
+            return (_coolTimeAtropine, _damageAtropine);
         }
         else
         {

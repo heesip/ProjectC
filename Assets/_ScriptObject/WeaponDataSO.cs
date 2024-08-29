@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = nameof(WeaponDataSO), menuName = "ProjectC/Data/Create WeaponDataSO")]
 public class WeaponDataSO : ScriptableObject
 {
-
-
     #region Dron
     public readonly Vector3 DronRightPosition = new Vector3(-1, 1.5f, 0);
     public readonly Vector3 DronLeftPosition = new Vector3(1, 1.5f, 0);
@@ -20,9 +18,9 @@ public class WeaponDataSO : ScriptableObject
         0, 4, 5, 7
     };
 
-    public readonly WaitForSeconds[] DronCoolTimes = new WaitForSeconds[]
+    public readonly float[] DronCoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(2), new WaitForSeconds(1.5f), new WaitForSeconds(1)
+        0, 1.8f, 1.3f, 1
     };
 
     public readonly float[] AtroPineDronDamages = new float[]
@@ -30,30 +28,30 @@ public class WeaponDataSO : ScriptableObject
         0, 6, 7, 9
     };
 
-    public readonly WaitForSeconds[] AtropineDronCoolTimes = new WaitForSeconds[]
+    public readonly float[] AtropineDronCoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(1.5f), new WaitForSeconds(1f), new WaitForSeconds (0.5f)
+        0, 1.5f, 1f, 0.5f
     };
     #endregion
 
+    public readonly WaitForSeconds AttackDelay = new WaitForSeconds(0.5f);
     #region Electrode
     public readonly int ElectrodeCount = 10;
-    public readonly WaitForSeconds AttackDelay = new WaitForSeconds(0.5f);
 
     public readonly float ElectrodeDamage = 2;
     public readonly float[] ElectrodeSizes = new float[]
     {
         0, 1.0f, 1.25f, 1.5f
     };
-    public readonly WaitForSeconds[] ElectrodeCoolTimes = new WaitForSeconds[]
+    public readonly float[] ElectrodeCoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(6), new WaitForSeconds(5), new WaitForSeconds (3)
+        0, 6, 5, 3
     };
 
     public readonly float AtropineElectrodeDamage = 3;
-    public readonly WaitForSeconds[] AtropineElectrodeCoolTimes = new WaitForSeconds[]
+    public readonly float[] AtropineElectrodeCoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(5), new WaitForSeconds(4), new WaitForSeconds (2)
+        0, 5, 4, 2
     };
     #endregion
 
@@ -63,8 +61,7 @@ public class WeaponDataSO : ScriptableObject
     public readonly Vector3 FjorginAttack = Vector3.back * 90;
     public readonly Vector3 FjorginBuffPosition = new Vector3(1.3f, 0, 0);
     public readonly Quaternion FjorginRotation = Quaternion.Euler(0, 0, 45);
-    public readonly WaitForSeconds FjorginCoolTime = new WaitForSeconds(30);
-    public readonly WaitForSeconds OneSecond = new WaitForSeconds(1);
+    public readonly float FjorginCoolTime = 30;
     public readonly float Fjorgin360RotateDuration = 0.7f;
     public readonly float Fjorgin90RotateDuration = 0.5f;
     #endregion
@@ -76,12 +73,12 @@ public class WeaponDataSO : ScriptableObject
     public readonly Quaternion Mk2Rotation = Quaternion.Euler(0, 0, -90);
     public readonly float Mk2Speed = 1.5f;
 
-    public readonly WaitForSeconds[] Mk2CoolTimes = new WaitForSeconds[]
+    public readonly float Mk2Damage = 2;
+    
+    public readonly float[] Mk2CoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(4), new WaitForSeconds(3), new WaitForSeconds(2)
+        0, 5, 4, 3
     };
-
-    public readonly float Mk2Damage = 2.5f;
 
     public readonly int[] Mk2Counts = new int[]
     {
@@ -90,9 +87,9 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float AtropineMk2Damage = 4f;
 
-    public readonly WaitForSeconds[] AtropineMk2CoolTimes = new WaitForSeconds[]
+    public readonly float[] AtropineMk2CoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(3), new WaitForSeconds(2), new WaitForSeconds(1f)
+        0, 4, 3, 2
     };
     #endregion
 
@@ -107,9 +104,9 @@ public class WeaponDataSO : ScriptableObject
         0, 2, 3, 5
     };
 
-    public readonly WaitForSeconds[] NinjaStarCoolTimes = new WaitForSeconds[]
+    public readonly float[] NinjaStarCoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(1.2f), new WaitForSeconds(1f), new WaitForSeconds (.7f)
+        0, 1.2f, 1f, 0.7f
     };
 
     public readonly float[] AtroPineNinjaStarDamages = new float[]
@@ -117,26 +114,26 @@ public class WeaponDataSO : ScriptableObject
         0, 4, 6, 8
     };
 
-    public readonly WaitForSeconds[] AtropineNinjaStarCoolTimes = new WaitForSeconds[]
+    public readonly float[] AtropineNinjaStarCoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(0.9f), new WaitForSeconds(0.6f), new WaitForSeconds (.4f)
+        0, 0.9f, 0.6f, 0.4f
     };
     #endregion
 
     #region ThunderStroke
     public readonly float[] ThunderDamages = new float[]
     {
-        0, 1, 1.5f, 2
+        0, 1.2f, 1.5f, 2
     };
 
-    public readonly WaitForSeconds[] ThunderStrokeCoolTimes = new WaitForSeconds[]
+    public readonly float[] ThunderCoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(1.1f), new WaitForSeconds(0.9f),  new WaitForSeconds(0.7f)
+        0, 1.3f, 1, 0.8f
     };
 
-    public readonly WaitForSeconds[] AtropineThunderStrokeCoolTimes = new WaitForSeconds[]
+    public readonly float[] AtropineThunderCoolTimes = new float[]
     {
-        new WaitForSeconds(0), new WaitForSeconds(0.9f), new WaitForSeconds(0.7f),  new WaitForSeconds(0.5f)
+        0, 1, 0.8f, 0.5f
     };
     #endregion
 }
