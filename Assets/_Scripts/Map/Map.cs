@@ -1,14 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    float _differenceX;
-    float _differenceY;
-
-    //Temp Code
-    int _moveDistance = 40;
+    readonly int _moveDistance = 200;
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -16,33 +12,25 @@ public class Map : MonoBehaviour
         {
             return;
         }
-        AreaCheck(out _differenceX, out _differenceY);
-        Reposition(_differenceX, _differenceY);
-
+        Reposition(collision);
     }
-
-    void AreaCheck(out float differenceX, out float differenceY)
+    void Reposition(Collider2D collision)
     {
-        Vector3 playerPosition = Player.Instance.transform.position;
-        Vector3 myPosition = transform.position;
-        differenceX = playerPosition.x - myPosition.x;
-        differenceY = playerPosition.y - myPosition.y;
-    }
+        Vector3 direction = collision.transform.position - transform.position;
+        float directionX = direction.x < 0 ? -1 : 1;
+        float directionY = direction.y < 0 ? -1 : 1;
 
-    void Reposition(float differenceX, float differenceY)
-    {
-        float directionX = differenceX < 0 ? -1 : 1;
-        float directionY = differenceY < 0 ? -1 : 1;
-        differenceX = Mathf.Abs(differenceX);
-        differenceY = Mathf.Abs(differenceY);
-
-        if (differenceX > differenceY)
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             transform.Translate(Vector3.right * directionX * _moveDistance);
         }
-        else if (differenceY > differenceX)
+        else if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
         {
             transform.Translate(Vector3.up * directionY * _moveDistance);
+        }
+        else
+        {
+            transform.Translate(new Vector3(directionX, directionY, 0).normalized * _moveDistance);
         }
     }
 
