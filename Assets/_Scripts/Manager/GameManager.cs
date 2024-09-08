@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] Collider2D _allkill;
     [SerializeField] Button _startButton;
-    readonly float _maxGameTime = 600;
+    readonly float _maxGameTime = 420;
     [SerializeField] float _gameTime;
     [SerializeField] int _level;
     public int Level => _level;
@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     public bool IsGame => _isGame;
     public bool IsKeyboard => SettingUI.Instance.IsKeyboard;
 
-    int _maxLevel = 4;
+    int _maxLevel = 5;
     int _minute => Mathf.FloorToInt(_gameTime / 60);
     int _second => Mathf.FloorToInt(_gameTime % 60);
 
@@ -79,7 +79,7 @@ public class GameManager : Singleton<GameManager>
     {
         _gameTime += Time.deltaTime;
         UIManager.Instance.UpdateTimeUI(_minute, _second);
-        _level = (int)_gameTime / 30;
+        _level = (int)_gameTime / 60;
 
         if (_level >= _maxLevel)
         {
@@ -109,6 +109,7 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator Victory()
     {
+        Spawner.Instance.gameObject.SetActive(false);
         _allkill.enabled = true;
         yield return _victoryDelay;
         Stop();

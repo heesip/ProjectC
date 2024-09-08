@@ -18,6 +18,7 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     int _level;
     public int Level => _level;
 
+    readonly int _count = 2; 
     float _damage;
     float _damageAtropine;
     float _speed;
@@ -69,7 +70,11 @@ public class NinjaStarBox : Singleton<NinjaStarBox>
     {
         while (true)
         {
-            ThrowingNinjaStar(CheckAtropine().damage);
+            for (int i = 0; i < _count; i++)
+            {
+                ThrowingNinjaStar(CheckAtropine().damage);
+                yield return new WaitForSeconds(.3f);
+            }
             yield return CheckAtropine().coolTime;
         }
     }

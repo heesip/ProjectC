@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -7,9 +7,19 @@ public class ExpGem : RecycleObject
     bool _isFly;
     float _duration = 0.3f;
 
-    private void OnEnable()
+    void OnEnable()
     {
         _isFly = false;
+    }
+
+    void OnDisable()
+    {
+        if (!_isFly)
+        {
+            return;
+        }
+
+        Player.Instance.GetExpGem();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -36,8 +46,6 @@ public class ExpGem : RecycleObject
         Vector3 target = gameObject.transform.position + direction;
         sequence.Append(transform.DOMove(target, _duration));
         sequence.Append(transform.DOMove(playerPosition, _duration));
-        Player.Instance.GetExpGem();
-        sequence.Join(transform.DOScale(Vector3.zero,_duration)).OnComplete(Restore);
+        sequence.Join(transform.DOScale(Vector3.zero, _duration)).OnComplete(Restore);
     }
-
 }

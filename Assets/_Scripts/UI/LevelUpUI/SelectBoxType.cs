@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class SelectBoxType : MonoBehaviour
 {
     readonly string _description = "데미지 : {0}\n쿨타임 : {1}초";
+    readonly string _description2 = "데미지 : {0}\n크기증가";
     public readonly int MaxLevel = 3;
     [SerializeField] SelectUIType _myType;
     [SerializeField] Text _myText;
@@ -34,7 +35,7 @@ public class SelectBoxType : MonoBehaviour
             case SelectUIType.Electrode:
                 tempDamage = _weaponDataSO.ElectrodeDamage;
                 tempCoolTime = _weaponDataSO.ElectrodeCoolTimes[tempLevel];
-                _myText.text = string.Format(_description, tempDamage, tempCoolTime);
+                _myText.text = string.Format(_description2, tempDamage);
                 break;
             case SelectUIType.Mk2:
                 tempDamage = _weaponDataSO.Mk2Damage;

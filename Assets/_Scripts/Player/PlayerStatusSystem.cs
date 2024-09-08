@@ -16,7 +16,7 @@ public class PlayerStatusSystem
     int _exp = 0;
     int[] _nextExp = new int[]
     {
-        3,5,5,5,7,7,9,9,9,9,12,12,12,12,20
+        5,10,10,15,20,25,30,35,40,45,50,50,50,50,50
     };
     int _endExp => _nextExp.Length - 1;
     int _nextExpValue => Mathf.Min(_level, _endExp);

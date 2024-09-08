@@ -6,18 +6,14 @@ public class Electrode : Singleton<Electrode>
 {
     WeaponDataSO _weaponDataSO;
     Collider2D _collider;
-    SpriteRenderer _spriteRenderer;
 
     readonly int _maxLevel = 3;
     int _level;
     public int Level => _level;
 
-    int _count;
     float _damage;
     float _damageAtropine;
     float _electrodeSize;
-    WaitForSeconds _coolTime;
-    WaitForSeconds _coolTimeAtropine;
     WaitForSeconds _attackDelay;
 
     public void UseWeapon()
@@ -29,9 +25,7 @@ public class Electrode : Singleton<Electrode>
     void Awake()
     {
         _collider = GetComponent<Collider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
-        _count = _weaponDataSO.ElectrodeCount;
         _attackDelay = _weaponDataSO.AttackDelay;
         _damageAtropine = _weaponDataSO.AtropineElectrodeDamage;
     }
@@ -77,8 +71,6 @@ public class Electrode : Singleton<Electrode>
 
     void LevelValue(int level)
     {
-        _coolTime = new WaitForSeconds(_weaponDataSO.ElectrodeCoolTimes[level]);
-        _coolTimeAtropine = new(_weaponDataSO.AtropineElectrodeCoolTimes[level]);
         _electrodeSize = _weaponDataSO.ElectrodeSizes[level];
     }
 
@@ -88,33 +80,26 @@ public class Electrode : Singleton<Electrode>
     {
         while (true)
         {
-            _damage = CheckAtropine().damage;
-            _spriteRenderer.enabled = true;
-            for (int i = 0; i < _count; i++)
+            _damage = CheckAtropine();
+            _collider.enabled = !_collider.enabled;
+            if (_collider.enabled)
             {
-                _collider.enabled = !_collider.enabled;
-                if (_collider.enabled)
-                {
-                    AudioManager.Instance.PlaySFX(SFXType.Electrode);
-                }
-                yield return _attackDelay;
+                AudioManager.Instance.PlaySFX(SFXType.Electrode);
             }
-            _spriteRenderer.enabled = false;
-
-            yield return CheckAtropine().coolTime;
+            yield return _attackDelay;
         }
     }
 
-    (WaitForSeconds coolTime, float damage) CheckAtropine()
+    float CheckAtropine()
     {
         if (Player.Instance.IsAtropine)
         {
-            return (_coolTimeAtropine, _damageAtropine);
+            return _damageAtropine;
 
         }
         else
         {
-            return (_coolTime, _weaponDataSO.ElectrodeDamage);
+            return _weaponDataSO.ElectrodeDamage;
         }
     }
 

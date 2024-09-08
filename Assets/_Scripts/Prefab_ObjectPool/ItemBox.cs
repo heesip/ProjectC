@@ -18,17 +18,17 @@ public class ItemBox : RecycleObject
             case 1:
             case 2:
             case 3:
-            case 4:
-            case 5:
-            case 6:
                 Potion potion = FactoryManager.Instance.GetPotion();
                 BoxOpen(potion);
                 break;
-            case 8:
+            case 4:
+            case 5:
+            case 6:
                 Magnet magnet = FactoryManager.Instance.GetMagnet();
                 BoxOpen(magnet);
                 break;
             case 7:
+            case 8:
             case 9:
                 MolotovCocktail molotovCocktail = FactoryManager.Instance.GetMolotovCocktail();
                 BoxOpen(molotovCocktail);

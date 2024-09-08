@@ -16,6 +16,7 @@ public class Dron : Singleton<Dron>
     int _level;
     public int Level => _level;
 
+    readonly int _number = 2;
     int _count;
     int _range;
     float _damage;
@@ -90,14 +91,18 @@ public class Dron : Singleton<Dron>
     {
         while (true)
         {
-            for (int i = 0; i < _count; i++)
+            for (int number = 0; number < _number; number++)
             {
-                Vector3 attackPoint = i % 2 == 0 ? _dronAttackPoint1.position : _dronAttackPoint2.position;
-                Missile missile = FactoryManager.Instance.GetMissile();
-                missile.AttackPoint(attackPoint);
-                missile.Shoting(_targetVecter.x, _speed, CheckAtropine().damage);
+                for (int count = 0; count < _count; count++)
+                {
+                    Vector3 attackPoint = count % 2 == 0 ? _dronAttackPoint1.position : _dronAttackPoint2.position;
+                    Missile missile = FactoryManager.Instance.GetMissile();
+                    missile.AttackPoint(attackPoint);
+                    missile.Shoting(_targetVecter.x, _speed, CheckAtropine().damage);
+                }
+                AudioManager.Instance.PlaySFX(SFXType.Range);
+                yield return new WaitForSeconds(.3f);
             }
-            AudioManager.Instance.PlaySFX(SFXType.Range);
             yield return CheckAtropine().coolTime;
         }
     }

@@ -9,9 +9,9 @@ public class Spawner : Singleton<Spawner>
     WaitForSeconds[] _enemySpawnTimes = new WaitForSeconds[]
     {
         new WaitForSeconds(3f), new WaitForSeconds(2.5f),new WaitForSeconds(2f),
-        new WaitForSeconds(1.7f), new WaitForSeconds(1.5f)
+        new WaitForSeconds(1.7f), new WaitForSeconds(1.5f), new WaitForSeconds(1.2f)
     };
-    [SerializeField] WaitForSeconds _itemBoxSpawnTime = new WaitForSeconds(30);
+    [SerializeField] WaitForSeconds _itemBoxSpawnTime = new WaitForSeconds(20);
 
     void OnEnable()
     {
@@ -34,9 +34,12 @@ public class Spawner : Singleton<Spawner>
     {
         while (true)
         {
-            Enemy enemy = FactoryManager.Instance.GetEnemy();
-            enemy.transform.position = _spawnPoints[Random.Range(1, _spawnPoints.Length)].position;
-            enemy.LevelValue(GameManager.Instance.Level);
+            for (int i = 0; i < 3; i++)
+            {
+                Enemy enemy = FactoryManager.Instance.GetEnemy();
+                enemy.transform.position = _spawnPoints[Random.Range(1, _spawnPoints.Length)].position;
+                enemy.LevelValue(GameManager.Instance.Level);
+            }
             yield return _enemySpawnTimes[GameManager.Instance.Level];
         }
     }

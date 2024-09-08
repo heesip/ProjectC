@@ -38,21 +38,17 @@ public class WeaponDataSO : ScriptableObject
     #region Electrode
     public readonly int ElectrodeCount = 10;
 
-    public readonly float ElectrodeDamage = 2;
+    public readonly float ElectrodeDamage = 4;
     public readonly float[] ElectrodeSizes = new float[]
     {
-        0, 1.0f, 1.25f, 1.5f
+        0, 1.5f, 1.7f, 2.2f
     };
     public readonly float[] ElectrodeCoolTimes = new float[]
     {
-        0, 6, 5, 3
-    };
-
-    public readonly float AtropineElectrodeDamage = 3;
-    public readonly float[] AtropineElectrodeCoolTimes = new float[]
-    {
         0, 5, 4, 2
     };
+
+    public readonly float AtropineElectrodeDamage = 5;
     #endregion
 
     #region Fjorgin
@@ -73,7 +69,7 @@ public class WeaponDataSO : ScriptableObject
     public readonly Quaternion Mk2Rotation = Quaternion.Euler(0, 0, -90);
     public readonly float Mk2Speed = 1.5f;
 
-    public readonly float Mk2Damage = 2;
+    public readonly float Mk2Damage = 5;
 
     public readonly float[] Mk2CoolTimes = new float[]
     {
@@ -85,7 +81,7 @@ public class WeaponDataSO : ScriptableObject
         0, 3, 4, 6
     };
 
-    public readonly float AtropineMk2Damage = 4f;
+    public readonly float AtropineMk2Damage = 7;
 
     public readonly float[] AtropineMk2CoolTimes = new float[]
     {
@@ -101,7 +97,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] NinjaStarDamages = new float[]
     {
-        0, 3, 4, 6
+        0, 4, 5, 7
     };
 
     public readonly float[] NinjaStarCoolTimes = new float[]
@@ -123,17 +119,17 @@ public class WeaponDataSO : ScriptableObject
     #region ThunderStroke
     public readonly float[] ThunderDamages = new float[]
     {
-        0, 1.5f, 2, 2.5f
+        0, 3, 4, 5
     };
 
     public readonly float[] ThunderCoolTimes = new float[]
     {
-        0, 1.5f, 1.2f, 1
+        0, 1, 0.8f, 0.5f
     };
 
     public readonly float[] AtropineThunderCoolTimes = new float[]
     {
-        0, 1.2f, 1, 0.5f
+        0, 0.5f, 1, 0.3f
     };
     #endregion
 }
