@@ -17,12 +17,12 @@ public class EnemyDataSO : ScriptableObject
 
     public readonly float[] MaxHealths = new float[]
     {
-        7, 12, 16, 22, 28, 30
+        7, 22, 24, 30, 35, 40
     };
 
     public readonly float[] Speeds = new float[]
     {
-        1, 1.2f, 1.4f, 2, 2.2f, 2.4f
+        1.5f, 1.7f, 2, 2.2f, 2.4f, 2.6f
     };
 
 }

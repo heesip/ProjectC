@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager>
     int _minute => Mathf.FloorToInt(_gameTime / 60);
     int _second => Mathf.FloorToInt(_gameTime % 60);
 
-    WaitForSeconds _victoryDelay = new WaitForSeconds(0.5f);
+    WaitForSeconds _victoryDelay = new WaitForSeconds(1);
 
     public int Kill
     {

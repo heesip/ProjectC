@@ -14,7 +14,6 @@ public class ThunderStroke : Singleton<ThunderStroke>
     WaitForSeconds _coolTimeAtropine;
     WaitForSeconds _targetNullCoolTime;
 
-    readonly int _count = 2; 
     readonly int _maxLevel = 3;
     int _level;
     public int Level => _level;
@@ -65,7 +64,7 @@ public class ThunderStroke : Singleton<ThunderStroke>
     {
         while (true)
         {
-            for (int i = 0; i < _count; i++)
+            for (int i = 0; i < _level; i++)
             {
                 _randomTarget = _targetSystem.GetRandomTarget(_playerPosition);
                 if (_randomTarget != null)

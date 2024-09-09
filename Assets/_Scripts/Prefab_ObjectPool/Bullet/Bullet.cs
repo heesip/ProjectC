@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -10,7 +10,7 @@ public class Bullet : RecycleObject
     [SerializeField] protected bool _isProjectile;
     [SerializeField] protected float _damage = 0;
 
-    protected float _duration = 1.5f;
+    protected float _duration = 2.5f;
 
     protected void OnEnable()
     {

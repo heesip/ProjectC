@@ -16,7 +16,6 @@ public class Dron : Singleton<Dron>
     int _level;
     public int Level => _level;
 
-    readonly int _number = 2;
     int _count;
     int _range;
     float _damage;
@@ -91,7 +90,7 @@ public class Dron : Singleton<Dron>
     {
         while (true)
         {
-            for (int number = 0; number < _number; number++)
+            for (int level = 0; level < _level + 1; level++)
             {
                 for (int count = 0; count < _count; count++)
                 {

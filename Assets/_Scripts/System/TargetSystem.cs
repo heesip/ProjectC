@@ -1,12 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetSystem
 {
     LayerMask _enemyLayer => LayerMask.GetMask(AllStrings.Enemy);
-    float _circleRange = 3.5f;
-    Vector2 _boxRange = new Vector2(6, 10);
+    float _circleRange = 6;
+    Vector2 _boxRange = new Vector2(10, 15);
     RaycastHit2D[] _targets;
 
     public Transform GetNearestTarget(Vector2 playerPosition)

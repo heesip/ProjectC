@@ -11,7 +11,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float DronSpeed = 1.2f;
     public readonly int DronCount = 2;
-    public readonly int DronRange = 22;
+    public readonly int DronRange = 33;
 
     public readonly float[] DronDamages = new float[]
     {
@@ -20,17 +20,17 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] DronCoolTimes = new float[]
     {
-        0, 2, 1.5f, 1
+        0, 2, 1.5f, 1.2f
     };
 
     public readonly float[] AtroPineDronDamages = new float[]
     {
-        0, 6, 7, 9
+        0, 3, 4, 5
     };
 
     public readonly float[] AtropineDronCoolTimes = new float[]
     {
-        0, 1.5f, 1, 0.5f
+        0, 1.5f, 1.2f, 0.7f
     };
     #endregion
 
@@ -38,7 +38,7 @@ public class WeaponDataSO : ScriptableObject
     #region Electrode
     public readonly int ElectrodeCount = 10;
 
-    public readonly float ElectrodeDamage = 4;
+    public readonly float ElectrodeDamage = 5;
     public readonly float[] ElectrodeSizes = new float[]
     {
         0, 1.5f, 1.7f, 2.2f
@@ -48,7 +48,7 @@ public class WeaponDataSO : ScriptableObject
         0, 5, 4, 2
     };
 
-    public readonly float AtropineElectrodeDamage = 5;
+    public readonly float AtropineElectrodeDamage = 7;
     #endregion
 
     #region Fjorgin
@@ -81,7 +81,7 @@ public class WeaponDataSO : ScriptableObject
         0, 3, 4, 6
     };
 
-    public readonly float AtropineMk2Damage = 7;
+    public readonly float AtropineMk2Damage = 6;
 
     public readonly float[] AtropineMk2CoolTimes = new float[]
     {
@@ -97,7 +97,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] NinjaStarDamages = new float[]
     {
-        0, 4, 5, 7
+        0, 8, 9, 11
     };
 
     public readonly float[] NinjaStarCoolTimes = new float[]
@@ -107,7 +107,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] AtroPineNinjaStarDamages = new float[]
     {
-        0, 4, 5, 7
+        0, 10, 11, 13
     };
 
     public readonly float[] AtropineNinjaStarCoolTimes = new float[]
@@ -119,7 +119,7 @@ public class WeaponDataSO : ScriptableObject
     #region ThunderStroke
     public readonly float[] ThunderDamages = new float[]
     {
-        0, 3, 4, 5
+        0, 4, 5, 7
     };
 
     public readonly float[] ThunderCoolTimes = new float[]

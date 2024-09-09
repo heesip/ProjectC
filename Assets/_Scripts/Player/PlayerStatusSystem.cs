@@ -5,18 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatusSystem
 {
-    int _enemyAttack = 10;
+    int _enemyAttack = 20;
     float _maxHealth = 100;
     [SerializeField] float _shield;
     float _maxShield = 30;
     [SerializeField] float _health;
 
     int _level = 0;
-    int _healthUp = 25; 
+    int _healthUp = 25;
     int _exp = 0;
     int[] _nextExp = new int[]
     {
-        5,10,10,15,20,25,30,35,40,45,50,50,50,50,50
+        5,10,10,15,20,25,30,35,40,45,50
     };
     int _endExp => _nextExp.Length - 1;
     int _nextExpValue => Mathf.Min(_level, _endExp);
