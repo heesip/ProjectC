@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -6,7 +6,9 @@ using DG.Tweening;
 public class Item : RecycleObject
 {
     protected bool _isGet;
-    protected float _duration = 0.3f;
+    protected float _duration = 0.3f; 
+    [SerializeField] protected GameObject _light;
+
 
     protected virtual void ItemFunction() { }
     protected virtual void OnStart() { }
@@ -19,6 +21,7 @@ public class Item : RecycleObject
         }
 
         _isGet = true;
+        _light.SetActive(!_isGet);
 
         ItemFunction();
         var sequence = DOTween.Sequence();
@@ -35,6 +38,7 @@ public class Item : RecycleObject
     {
         transform.localScale = Vector3.one;
         _isGet = false;
+        _light.SetActive(!_isGet);
         OnStart();
     }
 

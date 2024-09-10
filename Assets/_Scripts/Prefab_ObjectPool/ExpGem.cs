@@ -6,10 +6,12 @@ public class ExpGem : RecycleObject
 {
     bool _isFly;
     float _duration = 0.3f;
+    [SerializeField] GameObject _light;
 
     void OnEnable()
     {
         _isFly = false;
+        _light.SetActive(!_isFly);
     }
 
     void OnDisable()
@@ -39,6 +41,7 @@ public class ExpGem : RecycleObject
         }
 
         _isFly = true;
+        _light.SetActive(!_isFly);
         var playerPosition = Player.Instance.transform.position;
         var sequence = DOTween.Sequence();
 
