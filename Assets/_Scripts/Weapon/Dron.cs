@@ -11,16 +11,13 @@ public class Dron : Singleton<Dron>
     WeaponDataSO _weaponDataSO;
     Vector3 _rightPosition;
     Vector3 _leftPosition;
-
+    Laser _laser;
     readonly int _maxLevel = 3;
     int _level;
     public int Level => _level;
 
-    int _count;
-    int _range;
     float _damage;
     float _damageAtropine;
-    float _speed;
     WaitForSeconds _coolTime;
     WaitForSeconds _coolTimeAtropine;
     public void UseWeapon()
@@ -31,6 +28,7 @@ public class Dron : Singleton<Dron>
     void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _laser = GetComponentInChildren<Laser>();
         DataLoad();
         Positioning();
     }
@@ -38,11 +36,13 @@ public class Dron : Singleton<Dron>
     void LateUpdate()
     {
         Positioning();
+        _laser.Positioning(transform.position);
     }
 
     void OnEnable()
     {
         LevelValue(_level);
+        _laser.Initialize();
         _attackCoHandle = StartCoroutine(AttackCo());
     }
 
@@ -56,9 +56,6 @@ public class Dron : Singleton<Dron>
         _weaponDataSO = GameDataManager.Instance.GetWeaponDataSO();
         _rightPosition = _weaponDataSO.DronRightPosition;
         _leftPosition = _weaponDataSO.DronLeftPosition;
-        _count = _weaponDataSO.DronCount;
-        _speed = _weaponDataSO.DronSpeed;
-        _range = _weaponDataSO.DronRange;
     }
 
     void Positioning()
@@ -90,22 +87,10 @@ public class Dron : Singleton<Dron>
     {
         while (true)
         {
-            for (int level = 0; level < _level + 1; level++)
-            {
-                for (int count = 0; count < _count; count++)
-                {
-                    Vector3 attackPoint = count % 2 == 0 ? _dronAttackPoint1.position : _dronAttackPoint2.position;
-                    Missile missile = FactoryManager.Instance.GetMissile();
-                    missile.AttackPoint(attackPoint);
-                    missile.Shoting(_targetVecter.x, _speed, CheckAtropine().damage);
-                }
-                AudioManager.Instance.PlaySFX(SFXType.Range);
-                yield return new WaitForSeconds(.3f);
-            }
+            _laser.Attack(CheckAtropine().damage);
             yield return CheckAtropine().coolTime;
         }
     }
-    Vector2 _targetVecter => transform.position + (Player.Instance.IsLeft ? Vector3.left : Vector3.right) * _range;
 
     (WaitForSeconds coolTime, float damage) CheckAtropine()
     {

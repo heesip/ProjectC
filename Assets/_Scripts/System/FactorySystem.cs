@@ -8,7 +8,6 @@ public class FactorySystem
     {
         _enemyPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetEnemyPrefab(), 10, factoryManager);
         _expGemPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetExpGemPrefab(), 10, factoryManager);
-        _missilePrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMissilePrefab(), 4, factoryManager);
         _ninjaStarPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetNinjaStarPrefab(), 1, factoryManager);
         _thunderPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetThunderPrefab(), 1, factoryManager);
         _molotovCocktailPrefab = new ObjectPoolSystem(GameResourcesManager.Instance.GetMolotovCocktailPrefab(), 1, factoryManager);
@@ -54,18 +53,11 @@ public class FactorySystem
     ObjectPoolSystem _molotovCocktailPrefab;
     ObjectPoolSystem _flamePrefab;
     ObjectPoolSystem _fjorginBuffPrefab;
-    Missile _tempMissile;
     NinjaStar _tempNinjaStar;
     Thunder _tempThunder;
     MolotovCocktail _tempMolotovCocktail;
     Flame _tempFlame;
     FjorginBuff _tempFjorginBuff;
-
-    public Missile GetMissile()
-    {
-        _tempMissile = _missilePrefab.Get() as Missile;
-        return _tempMissile;
-    }
 
     public NinjaStar GetNinjaStar()
     {

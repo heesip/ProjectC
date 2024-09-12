@@ -22,7 +22,7 @@ public class EnemyDataSO : ScriptableObject
 
     public readonly float[] Speeds = new float[]
     {
-        1.5f, 1.7f, 2, 2.2f, 2.4f, 2.6f
+        1.5f, 1.7f, 2, 2.1f, 2.2f, 2.3f
     };
 
 }

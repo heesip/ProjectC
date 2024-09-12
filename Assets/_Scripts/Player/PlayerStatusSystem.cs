@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatusSystem
 {
-    int _enemyAttack = 20;
+    int _enemyDamage = 15;
     float _maxHealth = 100;
     [SerializeField] float _shield;
     float _maxShield = 30;
@@ -51,13 +51,13 @@ public class PlayerStatusSystem
     {
         if (_shield > 0)
         {
-            _shield -= Time.deltaTime * _enemyAttack;
+            _shield -= Time.deltaTime * _enemyDamage;
             UIManager.Instance.UpdateShieldUI(_shield, _maxShield);
         }
 
         else
         {
-            _health -= Time.deltaTime * _enemyAttack;
+            _health -= Time.deltaTime * _enemyDamage;
             UIManager.Instance.UpdateHpUI(_health, _maxHealth);
         }
         _isDead = Dead();

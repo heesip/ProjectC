@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,11 +29,6 @@ public class GameResourcesSystem
     }
 
     #region Weapon & Bullet
-    public Missile GetMissilePrefab()
-    {
-        return _prefabResourcesSO.GetMissilePrefab();
-    }
-
     public NinjaStar GetNinjaStarPrefab()
     {
         return _prefabResourcesSO.GetNinjaStarPrefab();

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,11 +27,6 @@ public class FactoryManager : Singleton<FactoryManager>
     }
 
     #region Weapon & Bullet
-    public Missile GetMissile()
-    {
-        return _factorySystem.GetMissile();
-    }
-
     public NinjaStar GetNinjaStar()
     {
         return _factorySystem.GetNinjaStar();

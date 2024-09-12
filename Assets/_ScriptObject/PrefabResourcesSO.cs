@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,16 +26,11 @@ public class PrefabResourcesSO : ScriptableObject
     } 
 
     #region Weapon & Bullet
-    [SerializeField] Missile _missilePrefab;
     [SerializeField] NinjaStar _ninjaStarPrefab;
     [SerializeField] Thunder _thunderPrefab;
     [SerializeField] MolotovCocktail _molotovCocktailPrefab;
     [SerializeField] Flame _flamePrefab;
     [SerializeField] FjorginBuff _fjorginBuffPrefab;
-    public Missile GetMissilePrefab()
-    {
-        return _missilePrefab;
-    }
 
     public NinjaStar GetNinjaStarPrefab()
     {

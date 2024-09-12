@@ -15,22 +15,22 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] DronDamages = new float[]
     {
-        0, 2, 3, 4
+        0, 3, 5, 7
     };
 
     public readonly float[] DronCoolTimes = new float[]
     {
-        0, 2, 1.5f, 1.2f
+        0, 5, 4, 3
     };
 
     public readonly float[] AtroPineDronDamages = new float[]
     {
-        0, 3, 4, 5
+        0, 4, 6, 8
     };
 
     public readonly float[] AtropineDronCoolTimes = new float[]
     {
-        0, 1.5f, 1.2f, 0.7f
+        0, 4, 3, 2
     };
     #endregion
 
