@@ -49,6 +49,7 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
+        Application.targetFrameRate = 60;
         _startButton.onClick.AddListener(() => GameStart());
         _startButton.gameObject.SetActive(true);
         _allkill = GetComponentInChildren<Collider2D>();

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ public class FollowUI : Singleton<FollowUI>
 
     void FixedUpdate()
     {
-        _rectTransform.position = Camera.main.WorldToScreenPoint(Player.Instance.transform.position);
+        //_rectTransform.position = Camera.main.WorldToScreenPoint(Player.Instance.transform.position);
     }
 
 }
