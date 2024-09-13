@@ -29,7 +29,7 @@ public class SelectBoxType : MonoBehaviour
         {
             case SelectUIType.Dron:
                 tempDamage = _weaponDataSO.DronDamages[tempLevel];
-                tempCoolTime = _weaponDataSO.DronCoolTimes[tempLevel];
+                tempCoolTime = _weaponDataSO.AtropineDronCoolTimes[tempLevel];
                 _myText.text = string.Format(_description, tempDamage, tempCoolTime);
                 break;
             case SelectUIType.Electrode:

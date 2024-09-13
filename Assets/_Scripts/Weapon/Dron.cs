@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class Dron : Singleton<Dron>
 {
-    [SerializeField] Transform _dronAttackPoint1;
-    [SerializeField] Transform _dronAttackPoint2;
     SpriteRenderer _spriteRenderer;
     WeaponDataSO _weaponDataSO;
     Vector3 _rightPosition;

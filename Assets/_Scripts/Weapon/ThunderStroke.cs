@@ -64,7 +64,7 @@ public class ThunderStroke : Singleton<ThunderStroke>
     {
         while (true)
         {
-            for (int i = 0; i < _level; i++)
+            for (int i = 0; i < _level + 1; i++)
             {
                 _randomTarget = _targetSystem.GetRandomTarget(_playerPosition);
                 if (_randomTarget != null)

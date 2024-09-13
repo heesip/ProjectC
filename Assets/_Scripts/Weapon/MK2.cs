@@ -25,13 +25,13 @@ public class Mk2 : Singleton<Mk2>
     float _speed;
     WaitForSeconds _coolTime;
     WaitForSeconds _coolTimeAtropine;
-
+    int _ratateSize = 2;
 
     void Awake()
     {
         _mk2SpriteRenderer = _mk2.GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
-        _mk2.transform.Translate(transform.up, Space.World);
+        _mk2.transform.Translate(transform.up * _ratateSize, Space.World);
         DataLoad();
     }
 

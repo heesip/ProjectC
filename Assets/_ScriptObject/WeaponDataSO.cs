@@ -20,7 +20,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] DronCoolTimes = new float[]
     {
-        0, 5, 4, 3
+        0, 7, 6, 5
     };
 
     public readonly float[] AtroPineDronDamages = new float[]
@@ -30,7 +30,7 @@ public class WeaponDataSO : ScriptableObject
 
     public readonly float[] AtropineDronCoolTimes = new float[]
     {
-        0, 4, 3, 2
+        0, 6, 5, 4
     };
     #endregion
 
@@ -41,7 +41,7 @@ public class WeaponDataSO : ScriptableObject
     public readonly float ElectrodeDamage = 5;
     public readonly float[] ElectrodeSizes = new float[]
     {
-        0, 1.5f, 1.7f, 2.2f
+        0, 1.5f, 1.7f, 2f
     };
     public readonly float[] ElectrodeCoolTimes = new float[]
     {
@@ -63,8 +63,8 @@ public class WeaponDataSO : ScriptableObject
     #endregion
 
     #region Mk2 
-    public readonly Vector3 Mk2RightPosition = new Vector3(-2f, 0, 0);
-    public readonly Vector3 Mk2LeftPosition = new Vector3(2f, 0, 0);
+    public readonly Vector3 Mk2RightPosition = new Vector3(-3.5f, 0, 0);
+    public readonly Vector3 Mk2LeftPosition = new Vector3(3.5f, 0, 0);
     public readonly Vector3 Mk2RotateDirection = new Vector3(0, 0, -360);
     public readonly Quaternion Mk2Rotation = Quaternion.Euler(0, 0, -90);
     public readonly float Mk2Speed = 1.5f;

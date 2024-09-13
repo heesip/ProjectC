@@ -13,7 +13,7 @@ public class PlayerMoveSystem
 
     Rigidbody2D _rigidbody;
     Joystick _joystick;
-    float _speed = 3f;
+    float _speed = 3.2f;
     Vector2 _moveDirection;
     public Vector2 MoveDirection => _moveDirection;
     [SerializeField] SpriteRenderer _effectRenderer;
